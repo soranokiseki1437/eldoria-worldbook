@@ -260,6 +260,16 @@ def validate(text):
             line_num = text[:m.start()].count('\n') + 1
             violations.append(f'[行{line_num}] 粉银: 应为"粉色"')
 
+    # Rule 3: 重复事件ID
+    seen_ids = {}
+    for eid, title, start, end, block in find_event_blocks(text):
+        if eid in seen_ids:
+            line1 = text[:seen_ids[eid]].count('\n') + 1
+            line2 = text[:start].count('\n') + 1
+            violations.append(f'[{eid}] Rule3: 重复事件ID — 首次出现L{line1}，再次出现L{line2} ({title})')
+        else:
+            seen_ids[eid] = start
+
     return violations
 
 # ============================================================
