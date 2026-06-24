@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude
+.claude/
+memory/
+
+# Build artifacts (generated JSON)
+# Uncomment if you don't want JSON in git:
+# output/*.json
+
+# Backup directory
+backup/
+
+# Reference files
+reference/
