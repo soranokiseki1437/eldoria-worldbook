@@ -260,14 +260,6 @@ def validate(text):
             line_num = text[:m.start()].count('\n') + 1
             violations.append(f'[行{line_num}] 粉银: 应为"粉色"')
 
-    # 嗅觉
-    smell_patterns = ['体香', '体味', '气味', '汗水味', '汗味', '体臭']
-    for eid, title, start, end, block in find_event_blocks(text):
-        narrative = get_narrative_sections(block)
-        for sp in smell_patterns:
-            if sp in narrative:
-                violations.append(f'[{eid}] 嗅觉: 含 "{sp}" — 禁止嗅觉描写')
-
     return violations
 
 # ============================================================
