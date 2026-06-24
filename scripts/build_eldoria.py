@@ -78,6 +78,120 @@ CHAR_FIRST_MES = (
 )
 
 
+# ═══════════════════════════════════════════════════════════
+# MD驱动：从05_事件系统.md读取NTRS事件内容
+# 用法：ntrs(event_id) → dict(title, content, comment)
+# ═══════════════════════════════════════════════════════════
+_NTRS_CACHE = None
+
+def _load_ntrs_events():
+    """从05_事件系统.md提取所有NTRS事件，返回{N##: {title, content, comment}}"""
+    global _NTRS_CACHE
+    if _NTRS_CACHE is not None:
+        return _NTRS_CACHE
+
+    md_path = os.path.join(PROJECT_DIR, 'docs', '05_事件系统.md')
+    with open(md_path, 'r', encoding='utf-8') as _f:
+        _md = _f.read()
+
+    import re as _re
+    _start = _md.find('## 四、NTRS路线事件')
+    _end = _md.find('\n## 五、', _start)
+    _section = _md[_start:_end] if _end > 0 else _md[_start:]
+
+    _NTRS_CACHE = {}
+    for _m in _re.finditer(
+        r'### 事件(N\d{2})[：:]([^\n]+)\n\n```yaml\n(.*?)\n```',
+        _section, _re.DOTALL
+    ):
+        _eid = _m.group(1)
+        _title = _m.group(2).strip()
+        _yaml_text = _m.group(3)
+
+        # Build content by processing YAML lines into narrative format
+        _lines = [f'【NTRS事件——{_eid}：{_title}】', '']
+        _yaml_lines = _yaml_text.split('\n')
+
+        # Skip the first line (事件: N## ...) — it's redundant with our title
+        _body_lines = []
+        _skip_first = True
+        for _yl in _yaml_lines:
+            if _skip_first and _yl.startswith('事件:') or _yl.startswith('事件：'):
+                _skip_first = False
+                continue
+            _skip_first = False
+
+            # Remove leading whitespace (2-4 spaces) but keep relative indentation
+            _stripped = _yl.lstrip()
+            if not _stripped:
+                _body_lines.append('')
+                continue
+
+            # Count leading spaces for indent level
+            _indent = len(_yl) - len(_yl.lstrip())
+            _prefix = '  ' * max(0, (_indent // 2) - 1) if _indent >= 2 else ''
+
+            # Detect key-value pairs (field: value)
+            if ':' in _stripped and not _stripped.startswith('-'):
+                _key, _val = _stripped.split(':', 1)
+                _key = _key.strip()
+                _val = _val.strip()
+                # Map YAML keys to Chinese labels
+                _label_map = {
+                    '触发条件': '触发条件', '触发': '触发条件',
+                    '性行为等级': '性行为等级', '性行为': '性行为等级',
+                    '情感阶段': '情感阶段', '情感': '情感阶段', '阶段': '情感阶段',
+                    '黎恩知情': '黎恩知情',
+                    '第三者': '第三者',
+                    '情境': '情境',
+                    '占有欲确认': '占有欲确认',
+                    '玩家选择': '玩家选择',
+                    '变量': '变量',
+                    '核心': '核心',
+                }
+                if _key in _label_map:
+                    _label = _label_map[_key]
+                    if _val:
+                        _body_lines.append(f'{_prefix}{_label}：{_val}')
+                    else:
+                        _body_lines.append(f'{_prefix}{_label}：')
+                else:
+                    _body_lines.append(_yl)
+            elif _stripped.startswith('-'):
+                # Bullet points
+                _body_lines.append(f'{_prefix}{_stripped}')
+            else:
+                _body_lines.append(_yl)
+
+        _lines.extend(_body_lines)
+        _content = '\n'.join(_lines)
+
+        _NTRS_CACHE[_eid] = {
+            'title': _title,
+            'content': _content,
+            'comment': f"【NTRS事件】 {_eid} —— {_title}",
+        }
+
+    return _NTRS_CACHE
+
+def ntrs(event_id):
+    """返回NTRS事件的{title, content, comment}字典"""
+    return _load_ntrs_events()[event_id]
+
+def add_ntrs_entry(entries, event_id, uid, keys, order, probability=80):
+    """MD驱动添加NTRS事件条目——内容自动从05_事件系统.md读取。
+    用法：add_ntrs_entry(entries, 'N21', uid=222, keys=['凯尔','足交'], order=424)
+    """
+    _e = ntrs(event_id)
+    entries.append(make_entry(
+        uid=uid,
+        keys=keys + [event_id.lower(), 'ntrs'],
+        comment=_e['comment'],
+        order=order,
+        probability=probability,
+        content=_e['content'],
+    ))
+
 # ─── 工具函数 ───────────────────────────────────────────
 def make_entry(uid, keys, comment, content, order,
                constant=False, probability=100, use_probability=True,
@@ -7761,84 +7875,12 @@ def get_uid224_240_entries():
         ),
     ))
 
-    # === uid 237: N28 艾德里安的扑克——乳的初次 ===
-    entries.append(make_entry(
-        uid=237,
-        keys=["艾德里安的扑克", "ntrs", "n28", "艾德里安", "扑克", "乳交", "打飞机", "赌局"],
-        comment="【NTRS事件】 N28 艾德里安的扑克——乳的初次，手交非初次（树后凯尔为首），乳交才是第一次",
-        order=440,
-        probability=80,
-        content=(
-            "【NTRS事件——N28：艾德里安的扑克——乳的初次】\\n\\n"
-            "触发条件：ntrs_awakened = 100, seraphina_acceptance >= 60, adrian_closeness >= 45\\n"
-            "性行为等级：4+7（打飞机+乳交·手交非初次——树后凯尔为首·乳交为初次）\\n"
-            "情感阶段：B→C（手交再演+乳交初体验——借赌局尝试新方式）\\n"
-            "黎恩知情：是——黎恩全程在场\\n\\n"
-            "场景描述：\\n"
-            "银流河畔午后。艾德里安提议扑克——不赌钱。两局。菲娜看了黎恩一眼然后点头。\\n"
-            "艾德里安洗牌——手指修长和指交时用的是同一种从容。\\n"
-            "第一局她输了——代价：用手。菲娜深吸一口气——她给凯尔打过、给乔治打过，手交不是第一次了。\\n"
-            "但艾德里安是新的。他解开裤子——偏长、偏粗、麦色，龟头饱满圆润。\\n"
-            "和凯尔的修长白净完全不同、和乔治的偏粗圆钝也不同——\\n"
-            "他的阴茎和他的人一样好看。她握住——触感比视觉更诚实。手法已经熟练但对象是新的。\\n"
-            "他呼吸变重但她保持节奏——黎恩在看。她手上在为别人做眼睛在分享。\\n"
-            "第二局她又输了——代价：用胸。这是真正的第一次：第一次给别人乳交。\\n"
-            "她解开上衣时手指比刚才慢——月光下双乳泛淡金。\\n"
-            "双手捧起乳房将他性器夹在乳沟间——不是黎恩的是别人的。\\n"
-            "她低头看着自己的胸在做一件从没想过会做的事。\\n"
-            "乳沟间的触感陌生——和手完全不同。她抬头看黎恩——不是求助是分享。\\n"
-            "你看——我在为别人做了。用胸。\\n"
-            "两局结束。艾德里安没有要求更多——站起来倒了杯水递给她。\\n"
-            "今天到此为止——不是轻佻是郑重。菲娜接过水杯——手还在微微颤抖但不是害怕。\\n\\n"
-            "占有欲确认：\\n"
-            "艾德里安走后菲娜靠在黎恩肩上——两局。手不是第一次了——凯尔和乔治之后这是第三次。\\n"
-            "胸——这才是第一次。黎恩收紧手臂——感觉怎么样。\\n"
-            "她想了想——手已经习惯了。胸——低头看到的是他的不是你的。不一样。\\n"
-            "黎恩低头吻她额头——谢谢你。她抬头——谢什么。告诉我。每一个第一次都告诉我。\\n\\n"
-            "变量更新：shared_experience_level +25, possessiveness_intensity +30, seraphina_acceptance +12, adrian_closeness +20, trust_level +15\\n"
-            "核心：★乳交初体验——手交已是第三次（树后凯尔为首、乔治为次），乳才是真正的第一次。\\n"
-            "艾德里安自己叫停因为他知道两局已经够了——不是体力不够是尊重她的第一次。"
-        ),
-    ))
+    # === uid 237: N28 艾德里安的扑克——乳的初次 [MD驱动] ===
+    add_ntrs_entry(entries, 'N28', uid=237, keys=["艾德里安的扑克", "艾德里安", "扑克", "乳交", "打飞机", "赌局"], order=440)
 
-    # === uid 238: N29 酒后扑克——第一次给别人口交 ===
-    entries.append(make_entry(
-        uid=238,
-        keys=["酒后扑克", "ntrs", "n29", "艾德里安", "口交", "扑克", "黎恩请求"],
-        comment="【NTRS事件】 N29 酒后扑克——第一次给别人口交，黎恩赢的黎恩请求的",
-        order=442,
-        probability=80,
-        content=(
-            "【NTRS事件——N29：酒后扑克——第一次给别人口交】\\n\\n"
-            "触发条件：ntrs_awakened = 100, seraphina_acceptance >= 62, adrian_closeness >= 50\\n"
-            "性行为等级：6（口交·第一次给黎恩以外的人口交——黎恩赢的请求）\\n"
-            "情感阶段：B→C（首次口交——黎恩赢的、黎恩请求的）\\n"
-            "黎恩知情：是——黎恩赢的、黎恩请求的\\n\\n"
-            "场景描述：\\n"
-            "之后几周——几次正经扑克让三人熟了。艾德里安嘴贱但守规矩、从容但不越界。\\n"
-            "某个晚上又是扑克——喝着酒打着牌不赌东西。\\n"
-            "酒过几巡。黎恩洗牌——三局全赢。他的手在桌下攥住了菲娜的手指。\\n"
-            "我的条件——我想看你给他口交。声音平稳。\\n"
-            "菲娜手指僵了一下。口——曾经只给黎恩。慌乱——看黎恩又看艾德里安。\\n"
-            "黎恩没有松手——手指穿过她指缝扣紧。不是推她过去是陪她。\\n"
-            "她在他指间慢慢松开——跪到艾德里安面前。\\n"
-            "他解开裤子——偏长、偏粗、麦色，龟头饱满圆润。她含住——第一次给黎恩之外的人。\\n"
-            "黎恩坐在她身后不远处——看着她的背影。粉发垂落在肩胛骨之间，\\n"
-            "腰线收进跪坐的臀下，两只赤脚脚心朝上并在一起——脚趾微微蜷着。\\n"
-            "她的头在艾德里安腿间上下起伏——节奏缓慢，因为嘴里的形状还在适应。\\n"
-            "嘴里的形状不一样。温度一样。脉搏不一样。\\n"
-            "她闭上眼睛——脑海里不是艾德里安是黎恩的手在她手心里。\\n"
-            "释放时她吞下去了。擦嘴角时黎恩把她拉起来——吻住她。\\n"
-            "嘴里还有别人的味道——他不在意。他在意的是她做到了。\\n\\n"
-            "占有欲确认：\\n"
-            "事后她靠在黎恩胸口——嘴里还是别人的味道。但我是闭着眼睛的。想的是你的手。\\n"
-            "黎恩收紧手臂——我知道。她抬头——脚、手、胸、嘴——都给出去了。\\n"
-            "只剩——她没说完。黎恩低头——剩下的全部。留给我。她点头——全部。只给你。\\n\\n"
-            "变量更新：shared_experience_level +25, possessiveness_intensity +35, seraphina_acceptance +15, adrian_closeness +20, trust_level +15, bond_intimacy +15\\n"
-            "核心：★最后一个「第一次」——口交给别人。和艾德里安的手交+乳交形成三阶段弧线（手非初次但乳口均为初次）。\\n"
-            "黎恩赢的、黎恩请求的——不是她输了是他选的人。结束后她确认：脚手胸嘴都给过了，剩下的全部只给黎恩。"
-        ),
-    ))
+    # === uid 238: N29 酒后扑克——第一次给别人口交 [MD驱动] ===
+    add_ntrs_entry(entries, 'N29', uid=238, keys=["酒后扑克", "艾德里安", "口交", "扑克", "黎恩请求"], order=442)
+
     return entries
 
 
