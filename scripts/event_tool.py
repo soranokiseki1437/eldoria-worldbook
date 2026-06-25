@@ -200,6 +200,36 @@ def validate_prefix(prefix):
                 f'[{eid}] Rule6: 禁止"不是…是…"句式 — {ctx}'
             )
 
+    # Rule 7 (NSFW写作): 禁止不良气味描写
+    # 禁止体臭/骚味/体味/汗味/热气等不洁气味。
+    # 清新体香、花香、草药香等干净气息可以通过。
+    # 禁的是"不好闻"的气味，不是所有嗅觉描写。
+    _BAD_SMELL_RE = re.compile(
+        r'体臭'
+        r'|骚(?:味|臭|气)'
+        r'|体味(?!\s{0,2}清)'
+        r'|汗(?:臭|[水渍]?味|酸|馊)'
+        r'|浊(?:气|息|味)'
+        r'|(?:淫|雌|发情)(?:.{0,4})(?:气|息|味)'
+        r'|(?:气|息|味)(?:.{0,4})(?:淫|骚|雌)'
+        r'|热(?:气|息)\s{0,3}(?:蒸|腾|散|冒|涌|扑|喷|氤|缠|裹|包)'
+        r'|蒸(?:腾|发|出)(?:.{0,4})(?:味|气|息)'
+        r'|腐烂(?:.{0,4})(?:味|气|息|臭)'
+        r'|(?:味|气|息|臭)(?:.{0,4})腐烂'
+    )
+    for eid, name, fp, data in events:
+        with open(fp, 'r', encoding='utf-8') as f:
+            content = f.read()
+        body = content.split('\n', 1)
+        body = body[1] if len(body) > 1 else ''
+        for m in _BAD_SMELL_RE.finditer(body):
+            ctx_start = max(0, m.start() - 20)
+            ctx_end = min(len(body), m.end() + 20)
+            ctx = body[ctx_start:ctx_end].strip().replace('\n', ' ')[:100]
+            violations.append(
+                f'[{eid}] Rule7: 禁止不良气味 — "{m.group(0)}" 出现在: ...{ctx}...'
+            )
+
     return violations
 
 
