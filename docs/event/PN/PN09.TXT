@@ -1,6 +1,6 @@
 ID: PN9
 名称: 腐蚀的低语
-触发: 被动NTR路线, PN8已触发, thalions_influence >= 58, seraphina_despair >= 55, 深夜
+触发: 被动NTR路线, Thalion甜言蜜语后, thalions_influence >= 58, seraphina_despair >= 55, 深夜
 NSFW: 否
 情感阶段: B（被渗透——她醒来后不确定刚才的想法是不是自己的。这种不确定比确定更可怕）
 黎恩知情: 否——黎恩睡在她身边，不知道她的梦境正在被入侵

@@ -100,23 +100,37 @@ def validate_prefix(prefix):
         else:
             seen_ids[eid] = fp
 
-    # Rule 1: N## references in narrative (non-metadata context)
-    # 排除"核心"字段 — 核心是编辑备注，引用了其他事件ID是正常的
+    # Rule 1 (铁律): 事件内容中禁止引用任何事件编号
+    # 编号引用会导致未来重编号时连锁失效——描述叙事状态，不偷懒用编号。
+    # 匹配所有前缀: PN01, N01, P1, E1, W1, H1, G1, R1 等
+    _EVENT_ID_RE = re.compile(
+        r'(?<![A-Za-z0-9])'
+        r'(?:'
+        r'PN\d{1,2}'           # PN1-PN99
+        r'|P(?!N)\d{1,2}'      # P1-P99 (排除PN)
+        r'|N\d{2,3}'           # N01-N999
+        r'|[EWHGR]\d{1,2}'     # E/W/H/G/R 1-99
+        r')'
+        r'(?!\d)'
+    )
     for eid, name, fp, data in events:
-        # Check narrative fields only (not editorial notes)
-        narrative_fields = ['情境', '占有欲确认']
-        meta_keys = {'ID', '名称', '触发', 'NSFW', '性行为等级', '情感阶段',
-                     '黎恩知情', '第三者', '变量', '玩家选择', '所属章节'}
-        for field in narrative_fields:
-            text = data.get(field, '')
-            n_refs = re.findall(r'(?<![A-Za-z])N\d{1,2}(?!\d)', text)
-            for ref in n_refs:
-                # Check if it's in a legitimate context (e.g., "N01已触发")
-                # Allow in trigger-like contexts within narrative
-                violations.append(
-                    f'[{eid}] Rule1: 叙事中出现 "{ref}" — '
-                    f'{field}: {text[:60]}...'
-                )
+        with open(fp, 'r', encoding='utf-8') as f:
+            content = f.read()
+        # 分离ID行（允许自身ID出现在首行）
+        body = content.split('\n', 1)
+        body = body[1] if len(body) > 1 else ''
+        for m in _EVENT_ID_RE.finditer(body):
+            ref = m.group(0).upper()
+            if ref == eid.upper():
+                continue  # 自身ID行不报
+            # 提取上下文行
+            line_start = body.rfind('\n', 0, m.start()) + 1
+            line_end = body.find('\n', m.end())
+            ctx_line = body[line_start:line_end] if line_end > 0 else body[line_start:]
+            ctx = ctx_line.strip()[:100]
+            violations.append(
+                f'[{eid}] Rule1: 禁止编号引用 — "{ref}" 出现在: {ctx}...'
+            )
 
     # Rule 2: 进度互通
     prohibited = [
@@ -169,6 +183,22 @@ def validate_prefix(prefix):
             if sex_level > 0:
                 if '黎恩知情' not in data:
                     violations.append(f'[{eid}] Rule5: 缺少必填字段「黎恩知情」 — {name}')
+
+    # Rule 6 (去AI化): 禁止"不是...是..."对比句式
+    # 该句式是AI写作的标志性废话——直接用肯定句描述，不绕弯否定再肯定。
+    # 例："不是因为脏——是因为他舍不得放开" → "他舍不得放开"
+    #     "不是命令不是允许，是娇羞的点头" → "她娇羞地点了点头"
+    _NOT_BUT_PAT = re.compile(r'不是.{1,120}是')
+    for eid, name, fp, data in events:
+        with open(fp, 'r', encoding='utf-8') as f:
+            content = f.read()
+        body = content.split('\n', 1)
+        body = body[1] if len(body) > 1 else ''
+        for m in _NOT_BUT_PAT.finditer(body):
+            ctx = m.group(0)[:100]
+            violations.append(
+                f'[{eid}] Rule6: 禁止"不是…是…"句式 — {ctx}'
+            )
 
     return violations
 
