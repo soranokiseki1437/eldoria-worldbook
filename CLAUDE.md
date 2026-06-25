@@ -2,7 +2,7 @@
 
 > **Agent定位**：本项目（Eldoria世界书）的剧情深度与NSFW事件增强执行者
 > **前置阅读**：`README.md`（项目总览） → `docs/00_方案总览.md`（权威规则） → 本文件
-> **版本**：v5.2 | 更新日期：2026-06-25
+> **版本**：v6.0 | 更新日期：2026-06-25
 
 ---
 
@@ -79,7 +79,7 @@ Step 4: 记录
 ### 2.4 构建命令
 
 ```bash
-# 构建 JSON（每次修改分md/build_eldoria.py后）
+# 构建 JSON（每次修改分md后）——V6.0起无需改build_eldoria.py
 python 'C:\Users\lx\Desktop\世界书\scripts\build_eldoria.py'
 
 # 仅验证不写入
@@ -90,7 +90,24 @@ python 'C:\Users\lx\Desktop\世界书\scripts\build_eldoria.py' --validate
 
 # 备份当前JSON
 python 'C:\Users\lx\Desktop\世界书\scripts\backup_restore.py' backup "修改说明"
+
+# 事件验证（4条规则）
+python 'C:\Users\lx\Desktop\世界书\scripts\event_tool.py' validate "docs/05_事件系统.md"
+
+# ★ 新增/重排事件后：自动更新章节映射表
+python 'C:\Users\lx\Desktop\世界书\scripts\update_chapter_map.py'
+
+# ★ 插入事件+级联重编号（可复用）
+python 'C:\Users\lx\Desktop\世界书\scripts\insert_and_renumber.py' "docs/05_事件系统.md" <after_id> <new_event_file>
 ```
+
+### 2.5 V6.0架构铁律：零硬编码
+
+- **禁止**在`build_eldoria.py`中添加任何事件ID/标题/内容的硬编码
+- 所有事件条目由`_load_all_events()` → `_get_md_entries(prefix, tag)` 自动生成
+- **新增事件**：只改MD文件 → 构建自动生成条目 → 运行`update_chapter_map.py`更新映射
+- **删除事件**：从MD删除 → 构建自动移除
+- **修改事件**：改MD → 构建自动同步内容+键词
 
 ---
 
