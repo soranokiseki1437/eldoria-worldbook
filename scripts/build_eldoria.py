@@ -40,8 +40,8 @@ MD_DIR      = DOCS_DIR  # 分md在 docs/ 目录下
 #  - 主版本: 重大架构变更 / 路线重设计 / 核心设定翻版
 #  - 次版本: 新增角色 / 新增事件 / 修改变量系统
 #  - 修订号: 文本修正 / 错别字 / 内容微调
-VERSION = "V6.4.0"
-VERSION_TAG = f"Eldoria_{VERSION}"  # V6.4.0: 五阶段重划+10新事件+10+重写+N42插入改写+纯爱整理+全事件精简+92事件
+VERSION = "V6.8.0"
+VERSION_TAG = f"Eldoria_{VERSION}"  # V6.8.0: 内射递进+9C阶段新事件+Rule7+劳拉/艾德里安重写+草药咖啡+艾玛手交移位+N65重写
 
 # 主输出文件 = 带版本号的文件名（输出到 output/ 目录）
 JSON_PATH = os.path.join(OUTPUT_DIR, f"{VERSION_TAG}.json")
