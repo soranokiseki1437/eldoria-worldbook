@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-26T03:08:35.383585
+// 自动生成于: 2026-06-26T03:18:58.651802
 // 数据源: docs/05_事件系统.md
 // 生成器: scripts/generate_event_browser.py
 
@@ -741,6 +741,14 @@ const EVENTS = [
   },
   {
     "id": "N56",
+    "title": "雷恩的稳重，她选的第二次",
+    "route": "ntrs",
+    "chapter": "多人共享之夜",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "N57",
     "title": "弯腰的弧度——乔治的笔掉了",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -748,28 +756,20 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "N57",
-    "title": "夜谈——如果是乔治呢",
+    "id": "N58",
+    "title": "开裆连裤袜——弯腰的盛宴",
     "route": "ntrs",
     "chapter": "多人共享之夜",
     "summary": "",
     "type": "nsfw"
   },
   {
-    "id": "N58",
+    "id": "N59",
     "title": "试衣——镜前的另一个人",
     "route": "ntrs",
     "chapter": "多人共享之夜",
     "summary": "",
     "type": "main"
-  },
-  {
-    "id": "N59",
-    "title": "雷恩的稳重，她选的第二次",
-    "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "",
-    "type": "nsfw"
   },
   {
     "id": "N60",
