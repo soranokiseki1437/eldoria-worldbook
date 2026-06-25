@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-24T16:51:52.690086
+// 自动生成于: 2026-06-25T13:30:14.575087
 // 数据源: docs/05_事件系统.md
 // 生成器: scripts/generate_event_browser.py
 
@@ -7,7 +7,7 @@ const EVENTS = [
     "id": "E01",
     "title": "林间空地的苏醒",
     "route": "prologue",
-    "chapter": "林间空地的苏醒",
+    "chapter": "第0章",
     "summary": "黎恩在温暖的毛皮上醒来，周围是简陋但整洁的木屋。",
     "type": "main"
   },
@@ -15,7 +15,7 @@ const EVENTS = [
     "id": "E02",
     "title": "第一次与影牙兽战斗",
     "route": "prologue",
-    "chapter": "影牙兽的威胁",
+    "chapter": "第0章",
     "summary": "黎恩与Seraphina在森林边缘探索——银流河附近。",
     "type": "main"
   },
@@ -23,7 +23,7 @@ const EVENTS = [
     "id": "E03",
     "title": "第一次来到心木废墟",
     "route": "prologue",
-    "chapter": "心木废墟的秘密",
+    "chapter": "第0章",
     "summary": "巨大的精灵宫殿废墟在眼前展开——曾经的金色现在被深紫色的腐化所污染。",
     "type": "main"
   },
@@ -31,7 +31,7 @@ const EVENTS = [
     "id": "E04",
     "title": "低语林地的幻影",
     "route": "prologue",
-    "chapter": "心木废墟的秘密",
+    "chapter": "第0章",
     "summary": "黎恩和Seraphina来到低语林地——古老精灵王的灵魂栖息之地。",
     "type": "main"
   },
@@ -39,7 +39,7 @@ const EVENTS = [
     "id": "E05",
     "title": "VII班同伴的到达",
     "route": "prologue",
-    "chapter": "VII班的到来",
+    "chapter": "第0章",
     "summary": "在森林边缘——雾帷边缘——黎恩听到了熟悉的声音。\n      \"黎恩？黎恩！你在吗？\"",
     "type": "main"
   },
@@ -47,7 +47,7 @@ const EVENTS = [
     "id": "E06",
     "title": "VII班同伴的到达",
     "route": "prologue",
-    "chapter": "VII班的到来",
+    "chapter": "第0章",
     "summary": "几天后，更多VII班的同伴穿过雾帷边缘到达——",
     "type": "main"
   },
@@ -55,7 +55,7 @@ const EVENTS = [
     "id": "E07",
     "title": "VII班同伴的到达",
     "route": "prologue",
-    "chapter": "VII班的到来",
+    "chapter": "第0章",
     "summary": "艾玛·米尔斯汀（紫发的魔女继承人）和菲·克劳塞尔\n      （沉默的前猎兵）也穿越了雾帷边缘。",
     "type": "main"
   },
@@ -63,7 +63,7 @@ const EVENTS = [
     "id": "E08",
     "title": "森林的庆典",
     "route": "prologue",
-    "chapter": "森林的庆典",
+    "chapter": "第0章",
     "summary": "在银流河边，VII班的同伴们围着篝火坐下——",
     "type": "main"
   },
@@ -71,7 +71,7 @@ const EVENTS = [
     "id": "E09",
     "title": "古老先灵的低语",
     "route": "prologue",
-    "chapter": "古老先灵的低语",
+    "chapter": "第0章",
     "summary": "在心木废墟的最深处——那棵巨大的枯萎心木树脚下——",
     "type": "main"
   },
@@ -79,7 +79,7 @@ const EVENTS = [
     "id": "E10",
     "title": "黑兔的观察",
     "route": "prologue",
-    "chapter": "各方来客",
+    "chapter": "第0章",
     "summary": "在林间空地附近的一棵老橡树上——",
     "type": "main"
   },
@@ -87,7 +87,7 @@ const EVENTS = [
     "id": "E11",
     "title": "流浪商人的来访",
     "route": "prologue",
-    "chapter": "各方来客",
+    "chapter": "第0章",
     "summary": "在森林边缘的空地上——黎恩和Seraphina正在巡逻，",
     "type": "main"
   },
@@ -95,7 +95,7 @@ const EVENTS = [
     "id": "E12",
     "title": "圣殿骑士的踪迹",
     "route": "prologue",
-    "chapter": "各方来客",
+    "chapter": "第0章",
     "summary": "沿着银流河岸向上游走去——黎恩发现了血迹。",
     "type": "main"
   },
@@ -103,7 +103,7 @@ const EVENTS = [
     "id": "E13",
     "title": "学者的研究",
     "route": "prologue",
-    "chapter": "各方来客",
+    "chapter": "第0章",
     "summary": "在古代圣殿的废墟外——黎恩听到了一阵喃喃自语的声音。",
     "type": "main"
   },
@@ -111,7 +111,7 @@ const EVENTS = [
     "id": "E14",
     "title": "义妹的到来",
     "route": "prologue",
-    "chapter": "各方来客",
+    "chapter": "第0章",
     "summary": "清晨——雾帷的边缘突然出现了一阵骚动。",
     "type": "main"
   },
@@ -119,7 +119,7 @@ const EVENTS = [
     "id": "E15",
     "title": "杀戮之天使",
     "route": "prologue",
-    "chapter": "各方来客",
+    "chapter": "第0章",
     "summary": "午后的林间空地——阳光透过树叶洒下斑驳的光影。",
     "type": "main"
   },
@@ -127,7 +127,7 @@ const EVENTS = [
     "id": "P1",
     "title": "深夜的火炉边对话",
     "route": "pure",
-    "chapter": "路线分化",
+    "chapter": "第0章",
     "summary": "深夜，VII班的同伴们都已经入睡。",
     "type": "main"
   },
@@ -135,7 +135,7 @@ const EVENTS = [
     "id": "P2",
     "title": "鬼之力失控后的安抚",
     "route": "pure",
-    "chapter": "路线分化",
+    "chapter": "第0章",
     "summary": "战斗后，黎恩的鬼之力失控——紫色的火焰包围了他，",
     "type": "main"
   },
@@ -143,23 +143,23 @@ const EVENTS = [
     "id": "P3",
     "title": "第一次约会",
     "route": "pure",
-    "chapter": "路线分化",
-    "summary": "黎恩邀请Seraphina独自一人去银流河——不带任何同伴。",
+    "chapter": "第0章",
+    "summary": "- 黎恩邀请她独自去银流河。月光下河水银光闪烁，圣光花盛开——纯白花瓣散发温暖光芒\n      - 她脱鞋赤脚走进浅水——露出完全无防备的微笑，黎恩第一次见\n      - \"这是Eldoria少数没被腐化的地方。如果森林能恢复...如果你",
     "type": "main"
   },
   {
     "id": "P4",
     "title": "守护者的契约",
     "route": "pure",
-    "chapter": "纯爱·守护者契约",
-    "summary": "在古老先灵的见证下（或不需要），黎恩和Seraphina",
-    "type": "main"
+    "chapter": "第0章",
+    "summary": "- 古老先灵见证下，两人站在心木树未腐化部分前\n      - 金色圣光从她身体涌出与心木树共鸣。她转身握他的手——琥珀色眼睛充满泪水\n      - 誓词：\"我是Seraphina，Eldoria最后的守护者。在森林的古老灵魂面前，",
+    "type": "nsfw"
   },
   {
     "id": "P5",
     "title": "VII班的\"正式介绍\"",
     "route": "pure",
-    "chapter": "纯爱·守护者契约",
+    "chapter": "第0章",
     "summary": "林间空地的篝火旁。黎恩握着Seraphina的手，",
     "type": "nsfw"
   },
@@ -167,7 +167,7 @@ const EVENTS = [
     "id": "P6",
     "title": "心木废墟净化仪式前置准备",
     "route": "pure",
-    "chapter": "纯爱·守护者契约",
+    "chapter": "第0章",
     "summary": "心木废墟的边缘。枯萎的心木树在腐化中沉默。",
     "type": "nsfw"
   },
@@ -175,7 +175,7 @@ const EVENTS = [
     "id": "P7",
     "title": "与Thalion的第一次正面战斗",
     "route": "pure",
-    "chapter": "温泉与誓言",
+    "chapter": "第0章",
     "summary": "在心木废墟的深处——Thalion终于现身了。",
     "type": "nsfw"
   },
@@ -183,7 +183,7 @@ const EVENTS = [
     "id": "P8",
     "title": "温泉事件",
     "route": "pure",
-    "chapter": "温泉与誓言",
+    "chapter": "第0章",
     "summary": "银流河的温泉隐藏在圣光花丛之后——",
     "type": "nsfw"
   },
@@ -191,7 +191,7 @@ const EVENTS = [
     "id": "P9",
     "title": "守护夜",
     "route": "pure",
-    "chapter": "温泉与誓言",
+    "chapter": "第0章",
     "summary": "影牙兽的大规模袭击——比以往任何一次都更猛烈。",
     "type": "nsfw"
   },
@@ -199,7 +199,7 @@ const EVENTS = [
     "id": "P10",
     "title": "古老先灵的启示",
     "route": "pure",
-    "chapter": "古老的启示",
+    "chapter": "第0章",
     "summary": "在低语林地的最深处——古老先灵埃尔德莱恩再次显现。",
     "type": "nsfw"
   },
@@ -207,7 +207,7 @@ const EVENTS = [
     "id": "P11",
     "title": "终极战斗准备",
     "route": "pure",
-    "chapter": "终极抉择",
+    "chapter": "第0章",
     "summary": "明天。与Thalion的最终决战就在明天。",
     "type": "nsfw"
   },
@@ -215,7 +215,7 @@ const EVENTS = [
     "id": "P12",
     "title": "终局抉择",
     "route": "pure",
-    "chapter": "终局",
+    "chapter": "第0章",
     "summary": "战斗结束了。心木树的新芽在废墟中破土而出。",
     "type": "nsfw"
   },
@@ -223,15 +223,15 @@ const EVENTS = [
     "id": "P13",
     "title": "契约之夜",
     "route": "pure",
-    "chapter": "纯爱·守护者契约",
-    "summary": "守护者契约建立后的第一个夜晚。",
+    "chapter": "第0章",
+    "summary": "- 契约后第一个夜晚。心木树金光透过木屋。木屋中只有两人契约光芒在体表微闪\n      - 她穿精灵族契约之夜白色薄睡裙粉发披肩。站在火炉边——期待紧张羞涩\n      - 契约成立了。但听说人类的契约还需要另一个仪式？——脸红目光却勇敢\n",
     "type": "nsfw"
   },
   {
     "id": "P14",
     "title": "温泉的清晨",
     "route": "pure",
-    "chapter": "温泉与誓言",
+    "chapter": "第0章",
     "summary": "温泉之夜的第二天清晨。",
     "type": "nsfw"
   },
@@ -239,7 +239,7 @@ const EVENTS = [
     "id": "P15",
     "title": "鬼之圣光交融",
     "route": "pure",
-    "chapter": "古老的启示",
+    "chapter": "第0章",
     "summary": "古老先灵的预言还在耳边回响——\n      \"当圣光与暗影共鸣——森林将从死亡中重生。\"",
     "type": "nsfw"
   },
@@ -247,7 +247,7 @@ const EVENTS = [
     "id": "P16",
     "title": "足下的誓言",
     "route": "pure",
-    "chapter": "纯爱·守护者契约",
+    "chapter": "第0章",
     "summary": "满月。心木树的新芽在月光下泛着银绿色的微光——这是契约之后的第一轮满月。",
     "type": "nsfw"
   },
@@ -255,7 +255,7 @@ const EVENTS = [
     "id": "P17",
     "title": "俯首的骑士",
     "route": "pure",
-    "chapter": "温泉与誓言",
+    "chapter": "第0章",
     "summary": "深夜的木屋。炉火已经烧到了余烬——橙红色的光在灰白的木炭上明灭。",
     "type": "nsfw"
   },
@@ -263,7 +263,7 @@ const EVENTS = [
     "id": "P18",
     "title": "巡逻后的夜晚",
     "route": "pure",
-    "chapter": "古老的启示",
+    "chapter": "第0章",
     "summary": "傍晚她巡了整片东侧林地——影牙兽的活动范围又扩大了。",
     "type": "nsfw"
   },
@@ -271,7 +271,7 @@ const EVENTS = [
     "id": "P19",
     "title": "艾玛的手交实证研究",
     "route": "pure",
-    "chapter": "温泉与誓言",
+    "chapter": "第0章",
     "summary": "她推了推眼镜，翻开笔记本。\\\"手部神经末梢密度是女性最高的区域之一。理论上，手的刺激可以传达极其复杂的...情绪。\\\"理论说完，她摘下眼镜放在一旁——这是她\\\"进入实践\\\"的信号。她的手比他想的更温暖、更有力。每当她想验证某个\\\"假说\\\"，",
     "type": "nsfw"
   },
@@ -279,8 +279,8 @@ const EVENTS = [
     "id": "P20",
     "title": "初次的唇——口交入门",
     "route": "pure",
-    "chapter": "温泉与誓言",
-    "summary": "她跪坐在他身前——不是屈从，而是仪式。圣光在她指尖微微亮起，她用手背擦过嘴唇，琥珀色眼睛从下方仰视着他。第一次含入时她微微呛到，但没有退开。圣光在她的咽喉处温和地闪烁——她用魔法抑制了呕吐反射。再次抬起头时，唇间牵着银丝，她的眼神是骄傲的：",
+    "chapter": "第0章",
+    "summary": "她跪坐在他身前——不是屈从而是仪式。圣光在她指尖微微亮起她用手背擦过嘴唇琥珀色眼睛从下方仰视着他。第一次含入时她微微呛到但没有退开。圣光在她的咽喉处温和地闪烁——她用魔法抑制了呕吐反射。再次抬起头时唇间牵着银丝她的眼神是骄傲的：\"我学会了。",
     "type": "nsfw"
   },
   {
@@ -295,7 +295,7 @@ const EVENTS = [
     "id": "P22",
     "title": "圣光之谷——乳交",
     "route": "pure",
-    "chapter": "古老的启示",
+    "chapter": "第0章",
     "summary": "她的圣光从锁骨蔓延至双乳之间——她用手指分开乳房两侧，让那条沟变得更深。\"这里...也是我的魔法流淌的地方。\"当他在双乳间滑动时，金色圣光从乳沟中渗出，随着她被挤压的胸脯一明一暗地闪烁——像是心跳化成了光。她低头看着自己胸前，表情混合着惊讶",
     "type": "nsfw"
   },
@@ -311,7 +311,7 @@ const EVENTS = [
     "id": "P24",
     "title": "大腿之间——Seraphina的腿交",
     "route": "pure",
-    "chapter": "古老的启示",
+    "chapter": "第0章",
     "summary": "她坐在床沿，双腿并拢，大腿内侧的柔嫩皮肤微微泛着圣光的暖意。\"如果你想...慢一点。\"她并紧的腿间形成了一个温热而紧致的通道——不像内部那样激烈，却有一种\"在她的体表\"的亲昵。每一次滑动都擦过她大腿内侧最敏感的皮肤，她的脚趾蜷起——不是因为",
     "type": "nsfw"
   },
@@ -319,487 +319,631 @@ const EVENTS = [
     "id": "P25",
     "title": "银流河畔的初次手交",
     "route": "pure",
-    "chapter": "温泉与誓言",
-    "summary": "河水浸过脚踝。她看着自己的手覆盖在他勃起上——\"教我。\"从生涩的握法到找到节奏，每一次他的呼吸变化都让她调整手势。她琥珀色的眼睛里既有科研般的专注又有情欲的好奇。\"这样...对吗？\"她不需要答案——他的身体已经回答了。她始终注视他的眼睛，手",
+    "chapter": "第0章",
+    "summary": "河水浸过脚踝。她看着自己的手覆盖在他勃起上——\"教我。\"从生涩的握法到找到节奏，每一次他的呼吸变化都让她调整手势。她琥珀色的眼睛里既有学习者的专注又有恋人的好奇。\"这样...对吗？\"她不需要答案——他的身体已经回答了。她始终注视他的眼睛，手",
     "type": "nsfw"
   },
   {
-    "id": "N1",
-    "title": "坦白之夜",
+    "id": "N01",
+    "title": "坦白之夜——路线分支点",
     "route": "ntrs",
-    "chapter": "路线分化",
-    "summary": "在深夜的林间空地，火炉边。",
-    "type": "main"
+    "chapter": "第0章",
+    "summary": "trust>=50, bond>=40, P20已触发, 两人已是恋人且已有肉体关系, 玩家选择坦白",
+    "type": "nsfw"
   },
   {
-    "id": "N2",
+    "id": "N02",
     "title": "边界协商",
     "route": "ntrs",
-    "chapter": "边界与试探",
-    "summary": "Seraphina主动找黎恩——她的琥珀色眼睛中有决心。\n      \"我一直在想你说的话。我...我想尝试理解。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=25",
     "type": "main"
   },
   {
-    "id": "N3",
-    "title": "第一次见证",
-    "route": "ntrs",
-    "chapter": "边界与试探",
-    "summary": "森林深处的腐化区域。Seraphina站在月光下——她的手指在解上衣扣子时微微发抖。",
-    "type": "main"
-  },
-  {
-    "id": "N4",
-    "title": "第二次见证——习惯的萌芽",
-    "route": "ntrs",
-    "chapter": "边界与试探",
-    "summary": "同一个森林深处的空地。但这一次——月光不那么冷了。",
-    "type": "main"
-  },
-  {
-    "id": "N5",
+    "id": "N03",
     "title": "迷路的旅人——陌生人仅注视",
     "route": "ntrs",
-    "chapter": "边界与试探",
-    "summary": "银流河上游浅滩。一个迷路的旅人误入林间空地。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=38, shared>=12",
     "type": "nsfw"
   },
   {
-    "id": "N6",
-    "title": "雷恩的初访——仪式摸乳",
-    "route": "ntrs",
-    "chapter": "边界与试探",
-    "summary": "黄昏。森林边缘石砌修道院废墟。雷恩单膝跪下——不是求爱，是祝圣的姿势。\n      「黎恩信任我。你也信任我。我不会辜负这种信任。」",
-    "type": "main"
-  },
-  {
-    "id": "N7",
-    "title": "圣光的初触——摸乳",
-    "route": "ntrs",
-    "chapter": "边界与试探",
-    "summary": "Seraphina坐在心木树下的石阶上，月光透过树叶洒在她的锁骨上。",
-    "type": "main"
-  },
-  {
-    "id": "N8",
+    "id": "N04",
     "title": "足部护理——银流河的温柔",
     "route": "ntrs",
-    "chapter": "边界与试探",
-    "summary": "银流河畔。Seraphina赤脚浸在河水中。她抬起湿淋淋的脚——水珠从脚尖滑落。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, trust>=22, 银流河已解锁, 夜间, 凯尔在Eldoria",
     "type": "nsfw"
   },
   {
-    "id": "N9",
-    "title": "晨露中的裸足",
+    "id": "N05",
+    "title": "装睡——角落的骑士",
     "route": "ntrs",
-    "chapter": "边界与试探",
-    "summary": "清晨木屋。晨光从窗缝透入。她先醒了——看着身边还在睡梦中的他。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, shared>=28, 雷恩因原住所在改建来木屋留宿",
+    "type": "main"
+  },
+  {
+    "id": "N06",
+    "title": "雷恩的初访——正义的拒绝",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=44, shared>=16, 雷恩在Eldoria",
+    "type": "nsfw"
+  },
+  {
+    "id": "N07",
+    "title": "雷恩的同意——从拒绝到触碰",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, trust>=38",
+    "type": "main"
+  },
+  {
+    "id": "N08",
+    "title": "艾德里安的察觉——从容的入局者",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=46, 艾德里安在Eldoria",
+    "type": "main"
+  },
+  {
+    "id": "N09",
+    "title": "乔治的注视——发现吃醋有趣",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=40, george_closeness>=25",
     "type": "nsfw"
   },
   {
     "id": "N10",
-    "title": "乔治的注视",
+    "title": "凯尔的告白——真诚暗恋",
     "route": "ntrs",
-    "chapter": "第一次见证",
-    "summary": "温泉。Seraphina在金色水中——银发漂浮在水面。",
-    "type": "nsfw"
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=48, kael_closeness>=20, 私密场景",
+    "type": "main"
   },
   {
     "id": "N11",
-    "title": "挑逗的萌芽",
+    "title": "第一次共享——腐化低语者",
     "route": "ntrs",
-    "chapter": "第一次见证",
-    "summary": "木屋中。炉火只剩暗红色余烬。Seraphina趴在黎恩胸口——手指在他锁骨上画圈。\n      \"你今天——吃醋了。\"",
-    "type": "main"
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=32, shared>=8",
+    "type": "nsfw"
   },
   {
     "id": "N12",
-    "title": "凯尔的告白——真诚暗恋",
+    "title": "丝袜与内衣——故意的展示",
     "route": "ntrs",
-    "chapter": "第一次见证",
-    "summary": "木屋书房。凯尔攥着精灵语文献，指关节发白。\n      「我研究精灵文化六年——没有一份文献能描述你。是你对我笑的那一次——就一次。我记了它整整十四天。」",
-    "type": "main"
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=40, shared>=20, 凯尔在Eldoria",
+    "type": "nsfw"
   },
   {
     "id": "N13",
-    "title": "银色的探索——指交",
+    "title": "挑逗的萌芽",
     "route": "ntrs",
-    "chapter": "第一次见证",
-    "summary": "银流河畔的草地上，Seraphina仰躺在他的外衣上——双腿微张。",
-    "type": "main"
+    "chapter": "第0章",
+    "summary": ", shared>=20, 私密时刻",
+    "type": "nsfw"
   },
   {
     "id": "N14",
-    "title": "雷恩的手——温柔手交",
+    "title": "银色的探索——指交",
     "route": "ntrs",
-    "chapter": "第一次见证",
-    "summary": "木屋卧室。炉火烧到正好。Seraphina半躺床沿，衣袍松垮。",
-    "type": "nsfw"
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, trust>=40, 私密场景",
+    "type": "main"
   },
   {
     "id": "N15",
-    "title": "乔治的触碰——笨拙手交",
+    "title": "乔治的逃跑——亲密的陷阱",
     "route": "ntrs",
-    "chapter": "第一次见证",
-    "summary": "木屋。乔治站在床边手不知放哪里。「我拆过上千台导力器——但我没——」",
-    "type": "nsfw"
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=52, george_closeness>=25",
+    "type": "main"
   },
   {
     "id": "N16",
-    "title": "艾德里安的唇——口交",
+    "title": "乔治的同意——笨拙的第一课",
     "route": "ntrs",
-    "chapter": "第一次见证",
-    "summary": "艾德里安府邸私室。他跪在她腿间——跪得优雅。\n      「守护者大人——我可以开始了吗？」语气像在请求一曲舞蹈。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=54, george_closeness>=35",
     "type": "nsfw"
   },
   {
     "id": "N17",
-    "title": "圣光之泉——口交受け",
+    "title": "艾德里安的指尖——从容的探索",
     "route": "ntrs",
-    "chapter": "第一次见证",
-    "summary": "Seraphina仰躺在心木树根部的软苔上——这是Eldoria最神圣的地方。\n      \"在这里...用你的嘴...\"她的话没说完就转为一声低吟——第三者跪在她双腿之间，",
-    "type": "nsfw"
+    "chapter": "第0章",
+    "summary": "- 艾德里安的手指让她发出了一声自己从没听过的喘息。她愣了一下，然后没再忍，第二声直接漏出来了\n - 之后艾德里安没有催过，没有暗示、没有眼神、没有\"顺便路过\"。\n 几周过去像什么都没发生。他的耐心就是他的从容。菲娜主动找到黎恩，\n \"我去",
+    "type": "main"
   },
   {
     "id": "N18",
-    "title": "林间初尝——首次单人本番",
+    "title": "圣光之泉——口交受け",
     "route": "ntrs",
-    "chapter": "第一次见证",
-    "summary": "密林深处老橡树下。艾德里安把她抵在树上——树皮粗糙硌在背上。\n      「你一直在看黎恩——他就在那边榉树后面。我知道他在。他知道我知道。」",
+    "chapter": "第0章",
+    "summary": "- 事后她把脸埋在黎恩胸口不敢抬——\"太羞耻了\"说了三遍。但嘴角是弯的\n - 之后菲娜一直在想他那句\"不用忍\"。指交时的高潮不是被索取的是被释放的——\n 黎恩给她安全感、雷恩给她郑重、只有艾德里安给她\"被看穿然后被照顾\"的感觉。\n 她找到黎",
     "type": "nsfw"
   },
   {
     "id": "N19",
-    "title": "隐奸——黎恩的窥视",
+    "title": "乔治的回礼——从按摩到足交",
     "route": "ntrs",
-    "chapter": "第一次见证",
-    "summary": "Rean外出归来，循圣光在森林深处月光空地找到Seraphina与第三者独处。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=54, george_closeness>=40",
     "type": "nsfw"
   },
   {
     "id": "N20",
-    "title": "玉足之戏——足交NTRS",
+    "title": "凯尔的第一次——黑丝与滚烫的手心",
     "route": "ntrs",
-    "chapter": "第一次见证",
-    "summary": "祭坛石阶上。Seraphina赤脚坐于高处，Rean坐对面注视。第三者站她面前。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=58, kael_closeness>=35",
     "type": "nsfw"
   },
   {
     "id": "N21",
-    "title": "丝袜之诱——角色各自的足部魅力",
+    "title": "凯尔的臣服——从闻到舔到足交",
     "route": "ntrs",
-    "chapter": "第一次见证",
-    "summary": "篝火夜。众人围坐。Rean目光扫过各女性角色的脚与丝袜：",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=60, kael_closeness>=40",
     "type": "nsfw"
   },
   {
     "id": "N22",
-    "title": "桌下之手——隐奸手交",
+    "title": "玲的裸足——小恶魔的秘密",
     "route": "ntrs",
-    "chapter": "第一次见证",
-    "summary": "长桌周围坐着同伴——亚莉莎在汇报、劳拉在点头。桌布之下，他的手被Seraphina握住，无声地引导到某个位置。她面色如常地与乔治讨论净化方案，手指却在悄悄解开他的腰带。当他的呼吸开始不稳时，她端起茶杯掩住嘴角的笑意。菲多看了她一眼——Ser",
+    "chapter": "第0章",
+    "summary": "",
     "type": "nsfw"
   },
   {
     "id": "N23",
-    "title": "桌下之口——隐奸口交",
+    "title": "桌下之手——隐奸手交",
     "route": "ntrs",
-    "chapter": "第一次见证",
-    "summary": "同样的长桌，同样的会议——但这次她滑到了桌面之下。菲终于问：\\\"Seraphina去哪了？\\\"亚莉莎答：\\\"刚才她说去取净化方案的数据。\\\"与此同时，桌布下的温暖嘴唇正包裹着他。他必须——必须在三秒内——回答劳拉关于影牙兽巡逻路线的问题——",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, 会议场景性行为等级: 4（手交·公共场合隐蔽）",
     "type": "nsfw"
   },
   {
     "id": "N24",
-    "title": "亚莉莎的发现",
+    "title": "菲的裸足——猎兵的诚意",
     "route": "ntrs",
-    "chapter": "第一次共享",
-    "summary": "亚莉莎偶然撞见了黎恩和Seraphina的NTRS场景——",
-    "type": "main"
+    "chapter": "第0章",
+    "summary": "",
+    "type": "nsfw"
   },
   {
     "id": "N25",
-    "title": "第一次双人共享——NTRS情感阶段B→C过渡",
+    "title": "桌下之口——隐奸口交",
     "route": "ntrs",
-    "chapter": "第一次共享",
-    "summary": "篝火已烧到只剩暗红色的炭。Seraphina坐在中间——左边是乔治，右边是凯尔。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, 会议场景",
     "type": "nsfw"
   },
   {
     "id": "N26",
-    "title": "艾德里安的赌局——首次插入",
+    "title": "树后的秘密——第一次给别人打飞机",
     "route": "ntrs",
-    "chapter": "第一次共享",
-    "summary": "银流河畔月光下。这是NTRS路线最重要的里程碑之一——",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=60, kael_closeness>=40",
     "type": "nsfw"
   },
   {
     "id": "N27",
-    "title": "凯尔的第一次——学者的试炼",
+    "title": "第一次双人共享——两只手同时",
     "route": "ntrs",
-    "chapter": "第一次共享",
-    "summary": "凯尔紧张地推眼镜——他想参与共享仪式，不是作为研究对象，是作为被信任的人。",
-    "type": "main"
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=44, shared>=22, george_closeness>=30, kael_closeness>=30",
+    "type": "nsfw"
   },
   {
     "id": "N28",
-    "title": "雷恩的慰藉——骑士的温柔",
+    "title": "艾德里安的扑克——乳的初次",
     "route": "ntrs",
-    "chapter": "第一次共享",
-    "summary": "战后。Seraphina坐在河畔，圣光微弱。雷恩无声走近，粗糙大手覆上她的手。\n      \"你累了。\"——他不需要安慰她，只需要陪伴她。他曾失去妻子，他懂沉默的分量。",
-    "type": "main"
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=60, adrian_closeness>=45",
+    "type": "nsfw"
   },
   {
     "id": "N29",
-    "title": "凯尔的再战——主动本番",
+    "title": "酒后扑克——第一次给别人口交",
     "route": "ntrs",
-    "chapter": "第一次共享",
-    "summary": "木屋卧室。凯尔进门时手里没有文献——他摘了眼镜放在桌上。她没见过他不戴眼镜的样子。\n      「我——从上次之后做了一些研究。不是学术那种——我问了雷恩。和艾德里安。关于怎么做。」",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=62, adrian_closeness>=50",
     "type": "nsfw"
   },
   {
     "id": "N30",
-    "title": "乔治的意外——笨拙本番",
+    "title": "凯尔的乳交——学术实践",
     "route": "ntrs",
-    "chapter": "第一次共享",
-    "summary": "木屋。乔治解她衣服时手指打结扣子和手指缠在一起。她笑了——温柔地帮他把扣子解开。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=52, trust>=48, shared>=28, kael_closeness>=35",
     "type": "nsfw"
   },
   {
     "id": "N31",
-    "title": "夜袭——黑暗中的访客",
+    "title": "酒后之夜——黎恩的指使",
     "route": "ntrs",
-    "chapter": "第一次共享",
-    "summary": "深夜木屋。月光穿窗缝。Seraphina侧躺草席。门被推开——来者或Rean/第三者/被Rean撞见。",
+    "chapter": "第0章",
+    "summary": "- 自从那次扑克——他赢了、他请求了、他看着她跪到艾德里安面前——黎恩发现了一件自己之前没意识到的事：他不只是接受。他喜欢安排。喜欢选人。喜欢看她因为他的决定而脸红。",
     "type": "nsfw"
   },
   {
     "id": "N32",
-    "title": "劳拉的直率",
+    "title": "凯尔的再战——从乳到口",
     "route": "ntrs",
-    "chapter": "第一次共享",
-    "summary": "劳拉·S·亚尔赛德第一个察觉到了黎恩和Seraphina关系中的\"不同\"。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=68, kael_closeness>=42",
     "type": "nsfw"
   },
   {
     "id": "N33",
-    "title": "与爱丽榭的禁忌",
+    "title": "黎恩的安排——让她和乔治独处",
     "route": "ntrs",
-    "chapter": "第一次共享",
-    "summary": "爱丽榭在银流河边找到黎恩。月光下，银色的河水映照着她的脸——",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=62, george_closeness>=38",
     "type": "nsfw"
   },
   {
     "id": "N34",
-    "title": "温泉NTRS版",
+    "title": "凯尔的山洞——采样与被困",
     "route": "ntrs",
-    "chapter": "第一次共享",
-    "summary": "银流河温泉——与纯爱温泉形成镜像对比。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=70, kael_closeness>=45, 凯尔采集任务",
     "type": "nsfw"
   },
   {
     "id": "N35",
-    "title": "菲的直接本番",
+    "title": "乔治的唇——意外的美味",
     "route": "ntrs",
-    "chapter": "第一次共享",
-    "summary": "训练后，她坐在兵器架上，双腿晃着。\\\"喂。\\\"她叫他——用的是猎兵的称呼，但眼神里的东西不是猎兵的。\\\"想做就做吧。\\\"没有铺垫，没有浪漫装饰——菲就是菲。但当他进入她时，她搂住他脖子的手臂比任何女人都紧。\\\"...其实我，一直在想这一刻。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=68, george_closeness>=42",
     "type": "nsfw"
   },
   {
     "id": "N36",
-    "title": "亚莉莎的傲娇本番",
+    "title": "第二次共享——多低语者强迫口交手交",
     "route": "ntrs",
-    "chapter": "第一次共享",
-    "summary": "\\\"笨、笨蛋！谁说你可以...\\\"——话没说完，因为当他真的进入时，她的手臂像抓救命稻草一样搂住了他的背。蕾丝内衣被扔在地板上——那是莱恩福尔特的最新款，价值数万米拉，此刻只是一块碍事的布。嘴上说着\\\"别、别看我\\\"，但她的身体从不撒谎——",
+    "chapter": "第0章",
+    "summary": "- 三个低语者同时出现。这次是她选的——主动挑战而非被动面对。但当数量超出预期、当嘴里和背后的肉棒同时逼近时，她还是慌了。不是后悔——是\"我以为我准备好了但好像还没有\"。拼命摇头是信号。黎恩出手的那一刻她松了一口气——不是解脱，是被接住\n ",
     "type": "nsfw"
   },
   {
     "id": "N37",
-    "title": "玲的游戏本番",
+    "title": "凯尔的清晨——黑丝与第一次插入",
     "route": "ntrs",
-    "chapter": "第一次共享",
-    "summary": "\\\"这次玩真的哦？\\\"她跨坐在他身上，握着它对准自己时还在笑——但当真正进入的那一刻，她的红瞳骤然放大。镰刀型武器靠在墙角，她的手指在他肩膀上抓出红痕。\\\"等、等一下...\\\"——这是玲第一次失去掌控。她原本的计划是\\\"捉弄他\\\"，但身体有",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=75, kael_closeness>=50, 清晨时段",
     "type": "nsfw"
   },
   {
     "id": "N38",
-    "title": "劳拉的骑士本番",
+    "title": "雷恩的稳重，她选的第二次",
     "route": "ntrs",
-    "chapter": "第一次共享",
-    "summary": "她将骑士服叠得整整齐齐才放到一旁——\\\"这不代表我卸下了荣誉，只代表我选择对你卸下防御。\\\"她的身体是战士的——腹肌线条分明，大腿有力。当他进入时，她的呼吸只乱了一瞬便重新稳定——骑士的训练让她控制住了身体的反应。但她的指节因为抓床单而发白",
-    "type": "nsfw"
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=78, rain_closeness>=45, first_insertion_marker>=1",
+    "type": "main"
   },
   {
     "id": "N39",
-    "title": "多人共享之夜",
+    "title": "图纸与门缝——她设计的隐奸",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "森林深处的隐秘空地。Seraphina站在中央——金色圣光是唯一光源。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=78, george_closeness>=48",
     "type": "nsfw"
   },
   {
     "id": "N40",
-    "title": "艾玛的仪式性共享",
+    "title": "劳拉的直率——月光下的乳交",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "艾玛在低语林地布下了魔女家族的\"灵魂共鸣仪式\"——",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=52, sub_lauras_status>=35, 夜晚",
     "type": "nsfw"
   },
   {
     "id": "N41",
-    "title": "菲的精神见证",
+    "title": "姐妹的足——爱丽榭与菲娜的联合足交",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "菲·克劳塞尔从不主动说话。但她的沉默是最敏锐的——",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=64, 爱丽榭在场, 私密场景",
     "type": "nsfw"
   },
   {
     "id": "N42",
-    "title": "群交——圣光之环",
+    "title": "亚莉莎的蕾丝——傲娇的告白",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "森林深处祭坛。Seraphina立于中央，多名第三者环绕。五层递进——凯尔被引导→雷恩加入→艾德里安替换→乔治口交→(可选)Thalion腐化介入。Rean坐环外注视。终幕：所有人退开，Rean占有她，鬼之力与圣光完全交融。",
+    "chapter": "第0章",
+    "summary": "亚莉莎在队伍中, ntrs_awakened=100, acceptance>=55, 夜晚私密",
     "type": "nsfw"
   },
   {
     "id": "N43",
-    "title": "温泉混浴——银流河的夜晚",
+    "title": "她的游戏——黎恩也参与",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "银流河天然温泉。水汽月光。Seraphina率先入水。水改变所有互动质感。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=80, shared>=50, bond>=75",
     "type": "nsfw"
   },
   {
     "id": "N44",
-    "title": "温泉夜——水汽中的足交",
+    "title": "劳拉的白袜——鬼之力的释放",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "银流河温泉。水汽升腾。水中足交——水的浮力让动作更慢更深，温度让皮肤更敏感。",
+    "chapter": "第0章",
+    "summary": "劳拉在队伍中, ntrs_awakened=100, acceptance>=52, 夜晚",
     "type": "nsfw"
   },
   {
     "id": "N45",
-    "title": "密林即兴——站立后入",
+    "title": "艾玛的传送门——远程口交与足交",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "她的手撑在古树粗糙的树皮上，手指在苔藓上抓出印痕。他从身后进入——这个姿势让她必须踮起脚尖。森林的寂静让每一次撞击声和水声都格外清晰。她用一只手捂住嘴——不是因为羞耻，而是因为这个姿势让她的声音太大了。透过树叶的阳光斑驳地落在她裸露的背上，",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=64, sub_emmas_status>=40",
     "type": "nsfw"
   },
   {
     "id": "N46",
-    "title": "镜湖倒影——欲望本番",
+    "title": "菲的早晨——沉默的口交",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "湖水如镜，满月倒映在水中央。她脱衣时看了一眼水面——自己的倒影赤裸着站在月光下。当他从正面进入时，她在水中的倒影同步动作——她看着水中的自己在被占有，看着自己的表情从克制到失控，看着自己的腿缠上他的腰。\\\"那个...是我吗？\\\"她在喘息中问",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=68, sub_fies_status>=35",
     "type": "nsfw"
   },
   {
     "id": "N47",
-    "title": "野外暴露——圣光之森",
+    "title": "醉诱——扶她回屋之后",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "数万朵圣光花同时绽放。花粉对Seraphina炽天使血脉有催化作用——圣光失控外溢，衣服在光芒中透明。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=64, shared>=50, 篝火聚会",
     "type": "nsfw"
   },
   {
     "id": "N48",
-    "title": "圣光之镜——欲望的倒影",
+    "title": "温泉——凯尔的 humiliation",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "镜湖（Mir'elindor）——不反射现实，只反射欲望。每个人在湖中看到自己最深层的渴望。",
+    "chapter": "第0章",
+    "summary": "trust>=30, 银流河已解锁, 凯尔在场",
     "type": "nsfw"
   },
   {
     "id": "N49",
-    "title": "月光下的誓言",
+    "title": "密林即兴——站立后入",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "满月心木树下。双色光芒照亮草地——森林最神圣之处。足交化为仪式。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=56, 森林深处探索",
     "type": "nsfw"
   },
   {
     "id": "N50",
-    "title": "主动手交——NTRS阶段C→D",
+    "title": "菲的直接本番",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "空地篝火边。Seraphina主动走向乔治——他没有预料到。她在他面前蹲下，",
+    "chapter": "第0章",
+    "summary": "训练后，她坐在兵器架上，双腿晃着。\\\"喂。\\\"她叫他——用的是猎兵的称呼，但眼神里的东西不是猎兵的。\\\"想做就做吧。\\\"没有铺垫，没有浪漫装饰——菲就是菲。但当他进入她时，她搂住他脖子的手臂比任何女人都紧。\\\"...其实我，一直在想这一刻。",
     "type": "nsfw"
   },
   {
     "id": "N51",
-    "title": "主动口交——NTRS阶段D",
+    "title": "镜湖倒影——欲望本番",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "木屋中。艾德里安坐在椅子上——Seraphina跪在他双腿之间。",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=60, 镜湖区域已解锁",
     "type": "nsfw"
   },
   {
     "id": "N52",
-    "title": "主动隐奸——NTRS阶段D",
+    "title": "胜利庆典后的3P",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "\"今天下午——我会去找乔治。你可以在窗外看。但别进来。\"",
-    "type": "nsfw"
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=72, shared>=65, george_closeness>=50, 大战胜利后",
+    "type": "main"
   },
   {
     "id": "N53",
-    "title": "桌下之手——NTRS隐奸手交",
+    "title": "温泉晕厥——事后告知",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "长桌。同伴们在讨论净化方案——亚莉莎在汇报数据，劳拉在点头，菲在打瞌睡。",
-    "type": "nsfw"
+    "chapter": "第0章",
+    "summary": "",
+    "type": "main"
   },
   {
     "id": "N54",
-    "title": "桌下之口——NTRS隐奸口交",
+    "title": "艾玛的吊带袜——魔女的私授课程",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "同样的长桌。但这次——Seraphina滑到了桌面之下。",
+    "chapter": "第0章",
+    "summary": "",
     "type": "nsfw"
   },
   {
     "id": "N55",
-    "title": "隐乳交——NTRS隐蔽乳交",
+    "title": "亚莉莎的傲娇本番",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "心木树后的石阶。月光被树冠切割成碎片洒在地上。乔治坐在石阶上——",
+    "chapter": "第0章",
+    "summary": "\\\"笨、笨蛋！谁说你可以...\\\"——话没说完，因为当他真的插入时，她的手臂像抓救命稻草一样搂住了他的背。蕾丝内衣被扔在地板上，那是莱恩福尔特的最新款，价值数万米拉，此刻只是一块碍事的布。嘴上说着\\\"别、别看我\\\"，但她的身体从不撒谎，小穴",
     "type": "nsfw"
   },
   {
     "id": "N56",
-    "title": "腐化仪式",
+    "title": "野外失控——花田3P",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "心木废墟。Thalion站在Seraphina身后——但她的姿态和N3完全不同。",
+    "chapter": "第0章",
+    "summary": "",
     "type": "main"
   },
   {
     "id": "N57",
-    "title": "胜利庆典后的失控",
+    "title": "亚尔缇娜的任务——逻辑性服务",
     "route": "ntrs",
-    "chapter": "多人共享之夜",
-    "summary": "腐化被净化后，银流河畔。",
+    "chapter": "第0章",
+    "summary": "",
     "type": "nsfw"
   },
   {
     "id": "N58",
-    "title": "终极确认之夜",
+    "title": "欲望之镜",
     "route": "ntrs",
-    "chapter": "终极抉择",
-    "summary": "决战前夜。所有同伴都在木屋中——炉火噼啪作响。",
+    "chapter": "第0章",
+    "summary": "",
     "type": "nsfw"
   },
   {
     "id": "N59",
+    "title": "玲的游戏本番",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "\\\"这次玩真的哦？\\\"她跨坐在他身上，握着肉棒对准自己时还在笑，但当真正插入的那一刻，她的红瞳骤然放大。镰刀型武器靠在墙角，她的手指在他肩膀上抓出红痕。\\\"等、等一下...\\\"——这是玲第一次失去掌控。她原本的计划是\\\"捉弄他\\\"，但身体有",
+    "type": "nsfw"
+  },
+  {
+    "id": "N60",
+    "title": "主动手交——服务第三者",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "N61",
+    "title": "艾德里安的舌——反向服务",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "N62",
+    "title": "雷恩的裸足——战士的足弓",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "N63",
+    "title": "劳拉的骑士本番",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "她将骑士服叠得整整齐齐才放到一旁——\\\"这不代表我卸下了荣誉，只代表我选择对你卸下防御。\\\"她的身体是战士的，腹肌线条分明，大腿有力。当他插入时，她的呼吸只乱了一瞬便重新稳定，骑士的训练让她控制住了身体的反应。但她的指节因为抓床单而发白，暴",
+    "type": "nsfw"
+  },
+  {
+    "id": "N64",
+    "title": "雷恩的跪礼——圣殿骑士的口",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=66, rain_closeness>=38",
+    "type": "nsfw"
+  },
+  {
+    "id": "N65",
+    "title": "凯尔的独白——窗外的归来",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=68, kael_closeness>=45",
+    "type": "nsfw"
+  },
+  {
+    "id": "N66",
+    "title": "凯尔的观摩——黎恩的归来本番",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "无（紧接N65）",
+    "type": "nsfw"
+  },
+  {
+    "id": "N67",
+    "title": "主动口交——老手的从容",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=68",
+    "type": "nsfw"
+  },
+  {
+    "id": "N68",
+    "title": "桌下之手——隐奸手交",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=64, 会议/聚餐",
+    "type": "nsfw"
+  },
+  {
+    "id": "N69",
+    "title": "桌下之口——隐奸口交",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=68, 会议/聚餐",
+    "type": "nsfw"
+  },
+  {
+    "id": "N70",
+    "title": "凯尔的邀请——河边的先斩后奏",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=68, kael_closeness>=48",
+    "type": "nsfw"
+  },
+  {
+    "id": "N71",
+    "title": "乔治的测试——导力震动棒",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=66, george_closeness>=45",
+    "type": "main"
+  },
+  {
+    "id": "N72",
+    "title": "腐化迷雾——半梦半醒的交叉",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=70, adrian_closeness>=52",
+    "type": "nsfw"
+  },
+  {
+    "id": "N73",
+    "title": "黑暗中的乳交——她不让开灯",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=74, kael_closeness>=52",
+    "type": "nsfw"
+  },
+  {
+    "id": "N74",
+    "title": "催情茶——两个人的轮奸",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=76, rain_closeness>=55, bond>=80",
+    "type": "main"
+  },
+  {
+    "id": "N75",
+    "title": "低语者的轮奸——D阶段极限",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=78, shared>=85, 腐化低语者群出现",
+    "type": "nsfw"
+  },
+  {
+    "id": "N76",
+    "title": "她的情书——独属于两人的完整性爱",
+    "route": "ntrs",
+    "chapter": "第0章",
+    "summary": "ntrs_awakened=100, acceptance>=76, shared>=82, 决战前夜",
+    "type": "nsfw"
+  },
+  {
+    "id": "N77",
     "title": "终局抉择",
     "route": "ntrs",
-    "chapter": "终局",
-    "summary": "战争结束了。腐化被净化了。",
+    "chapter": "第0章",
+    "summary": "决战胜利, 腐化已净化, N76已触发",
     "type": "nsfw"
   },
   {
     "id": "PN1",
     "title": "第一次缺席",
     "route": "passive_ntr",
-    "chapter": "被动NTR·第一次缺席",
+    "chapter": "第0章",
     "summary": "影牙兽的大规模袭击——比以往任何一次都更猛烈。",
     "type": "main"
   },
@@ -807,7 +951,7 @@ const EVENTS = [
     "id": "PN2",
     "title": "Thalion的诱惑",
     "route": "passive_ntr",
-    "chapter": "Thalion的诱惑",
+    "chapter": "第0章",
     "summary": "Seraphina独自在心木废墟附近——心情沉重。突然，腐化的紫色雾气从地面渗出，",
     "type": "main"
   },
@@ -815,7 +959,7 @@ const EVENTS = [
     "id": "PN3",
     "title": "乔治的支持",
     "route": "passive_ntr",
-    "chapter": "被动NTR·第一次缺席",
+    "chapter": "第0章",
     "summary": "在一个深夜，Seraphina独自坐在银流河边——",
     "type": "main"
   },
@@ -823,7 +967,7 @@ const EVENTS = [
     "id": "PN4",
     "title": "亚莉莎的对比",
     "route": "passive_ntr",
-    "chapter": "Thalion的诱惑",
+    "chapter": "第0章",
     "summary": "Seraphina从远处看到黎恩和亚莉莎在一起。",
     "type": "main"
   },
@@ -831,7 +975,7 @@ const EVENTS = [
     "id": "PN5",
     "title": "寂寞的释放——被动NTR被忽视自慰",
     "route": "passive_ntr",
-    "chapter": "Thalion的诱惑",
+    "chapter": "第0章",
     "summary": "又一个夜晚。黎恩在火炉边睡着了——书还摊在膝上。",
     "type": "main"
   },
@@ -839,7 +983,7 @@ const EVENTS = [
     "id": "PN6",
     "title": "Thalion的强迫摸乳",
     "route": "passive_ntr",
-    "chapter": "Thalion的诱惑",
+    "chapter": "第0章",
     "summary": "Seraphina坐在心木树下的石阶上——月光透过树叶洒在她的锁骨上。",
     "type": "main"
   },
@@ -847,7 +991,7 @@ const EVENTS = [
     "id": "PN7",
     "title": "Thalion的强迫指交",
     "route": "passive_ntr",
-    "chapter": "Thalion的诱惑",
+    "chapter": "第0章",
     "summary": "银流河畔的草地上。Seraphina仰躺——但她不是自愿躺下的。",
     "type": "nsfw"
   },
@@ -855,7 +999,7 @@ const EVENTS = [
     "id": "PN8",
     "title": "甜言蜜语",
     "route": "passive_ntr",
-    "chapter": "Thalion的侵蚀",
+    "chapter": "第0章",
     "summary": "黄昏。银流河的石阶上。Seraphina独自坐着——赤脚浸在河水里，今天黎恩又出去了。",
     "type": "main"
   },
@@ -863,7 +1007,7 @@ const EVENTS = [
     "id": "PN9",
     "title": "腐蚀的低语",
     "route": "passive_ntr",
-    "chapter": "Thalion的侵蚀",
+    "chapter": "第0章",
     "summary": "深夜。Seraphina睡着了——黎恩的手臂搭在她腰间。",
     "type": "main"
   },
@@ -871,7 +1015,7 @@ const EVENTS = [
     "id": "PN10",
     "title": "药与酒",
     "route": "passive_ntr",
-    "chapter": "Thalion的侵蚀",
+    "chapter": "第0章",
     "summary": "Thalion这次带了一个银壶。\"精灵族的安神酒——200年前的配方。你很久没尝过了。\"",
     "type": "main"
   },
@@ -879,7 +1023,7 @@ const EVENTS = [
     "id": "PN11",
     "title": "肉体的展示",
     "route": "passive_ntr",
-    "chapter": "Thalion的侵蚀",
+    "chapter": "第0章",
     "summary": "银流河。黄昏的光在水面上碎成金色。Seraphina照常来到河边——他现在每天黄昏都在。",
     "type": "main"
   },
@@ -887,7 +1031,7 @@ const EVENTS = [
     "id": "PN12",
     "title": "被迫的手",
     "route": "passive_ntr",
-    "chapter": "Thalion的侵蚀",
+    "chapter": "第0章",
     "summary": "树后。Thalion拦住了准备去河边找黎恩的Seraphina。\n      \"这么多天——我给你孤独的理解、安神的酒、甚至免费的身体展示。该回报了。\"",
     "type": "nsfw"
   },
@@ -895,7 +1039,7 @@ const EVENTS = [
     "id": "PN13",
     "title": "指交的陷阱",
     "route": "passive_ntr",
-    "chapter": "Thalion的侵蚀",
+    "chapter": "第0章",
     "summary": "Thalion让她仰躺在银流河边的草地上。没有粗暴——他分开她膝盖时动作不快，像是在等她自己决定要不要夹紧。她没有夹紧。不是同意——是一种麻木的\"反正也会发生\"。",
     "type": "main"
   },
@@ -903,7 +1047,7 @@ const EVENTS = [
     "id": "PN14",
     "title": "被迫的口",
     "route": "passive_ntr",
-    "chapter": "Thalion的侵蚀",
+    "chapter": "第0章",
     "summary": "Thalion靠在古树上。Seraphina在他面前——跪着。不是被按下去的。是她站不住了——指交的高潮刚过几分钟，腿还在软。\n      \"手不是终点。\"",
     "type": "nsfw"
   },
@@ -911,7 +1055,7 @@ const EVENTS = [
     "id": "PN15",
     "title": "乳间的耻辱",
     "route": "passive_ntr",
-    "chapter": "Thalion的侵蚀",
+    "chapter": "第0章",
     "summary": "木屋。黎恩今晚巡逻——整夜不回来。Thalion推门进来时Seraphina正坐在床边。她没问\"你怎么进来的\"。她已经不问这个问题了。\n      \"今晚——用这里。\"",
     "type": "nsfw"
   },
@@ -919,7 +1063,7 @@ const EVENTS = [
     "id": "PN16",
     "title": "半推半就",
     "route": "passive_ntr",
-    "chapter": "Thalion的侵蚀",
+    "chapter": "第0章",
     "summary": "Seraphina今天主动去了河边——美其名曰洗脚。她知道他会在——但不打算对自己承认。",
     "type": "nsfw"
   },
@@ -927,7 +1071,7 @@ const EVENTS = [
     "id": "PN17",
     "title": "无法回头",
     "route": "passive_ntr",
-    "chapter": "Thalion的侵蚀",
+    "chapter": "第0章",
     "summary": "深夜。黎恩在火炉边看书——时不时转头对她笑一下。他什么都不知道。",
     "type": "main"
   },
@@ -935,7 +1079,7 @@ const EVENTS = [
     "id": "PN18",
     "title": "堕落之夜",
     "route": "passive_ntr",
-    "chapter": "堕落之夜",
+    "chapter": "第0章",
     "summary": "心木废墟。Seraphina跪在腐化草地上——白色衣袍凌乱散开。",
     "type": "nsfw"
   },
@@ -943,7 +1087,7 @@ const EVENTS = [
     "id": "PN19",
     "title": "堕落之夜的细节——Thalion的足交玷污",
     "route": "passive_ntr",
-    "chapter": "堕落之夜",
+    "chapter": "第0章",
     "summary": "Seraphina独自坐在银流河边的石阶上——赤脚浸在河水中。",
     "type": "nsfw"
   },
@@ -951,7 +1095,7 @@ const EVENTS = [
     "id": "PN20",
     "title": "耳边的低语",
     "route": "passive_ntr",
-    "chapter": "堕落之夜",
+    "chapter": "第0章",
     "summary": "深夜。木屋外下着雨。Seraphina独自环抱膝盖坐在床上。",
     "type": "nsfw"
   },
@@ -959,7 +1103,7 @@ const EVENTS = [
     "id": "PN21",
     "title": "不敢出声——被动NTR近发现",
     "route": "passive_ntr",
-    "chapter": "堕落之夜",
+    "chapter": "第0章",
     "summary": "黄昏。黎恩提前回来了——比说好的早了三个小时。",
     "type": "main"
   },
@@ -967,7 +1111,7 @@ const EVENTS = [
     "id": "PN22",
     "title": "再次找上门——主动接受",
     "route": "passive_ntr",
-    "chapter": "彻底破碎",
+    "chapter": "第0章",
     "summary": "深夜。敲门声。",
     "type": "main"
   },
@@ -975,7 +1119,7 @@ const EVENTS = [
     "id": "PN23",
     "title": "窗外的影子——被动NTR近发现",
     "route": "passive_ntr",
-    "chapter": "彻底破碎",
+    "chapter": "第0章",
     "summary": "黎恩从东面森林巡逻回来——比预期晚了两个小时。",
     "type": "main"
   },
@@ -983,7 +1127,7 @@ const EVENTS = [
     "id": "PN24",
     "title": "趁他睡着——主动隐奸",
     "route": "passive_ntr",
-    "chapter": "彻底破碎",
+    "chapter": "第0章",
     "summary": "黎恩的呼吸均匀——他睡得很沉。月光从窗户落在他脸上。",
     "type": "nsfw"
   },
@@ -991,7 +1135,7 @@ const EVENTS = [
     "id": "PN25",
     "title": "半开的门——被动NTR近发现",
     "route": "passive_ntr",
-    "chapter": "彻底破碎",
+    "chapter": "第0章",
     "summary": "午后。黎恩忘记了巡逻地图——他折返回木屋。门半开着。",
     "type": "main"
   },
@@ -999,7 +1143,7 @@ const EVENTS = [
     "id": "PN26",
     "title": "主动口交——被动NTR阶段D+",
     "route": "passive_ntr",
-    "chapter": "彻底破碎",
+    "chapter": "第0章",
     "summary": "深夜。Thalion的木屋中。Seraphina站在他面前——他坐着。",
     "type": "nsfw"
   },
@@ -1007,7 +1151,7 @@ const EVENTS = [
     "id": "PN27",
     "title": "镜中的自己——被动NTR淫荡觉醒",
     "route": "passive_ntr",
-    "chapter": "与Thalion的决战",
+    "chapter": "第0章",
     "summary": "深夜。黎恩今晚值夜巡逻——不会回来。",
     "type": "main"
   },
@@ -1015,7 +1159,7 @@ const EVENTS = [
     "id": "PN28",
     "title": "野外暴露——被动NTR阶段D+",
     "route": "passive_ntr",
-    "chapter": "彻底破碎",
+    "chapter": "第0章",
     "summary": "银流河畔——光天化日。阳光洒在河水上，波光粼粼。",
     "type": "nsfw"
   },
@@ -1023,7 +1167,7 @@ const EVENTS = [
     "id": "PN29",
     "title": "主动索求——被动NTR淫荡升级",
     "route": "passive_ntr",
-    "chapter": "彻底破碎",
+    "chapter": "第0章",
     "summary": "黎恩坐在火炉边——翻着一本精灵古籍。木门推开——Seraphina走进来。",
     "type": "main"
   },
@@ -1031,7 +1175,7 @@ const EVENTS = [
     "id": "PN30",
     "title": "主动邀约——被动NTR阶段D+终点",
     "route": "passive_ntr",
-    "chapter": "彻底破碎",
+    "chapter": "第0章",
     "summary": "白天。一只紫色蝴蝶落在Seraphina窗台——Thalion的传讯方式。",
     "type": "nsfw"
   },
@@ -1039,7 +1183,7 @@ const EVENTS = [
     "id": "PN31",
     "title": "故意遗留——被动NTR淫荡巅峰",
     "route": "passive_ntr",
-    "chapter": "彻底破碎",
+    "chapter": "第0章",
     "summary": "连续三天——黎恩在木屋中发现不属于这里的东西。",
     "type": "main"
   },
@@ -1047,7 +1191,7 @@ const EVENTS = [
     "id": "PN32",
     "title": "Thalion的伪装——被动NTR桥接",
     "route": "passive_ntr",
-    "chapter": "彻底破碎",
+    "chapter": "第0章",
     "summary": "黄昏。营地边缘的篝火旁——全体同伴围坐讨论腐化扩散的最新数据。",
     "type": "nsfw"
   },
@@ -1055,7 +1199,7 @@ const EVENTS = [
     "id": "PN33",
     "title": "桌下之手——对Thalion隐奸手交",
     "route": "passive_ntr",
-    "chapter": "彻底破碎",
+    "chapter": "第0章",
     "summary": "长桌。黎恩在和亚莉莎讨论巡逻路线。劳拉在看地图。菲在打瞌睡。",
     "type": "nsfw"
   },
@@ -1063,7 +1207,7 @@ const EVENTS = [
     "id": "PN34",
     "title": "桌面下的脚——被动NTR多线操控",
     "route": "passive_ntr",
-    "chapter": "彻底破碎",
+    "chapter": "第0章",
     "summary": "战略会议。长桌周围坐满了同伴。",
     "type": "nsfw"
   },
@@ -1071,7 +1215,7 @@ const EVENTS = [
     "id": "PN35",
     "title": "桌下之口——对Thalion隐奸口交",
     "route": "passive_ntr",
-    "chapter": "彻底破碎",
+    "chapter": "第0章",
     "summary": "同样的长桌。这次黎恩在主持——站在桌前讲解净化方案。\n      \"西面森林的腐化浓度下降了百分之四十——\"",
     "type": "nsfw"
   },
@@ -1079,7 +1223,7 @@ const EVENTS = [
     "id": "PN36",
     "title": "隐乳交——对Thalion隐蔽乳交",
     "route": "passive_ntr",
-    "chapter": "彻底破碎",
+    "chapter": "第0章",
     "summary": "黎恩出门前在她额头吻了一下。\"今天巡逻可能要很晚。你好好休息。\"",
     "type": "nsfw"
   },
@@ -1087,63 +1231,15 @@ const EVENTS = [
     "id": "PN37",
     "title": "与Thalion的最终战斗",
     "route": "passive_ntr",
-    "chapter": "与Thalion的决战",
+    "chapter": "第0章",
     "summary": "心木树下。Thalion站在金色叶片下——他的紫色眼睛中已经没有疯狂的火焰。",
     "type": "main"
-  },
-  {
-    "id": "C1",
-    "title": "玲的裸足——小恶魔的秘密",
-    "route": "side",
-    "chapter": "第一次见证",
-    "summary": "篝火边只剩两人。玲歪头看着黎恩：\"你一直在看我的腿。\"她慢慢卷下及膝袜——露出常年不见光的瓷白裸足。脚趾在月光下动了动。\"你是第一个。\"",
-    "type": "nsfw"
-  },
-  {
-    "id": "C2",
-    "title": "亚莉莎的蕾丝——傲娇千金的告白",
-    "route": "side",
-    "chapter": "第一次见证",
-    "summary": "亚莉莎把黎恩拉到营地外树下——脸红到耳根。\"我注意到你在篝火边看我的丝袜。我不是要跟Seraphina抢——只是——\"",
-    "type": "nsfw"
-  },
-  {
-    "id": "C3",
-    "title": "菲的裸足——猎兵的诚意",
-    "route": "side",
-    "chapter": "第一次见证",
-    "summary": "训练后菲坐在石头上脱黑色过膝袜——早就知道黎恩在看。抬起赤裸的脚——脚底有训练留下的薄茧，脚背上有几道旧伤疤。\"不像Seraphina那么好看。但是——很诚实。\"\n      \"我不用袜子。碍事。\"赤裸的脚心直接贴住皮肤——薄茧制造的摩擦比",
-    "type": "nsfw"
-  },
-  {
-    "id": "C4",
-    "title": "劳拉的白袜——骑士的荣誉",
-    "route": "side",
-    "chapter": "第一次共享",
-    "summary": "剑术训练后劳拉叫住黎恩——坐姿笔直如剑。\"作为亚尔赛德家的继承人，我应当对此感到羞耻。但我认为——这不羞耻。\"",
-    "type": "nsfw"
-  },
-  {
-    "id": "C5",
-    "title": "艾玛的吊带袜——魔女的私授课程",
-    "route": "side",
-    "chapter": "第一次共享",
-    "summary": "深夜艾玛帐篷亮着灯。\"黎恩同学——来得正好。我在研究男性足部神经反射与性兴奋的关联性。\"她合上书推了推眼镜——\"请配合我的实证研究。\"",
-    "type": "nsfw"
-  },
-  {
-    "id": "C6",
-    "title": "亚尔缇娜的任务——黑兔的\"逻辑性服务\"",
-    "route": "side",
-    "chapter": "第一次共享",
-    "summary": "亚尔缇娜无声出现在黎恩面前——面无表情如在汇报任务。\"根据观察，多位女性成员与你进行足交后你的战斗表现有显著变化。逻辑结论：我也应当提供此类服务。不是基于情感——是基于团队协作的需要。\"",
-    "type": "nsfw"
   },
   {
     "id": "G1",
     "title": "狩猎竞赛——影牙兽的试炼",
     "route": "general",
-    "chapter": "森林的庆典",
+    "chapter": "第0章",
     "summary": "影牙兽在森林边缘频繁出没，威胁到附近的村庄。",
     "type": "main"
   },
@@ -1151,7 +1247,7 @@ const EVENTS = [
     "id": "G2",
     "title": "剑术训练——太刀与圣光",
     "route": "general",
-    "chapter": "温泉与誓言",
+    "chapter": "第0章",
     "summary": "劳拉看到黎恩的太刀和Seraphina的圣光后，",
     "type": "main"
   },
@@ -1159,7 +1255,7 @@ const EVENTS = [
     "id": "G3",
     "title": "密林探索——未知的区域",
     "route": "general",
-    "chapter": "温泉与誓言",
+    "chapter": "第0章",
     "summary": "Eldoria森林中有一片从未被探索的区域——",
     "type": "main"
   },
@@ -1167,7 +1263,7 @@ const EVENTS = [
     "id": "G4",
     "title": "篝火故事会——每个人的过去",
     "route": "general",
-    "chapter": "森林的庆典",
+    "chapter": "第0章",
     "summary": "林间空地的篝火噼啪作响，火星飞向星空。",
     "type": "main"
   },
@@ -1175,7 +1271,7 @@ const EVENTS = [
     "id": "G5",
     "title": "雷恩的晨间仪式——骑士的誓言",
     "route": "general",
-    "chapter": "各方来客",
+    "chapter": "第0章",
     "summary": "清晨第一缕阳光穿过树冠。雷恩独自面对东方——右手放在胸口，闭眼，嘴唇微动。",
     "type": "main"
   },
@@ -1183,7 +1279,7 @@ const EVENTS = [
     "id": "G6",
     "title": "凯尔的精灵语课堂——文化的碰撞",
     "route": "general",
-    "chapter": "各方来客",
+    "chapter": "第0章",
     "summary": "凯尔正在尝试翻译精灵符文——但他的精灵语发音让林间的鸟儿都沉默了。",
     "type": "nsfw"
   },
@@ -1191,7 +1287,7 @@ const EVENTS = [
     "id": "G7",
     "title": "艾德里安的拍卖会——没落贵族的遗产",
     "route": "general",
-    "chapter": "各方来客",
+    "chapter": "第0章",
     "summary": "艾德里安突然宣布举办\"艾斯特雷亚家族最后的拍卖会\"——打开一个破旧皮箱。",
     "type": "main"
   },
@@ -1199,7 +1295,7 @@ const EVENTS = [
     "id": "W1",
     "title": "影牙兽大规模袭击",
     "route": "world",
-    "chapter": "影牙兽的威胁",
+    "chapter": "第0章",
     "summary": "Eldoria森林边缘突然涌出大量影牙兽——数量是平时的三倍以上。",
     "type": "main"
   },
@@ -1207,7 +1303,7 @@ const EVENTS = [
     "id": "W2",
     "title": "心木树的净化仪式",
     "route": "world",
-    "chapter": "净化仪式",
+    "chapter": "第0章",
     "summary": "心木树——Eldoria森林的核心。它的金色叶片已经有一半变成了深紫色。",
     "type": "nsfw"
   },
@@ -1215,7 +1311,7 @@ const EVENTS = [
     "id": "W3",
     "title": "银流河的净化与恢复",
     "route": "world",
-    "chapter": "净化仪式",
+    "chapter": "第0章",
     "summary": "银流河——曾经被腐化染成暗紫色的河水，在净化仪式后开始恢复银色。",
     "type": "main"
   },
@@ -1223,7 +1319,7 @@ const EVENTS = [
     "id": "W4",
     "title": "腐化区域的意外扩张",
     "route": "world",
-    "chapter": "被动NTR·第一次缺席",
+    "chapter": "第0章",
     "summary": "毫无预警地——Eldoria森林的一片区域突然被腐化吞没。",
     "type": "main"
   },
@@ -1231,7 +1327,7 @@ const EVENTS = [
     "id": "W5",
     "title": "古老先灵的第二次对话",
     "route": "world",
-    "chapter": "古老先灵的低语",
+    "chapter": "第0章",
     "summary": "在心木树下——古老先灵从金色叶片中显形。",
     "type": "nsfw"
   },
@@ -1239,7 +1335,7 @@ const EVENTS = [
     "id": "W6",
     "title": "\"森林意志\"的反应",
     "route": "world",
-    "chapter": "Thalion的诱惑",
+    "chapter": "第0章",
     "summary": "夜晚，整个Eldoria森林突然\"醒\"了。",
     "type": "main"
   },
@@ -1247,7 +1343,7 @@ const EVENTS = [
     "id": "W7",
     "title": "VII班同伴的\"日常互动\"",
     "route": "world",
-    "chapter": "各方来客",
+    "chapter": "第0章",
     "summary": "VII班同伴在林间空地进行各自的日常——这是旅途中难得的平静时刻。",
     "type": "main"
   },
@@ -1255,7 +1351,7 @@ const EVENTS = [
     "id": "W8",
     "title": "\"雾帷边缘\"的异象",
     "route": "world",
-    "chapter": "新的开始",
+    "chapter": "第0章",
     "summary": "Eldoria森林的边缘——\"雾帷\"——是分隔Eldoria与外部世界的银色迷雾。\n      200年来，雾帷从未变化——它保护了森林，也困住了Seraphina。",
     "type": "main"
   },
@@ -1263,7 +1359,7 @@ const EVENTS = [
     "id": "H1",
     "title": "精灵王国的记忆",
     "route": "hidden",
-    "chapter": "心木废墟的秘密",
+    "chapter": "第0章",
     "summary": "满月之夜——低语林地的银白色树木在月光下发出微弱的荧光。",
     "type": "nsfw"
   },
@@ -1271,23 +1367,15 @@ const EVENTS = [
     "id": "H2",
     "title": "鬼之力与圣光完全共鸣",
     "route": "hidden",
-    "chapter": "古老的启示",
+    "chapter": "第0章",
     "summary": "在最激烈的战斗中——当黎恩的鬼之力和Seraphina的圣光同时达到峰值，",
     "type": "nsfw"
-  },
-  {
-    "id": "H3",
-    "title": "腐化低语者的\"真相\"",
-    "route": "hidden",
-    "chapter": "边界与试探",
-    "summary": "在与腐化低语者多次互动后——Seraphina突然在战斗中停下了。",
-    "type": "main"
   },
   {
     "id": "H4",
     "title": "\"如果\"——另一个结局的暗示",
     "route": "hidden",
-    "chapter": "终局",
+    "chapter": "第0章",
     "summary": "终局前的夜晚。黎恩独自在银流河边——月光照在银色水面上。",
     "type": "nsfw"
   },
@@ -1295,7 +1383,7 @@ const EVENTS = [
     "id": "H5",
     "title": "VII班同伴的\"秘密对话\"",
     "route": "hidden",
-    "chapter": "新的开始",
+    "chapter": "第0章",
     "summary": "深夜——VII班同伴们以为黎恩已经睡了。",
     "type": "main"
   },
@@ -1303,7 +1391,7 @@ const EVENTS = [
     "id": "R1",
     "title": "鬼之力的低语——失控边缘的独白",
     "route": "rean",
-    "chapter": "影牙兽的威胁",
+    "chapter": "第0章",
     "summary": "深夜，黎恩独自坐在林间空地的边缘。右手手背的刻印在隐隐发光——",
     "type": "main"
   },
@@ -1311,7 +1399,7 @@ const EVENTS = [
     "id": "R2",
     "title": "太刀与八叶——黎恩的晨间修炼",
     "route": "rean",
-    "chapter": "纯爱·守护者契约",
+    "chapter": "第0章",
     "summary": "清晨的薄雾中，黎恩独自在林间空地练习八叶一刀流。",
     "type": "nsfw"
   },
@@ -1319,7 +1407,7 @@ const EVENTS = [
     "id": "R3",
     "title": "来自帝国的信——VII班的羁绊",
     "route": "rean",
-    "chapter": "VII班的到来",
+    "chapter": "第0章",
     "summary": "亚莉莎收到了一封来自帝国的信——通过某种古老的精灵传送魔法。",
     "type": "main"
   },
@@ -1327,7 +1415,7 @@ const EVENTS = [
     "id": "R4",
     "title": "灰之骑神的记忆——瓦利玛的低语",
     "route": "rean",
-    "chapter": "古老的启示",
+    "chapter": "第0章",
     "summary": "在精灵王国的一处古老遗迹中，黎恩发现了一个巨大的精灵石——",
     "type": "nsfw"
   },
@@ -1335,7 +1423,7 @@ const EVENTS = [
     "id": "R5",
     "title": "独占欲——黎恩的\"重新占有\"",
     "route": "rean",
-    "chapter": "新的开始",
+    "chapter": "第0章",
     "summary": "NTRS的核心仪式——\"重新占有\"。",
     "type": "main"
   },
@@ -1343,7 +1431,7 @@ const EVENTS = [
     "id": "R6",
     "title": "黎恩的第一次——从\"守护者\"到\"男人\"",
     "route": "rean",
-    "chapter": "净化仪式",
+    "chapter": "第0章",
     "summary": "在心木树下——精灵族最神圣的地方。",
     "type": "nsfw"
   },
@@ -1351,7 +1439,7 @@ const EVENTS = [
     "id": "R7",
     "title": "嫉妒之火——黎恩的黑暗面",
     "route": "rean",
-    "chapter": "与Thalion的决战",
+    "chapter": "第0章",
     "summary": "黎恩在森林中寻找Seraphina——然后他找到了。",
     "type": "main"
   },
@@ -1359,163 +1447,13 @@ const EVENTS = [
     "id": "R8",
     "title": "夜色中的契约——黎恩与Seraphina的私密仪式",
     "route": "rean",
-    "chapter": "终极抉择",
+    "chapter": "第0章",
     "summary": "深夜——林间空地中只有月光。",
     "type": "main"
   },
 ];
 
 const CHAPTERS = [
-  {
-    "num": 1,
-    "name": "林间空地的苏醒",
-    "phase": "prologue",
-    "count": 1
-  },
-  {
-    "num": 2,
-    "name": "影牙兽的威胁",
-    "phase": "prologue",
-    "count": 3
-  },
-  {
-    "num": 3,
-    "name": "心木废墟的秘密",
-    "phase": "prologue",
-    "count": 3
-  },
-  {
-    "num": 4,
-    "name": "VII班的到来",
-    "phase": "prologue",
-    "count": 4
-  },
-  {
-    "num": 5,
-    "name": "森林的庆典",
-    "phase": "prologue",
-    "count": 3
-  },
-  {
-    "num": 6,
-    "name": "古老先灵的低语",
-    "phase": "prologue",
-    "count": 2
-  },
-  {
-    "num": 7,
-    "name": "各方来客",
-    "phase": "prologue",
-    "count": 10
-  },
-  {
-    "num": 8,
-    "name": "路线分化",
-    "phase": "prologue",
-    "count": 4
-  },
-  {
-    "num": 9,
-    "name": "纯爱·守护者契约",
-    "phase": "pure",
-    "count": 6
-  },
-  {
-    "num": 10,
-    "name": "温泉与誓言",
-    "phase": "pure",
-    "count": 10
-  },
-  {
-    "num": 11,
-    "name": "古老的启示",
-    "phase": "pure",
-    "count": 7
-  },
-  {
-    "num": 12,
-    "name": "边界与试探",
-    "phase": "ntrs",
-    "count": 9
-  },
-  {
-    "num": 13,
-    "name": "第一次见证",
-    "phase": "ntrs",
-    "count": 17
-  },
-  {
-    "num": 14,
-    "name": "第一次共享",
-    "phase": "ntrs",
-    "count": 18
-  },
-  {
-    "num": 15,
-    "name": "多人共享之夜",
-    "phase": "ntrs",
-    "count": 19
-  },
-  {
-    "num": 16,
-    "name": "被动NTR·第一次缺席",
-    "phase": "passive",
-    "count": 3
-  },
-  {
-    "num": 17,
-    "name": "Thalion的诱惑",
-    "phase": "passive",
-    "count": 6
-  },
-  {
-    "num": 18,
-    "name": "堕落之夜",
-    "phase": "passive",
-    "count": 4
-  },
-  {
-    "num": 19,
-    "name": "彻底破碎",
-    "phase": "passive",
-    "count": 14
-  },
-  {
-    "num": 20,
-    "name": "净化仪式",
-    "phase": "passive",
-    "count": 3
-  },
-  {
-    "num": 21,
-    "name": "与Thalion的决战",
-    "phase": "passive",
-    "count": 3
-  },
-  {
-    "num": 22,
-    "name": "终极抉择",
-    "phase": "finale",
-    "count": 3
-  },
-  {
-    "num": 23,
-    "name": "终局",
-    "phase": "finale",
-    "count": 3
-  },
-  {
-    "num": 24,
-    "name": "新的开始",
-    "phase": "finale",
-    "count": 3
-  },
-  {
-    "num": 170,
-    "name": "Thalion的侵蚀",
-    "phase": "finale",
-    "count": 10
-  },
 ];
 
 // 自动生成的登场顺序（按事件ID首次出现推断）

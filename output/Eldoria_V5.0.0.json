@@ -22233,7 +22233,7 @@
     "spec_version": "2.0",
     "entry_count": 272,
     "uid_range": "0-271",
-    "build_time": "2026-06-25 13:26:50",
+    "build_time": "2026-06-25 13:30:14",
     "authority_source": "分md文件 + build_eldoria.py",
     "note": "Eldoria1.json 是派生产物，请勿手动编辑。所有修改请通过分md文件和构建脚本完成。"
   }
