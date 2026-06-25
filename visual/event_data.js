@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-26T03:39:38.175871
+// 自动生成于: 2026-06-26T04:02:28.922286
 // 数据源: docs/05_事件系统.md
 // 生成器: scripts/generate_event_browser.py
 
@@ -549,7 +549,7 @@ const EVENTS = [
   },
   {
     "id": "N32",
-    "title": "树后的秘密——第一次给别人打飞机",
+    "title": "艾玛的手交实证研究",
     "route": "ntrs",
     "chapter": "第一次共享",
     "summary": "",
@@ -557,7 +557,7 @@ const EVENTS = [
   },
   {
     "id": "N33",
-    "title": "第一次双人共享——两只手同时",
+    "title": "树后的秘密——第一次给别人打飞机",
     "route": "ntrs",
     "chapter": "第一次共享",
     "summary": "",
@@ -565,7 +565,7 @@ const EVENTS = [
   },
   {
     "id": "N34",
-    "title": "艾德里安的扑克——乳的初次",
+    "title": "第一次双人共享——两只手同时",
     "route": "ntrs",
     "chapter": "第一次共享",
     "summary": "",
@@ -573,7 +573,7 @@ const EVENTS = [
   },
   {
     "id": "N35",
-    "title": "酒后扑克——第一次给别人口交",
+    "title": "艾德里安的扑克——乳的初次",
     "route": "ntrs",
     "chapter": "第一次共享",
     "summary": "",
@@ -581,7 +581,7 @@ const EVENTS = [
   },
   {
     "id": "N36",
-    "title": "凯尔的乳交——学术实践",
+    "title": "酒后扑克——第一次给别人口交",
     "route": "ntrs",
     "chapter": "第一次共享",
     "summary": "",
@@ -589,7 +589,7 @@ const EVENTS = [
   },
   {
     "id": "N37",
-    "title": "酒后之夜——黎恩的指使",
+    "title": "凯尔的乳交——学术实践",
     "route": "ntrs",
     "chapter": "第一次共享",
     "summary": "",
@@ -597,7 +597,7 @@ const EVENTS = [
   },
   {
     "id": "N38",
-    "title": "凯尔的再战——从乳到口",
+    "title": "酒后之夜——黎恩的指使",
     "route": "ntrs",
     "chapter": "第一次共享",
     "summary": "",
@@ -605,7 +605,7 @@ const EVENTS = [
   },
   {
     "id": "N39",
-    "title": "黎恩的安排——让她和乔治独处",
+    "title": "凯尔的再战——从乳到口",
     "route": "ntrs",
     "chapter": "第一次共享",
     "summary": "",
@@ -613,7 +613,7 @@ const EVENTS = [
   },
   {
     "id": "N40",
-    "title": "凯尔的山洞——采样与被困",
+    "title": "黎恩的安排——让她和乔治独处",
     "route": "ntrs",
     "chapter": "第一次共享",
     "summary": "",
@@ -621,7 +621,7 @@ const EVENTS = [
   },
   {
     "id": "N41",
-    "title": "装睡的代价——黎恩的恶作剧",
+    "title": "凯尔的山洞——采样与被困",
     "route": "ntrs",
     "chapter": "第一次共享",
     "summary": "",
@@ -629,7 +629,7 @@ const EVENTS = [
   },
   {
     "id": "N42",
-    "title": "全身被舔——中途离场的眼泪",
+    "title": "装睡的代价——黎恩的恶作剧",
     "route": "ntrs",
     "chapter": "第一次共享",
     "summary": "",
@@ -637,6 +637,14 @@ const EVENTS = [
   },
   {
     "id": "N43",
+    "title": "全身被舔——中途离场的眼泪",
+    "route": "ntrs",
+    "chapter": "第一次共享",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "N44",
     "title": "不准再丢下我",
     "route": "ntrs",
     "chapter": "第一次共享",
@@ -644,7 +652,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "N44",
+    "id": "N45",
     "title": "乔治的唇——意外的美味",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -652,7 +660,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N45",
+    "id": "N46",
     "title": "被干软之后的提问",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -660,7 +668,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "N46",
+    "id": "N47",
     "title": "白丝与初吻——雷恩的沦陷",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -668,7 +676,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N47",
+    "id": "N48",
     "title": "第二次共享——多低语者强迫口交手交",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -676,7 +684,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N48",
+    "id": "N49",
     "title": "温柔的疗愈——她选了凯尔",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -684,7 +692,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N49",
+    "id": "N50",
     "title": "凯尔的清晨——黑丝与第一次插入",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -692,7 +700,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N50",
+    "id": "N51",
     "title": "翌日——两个人",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -700,7 +708,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N51",
+    "id": "N52",
     "title": "走廊的绯红——凯尔不敢看她",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -708,7 +716,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "N52",
+    "id": "N53",
     "title": "犹豫——不要，好痛",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -716,7 +724,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "N53",
+    "id": "N54",
     "title": "桌下——吞下去的选择",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -724,7 +732,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N54",
+    "id": "N55",
     "title": "黎恩的提议——再给他一次机会",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -732,7 +740,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N55",
+    "id": "N56",
     "title": "早晨的喂奶——不痛了",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -740,7 +748,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N56",
+    "id": "N57",
     "title": "雷恩的稳重，她选的第二次",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -748,7 +756,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N57",
+    "id": "N58",
     "title": "弯腰的弧度——乔治的笔掉了",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -756,7 +764,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "N58",
+    "id": "N59",
     "title": "开裆连裤袜——弯腰的盛宴",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -764,7 +772,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N59",
+    "id": "N60",
     "title": "试衣——镜前的另一个人",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -772,7 +780,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "N60",
+    "id": "N61",
     "title": "图纸与门缝——她设计的隐奸",
     "route": "ntrs",
     "chapter": "多人共享之夜",
@@ -780,7 +788,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N61",
+    "id": "N62",
     "title": "打开的门",
     "route": "ntrs",
     "chapter": "被动NTR·第一次缺席",
@@ -788,7 +796,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "N62",
+    "id": "N63",
     "title": "劳拉的直率——月光下的乳交",
     "route": "ntrs",
     "chapter": "被动NTR·第一次缺席",
@@ -796,7 +804,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N63",
+    "id": "N64",
     "title": "姐妹的足——爱丽榭与菲娜的联合足交",
     "route": "ntrs",
     "chapter": "被动NTR·第一次缺席",
@@ -804,7 +812,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N64",
+    "id": "N65",
     "title": "艾德里安的从容——浪子的本番",
     "route": "ntrs",
     "chapter": "被动NTR·第一次缺席",
@@ -812,7 +820,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N65",
+    "id": "N66",
     "title": "亚莉莎的蕾丝——傲娇的告白",
     "route": "ntrs",
     "chapter": "被动NTR·第一次缺席",
@@ -820,7 +828,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N66",
+    "id": "N67",
     "title": "她的游戏——黎恩也参与",
     "route": "ntrs",
     "chapter": "被动NTR·第一次缺席",
@@ -828,16 +836,8 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N67",
-    "title": "劳拉的白袜——鬼之力的释放",
-    "route": "ntrs",
-    "chapter": "被动NTR·第一次缺席",
-    "summary": "",
-    "type": "nsfw"
-  },
-  {
     "id": "N68",
-    "title": "艾玛的手交实证研究",
+    "title": "劳拉的白袜——鬼之力的释放",
     "route": "ntrs",
     "chapter": "被动NTR·第一次缺席",
     "summary": "",
@@ -853,14 +853,22 @@ const EVENTS = [
   },
   {
     "id": "N70",
-    "title": "菲的早晨——沉默的口交",
+    "title": "草药咖啡——拘束与内射",
     "route": "ntrs",
-    "chapter": "Thalion的诱惑",
+    "chapter": "被动NTR·第一次缺席",
     "summary": "",
     "type": "nsfw"
   },
   {
     "id": "N71",
+    "title": "菲的早晨——沉默的口交",
+    "route": "ntrs",
+    "chapter": "被动NTR·第一次缺席",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "N72",
     "title": "醉诱——扶她回屋之后",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
@@ -868,7 +876,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N72",
+    "id": "N73",
     "title": "温泉——凯尔的 humiliation",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
@@ -876,7 +884,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N73",
+    "id": "N74",
     "title": "密林即兴——站立后入",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
@@ -884,7 +892,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N74",
+    "id": "N75",
     "title": "菲的直接本番",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
@@ -892,7 +900,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N75",
+    "id": "N76",
     "title": "镜湖倒影——欲望本番",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
@@ -900,7 +908,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N76",
+    "id": "N77",
     "title": "胜利庆典后的3P",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
@@ -908,7 +916,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N77",
+    "id": "N78",
     "title": "温泉晕厥——事后告知",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
@@ -916,7 +924,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N78",
+    "id": "N79",
     "title": "艾玛的吊带袜——魔女的私授课程",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
@@ -924,7 +932,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N79",
+    "id": "N80",
     "title": "亚莉莎的傲娇本番",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
@@ -932,7 +940,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N80",
+    "id": "N81",
     "title": "野外失控——花田3P",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
@@ -940,7 +948,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N81",
+    "id": "N82",
     "title": "亚尔缇娜的任务——逻辑性服务",
     "route": "ntrs",
     "chapter": "堕落之夜",
@@ -948,7 +956,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N82",
+    "id": "N83",
     "title": "欲望之镜——镜湖倒影",
     "route": "ntrs",
     "chapter": "堕落之夜",
@@ -956,7 +964,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N83",
+    "id": "N84",
     "title": "玲的游戏本番",
     "route": "ntrs",
     "chapter": "堕落之夜",
@@ -964,7 +972,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N84",
+    "id": "N85",
     "title": "主动手交——服务第三者",
     "route": "ntrs",
     "chapter": "堕落之夜",
@@ -972,7 +980,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N85",
+    "id": "N86",
     "title": "艾德里安的舌——反向服务",
     "route": "ntrs",
     "chapter": "堕落之夜",
@@ -980,7 +988,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N86",
+    "id": "N87",
     "title": "雷恩的克制——足交的圣殿骑士",
     "route": "ntrs",
     "chapter": "堕落之夜",
@@ -988,7 +996,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N87",
+    "id": "N88",
     "title": "劳拉的骑士本番",
     "route": "ntrs",
     "chapter": "堕落之夜",
@@ -996,7 +1004,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N88",
+    "id": "N89",
     "title": "雷恩的跪礼——圣殿骑士的口",
     "route": "ntrs",
     "chapter": "堕落之夜",
@@ -1004,7 +1012,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N89",
+    "id": "N90",
     "title": "第一次自己决定",
     "route": "ntrs",
     "chapter": "堕落之夜",
@@ -1012,7 +1020,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N90",
+    "id": "N91",
     "title": "凯尔的独白——窗外的归来",
     "route": "ntrs",
     "chapter": "堕落之夜",
@@ -1020,15 +1028,15 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N91",
+    "id": "N92",
     "title": "凯尔的观摩——黎恩的归来本番",
     "route": "ntrs",
-    "chapter": "彻底破碎",
+    "chapter": "堕落之夜",
     "summary": "",
     "type": "nsfw"
   },
   {
-    "id": "N92",
+    "id": "N93",
     "title": "主动口交——老手的从容",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1036,7 +1044,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N93",
+    "id": "N94",
     "title": "桌下之手——隐奸手交",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1044,7 +1052,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N94",
+    "id": "N95",
     "title": "桌下之口——隐奸口交",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1052,7 +1060,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N95",
+    "id": "N96",
     "title": "凯尔的邀请——河边的先斩后奏",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1060,7 +1068,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N96",
+    "id": "N97",
     "title": "乔治的测试——导力震动棒",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1068,7 +1076,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N97",
+    "id": "N98",
     "title": "腐化迷雾——半梦半醒的交叉",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1076,7 +1084,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N98",
+    "id": "N99",
     "title": "黑暗中的乳交——她不让开灯",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1084,7 +1092,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N99",
+    "id": "N100",
     "title": "催情茶——两个人的轮奸",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1092,7 +1100,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N100",
+    "id": "N101",
     "title": "低语者的轮奸——D阶段极限",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1100,15 +1108,15 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N101",
+    "id": "N102",
     "title": "洗干净的回归",
     "route": "ntrs",
-    "chapter": "净化仪式",
+    "chapter": "彻底破碎",
     "summary": "",
     "type": "main"
   },
   {
-    "id": "N102",
+    "id": "N103",
     "title": "她的情书——独属于两人的完整性爱",
     "route": "ntrs",
     "chapter": "净化仪式",
@@ -1116,7 +1124,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N103",
+    "id": "N104",
     "title": "终局抉择",
     "route": "ntrs",
     "chapter": "净化仪式",
@@ -1720,7 +1728,7 @@ const CHAPTERS = [
     "num": 14,
     "name": "第一次共享",
     "phase": "ntrs",
-    "count": 17
+    "count": 18
   },
   {
     "num": 15,
@@ -1732,19 +1740,19 @@ const CHAPTERS = [
     "num": 16,
     "name": "被动NTR·第一次缺席",
     "phase": "passive",
-    "count": 9
+    "count": 10
   },
   {
     "num": 17,
     "name": "Thalion的诱惑",
     "phase": "passive",
-    "count": 11
+    "count": 10
   },
   {
     "num": 18,
     "name": "堕落之夜",
     "phase": "passive",
-    "count": 10
+    "count": 11
   },
   {
     "num": 19,
@@ -1756,7 +1764,7 @@ const CHAPTERS = [
     "num": 20,
     "name": "净化仪式",
     "phase": "passive",
-    "count": 3
+    "count": 2
   },
   {
     "num": 22,
