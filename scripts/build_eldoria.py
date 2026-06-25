@@ -79,50 +79,46 @@ CHAR_FIRST_MES = (
 
 
 # ═══════════════════════════════════════════════════════════
-# MD驱动：从05_事件系统.md读取NTRS事件内容
-# 用法：ntrs(event_id) → dict(title, content, comment)
+# 通用MD事件加载器 — 零硬编码，读全文件，按前缀过滤
 # ═══════════════════════════════════════════════════════════
-_NTRS_CACHE = None
+_ALL_EVENTS_CACHE = None
 
-def _load_ntrs_events():
-    """从05_事件系统.md提取所有NTRS事件，返回{N##: {title, content, comment, third_party, sex_act, phase}}"""
-    global _NTRS_CACHE
-    if _NTRS_CACHE is not None:
-        return _NTRS_CACHE
 
+def _load_all_events():
+    """从05_事件系统.md提取所有事件，返回{N##: {title, content, comment, ...}, P##: ..., ...}"""
+    global _ALL_EVENTS_CACHE
+    if _ALL_EVENTS_CACHE is not None:
+        return _ALL_EVENTS_CACHE
+
+    import re as _re
     md_path = os.path.join(PROJECT_DIR, 'docs', '05_事件系统.md')
     with open(md_path, 'r', encoding='utf-8') as _f:
         _md = _f.read()
 
-    import re as _re
-    _start = _md.find('## 四、NTRS路线事件')
-    _end = _md.find('\n## 五、', _start)
-    _section = _md[_start:_end] if _end > 0 else _md[_start:]
-
     def _extract_meta(_yaml_text, _key):
-        """从YAML文本中提取单个元数据字段值"""
         _m = _re.search(rf'^\s*{_key}[：:]\s*(.+)$', _yaml_text, _re.MULTILINE)
         return _m.group(1).strip() if _m else ''
 
-    _NTRS_CACHE = {}
+    _ALL_EVENTS_CACHE = {}
     for _m in _re.finditer(
-        r'### 事件(N\d{2})[：:]([^\n]+)\n\n```yaml\n(.*?)\n```',
-        _section, _re.DOTALL
+        r'### 事件([A-Z]+\d{1,3})[：:]([^\n]+)\n\n```yaml\n(.*?)\n```',
+        _md, _re.DOTALL
     ):
         _eid = _m.group(1)
         _title = _m.group(2).strip()
         _yaml_text = _m.group(3)
+        _prefix = _re.match(r'([A-Z]+)', _eid).group(1)
 
-        # ── 提取元数据（用于自动生成keys/order） ──
+        # 元数据
         _third_party = _extract_meta(_yaml_text, '第三者')
         _sex_act = _extract_meta(_yaml_text, '性行为等级') or _extract_meta(_yaml_text, '性行为')
         _phase = _extract_meta(_yaml_text, '情感阶段') or _extract_meta(_yaml_text, '情感') or _extract_meta(_yaml_text, '阶段')
 
-        # Build content by processing YAML lines into narrative format
-        _lines = [f'【NTRS事件——{_eid}：{_title}】', '']
+        # 构建内容
+        _comment_prefix = {'N': 'NTRS', 'P': '纯爱', 'PN': '被动NTR', 'W': '世界',
+                          'H': '隐藏', 'G': '通用', 'R': '黎恩'}.get(_prefix, _prefix)
+        _lines = [f'【{_comment_prefix}事件——{_eid}：{_title}】', '']
         _yaml_lines = _yaml_text.split('\n')
-
-        # Skip the first line (事件: N## ...) — it's redundant with our title
         _body_lines = []
         _skip_first = True
         for _yl in _yaml_lines:
@@ -130,62 +126,57 @@ def _load_ntrs_events():
                 _skip_first = False
                 continue
             _skip_first = False
-
-            # Remove leading whitespace (2-4 spaces) but keep relative indentation
             _stripped = _yl.lstrip()
             if not _stripped:
                 _body_lines.append('')
                 continue
-
-            # Count leading spaces for indent level
             _indent = len(_yl) - len(_yl.lstrip())
-            _prefix = '  ' * max(0, (_indent // 2) - 1) if _indent >= 2 else ''
-
-            # Detect key-value pairs (field: value)
+            _prefix_sp = '  ' * max(0, (_indent // 2) - 1) if _indent >= 2 else ''
             if ':' in _stripped and not _stripped.startswith('-'):
                 _key, _val = _stripped.split(':', 1)
                 _key = _key.strip()
                 _val = _val.strip()
-                # Map YAML keys to Chinese labels
                 _label_map = {
                     '触发条件': '触发条件', '触发': '触发条件',
                     '性行为等级': '性行为等级', '性行为': '性行为等级',
                     '情感阶段': '情感阶段', '情感': '情感阶段', '阶段': '情感阶段',
-                    '黎恩知情': '黎恩知情',
-                    '第三者': '第三者',
-                    '情境': '情境',
-                    '占有欲确认': '占有欲确认',
-                    '玩家选择': '玩家选择',
-                    '变量': '变量',
-                    '核心': '核心',
+                    '黎恩知情': '黎恩知情', '第三者': '第三者',
+                    '情境': '情境', '占有欲确认': '占有欲确认',
+                    '玩家选择': '玩家选择', '变量': '变量', '核心': '核心',
                 }
                 if _key in _label_map:
                     _label = _label_map[_key]
-                    if _val:
-                        _body_lines.append(f'{_prefix}{_label}：{_val}')
-                    else:
-                        _body_lines.append(f'{_prefix}{_label}：')
+                    _body_lines.append(f'{_prefix_sp}{_label}：{_val}' if _val else f'{_prefix_sp}{_label}：')
                 else:
                     _body_lines.append(_yl)
             elif _stripped.startswith('-'):
-                # Bullet points
-                _body_lines.append(f'{_prefix}{_stripped}')
+                _body_lines.append(f'{_prefix_sp}{_stripped}')
             else:
                 _body_lines.append(_yl)
-
         _lines.extend(_body_lines)
         _content = '\n'.join(_lines)
 
-        _NTRS_CACHE[_eid] = {
+        _ALL_EVENTS_CACHE[_eid] = {
             'title': _title,
             'content': _content,
-            'comment': f"【NTRS事件】 {_eid} —— {_title}",
+            'comment': f'【{_comment_prefix}事件】 {_eid} —— {_title}',
+            'prefix': _prefix,
             'third_party': _third_party,
             'sex_act': _sex_act,
             'phase': _phase,
         }
 
-    return _NTRS_CACHE
+    return _ALL_EVENTS_CACHE
+
+
+def _load_ntrs_events():
+    """从缓存中过滤NTRS事件（向后兼容）"""
+    return {k: v for k, v in _load_all_events().items() if v['prefix'] == 'N'}
+
+
+def _load_pure_events():
+    """从缓存中过滤纯爱事件"""
+    return {k: v for k, v in _load_all_events().items() if v['prefix'] == 'P'}
 
 def ntrs(event_id):
     """返回NTRS事件的{title, content, comment, third_party, sex_act, phase}字典"""
@@ -231,41 +222,31 @@ _PHASE_KEYWORDS = {
 
 
 def _auto_keys(event_id, data):
-    """从事件元数据自动生成关键词列表。零硬编码。
-
-    Args:
-        event_id: 如 'N01'
-        data: ntrs()返回的字典，含 title/third_party/sex_act/phase
-
-    Returns:
-        关键词列表（不含 event_id.lower() 和 'ntrs'，由调用方追加）
-    """
+    """从事件元数据自动生成关键词列表。零硬编码，通用所有前缀。"""
     import re as _re
     _keys = []
 
-    # 1. 从标题提取关键词（取"——"前的主标题，分词）
+    # 1. 标题分词
     _title = data.get('title', '')
     _main_title = _title.split('——')[0].strip() if '——' in _title else _title
-    # 分词：2-4字的中文词组
     _title_words = _re.findall(r'[一-鿿]{2,4}', _main_title)
-    _keys.extend(_title_words[:4])  # 最多取4个
+    _keys.extend(_title_words[:4])
 
-    # 2. 从第三者字段提取角色名
+    # 2. 第三者/角色名
     _tp = data.get('third_party', '')
     if _tp and _tp != '无':
-        # 提取角色名（去掉括号注释和描述）
         _tp_names = _re.findall(r'[一-鿿]{2,4}', _tp.split('（')[0])
         _keys.extend(_tp_names[:2])
 
-    # 3. 从性行为等级字段识别性行为类型
+    # 3. 性行为类型
     _sa = data.get('sex_act', '')
     if _sa:
         for _act_type, _kw_list in _SEX_ACT_KEYWORDS.items():
             if _act_type in _sa:
                 _keys.extend(_kw_list[:2])
-                break  # 只取第一个匹配的类型
+                break
 
-    # 4. 从情感阶段字段提取阶段关键词
+    # 4. 阶段
     _ph = data.get('phase', '')
     if _ph:
         for _phase_key, _kw_list in _PHASE_KEYWORDS.items():
@@ -273,43 +254,84 @@ def _auto_keys(event_id, data):
                 _keys.append(_kw_list[0])
                 break
 
-    # 5. 去重，保留顺序
+    # 5. 去重
     _seen = set()
     _unique = []
     for _k in _keys:
         if _k not in _seen and _k.strip():
             _seen.add(_k)
             _unique.append(_k)
-
-    return _unique[:8]  # 最多8个自动关键词
+    return _unique[:8]
 
 
 def _auto_order(event_id):
-    """从事件编号自动生成order值。N01→162, N02→164, ... N76→312"""
-    _num = int(event_id[1:])  # 'N01' → 1
+    """从事件ID自动生成order值。N01→162, P01→162, PN01→162..."""
+    import re as _re
+    _num = int(_re.search(r'\d+', event_id).group())
     return 160 + _num * 2
 
 
-def get_ntrs_entries():
-    """★ 自动生成全部NTRS条目——从MD文件读取，零硬编码。
+def _get_md_entries(prefix, tag, base_order=160):
+    """★ 通用MD驱动条目生成器——零硬编码。
+
+    Args:
+        prefix: 事件前缀 ('N', 'P', 'PN', 'W', 'H', 'G', 'R')
+        tag: 键词标签 ('ntrs', 'pure', 'passive_ntr', 'world', 'hidden', 'game', 'rean')
+        base_order: 起始order值
 
     Returns:
-        条目列表（uid=None，由build()自动分配）
+        条目列表（uid=None）
     """
     _entries = []
-    _events = _load_ntrs_events()
+    _all = _load_all_events()
+    _events = {k: v for k, v in _all.items() if v['prefix'] == prefix}
     for _eid in sorted(_events.keys()):
         _data = _events[_eid]
         _keys = _auto_keys(_eid, _data)
         _entries.append(make_entry(
-            uid=None,  # 由build()自动分配连续uid
-            keys=_keys + [_eid.lower(), 'ntrs'],
+            uid=None,
+            keys=_keys + [_eid.lower(), tag],
             comment=_data['comment'],
             order=_auto_order(_eid),
             probability=80,
             content=_data['content'],
         ))
     return _entries
+
+
+def get_ntrs_entries():
+    """自动生成全部NTRS条目"""
+    return _get_md_entries('N', 'ntrs')
+
+
+def get_pure_entries():
+    """自动生成全部纯爱事件条目"""
+    return _get_md_entries('P', 'pure')
+
+
+def get_passive_ntr_entries():
+    """自动生成全部被动NTR事件条目"""
+    return _get_md_entries('PN', 'passive_ntr')
+
+
+def get_world_entries():
+    """自动生成全部世界事件条目"""
+    return _get_md_entries('W', 'world')
+
+
+def get_hidden_entries():
+    """自动生成全部隐藏事件条目"""
+    return _get_md_entries('H', 'hidden')
+
+
+def get_game_entries():
+    """自动生成全部通用SFW事件条目"""
+    return _get_md_entries('G', 'game')
+
+
+def get_rean_entries():
+    """自动生成全部黎恩专属事件条目"""
+    return _get_md_entries('R', 'rean')
 
 
     """MD驱动添加NTRS事件条目——内容自动从05_事件系统.md读取。
@@ -4445,11 +4467,11 @@ def get_uid125_126_entries():
     ))
 
     return entries
-def get_uid127_141_entries():  # S16-S30 (手交/口交/乳交/腿交/本番)
-    """返回 uid 127-141 的条目定义（V4.6.0 手交/口交/乳交/腿交/本番 NSFW事件）"""
+def get_uid127_141_entries():  # P19-P24 纯爱NSFW（手交/口交/乳交/腿交）
+    """返回 uid 127-141 的条目定义（纯爱NSFW：手交/口交/乳交/腿交）"""
     entries = []
 
-    # ═══ 手交 S16-S18 (uid 127-129) ═══
+    # ═══ 手交 P25/P19 (uid 127-129) ═══
     # === uid 127: P25 银流河畔的初次手交 ===
     entries.append(make_entry(
         uid=124,
@@ -4479,7 +4501,7 @@ def get_uid127_141_entries():  # S16-S30 (手交/口交/乳交/腿交/本番)
         group=""
     ))
 
-    # ═══ 口交 S19-S21 (uid 130-132) ═══
+    # ═══ 口交 P20/P21 (uid 130-132) ═══
     # === uid 130: S19 (原B1) ===
     entries.append(make_entry(
         uid=127,
@@ -4509,7 +4531,7 @@ def get_uid127_141_entries():  # S16-S30 (手交/口交/乳交/腿交/本番)
         group=""
     ))
 
-    # ═══ 乳交 S22-S23 (uid 133-134) ═══
+    # ═══ 乳交 P22/P23 (uid 133-134) ═══
     # === uid 133: S22 (原T1) ===
     entries.append(make_entry(
         uid=130,
@@ -4536,7 +4558,7 @@ def get_uid127_141_entries():  # S16-S30 (手交/口交/乳交/腿交/本番)
         group=""
     ))
 
-    # ═══ 腿交 S24 (uid 135) ═══
+    # ═══ 腿交 P24 (uid 135) ═══
     # === uid 135: S24 (原V1) ===
     entries.append(make_entry(
         uid=132,
@@ -5997,20 +6019,13 @@ def build(dry_run=False):
     collect(get_uid74_75_entries,       "uid 74-75 地点条目", "2g")
     collect(get_uid76_77_110_entries,   "uid 76-77+110 角色条目", "2h")
     collect(get_uid78_109_entries,      "uid 78-109 章节系统+状态栏+ACU", "2i")
-    collect(get_uid111_118_entries,     "uid 111-118 P16/PN21 足交", "2j")
-    collect(get_uid125_126_entries,     "uid 125-126 被动NTR补充", "2l")
-    collect(get_uid127_141_entries,     "uid 127-141 S16-S30 NSFW扩展", "2m")
-    collect(get_uid142_144_entries,     "uid 142-144 P13/P14/P15 纯爱NSFW", "2n")
-    collect(get_uid145_156_entries,     "uid 145-156 N1-N16/PN1-PN20 恢复", "2o")
-    collect(get_uid157_182_entries,     "uid 157-182 N17-N18/PN/W/H 补全", "2p")
-    collect(get_uid186_187_entries,     "uid 186-187 被动NTR情感递进", "2r")
-    collect(get_uid189_200_entries,     "uid 189-200 主动服务+后期淫荡化", "2s")
-    collect(get_uid203_208_entries,     "uid 203-208 被动NTR近发现+淫荡递进", "2u")
-    collect(get_uid209_210_entries,     "uid 209-210 被动NTR被忽视+噤声", "2v")
-    collect(get_uid_pn_erosion_entries, "PN8-PN17 Thalion侵蚀渐进", "2v2")
-    collect(get_uid211_entries,         "uid 211 PN31 Thalion伪装桥接", "2w")
-    collect(get_uid212_213_entries,     "uid 212-213 P17/P18 纯爱NSFW", "2x")
-    collect(get_ntrs_entries,           "NTRS路线77事件(自动生成)", "2ntrs")
+    collect(get_pure_entries,           "纯爱路线事件(P1-P25)·MD驱动", "2pure")
+    collect(get_ntrs_entries,           "NTRS路线事件(N01-N77)·MD驱动", "2ntrs")
+    collect(get_passive_ntr_entries,    "被动NTR路线事件(PN1-PN37)·MD驱动", "2pn")
+    collect(get_world_entries,          "世界事件(W1-W8)·MD驱动", "2w")
+    collect(get_hidden_entries,         "隐藏事件(H1-H5)·MD驱动", "2h")
+    collect(get_game_entries,           "通用SFW事件(G1-G7)·MD驱动", "2g")
+    collect(get_rean_entries,           "黎恩专属事件(R1-R8)·MD驱动", "2rean")
 
     # ─── 合并 + 自动分配 uid ──────────────────────────────
     all_entries = list(base_entries)
