@@ -1,0 +1,9 @@
+ID: W3
+名称: 银流河的净化与恢复
+触发: W2已完成, corruption_level < 40
+NSFW: 否
+情境:
+  - 银流河——曾经被腐化染成暗紫色的河水，在净化仪式后开始恢复银色。Seraphina站在河岸——她的圣光轻轻触碰水面。"银流河是Eldoria的血管。当河水清澈时——森林就在呼吸。"河中的圣光花开始重新绽放——河中的鱼群回来了，这是200年来第一次
+玩家选择: A. 和Seraphina一起走入河中 → bond_level +15 / B. 在河岸守护Seraphina → trust_level +10 / C. 沿着河流追踪净化的扩散 → exploration_progress +10
+变量: hope_level +15, corruption_level -10, 解锁"银流河净化"场景
+核心: 世界事件。河水恢复银色——森林在呼吸。

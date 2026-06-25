@@ -2,7 +2,7 @@
 
 > **定位**：Eldoria世界书 · 剧情深度与NSFW事件增强执行者
 > **前置**：`README.md` → `docs/00_方案总览.md` → 本文件
-> **版本**：v6.0 · 2026-06-25
+> **版本**：v6.5 · 2026-06-26
 
 ---
 
@@ -26,72 +26,125 @@
 
 ## 二、工作流
 
-### 2.1 标准修改循环
+### 2.1 架构概要（V6.5）
+
+```
+docs/event/{prefix}/*.TXT   ← ★ 事件唯一权威源（193个独立文件）
+    │
+    ├── build_eldoria.py 直接读TXT ──→ output/Eldoria_V*.json
+    ├── assemble_md.py 读TXT ──→ docs/05_事件系统.md（索引，非正文）
+    └── event_tool.py 读TXT ──→ 验证 / 列表 / 查看
+
+事件正文只在TXT中。05MD退为轻量索引（8.6KB），不含事件正文。
+```
+
+### 2.2 标准修改循环
 
 ```
  Step 0 — 确认范围
-   ├── 明确文件、事件ID范围
+   ├── 定位 docs/event/{prefix}/{ID}.TXT
    ├── 理解该条目在三线架构中的位置
-   └── 检查交叉引用（变量 → 04/05 中的引用）
+   └── 检查交叉引用：event_tool.py refs <ID>
 
  Step 1 — 阅读权威源
-   ├── 阅读 docs/05_事件系统.md 中对应事件
-   ├── 理解 content、触发条件、路线分支逻辑
-   └── （V6.0起无需读 build_eldoria.py —— 事件条目MD自动生成）
+   ├── 阅读 docs/event/{prefix}/{ID}.TXT（唯一权威）
+   └── 理解触发条件、路线分支逻辑
 
  Step 2 — 执行修改
-   ├── 修改 docs/05_事件系统.md（权威数据源）
-   ├── 保持YAML格式（2空格缩进、\n换行）
-   └── V6.0：新增/删除事件后运行 update_chapter_map.py
+   ├── 编辑TXT文件（key: value格式）
+   └── 新增事件：手创TXT → renumber_events.py → 编辑 DEFAULT_CHAPTERS
+   └── 删除事件：event_tool.py refs <ID> 检查引用 → 删TXT → renumber → 更新DEFAULT_CHAPTERS
 
  Step 3 — 构建验证
-   ├── python scripts/build_eldoria.py
-   ├── python scripts/build_eldoria.py --validate
-   ├── python scripts/event_tool.py validate "docs/05_事件系统.md"
+   ├── python scripts/rebuild_all.py              ← 一键：assemble → build → browser
+   ├── python scripts/event_tool.py validate      ← 验证全部TXT
    └── 检查JSON中对应条目的content
 
  Step 4 — 记录
    ├── 重大修改 → docs/00_工作流与版本管理.md 版本历史
-   ├── 小修复 → 分md修改处加日期注释
-   └── 必要时 → generate_event_browser.py 刷新可视化
+   ├── 小修复 → 对应TXT文件内加日期注释
+   └── 版本号递增
 ```
 
-### 2.2 V6.0架构铁律：零硬编码
+### 2.3 V6.5架构铁律
 
-- **禁止**在 `build_eldoria.py` 中添加任何事件ID/标题/内容的硬编码
-- 所有事件条目由 `_load_all_events()` → `_get_md_entries(prefix, tag)` 自动生成
-- **新增事件**：只改MD → 构建自动生成 → `update_chapter_map.py` 更新映射
-- **删除事件**：从MD删除 → 构建自动移除
-- **修改事件**：改MD → 构建自动同步内容+键词
+| # | 规则 |
+|---|------|
+| 1 | **TXT文件是唯一权威数据源** — 绝不手动编辑 `output/Eldoria_V*.json` |
+| 2 | **修改事件只改TXT** — 构建自动同步。不再需要手动改 `build_eldoria.py` |
+| 3 | **05MD是生成产物** — 由 `assemble_md.py` 从TXT生成，不可手动编辑事件部分 |
+| 4 | **增删事件必跑renumber** — 保持编号连续，交叉引用自动更新 |
+| 5 | **删事件前必跑refs** — `event_tool.py refs <ID>` 检查外部引用 |
+| 6 | **章节分配编辑DEFAULT_CHAPTERS** — 在 `assign_chapters.py` 中维护 |
+| 7 | **prefix元数据在event_config.py** — 新增前缀只改一处 |
 
-### 2.3 重编号安全铁律
+### 2.4 重编号安全机制
 
-1. **单次pass替换**：禁止 `for old in mapping: text.replace(old, new)` 循环。使用 `re.sub(pattern, callback, text)` 单次pass
-2. **词边界保护**：所有ID替换regex必须 `(?<![A-Za-z0-9])` 开头。N31不匹配PN31，N3不匹配N30
-3. **临时ID**：插入事件时先用 `NX1` 等临时ID，再单次pass重编号
-4. **全量回滚是最后手段**：先评估影响范围，只修复损坏的系列
-5. **每阶段后备份**：不积累多个阶段后一次性备份
-6. **探索前置**：大规模修改前grep探明分布、编号体系、函数结构
+`renumber_events.py` 两阶段重命名（临时名→最终名）防碰撞；交叉引用用 `(?<![A-Za-z0-9])` 词边界保护；ID行单独保护不被交叉引用更新误碰。
 
-### 2.4 构建命令
+### 2.5 构建命令
 
 ```bash
-# 构建
+# 一键全流程重建（assemble → build → browser）
+python scripts/rebuild_all.py
+
+# 跳MD索引的快速重建（仅build + browser）
+python scripts/rebuild_all.py --skip-md
+
+# 带前置验证
+python scripts/rebuild_all.py --validate
+
+# 单独构建世界书JSON
 python scripts/build_eldoria.py
 
-# 验证
-python scripts/build_eldoria.py --validate
-python scripts/event_tool.py validate "docs/05_事件系统.md"
+# 验证全部TXT事件
+python scripts/event_tool.py validate
 
-# 新增/重排事件后更新章节映射
+# 查找事件引用（删前必查）
+python scripts/event_tool.py refs <ID>
+
+# 重编号（填缺口，更新交叉引用）
+python scripts/renumber_events.py <prefix>
+
+# 刷新MD索引
+python scripts/assemble_md.py
+
+# 章节映射报告
 python scripts/update_chapter_map.py
-
-# 插入事件 + 级联重编号
-python scripts/insert_and_renumber.py "docs/05_事件系统.md" <after_id> <new_file>
 
 # 备份
 python scripts/backup_restore.py backup "说明"
+
+# 刷新事件浏览器网页
+python scripts/generate_event_browser.py
 ```
+
+### 2.6 脚本工具速查
+
+| 脚本 | 功能 | 读 | 写 |
+|------|------|:--:|:--:|
+| `event_tool.py` | 验证/列表/查看/引用扫描（Rule1-5） | TXT | - |
+| `renumber_events.py` | 批量重编号+交叉引用更新 | TXT | TXT |
+| `assemble_md.py` | 从TXT生成05MD索引（零硬编码） | TXT | 05MD |
+| `build_eldoria.py` | 构建世界书JSON（读TXT） | TXT+docs/* | output/ |
+| `assign_chapters.py` | DEFAULT_CHAPTERS数据源（被assembler/build导入） | - | （数据） |
+| `update_chapter_map.py` | 只读报告：从DEFAULT_CHAPTERS打印统计 | DEFAULT_CHAPTERS | stdout |
+| `generate_event_browser.py` | 生成可视化事件浏览器HTML（读TXT） | TXT | visual/ |
+| `rebuild_all.py` | 一键：assemble → build → browser | - | 05MD+JSON+HTML |
+| `backup_restore.py` | 备份/恢复 | output/ | backup/ |
+| `event_config.py` | 共享prefix元数据（被所有脚本import） | - | - |
+
+**新增事件**：
+  手创TXT → 编辑`DEFAULT_CHAPTERS` → `renumber_events.py` → `rebuild_all.py`
+
+**删除事件**：
+  `event_tool.py refs <ID>` → 删TXT → 编辑`DEFAULT_CHAPTERS` → `renumber_events.py` → `rebuild_all.py`
+
+**修改事件**：
+  编辑TXT → `rebuild_all.py --skip-md`
+
+**移动事件/调整章节**：
+  编辑`DEFAULT_CHAPTERS` → `renumber_events.py`（如需）→ `rebuild_all.py`
 
 ---
 
@@ -199,19 +252,19 @@ python scripts/backup_restore.py backup "说明"
 
 | # | 规则 |
 |---|------|
-| 1 | **分md是唯一权威数据源** — 绝不手动编辑 `output/Eldoria_V*.json` |
-| 2 | **V6.0**：修改事件**只改MD**，构建自动同步。不再需要手动改 `build_eldoria.py` |
+| 1 | **TXT文件是唯一权威数据源** — 绝不手动编辑 `output/Eldoria_V*.json` |
+| 2 | **V6.5**：修改事件**只改TXT**，构建自动同步。05MD是生成产物 |
 | 3 | **版本号递增**：小修复→修订号+1 · 新事件→次版本+1 · 架构变更→主版本+1 |
-| 4 | **先读后改**：修改前完整阅读目标文件及其交叉引用 |
-| 5 | **交叉引用检查**：修改变量→同步03/04/05 · 修改角色→同步01_角色档案 |
+| 4 | **先读后改**：修改前完整阅读目标TXT及其交叉引用 |
+| 5 | **删前必查引用**：`event_tool.py refs <ID>` 确认无外部依赖 |
+| 6 | **交叉引用检查**：修改变量→同步03/04 · 修改角色→同步01_角色档案 |
 
 ### 5.2 条目格式规范
 
-- `content` 使用 `\n` 换行
-- 路线分支纯文字区分：`纯爱路线: [内容] / NTRS路线: [内容]`
-- 不使用EJS条件语法
-- 关键词小写、中英混合、3-8个/条
-- 角色条目1000-3000字符 · 事件条目800-2000字符
+- TXT文件使用 `key: value` 格式（非YAML）
+- 多行值（情境/玩家选择/核心）用缩进bullet续行
+- 第一行必为 `ID: {PREFIX}{number}`
+- 标准字段：ID · 名称 · 触发 · NSFW · 性行为等级 · 情感阶段 · 情境 · 玩家选择 · 变量 · 核心
 
 ### 5.3 核心设计原则
 
@@ -225,15 +278,25 @@ python scripts/backup_restore.py backup "说明"
 ### 5.4 文档依赖链
 
 ```
-00_方案总览.md              ← 总蓝图
+docs/event/{prefix}/*.TXT   ← ★★★ 事件唯一权威源（最常修改）
+├── 00_方案总览.md          ← 总蓝图
 ├── 01_角色档案.md          ← 修改角色时先读
 ├── 02_世界观设定.md        ← 修改场景时先读
 ├── 03_变量系统.md          ← 修改变量/阈值时先读
 ├── 04_关系阶段.md          ← 修改阶段行为时先读
-├── 05_事件系统.md          ← ★ 最常修改（事件主战场）
-├── 08_事件格式标准.md      ← ★ 修改事件必读（YAML格式）
+├── 05_事件系统.md          ← 索引（生成产物，不手动编辑事件部分）
+├── 08_事件格式标准.md      ← TXT格式标准
 ├── 06_条目规划与格式.md    ← 条目格式 · 关键词参考
 └── 07_最终执行指令.md      ← 构建与输出规范
+scripts/
+├── event_config.py        ← 共享prefix元数据
+├── event_tool.py          ← 验证/列表/查看/引用扫描
+├── renumber_events.py     ← 批量重编号+交叉引用
+├── assemble_md.py         ← TXT→05MD索引
+├── build_eldoria.py       ← TXT→世界书JSON
+├── assign_chapters.py     ← DEFAULT_CHAPTERS数据源
+├── rebuild_all.py         ← 一键全流程
+└── generate_event_browser.py ← TXT→可视化HTML
 ```
 
 ---
@@ -264,14 +327,14 @@ python scripts/backup_restore.py backup "说明"
 
 ## 快速上手检查清单
 
-- [ ] 阅读目标分md文件
+- [ ] 定位目标TXT文件 `docs/event/{prefix}/{ID}.TXT`
 - [ ] 理解条目在三线架构中的位置
 - [ ] 确认不触碰纯爱线安全基调
 - [ ] 规划修改范围（交叉引用？新变量？）
-- [ ] 修改 docs/05_事件系统.md
-- [ ] `python scripts/build_eldoria.py` 构建
+- [ ] 编辑TXT文件
+- [ ] 删事件前：`python scripts/event_tool.py refs <ID>`
+- [ ] `python scripts/rebuild_all.py` 全流程重建
 - [ ] `python scripts/event_tool.py validate` 验证
-- [ ] 新增/重排事件后 `python scripts/update_chapter_map.py`
 - [ ] NSFW内容：对照第四节禁令自检
 
 ---

@@ -22,17 +22,7 @@ EVENT_MD = os.path.join(BASE_DIR, "docs", "05_事件系统.md")
 OUTPUT_HTML = os.path.join(BASE_DIR, "visual", "全事件浏览器.html")
 
 # ─── 前缀元数据 ─────────────────────────────────────────
-PREFIX_META = {
-    "E":  {"name": "固定事件",   "color": "#4facfe", "route": "共通",     "order": 1},
-    "P":  {"name": "纯爱路线",   "color": "#f093fb", "route": "纯爱",     "order": 2},
-    "N":  {"name": "NTRS路线",   "color": "#fa709a", "route": "NTRS",     "order": 3},
-    "PN": {"name": "被动NTR路线","color": "#30cfd0", "route": "被动NTR",   "order": 4},
-    "C":  {"name": "角色NSFW",   "color": "#a18cd1", "route": "通用",     "order": 6},
-    "G":  {"name": "通用SFW",    "color": "#43e97b", "route": "通用",     "order": 7},
-    "W":  {"name": "世界事件",   "color": "#f5576c", "route": "共通",     "order": 8},
-    "H":  {"name": "隐藏事件",   "color": "#a8edea", "route": "隐藏",     "order": 9},
-    "R":  {"name": "黎恩专属",   "color": "#89f7fe", "route": "黎恩",     "order": 10},
-}
+from event_config import PREFIX_META
 
 # ─── 章节名称（V4.8.0同步） ──────────────────────────────
 CHAPTER_NAMES = {
@@ -54,61 +44,71 @@ CHAPTER_NAMES = {
 KNOWN_EVENTS = {}
 
 
-def parse_chapter_mapping(content):
-    """从章节映射表提取事件→章节的分配。"""
+def load_chapter_mapping():
+    """从 assign_chapters.DEFAULT_CHAPTERS 加载事件→章节映射。"""
+    sys.path.insert(0, os.path.join(BASE_DIR, 'scripts'))
+    try:
+        from assign_chapters import DEFAULT_CHAPTERS
+    except ImportError:
+        return {}, {}
     event_chapters = {}
     event_names_from_table = {}
-    table_start = content.find("## 事件-章节映射")
-    # Table extends to "## 一、事件系统总览" (after the mapping tables, before event definitions)
-    table_end = content.find("## 一、事件系统总览", table_start)
-    if table_end < 0:
-        table_end = content.find("---", table_start)
-    table_text = content[table_start:table_end]
-    current_chapter = 0
-    for line in table_text.split("\n"):
-        # 匹配: || 第{n}章[B] name | EVENT_ID | event_name || 或 | ... |
-        m = re.match(r'\|?\|\s*(?:第(\d+)章([A-Z]*)\s*[^|]*)?\|\s*([A-Z]+\d+)\s*\|(.+?)\|?\|?\s*$', line)
-        if not m:
-            continue
-        chap_num = m.group(1)
-        chap_suffix = m.group(2) or ""
-        event_id = m.group(3).strip()
-        event_name = m.group(4).strip() if m.group(4) else ""
-        if chap_num:
-            current_chapter = int(chap_num)
-            if chap_suffix:
-                current_chapter = int(chap_num) * 10  # 17B → 170
-        if event_id and current_chapter > 0:
-            event_chapters[event_id] = current_chapter
-            if event_name:
-                event_names_from_table[event_id] = event_name
+    for ch_num, ch_data in DEFAULT_CHAPTERS.items():
+        for eid in ch_data.get('events', []):
+            event_chapters[eid] = ch_num
     return event_chapters, event_names_from_table
 
 
-def parse_event_headers(content):
-    """解析所有 ### 事件XXX 标题及其后的内容块。"""
-    events_raw = {}
-    header_pattern = re.compile(r'^###\s+事件([A-Z]*\d+)[：:]\s*(.+?)$', re.MULTILINE)
-    matches = list(header_pattern.finditer(content))
-    for i, match in enumerate(matches):
-        num_part = match.group(1).strip()
-        raw_name = match.group(2).strip()
-        if re.match(r'^\d+$', num_part):
-            event_id = f"E{int(num_part):02d}"
+def parse_txt_file(filepath):
+    """解析单个 .TXT 事件文件，返回 dict"""
+    with open(filepath, 'r', encoding='utf-8') as f:
+        lines = f.readlines()
+    data = {}
+    current_key = None
+    current_value = []
+    for line in lines:
+        if not line.strip():
+            continue
+        m = re.match(r'^([^：:\s][^：:]*?)[：:]\s*(.*)', line)
+        if m and not line.lstrip().startswith(('-', 'A.', 'B.', 'C.')):
+            if current_key:
+                data[current_key] = '\n'.join(current_value).strip()
+            current_key = m.group(1).strip()
+            val = m.group(2).strip()
+            current_value = [val] if val else []
         else:
-            event_id = num_part
-        name = re.sub(r'\s*[（(][^)）]*[)）]\s*', '', raw_name).strip()
-        block_start = match.end()
-        next_header = re.search(r'^###\s+|^##\s', content[block_start:], re.MULTILINE)
-        block_end = block_start + next_header.start() if next_header else len(content)
-        block = content[block_start:block_end].strip()
-        yaml_match = re.search(r'```yaml\s*\n(.*?)```', block, re.DOTALL)
-        has_yaml = yaml_match is not None
-        raw_yaml = yaml_match.group(1).strip() if has_yaml else ""
-        events_raw[event_id] = {
-            "name": name, "raw_name": raw_name, "raw_block": block,
-            "has_yaml": has_yaml, "raw_yaml": raw_yaml,
-        }
+            current_value.append(line.rstrip('\n'))
+    if current_key:
+        data[current_key] = '\n'.join(current_value).strip()
+    return data
+
+
+def load_events_from_txt():
+    """从 docs/event/{prefix}/*.TXT 读取所有事件数据。
+    返回 {event_id: {name, raw_yaml, has_yaml, ...}}"""
+    event_dir = os.path.join(BASE_DIR, 'docs', 'event')
+    events_raw = {}
+    for pfx in os.listdir(event_dir):
+        pfx_path = os.path.join(event_dir, pfx)
+        if not os.path.isdir(pfx_path):
+            continue
+        for fname in sorted(os.listdir(pfx_path)):
+            if not fname.upper().endswith('.TXT'):
+                continue
+            fp = os.path.join(pfx_path, fname)
+            data = parse_txt_file(fp)
+            eid = data.get('ID', '')
+            name = data.get('名称', '')
+            if not eid:
+                continue
+            # Build yaml-like text from key-value pairs for tag inference
+            raw_yaml = '\n'.join(f'{k}: {v}' for k, v in data.items())
+            events_raw[eid] = {
+                'name': name,
+                'raw_name': name,
+                'raw_yaml': raw_yaml,
+                'has_yaml': True,
+            }
     return events_raw
 
 
@@ -157,9 +157,9 @@ def get_nsfw_level(tags):
     return ""
 
 
-def build_events(content):
-    event_chapters, event_names_from_table = parse_chapter_mapping(content)
-    events_raw = parse_event_headers(content)
+def build_events():
+    event_chapters, event_names_from_table = load_chapter_mapping()
+    events_raw = load_events_from_txt()
     events = []
     seen_ids = set()
     for event_id, raw in events_raw.items():
@@ -794,11 +794,8 @@ renderGrid();
 
 # ─── 入口 ──────────────────────────────────────────────
 if __name__ == "__main__":
-    print(f"解析文件: {EVENT_MD}")
-    with open(EVENT_MD, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    events, event_chapters, event_names = build_events(content)
+    print(f"扫描: {os.path.join(BASE_DIR, 'docs', 'event')}")
+    events, event_chapters, event_names = build_events()
 
     prefixes = {}
     for e in events:

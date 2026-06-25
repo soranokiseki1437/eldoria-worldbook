@@ -1,0 +1,9 @@
+ID: W4
+名称: 腐化区域的意外扩张
+触发: 被动NTR路线, corruption_level >= 45, 触发概率随章节递增
+NSFW: 否
+情境:
+  - 毫无预警地——Eldoria森林的一片区域突然被腐化吞没。Seraphina赶到现场——"这不是自然的腐化扩散——这是某种...反击。"Thalion在远方心木废墟中的力量在增长——他在回应净化仪式
+玩家选择: A. 与Seraphina一起遏制 → corruption_level -10, trust_level +8 / B. 寻找扩散源头 → exploration_progress +20 / C. 让Seraphina先去，黎恩组织VII班支援 → hope_level +5
+变量: 如果黎恩在身边: 两人合力遏制 / 如果黎恩缺席: seraphina_despair增加
+核心: 被动NTR专属世界事件。考验黎恩是否在场——缺席加速她的疲惫。

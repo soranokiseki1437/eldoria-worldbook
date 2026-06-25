@@ -1,0 +1,12 @@
+ID: G2
+名称: 剑术训练——太刀与圣光
+触发: 劳拉在场, trust_level >= 22
+NSFW: 否
+情境:
+  - 劳拉看到黎恩的太刀和Seraphina的圣光后，提出一个"训练计划"——她想要与黎恩进行剑术对决。Seraphina的圣光可以在训练中形成"保护"——当圣光包裹住两人的剑时，他们可以全力战斗而不会受伤
+路线分支:
+  A. 黎恩与劳拉对决，Seraphina观看 → Seraphina可能会在训练后主动找黎恩"确认"
+  B. 邀请Seraphina加入训练 → trust +15, bond +15。太刀与圣光的配合——最强大的战斗形态
+  C. 让第三者加入训练 → ntrs_opportunity +10，可能成为NTRS的"前奏"
+变量: 纯爱: trust +15, bond +15, combat_synergy +10 / NTRS: ntrs_opportunity +10
+核心: 通用SFW事件。剑术训练中的路线分支——Seraphina的目光追随着黎恩的每一个动作。

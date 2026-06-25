@@ -1,465 +1,294 @@
 #!/usr/bin/env python3
 """
-event_tool.py — 事件块级操作工具
-==================================
-基于 ### 事件N##：头定位YAML块，支持提取/替换/插入/移动/删除/验证。
-不依赖YAML解析，不依赖字符串精确匹配——块级操作消除缩进问题。
+event_tool.py — 事件验证与查看工具 (TXT文件驱动)
 
 用法:
-  python event_tool.py list <file> [--section NTRS]     # 列出所有事件ID+标题
-  python event_tool.py extract <file> <event_id> [--output <f>]  # 提取事件块到文件/stdout
-  python event_tool.py replace <file> <event_id> <patch_file>    # 用文件内容替换事件块
-  python event_tool.py insert <file> <after_event_id> <new_file> # 在指定事件后插入
-  python event_tool.py move <file> <event_id> <after_event_id>   # 移动事件
-  python event_tool.py delete <file> <event_id> [--dry-run]      # 删除事件
-  python event_tool.py validate <file>                    # 全面验证（Rule1/2/银发/嗅觉）
-  python event_tool.py show <file> <event_id>              # 在终端显示事件内容
-
-文件格式:
-  提取的事件块包含 ### 事件N##：标题 + ```yaml ... ``` 完整块。
-  replace/insert 的 patch_file 应包含完整的事件块（header + yaml）。
+  python event_tool.py validate [prefix]     # 验证所有/指定前缀TXT
+  python event_tool.py list [prefix]          # 列出事件ID+标题
+  python event_tool.py show <event_id>        # 显示单个事件TXT内容
+  python event_tool.py refs <event_id>        # 查找所有引用了该事件ID的TXT文件
 
 设计原则:
-  - 块级操作：以"### 事件"头为界，不解析YAML内部
-  - 自动备份：修改操作前自动备份源文件
-  - 干运行模式：insert/delete/move 支持 --dry-run
+  - 操作对象: docs/event/{prefix}/*.TXT 文件
+  - 增删改移事件请直接操作TXT文件，然后运行 renumber_events.py + assemble_md.py
 """
 
 import re
 import os
 import sys
-import shutil
-from datetime import datetime
+from collections import OrderedDict
 
-# ============================================================
-# Core: Event boundary detection
-# ============================================================
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+EVENT_DIR = os.path.join(PROJECT_DIR, 'docs', 'event')
 
-EVENT_HEADER = re.compile(r'^### 事件([A-Z]+\d{1,3})[：:]([^\n]*)', re.MULTILINE)
-SECTION_HEADER = re.compile(r'^### [^\s]', re.MULTILINE)
-SUB_SECTION = re.compile(r'^## ', re.MULTILINE)
+from event_config import SECTION_TITLES as SECTION_CONFIG
 
-def find_event_blocks(text):
-    """返回 [(event_id, title, start, end, block_text), ...]，按出现顺序"""
-    blocks = []
-    for m in EVENT_HEADER.finditer(text):
-        eid = m.group(1)
-        title = m.group(2).strip()
-        start = m.start()
-        # 找到块结束位置：下一个 ### 事件 或 ### 阶段 或 ## 大节 或 ---
-        remaining = text[m.end():]
-        # 找最近的终止标记
-        end_markers = []
-        for pattern, label in [
-            (r'\n### 事件', 'next_event'),
-            (r'\n### [^\s]', 'section'),
-            (r'\n## ', 'subsection'),
-            (r'\n---', 'separator'),
-        ]:
-            em = re.search(pattern, remaining)
-            if em:
-                end_markers.append((em.start(), label))
-        if end_markers:
-            end_offset = min(end_markers, key=lambda x: x[0])[0]
-            end = m.end() + end_offset
+# ═══════════════════════════════════════════════════════════
+# TXT 解析
+# ═══════════════════════════════════════════════════════════
+
+def parse_txt(filepath):
+    """解析单个 .TXT 事件文件，返回 dict"""
+    with open(filepath, 'r', encoding='utf-8') as f:
+        lines = f.readlines()
+
+    data = {}
+    current_key = None
+    current_value = []
+
+    for line in lines:
+        if not line.strip():
+            continue
+        if line.strip().startswith('#'):
+            continue
+
+        m = re.match(r'^([^：:\s][^：:]*?)[：:]\s*(.*)', line)
+        if m and not line.lstrip().startswith(('-', 'A.', 'B.', 'C.')):
+            if current_key:
+                data[current_key] = '\n'.join(current_value).strip()
+            current_key = m.group(1).strip()
+            val = m.group(2).strip()
+            current_value = [val] if val else []
         else:
-            end = len(text)
-        block_text = text[start:end]
-        blocks.append((eid, title, start, end, block_text))
-    return blocks
+            current_value.append(line.rstrip('\n'))
 
-def find_event_by_id(text, event_id):
-    """返回 (title, start, end, block_text) 或 None"""
-    for eid, title, start, end, block in find_event_blocks(text):
-        if eid == event_id:
-            return title, start, end, block
-    return None
+    if current_key:
+        data[current_key] = '\n'.join(current_value).strip()
 
-def get_narrative_sections(block_text):
-    """提取事件块中的叙事字段（情境/占有欲确认/核心/玩家选择），用于验证"""
-    # 找到YAML内容（```yaml ... ```之间的部分）
-    m = re.search(r'```yaml\n(.*?)\n```', block_text, re.DOTALL)
-    if not m:
-        return ''
-    return m.group(1)
+    return data
 
-# ============================================================
-# Operations
-# ============================================================
 
-def list_events(text, section_filter=None):
-    """列出所有事件ID和标题，可选按章节过滤"""
-    blocks = find_event_blocks(text)
-    if section_filter:
-        # 找到指定章节的范围
-        sec_start = text.find(section_filter)
-        if sec_start < 0:
-            # 尝试匹配章节模式
-            sec_start = 0
-        filtered = []
-        for eid, title, start, end, block in blocks:
-            if start >= sec_start:
-                filtered.append((eid, title, start, end, block))
-        blocks = filtered
-
+def list_txt_files(prefix=None):
+    """列出TXT文件，返回 [(event_id, title, filepath), ...]"""
     results = []
-    for eid, title, start, end, block in blocks:
-        # 获取行号
-        line_num = text[:start].count('\n') + 1
-        results.append((eid, title, line_num))
+    prefixes = [prefix] if prefix else SECTION_CONFIG
+    for pfx in prefixes:
+        pfx_dir = os.path.join(EVENT_DIR, pfx)
+        if not os.path.isdir(pfx_dir):
+            continue
+        for fname in sorted(os.listdir(pfx_dir)):
+            if not fname.upper().endswith('.TXT'):
+                continue
+            fp = os.path.join(pfx_dir, fname)
+            data = parse_txt(fp)
+            eid = data.get('ID', fname.replace('.TXT', ''))
+            name = data.get('名称', '')
+            results.append((eid, name, fp, data))
     return results
 
-def extract_event(text, event_id):
-    """提取事件块文本"""
-    result = find_event_by_id(text, event_id)
-    if not result:
-        sys.stderr.write(f'❌ 事件 {event_id} 未找到\n')
-        sys.exit(1)
-    return result[3]
 
-def replace_event(text, event_id, new_block):
-    """替换事件块。返回修改后的全文。"""
-    result = find_event_by_id(text, event_id)
-    if not result:
-        sys.stderr.write(f'❌ 事件 {event_id} 未找到\n')
-        sys.exit(1)
-    title, start, end, old_block = result
-    print(f'  替换 {event_id}：{title}')
-    print(f'  旧块: {len(old_block)} 字符 → 新块: {len(new_block)} 字符')
-    return text[:start] + new_block + text[end:]
+# ═══════════════════════════════════════════════════════════
+# 验证规则
+# ═══════════════════════════════════════════════════════════
 
-def insert_event(text, after_event_id, new_block):
-    """在指定事件后插入新事件块"""
-    result = find_event_by_id(text, after_event_id)
-    if not result:
-        sys.stderr.write(f'❌ 插入点 {after_event_id} 未找到\n')
-        sys.exit(1)
-    title, start, end, old_block = result
-    insert_pos = end
-    # 确保插入后有适当的间距
-    # 检查end位置后是否有换行
-    if text[end:end+1] == '\n':
-        insert_text = '\n' + new_block + '\n'
-    else:
-        insert_text = '\n\n' + new_block + '\n'
-    print(f'  在 {after_event_id} 后插入新事件')
-    return text[:insert_pos] + insert_text + text[insert_pos:]
-
-def delete_event(text, event_id):
-    """删除事件块"""
-    result = find_event_by_id(text, event_id)
-    if not result:
-        sys.stderr.write(f'❌ 事件 {event_id} 未找到\n')
-        sys.exit(1)
-    title, start, end, old_block = result
-    print(f'  删除 {event_id}：{title}')
-    # 删除块及其前后空白
-    # Remove trailing newlines after the block
-    while end < len(text) and text[end] == '\n':
-        end += 1
-    return text[:start] + text[end:]
-
-def move_event(text, event_id, after_event_id):
-    """移动事件到另一个事件之后"""
-    result_src = find_event_by_id(text, event_id)
-    result_dst = find_event_by_id(text, after_event_id)
-    if not result_src:
-        sys.stderr.write(f'❌ 源事件 {event_id} 未找到\n')
-        sys.exit(1)
-    if not result_dst:
-        sys.stderr.write(f'❌ 目标 {after_event_id} 未找到\n')
-        sys.exit(1)
-
-    src_title, src_start, src_end, src_block = result_src
-    dst_title, dst_start, dst_end, dst_block = result_dst
-
-    # 先提取源块内容
-    block_content = text[src_start:src_end]
-    # 从原位置删除
-    text = text[:src_start] + text[src_end:]
-    # 重新定位目标（因为文本已变化）
-    new_dst_end = dst_end if dst_end < src_start else dst_end - (src_end - src_start)
-    # 在目标后插入
-    insert_text = '\n' + block_content + '\n'
-    text = text[:new_dst_end] + insert_text + text[new_dst_end:]
-    print(f'  移动 {event_id} → {after_event_id} 之后')
-    return text
-
-# ============================================================
-# Validation
-# ============================================================
-
-def validate(text):
-    """全面验证，返回违规列表"""
+def validate_prefix(prefix):
+    """验证指定前缀的所有TXT文件，返回违规列表"""
     violations = []
+    events = list_txt_files(prefix)
 
-    # Rule 1: N## in narrative
-    # 提取每个事件块的叙事部分
-    for eid, title, start, end, block in find_event_blocks(text):
-        narrative = get_narrative_sections(block)
-        # 找N##引用（不含事件头那行）
-        n_refs = re.findall(r'(?<![A-Za-z])N\d{1,2}(?!\d)', narrative)
-        # 排除可能出现在metadata行中的合法引用
-        for ref in n_refs:
-            line_num = text[:start].count('\n') + 1
-            # 检查引用所在行是否是metadata
-            ref_pos = narrative.find(ref)
-            line_start = narrative.rfind('\n', 0, ref_pos) + 1
-            line_end = narrative.find('\n', ref_pos)
-            line = narrative[line_start:line_end] if line_end > 0 else narrative[line_start:]
-            # 检查该行及其上方的非空行是否是metadata key（处理跨行value）
-            meta_keys = ('事件:', '核心:', '排序备注:', '前置事件:', '后续事件:',
-                        '触发条件:', '性行为', '情感阶段', '变量:', '玩家选择:',
-                        '黎恩知情:', '第三者:', '触发:', '阶段:')
-            is_meta = line.strip().startswith(meta_keys)
-            if not is_meta:
-                # 检查上一非空行是否以metadata key开头（当前行可能是value续行）
-                prev_lines = narrative[:line_start].split('\n')
-                for pl in reversed(prev_lines):
-                    pls = pl.strip()
-                    if pls and not pls.startswith('-'):
-                        if pls.startswith(meta_keys):
-                            is_meta = True
-                        break
-            if not is_meta:
-                violations.append(f'[{eid}] Rule1: 叙事中出现 "{ref}" — {line.strip()[:60]}...')
+    if not events:
+        return violations
+
+    # Rule 3: 重复ID (filename-based — impossible with file system, but check ID field)
+    seen_ids = {}
+    for eid, name, fp, data in events:
+        if eid in seen_ids:
+            violations.append(
+                f'[{eid}] Rule3: 重复事件ID — '
+                f'{os.path.basename(seen_ids[eid])} vs {os.path.basename(fp)}'
+            )
+        else:
+            seen_ids[eid] = fp
+
+    # Rule 1: N## references in narrative (non-metadata context)
+    # 排除"核心"字段 — 核心是编辑备注，引用了其他事件ID是正常的
+    for eid, name, fp, data in events:
+        # Check narrative fields only (not editorial notes)
+        narrative_fields = ['情境', '占有欲确认']
+        meta_keys = {'ID', '名称', '触发', 'NSFW', '性行为等级', '情感阶段',
+                     '黎恩知情', '第三者', '变量', '玩家选择', '所属章节'}
+        for field in narrative_fields:
+            text = data.get(field, '')
+            n_refs = re.findall(r'(?<![A-Za-z])N\d{1,2}(?!\d)', text)
+            for ref in n_refs:
+                # Check if it's in a legitimate context (e.g., "N01已触发")
+                # Allow in trigger-like contexts within narrative
+                violations.append(
+                    f'[{eid}] Rule1: 叙事中出现 "{ref}" — '
+                    f'{field}: {text[:60]}...'
+                )
 
     # Rule 2: 进度互通
-    prohibited_phrases = [
-        # 仅匹配明确的"互通进度"模式，避免误伤普通对话
-        ('听说了.*进度', ''),
-        ('问了雷恩.*怎么', ''),
-        ('问了艾德里安.*怎么', ''),
-        ('知道.*已经走.*步', ''),
-        ('艾德里安有.*我也想有', ''),
-        ('打听.*艾德里安', ''),
-        ('打听.*凯尔', ''),
+    prohibited = [
+        r'听说了.*进度', r'问了雷恩.*怎么', r'问了艾德里安.*怎么',
+        r'知道.*已经走.*步', r'艾德里安有.*我也想有',
+        r'打听.*艾德里安', r'打听.*凯尔',
     ]
-    for eid, title, start, end, block in find_event_blocks(text):
-        narrative = get_narrative_sections(block)
-        for phrase, context in prohibited_phrases:
-            if re.search(phrase, narrative):
-                violations.append(f'[{eid}] Rule2: 第三者互通进度 — 含 "{phrase}"')
+    for eid, name, fp, data in events:
+        for field in ['情境', '核心']:
+            text = data.get(field, '')
+            for phrase in prohibited:
+                if re.search(phrase, text):
+                    violations.append(
+                        f'[{eid}] Rule2: 第三者互通进度 — "{phrase}" in {field}'
+                    )
 
-    # 银发→粉发 (for Seraphina)
-    for eid, title, start, end, block in find_event_blocks(text):
-        narrative = get_narrative_sections(block)
-        # 检测"银发" — 可能是Seraphina的
-        if '银发' in narrative:
-            # 在上下文中确认是Seraphina
-            ctx_idx = narrative.find('银发')
-            ctx = narrative[max(0,ctx_idx-100):ctx_idx+100]
-            # 如果在描述女性角色（非先灵/Thalion/Adrian/Altina），标记
-            if any(name in block for name in ['菲娜', 'Seraphina', '她']):
-                if not any(safe in ctx for safe in ['先灵', 'Thalion', 'Adrian', '亚尔缇娜', 'Altina']):
-                    violations.append(f'[{eid}] 银发: Seraphina头发应是粉色 — ...{ctx}...')
+    # Rule 4 (银发检查): Seraphina hair should be pink
+    for eid, name, fp, data in events:
+        for field in ['情境', '核心']:
+            text = data.get(field, '')
+            if '银发' in text:
+                # Check context: if describing Seraphina (not Thalion/Adrian/etc)
+                idx = text.find('银发')
+                ctx = text[max(0, idx-80):idx+80]
+                if any(n in ctx for n in ['菲娜', 'Seraphina', '她', '精灵']):
+                    if not any(s in ctx for s in ['先灵', 'Thalion', 'Adrian', '亚尔缇娜', 'Altina', '埃尔德莱恩']):
+                        violations.append(
+                            f'[{eid}] 银发: Seraphina头发应是粉色 — ...{ctx.strip()}...'
+                        )
+            if '粉银' in text:
+                violations.append(f'[{eid}] 粉银: 应为"粉色"')
 
-    # 粉银
-    if '粉银' in text:
-        for m in re.finditer('粉银', text):
-            line_num = text[:m.start()].count('\n') + 1
-            violations.append(f'[行{line_num}] 粉银: 应为"粉色"')
+    # Rule 5: 必填字段 (N/PN events only)
+    # 仅对有性行为内容的事件检查（NSFW: 是 或 性行为等级 > 0）
+    for eid, name, fp, data in events:
+        if not (eid.startswith('N') or eid.startswith('PN')):
+            continue
+        nsfw = data.get('NSFW', '').strip()
+        has_sex = '性行为等级' in data or '性行为' in data
+        sex_val = data.get('性行为等级', '') or data.get('性行为', '')
+        sex_num = re.search(r'(\d+)', sex_val) if sex_val else None
+        sex_level = int(sex_num.group(1)) if sex_num else 0
 
-    # Rule 3: 重复事件ID
-    seen_ids = {}
-    for eid, title, start, end, block in find_event_blocks(text):
-        if eid in seen_ids:
-            line1 = text[:seen_ids[eid]].count('\n') + 1
-            line2 = text[:start].count('\n') + 1
-            violations.append(f'[{eid}] Rule3: 重复事件ID — 首次出现L{line1}，再次出现L{line2} ({title})')
-        else:
-            seen_ids[eid] = start
+        # 如果有性行为等级字段或其值>0，或标记为NSFW，则检查必填字段
+        if has_sex or nsfw == '是' or sex_level > 0:
+            if not has_sex:
+                violations.append(f'[{eid}] Rule5: 缺少必填字段「性行为等级」 — {name}')
+            if '情感阶段' not in data and '情感' not in data and '阶段' not in data:
+                violations.append(f'[{eid}] Rule5: 缺少必填字段「情感阶段」 — {name}')
+            if sex_level > 0:
+                if '黎恩知情' not in data:
+                    violations.append(f'[{eid}] Rule5: 缺少必填字段「黎恩知情」 — {name}')
 
     return violations
 
-# ============================================================
-# File I/O
-# ============================================================
 
-def backup_file(filepath):
-    """自动备份"""
-    backup_dir = os.path.join(os.path.dirname(filepath), '..', 'backups')
-    os.makedirs(backup_dir, exist_ok=True)
-    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    basename = os.path.basename(filepath)
-    backup_path = os.path.join(backup_dir, f'{basename}.{timestamp}.bak')
-    shutil.copy2(filepath, backup_path)
-    print(f'  📦 备份: {backup_path}')
-    return backup_path
-
-def read_file(filepath):
-    with open(filepath, 'r', encoding='utf-8') as f:
-        return f.read()
-
-def write_file(filepath, content):
-    with open(filepath, 'w', encoding='utf-8') as f:
-        f.write(content)
-
-# ============================================================
+# ═══════════════════════════════════════════════════════════
 # CLI
-# ============================================================
+# ═══════════════════════════════════════════════════════════
 
 def print_usage():
     print(__doc__)
 
+
 def main():
-    if len(sys.argv) < 3:
+    if len(sys.argv) < 2:
         print_usage()
         sys.exit(1)
 
     cmd = sys.argv[1]
-    target = sys.argv[2]  # Could be file path or command-specific
 
-    if cmd == 'list':
-        filepath = target
-        section = None
-        if '--section' in sys.argv:
-            si = sys.argv.index('--section')
-            section = sys.argv[si+1] if si+1 < len(sys.argv) else None
-        text = read_file(filepath)
-        events = list_events(text, section)
-        for eid, title, line in events:
-            print(f'  {eid:6s}  L{line:4d}  {title}')
+    if cmd == 'validate':
+        prefix = sys.argv[2] if len(sys.argv) > 2 else None
+        prefixes = [prefix] if prefix else list(SECTION_CONFIG.keys())
+
+        all_violations = []
+        total = 0
+        for pfx in prefixes:
+            violations = validate_prefix(pfx)
+            all_violations.extend(violations)
+            pfx_events = list_txt_files(pfx)
+            total += len(pfx_events)
+            if violations:
+                print(f'  {pfx}: {len(pfx_events)} events, {len(violations)} violations')
+            else:
+                print(f'  {pfx}: {len(pfx_events)} events OK')
+
+        if all_violations:
+            print(f'\n❌ 发现 {len(all_violations)} 个问题:\n')
+            for v in all_violations:
+                print(f'  {v}')
+            sys.exit(1)
+        else:
+            print(f'\n✅ 全部验证通过 — {total} 个事件，未发现违规')
+
+    elif cmd == 'list':
+        prefix = sys.argv[2] if len(sys.argv) > 2 else None
+        events = list_txt_files(prefix)
+        # Group by prefix
+        pfx_groups = OrderedDict()
+        for eid, name, fp, data in events:
+            pfx = os.path.basename(os.path.dirname(fp))
+            if pfx not in pfx_groups:
+                pfx_groups[pfx] = []
+            pfx_groups[pfx].append((eid, name))
+
+        for pfx in pfx_groups:
+            label = SECTION_CONFIG.get(pfx, pfx)
+            print(f'\n## {label} ({len(pfx_groups[pfx])}个)')
+            for eid, name in pfx_groups[pfx]:
+                print(f'  {eid:6s}  {name}')
+
         print(f'\n共 {len(events)} 个事件')
 
-    elif cmd == 'extract':
-        # python event_tool.py extract <file> <event_id> [--output <f>]
-        if len(sys.argv) < 4:
-            print('用法: event_tool.py extract <file> <event_id> [--output <f>]')
+    elif cmd == 'refs':
+        if len(sys.argv) < 3:
+            print('用法: event_tool.py refs <event_id>')
             sys.exit(1)
-        filepath = target
-        event_id = sys.argv[3]
-        output_file = None
-        if '--output' in sys.argv:
-            oi = sys.argv.index('--output')
-            output_file = sys.argv[oi+1] if oi+1 < len(sys.argv) else None
+        target_id = sys.argv[2]
 
-        text = read_file(filepath)
-        block = extract_event(text, event_id)
+        refs_found = []
+        for eid, name, fp, data in list_txt_files():
+            with open(fp, 'r', encoding='utf-8') as f:
+                content = f.read()
+            # Skip the ID: line itself (first line)
+            body = content.split('\n', 1)[1] if '\n' in content else ''
+            # Use word-boundary-aware search
+            pattern = re.compile(rf'(?<![A-Za-z0-9]){re.escape(target_id)}(?!\d)')
+            for m in pattern.finditer(body):
+                # Get line context
+                line_start = body.rfind('\n', 0, m.start()) + 1
+                line_end = body.find('\n', m.end())
+                line = body[line_start:line_end] if line_end > 0 else body[line_start:]
+                refs_found.append((eid, name, line.strip()[:100]))
 
-        if output_file:
-            write_file(output_file, block)
-            print(f'✅ {event_id} 已提取到 {output_file} ({len(block)} 字符)')
+        if refs_found:
+            print(f'\n{target_id} 被 {len(refs_found)} 处引用:')
+            for eid, name, ctx in refs_found:
+                print(f'  [{eid}] {name}')
+                print(f'        ...{ctx}...')
         else:
-            sys.stdout.write(block)
-
-    elif cmd == 'replace':
-        # python event_tool.py replace <file> <event_id> <patch_file>
-        if len(sys.argv) < 5:
-            print('用法: event_tool.py replace <file> <event_id> <patch_file>')
-            sys.exit(1)
-        filepath = target
-        event_id = sys.argv[3]
-        patch_file = sys.argv[4]
-
-        text = read_file(filepath)
-        new_block = read_file(patch_file)
-        backup_file(filepath)
-        text = replace_event(text, event_id, new_block)
-        write_file(filepath, text)
-
-        # Quick validate
-        violations = validate(text)
-        my_violations = [v for v in violations if v.startswith(f'[{event_id}]')]
-        if my_violations:
-            print(f'\n⚠️  {event_id} 验证发现 {len(my_violations)} 个问题:')
-            for v in my_violations:
-                print(f'  {v}')
-        else:
-            print(f'✅ {event_id} 已替换并验证通过')
-
-    elif cmd == 'insert':
-        if len(sys.argv) < 5:
-            print('用法: event_tool.py insert <file> <after_event_id> <new_file> [--dry-run]')
-            sys.exit(1)
-        filepath = target
-        after_id = sys.argv[3]
-        new_file = sys.argv[4]
-        dry_run = '--dry-run' in sys.argv
-
-        text = read_file(filepath)
-        new_block = read_file(new_file)
-
-        if dry_run:
-            result = insert_event(text, after_id, new_block)
-            print(f'[DRY RUN] 将在 {after_id} 后插入 ({len(new_block)} 字符)')
-            # Show the new event ID
-            m = re.search(r'### 事件([A-Z]+\d{1,3})[：:]', new_block)
-            if m:
-                print(f'  新事件ID: {m.group(1)}')
-        else:
-            backup_file(filepath)
-            text = insert_event(text, after_id, new_block)
-            write_file(filepath, text)
-            print('✅ 插入完成')
-
-    elif cmd == 'delete':
-        if len(sys.argv) < 4:
-            print('用法: event_tool.py delete <file> <event_id> [--dry-run]')
-            sys.exit(1)
-        filepath = target
-        event_id = sys.argv[3]
-        dry_run = '--dry-run' in sys.argv
-
-        text = read_file(filepath)
-        if dry_run:
-            result = find_event_by_id(text, event_id)
-            if result:
-                print(f'[DRY RUN] 将删除 {event_id}：{result[0]}')
-        else:
-            backup_file(filepath)
-            text = delete_event(text, event_id)
-            write_file(filepath, text)
-            print(f'✅ {event_id} 已删除')
-
-    elif cmd == 'move':
-        if len(sys.argv) < 5:
-            print('用法: event_tool.py move <file> <event_id> <after_event_id> [--dry-run]')
-            sys.exit(1)
-        filepath = target
-        event_id = sys.argv[3]
-        after_id = sys.argv[4]
-        dry_run = '--dry-run' in sys.argv
-
-        text = read_file(filepath)
-        if dry_run:
-            src = find_event_by_id(text, event_id)
-            dst = find_event_by_id(text, after_id)
-            if src and dst:
-                print(f'[DRY RUN] 将移动 {event_id} → {after_id} 之后')
-        else:
-            backup_file(filepath)
-            text = move_event(text, event_id, after_id)
-            write_file(filepath, text)
-            print(f'✅ {event_id} 已移动到 {after_id} 之后')
-
-    elif cmd == 'validate':
-        filepath = target
-        text = read_file(filepath)
-        violations = validate(text)
-        if violations:
-            print(f'❌ 发现 {len(violations)} 个问题:\n')
-            for v in violations:
-                print(f'  {v}')
-            sys.exit(1)
-        else:
-            events = find_event_blocks(text)
-            print(f'✅ 验证通过 — {len(events)} 个事件，未发现违规')
+            print(f'\n{target_id} 无外部引用（可安全删除）')
 
     elif cmd == 'show':
-        if len(sys.argv) < 4:
-            print('用法: event_tool.py show <file> <event_id>')
+        if len(sys.argv) < 3:
+            print('用法: event_tool.py show <event_id>')
             sys.exit(1)
-        filepath = target
-        event_id = sys.argv[3]
-        text = read_file(filepath)
-        block = extract_event(text, event_id)
-        print(block)
+        event_id = sys.argv[2]
+
+        # Search all prefixes
+        found = None
+        for eid, name, fp, data in list_txt_files():
+            if eid == event_id:
+                found = (eid, name, fp, data)
+                break
+
+        if not found:
+            print(f'❌ 事件 {event_id} 未找到')
+            sys.exit(1)
+
+        eid, name, fp, data = found
+        print(f'=== {eid}：{name} ===')
+        print(f'文件: {fp}')
+        print()
+        with open(fp, 'r', encoding='utf-8') as f:
+            print(f.read())
 
     else:
         print(f'未知命令: {cmd}')
         print_usage()
         sys.exit(1)
+
 
 if __name__ == '__main__':
     main()

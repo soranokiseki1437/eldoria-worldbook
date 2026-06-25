@@ -1,0 +1,9 @@
+ID: W1
+名称: 影牙兽大规模袭击
+触发: 周期性触发（每3-5章）, corruption_level >= 15
+NSFW: 否
+情境:
+  - Eldoria森林边缘突然涌出大量影牙兽——数量是平时的三倍以上。腐化的黑色雾气与影牙兽的暗影皮毛融为一体。Seraphina的圣光在警报中自动扩散——VII班同伴从各处赶来
+玩家选择: A. 与Seraphina并肩战斗 → trust +15, bond +10, corruption_level -10 / B. 指挥VII班防守 → 全同伴信任度上升 / C. 深入调查源头 → exploration_progress +20
+变量: 如果黎恩缺席→abandonment_count +20, seraphina_despair +10
+核心: 周期性世界事件。考验黎恩是否在Seraphina身边——缺席加速被动NTR。

@@ -1,0 +1,8 @@
+ID: G1
+名称: 狩猎竞赛——影牙兽的试炼
+触发: 至少两个同伴在场, corruption_level >= 20
+NSFW: 否
+情境:
+  - 影牙兽在森林边缘频繁出没。VII班同伴们决定组织一次"狩猎竞赛"——在限定时间内，谁猎杀的影牙兽最多，谁就是"Eldoria最强猎人"。Seraphina作为裁判——她的圣光可以追踪每一只影牙兽
+变量: 纯爱组队: trust +10, bond +10, corruption_level -5 / 第三者组队: ntrs_opportunity +15 / 独自狩猎: abandonment_count +5
+核心: 通用SFW事件。黎恩可选择与Seraphina组队（纯爱）、与第三者组队（NTRS）、或独自狩猎（被动NTR）。
