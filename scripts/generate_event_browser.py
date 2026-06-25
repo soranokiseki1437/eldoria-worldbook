@@ -108,12 +108,13 @@ def load_events_from_txt():
                 'raw_name': name,
                 'raw_yaml': raw_yaml,
                 'has_yaml': True,
+                'is_nsfw': data.get('NSFW', '').strip() == '是',
             }
     return events_raw
 
 
-def infer_tags(event_id, name, raw_yaml):
-    """推断类型标签"""
+def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None):
+    """推断类型标签。is_nsfw_explicit: TXT中NSFW字段的显式值(True/False)"""
     prefix = re.match(r'^([A-Z]+)', event_id).group(1)
     content_lower = (name + " " + raw_yaml).lower()
     tags = []
@@ -122,16 +123,11 @@ def infer_tags(event_id, name, raw_yaml):
     route = route_map.get(prefix, "")
     if route:
         tags.append(route)
-    nsfw_kws = ["足交", "本番", "手交", "口交", "乳交", "腿交", "nsfw",
-                "隐奸", "群交", "夜袭", "暴露", "足下的", "足部", "裸足",
-                "丝袜", "玷污", "堕落之夜", "足控", "含入", "契约之夜",
-                "鬼之圣光", "温泉的清晨", "晨露", "桌下之", "即兴", "倒影"]
-    sfw_kws = ["训练", "狩猎", "篝火故事", "对话", "约会", "净化仪式",
-               "战斗准备", "启示", "修炼", "守护夜", "正式介绍", "宣誓"]
-    is_nsfw = any(kw in content_lower for kw in nsfw_kws)
-    is_sfw = any(kw in name for kw in sfw_kws)
-    if is_nsfw:
+
+    # 优先用TXT显式NSFW字段，fallback到关键词匹配
+    if is_nsfw_explicit is True:
         tags.append("NSFW")
+        # 推断具体类型
         type_map = {
             "足交": ["足交", "裸足", "足部", "丝袜", "足下", "足控", "晨露", "玉足"],
             "本番": ["本番", "契约之夜", "交融", "清晨", "即兴", "倒影", "直接本番", "傲娇本番", "游戏本番", "骑士本番"],
@@ -142,10 +138,22 @@ def infer_tags(event_id, name, raw_yaml):
         for tag, keywords in type_map.items():
             if any(kw in content_lower for kw in keywords):
                 tags.append(tag)
-    elif is_sfw or prefix in ("E", "G", "W"):
+    elif is_nsfw_explicit is False:
         tags.append("SFW")
     else:
-        tags.append("SFW")
+        # Fallback：关键词匹配（兼容无NSFW字段的旧数据）
+        nsfw_kws = ["足交", "本番", "手交", "口交", "乳交", "腿交",
+                    "隐奸", "群交", "夜袭", "暴露", "足下的", "足部", "裸足",
+                    "丝袜", "玷污", "堕落之夜", "足控", "含入", "契约之夜",
+                    "鬼之圣光", "温泉的清晨", "晨露", "桌下之", "即兴", "倒影"]
+        sfw_kws = ["训练", "狩猎", "篝火故事", "对话", "约会", "净化仪式",
+                   "战斗准备", "启示", "修炼", "守护夜", "正式介绍", "宣誓"]
+        if any(kw in content_lower for kw in nsfw_kws):
+            tags.append("NSFW")
+        elif any(kw in name for kw in sfw_kws) or prefix in ("E", "G", "W"):
+            tags.append("SFW")
+        else:
+            tags.append("SFW")
     return tags
 
 
@@ -181,7 +189,8 @@ def build_events():
                 if m:
                     scene_preview = m.group(1).strip()[:200]
                     break
-        tags = infer_tags(event_id, name, raw_yaml)
+        is_nsfw_flag = raw.get('is_nsfw', None)
+        tags = infer_tags(event_id, name, raw_yaml, is_nsfw_flag)
         nsfw_level = get_nsfw_level(tags)
         has_branches = "纯爱" in raw_yaml and ("NTRS" in raw_yaml or "被动NTR" in raw_yaml)
         events.append({

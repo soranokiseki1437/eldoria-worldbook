@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-26T01:35:43.765999
+// 自动生成于: 2026-06-26T01:45:48.598095
 // 数据源: docs/05_事件系统.md
 // 生成器: scripts/generate_event_browser.py
 
@@ -9,7 +9,7 @@ const EVENTS = [
     "route": "prologue",
     "chapter": "林间空地的苏醒",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "E2",
@@ -17,7 +17,7 @@ const EVENTS = [
     "route": "prologue",
     "chapter": "影牙兽的威胁",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "E3",
@@ -25,7 +25,7 @@ const EVENTS = [
     "route": "prologue",
     "chapter": "影牙兽的威胁",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "E4",
@@ -33,7 +33,7 @@ const EVENTS = [
     "route": "prologue",
     "chapter": "心木废墟的秘密",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "E5",
@@ -41,7 +41,7 @@ const EVENTS = [
     "route": "prologue",
     "chapter": "VII班的到来",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "E6",
@@ -49,7 +49,7 @@ const EVENTS = [
     "route": "prologue",
     "chapter": "VII班的到来",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "E7",
@@ -57,7 +57,7 @@ const EVENTS = [
     "route": "prologue",
     "chapter": "VII班的到来",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "E8",
@@ -65,7 +65,7 @@ const EVENTS = [
     "route": "prologue",
     "chapter": "森林的庆典",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "E9",
@@ -73,7 +73,7 @@ const EVENTS = [
     "route": "prologue",
     "chapter": "古老先灵的低语",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "E10",
@@ -81,7 +81,7 @@ const EVENTS = [
     "route": "prologue",
     "chapter": "各方来客",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "E11",
@@ -89,7 +89,7 @@ const EVENTS = [
     "route": "prologue",
     "chapter": "路线分化",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "E12",
@@ -97,7 +97,7 @@ const EVENTS = [
     "route": "prologue",
     "chapter": "路线分化",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "E13",
@@ -105,7 +105,7 @@ const EVENTS = [
     "route": "prologue",
     "chapter": "路线分化",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "E14",
@@ -113,7 +113,7 @@ const EVENTS = [
     "route": "prologue",
     "chapter": "路线分化",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "E15",
@@ -121,7 +121,7 @@ const EVENTS = [
     "route": "prologue",
     "chapter": "路线分化",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "P1",
@@ -129,7 +129,7 @@ const EVENTS = [
     "route": "pure",
     "chapter": "影牙兽的威胁",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "P2",
@@ -137,7 +137,7 @@ const EVENTS = [
     "route": "pure",
     "chapter": "影牙兽的威胁",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "P3",
@@ -145,7 +145,7 @@ const EVENTS = [
     "route": "pure",
     "chapter": "心木废墟的秘密",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "P4",
@@ -153,7 +153,7 @@ const EVENTS = [
     "route": "pure",
     "chapter": "VII班的到来",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "P5",
@@ -161,7 +161,7 @@ const EVENTS = [
     "route": "pure",
     "chapter": "VII班的到来",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "P6",
@@ -169,7 +169,7 @@ const EVENTS = [
     "route": "pure",
     "chapter": "古老先灵的低语",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "P7",
@@ -177,7 +177,7 @@ const EVENTS = [
     "route": "pure",
     "chapter": "各方来客",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "P8",
@@ -185,7 +185,7 @@ const EVENTS = [
     "route": "pure",
     "chapter": "路线分化",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "P9",
@@ -193,7 +193,7 @@ const EVENTS = [
     "route": "pure",
     "chapter": "路线分化",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "P10",
@@ -201,7 +201,7 @@ const EVENTS = [
     "route": "pure",
     "chapter": "纯爱·守护者契约",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "P11",
@@ -209,7 +209,7 @@ const EVENTS = [
     "route": "pure",
     "chapter": "纯爱·守护者契约",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "P12",
@@ -217,7 +217,7 @@ const EVENTS = [
     "route": "pure",
     "chapter": "温泉与誓言",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "P13",
@@ -305,7 +305,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "边界与试探",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "N02",
@@ -313,7 +313,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "边界与试探",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "N03",
@@ -361,7 +361,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "边界与试探",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "N09",
@@ -393,7 +393,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "边界与试探",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "N13",
@@ -409,7 +409,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "第一次见证",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "N15",
@@ -433,7 +433,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "第一次见证",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "N18",
@@ -457,7 +457,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "第一次见证",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "N21",
@@ -641,7 +641,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "第一次共享",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "N44",
@@ -657,7 +657,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "多人共享之夜",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "N46",
@@ -705,7 +705,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "被动NTR·第一次缺席",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "N52",
@@ -1017,7 +1017,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "净化仪式",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "N91",
@@ -1033,7 +1033,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "净化仪式",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "PN1",
@@ -1041,7 +1041,7 @@ const EVENTS = [
     "route": "passive_ntr",
     "chapter": "终极抉择",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "PN2",
@@ -1057,7 +1057,7 @@ const EVENTS = [
     "route": "passive_ntr",
     "chapter": "终极抉择",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "PN4",
@@ -1065,7 +1065,7 @@ const EVENTS = [
     "route": "passive_ntr",
     "chapter": "终极抉择",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "PN5",
@@ -1097,7 +1097,7 @@ const EVENTS = [
     "route": "passive_ntr",
     "chapter": "终局",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "PN9",
@@ -1105,7 +1105,7 @@ const EVENTS = [
     "route": "passive_ntr",
     "chapter": "终局",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "PN10",
@@ -1113,7 +1113,7 @@ const EVENTS = [
     "route": "passive_ntr",
     "chapter": "终局",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "PN11",
@@ -1169,7 +1169,7 @@ const EVENTS = [
     "route": "passive_ntr",
     "chapter": "新的开始",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "PN18",
@@ -1217,7 +1217,7 @@ const EVENTS = [
     "route": "passive_ntr",
     "chapter": "第26章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "PN24",
@@ -1233,7 +1233,7 @@ const EVENTS = [
     "route": "passive_ntr",
     "chapter": "第26章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "PN26",
@@ -1281,7 +1281,7 @@ const EVENTS = [
     "route": "passive_ntr",
     "chapter": "第28章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "PN32",
@@ -1289,7 +1289,7 @@ const EVENTS = [
     "route": "passive_ntr",
     "chapter": "第28章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "PN33",
@@ -1329,7 +1329,7 @@ const EVENTS = [
     "route": "passive_ntr",
     "chapter": "第30章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "W1",
@@ -1337,7 +1337,7 @@ const EVENTS = [
     "route": "world",
     "chapter": "林间空地的苏醒",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "W2",
@@ -1345,7 +1345,7 @@ const EVENTS = [
     "route": "world",
     "chapter": "心木废墟的秘密",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "W3",
@@ -1353,7 +1353,7 @@ const EVENTS = [
     "route": "world",
     "chapter": "森林的庆典",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "W4",
@@ -1361,7 +1361,7 @@ const EVENTS = [
     "route": "world",
     "chapter": "古老先灵的低语",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "W5",
@@ -1369,7 +1369,7 @@ const EVENTS = [
     "route": "world",
     "chapter": "各方来客",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "W6",
@@ -1377,7 +1377,7 @@ const EVENTS = [
     "route": "world",
     "chapter": "路线分化",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "W7",
@@ -1385,7 +1385,7 @@ const EVENTS = [
     "route": "world",
     "chapter": "纯爱·守护者契约",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "W8",
@@ -1393,7 +1393,7 @@ const EVENTS = [
     "route": "world",
     "chapter": "温泉与誓言",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "H1",
@@ -1401,7 +1401,7 @@ const EVENTS = [
     "route": "hidden",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "H2",
@@ -1409,7 +1409,7 @@ const EVENTS = [
     "route": "hidden",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "H3",
@@ -1417,7 +1417,7 @@ const EVENTS = [
     "route": "hidden",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "H4",
@@ -1425,7 +1425,7 @@ const EVENTS = [
     "route": "hidden",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "G1",
@@ -1433,7 +1433,7 @@ const EVENTS = [
     "route": "general",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "G2",
@@ -1441,7 +1441,7 @@ const EVENTS = [
     "route": "general",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "G3",
@@ -1449,7 +1449,7 @@ const EVENTS = [
     "route": "general",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "G4",
@@ -1457,7 +1457,7 @@ const EVENTS = [
     "route": "general",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "G5",
@@ -1465,7 +1465,7 @@ const EVENTS = [
     "route": "general",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "G6",
@@ -1473,7 +1473,7 @@ const EVENTS = [
     "route": "general",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "G7",
@@ -1481,7 +1481,7 @@ const EVENTS = [
     "route": "general",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "R1",
@@ -1489,7 +1489,7 @@ const EVENTS = [
     "route": "rean",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "R2",
@@ -1497,7 +1497,7 @@ const EVENTS = [
     "route": "rean",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "R3",
@@ -1505,7 +1505,7 @@ const EVENTS = [
     "route": "rean",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "R4",
@@ -1513,7 +1513,7 @@ const EVENTS = [
     "route": "rean",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "R5",
@@ -1537,7 +1537,7 @@ const EVENTS = [
     "route": "rean",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "R8",
@@ -1545,7 +1545,7 @@ const EVENTS = [
     "route": "rean",
     "chapter": "第99章",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
 ];
 
