@@ -4491,7 +4491,7 @@ def get_uid127_141_entries():  # S16-S30 (手交/口交/乳交/腿交/本番)
 
     # === uid 131: S20 (原B2) ===
     # MD驱动: N63 桌下之手——隐奸手交
-    add_ntrs_entry(entries, 'N67', uid=128, keys=["桌下之口", "隐奸口交", "s20", "桌下", "隐形"], order=344, probability=80)
+    add_ntrs_entry(entries, 'N68', uid=128, keys=["桌下之口", "隐奸口交", "s20", "桌下", "隐形"], order=344, probability=80)
 
     # === uid 132: S21 (原B3) ===
     entries.append(make_entry(
@@ -4550,19 +4550,19 @@ def get_uid127_141_entries():  # S16-S30 (手交/口交/乳交/腿交/本番)
     # ═══ 本番性交 S25-S30 (uid 136-141) ═══
     # === uid 136: S25 (原I1) ===
     # MD驱动: N68 菲的直接本番
-    add_ntrs_entry(entries, 'N72', uid=133, keys=["菲", "本番", "s25", "fie", "猎兵", "直接"], order=354, probability=80)
+    add_ntrs_entry(entries, 'N73', uid=133, keys=["菲", "本番", "s25", "fie", "猎兵", "直接"], order=354, probability=80)
 
     # === uid 137: S26 (原I2) ===
     # MD驱动: N69 亚莉莎的傲娇本番
-    add_ntrs_entry(entries, 'N73', uid=134, keys=["亚莉莎", "本番", "s26", "alisa", "傲娇", "千金"], order=356, probability=80)
+    add_ntrs_entry(entries, 'N74', uid=134, keys=["亚莉莎", "本番", "s26", "alisa", "傲娇", "千金"], order=356, probability=80)
 
     # === uid 138: S27 (原I3) ===
     # MD驱动: N70 玲的游戏本番
-    add_ntrs_entry(entries, 'N74', uid=135, keys=["玲", "本番", "s27", "renne", "游戏", "沦陷"], order=358, probability=80)
+    add_ntrs_entry(entries, 'N75', uid=135, keys=["玲", "本番", "s27", "renne", "游戏", "沦陷"], order=358, probability=80)
 
     # === uid 139: S28 (原I4) ===
     # MD驱动: N71 劳拉的骑士本番
-    add_ntrs_entry(entries, 'N75', uid=136, keys=["劳拉", "本番", "s28", "laura", "骑士", "荣誉"], order=360, probability=80)
+    add_ntrs_entry(entries, 'N76', uid=136, keys=["劳拉", "本番", "s28", "laura", "骑士", "荣誉"], order=360, probability=80)
 
     # === uid 140: S29 (原I5) ===
     # MD驱动: N49 密林即兴——站立后入
@@ -4897,7 +4897,7 @@ def get_uid157_182_entries():
 
     # === uid 164: N27 终局抉择 ===
     # MD驱动: N62 主动口交——老手的从容
-    add_ntrs_entry(entries, 'N66', uid=161, keys=["终局抉择", "ntrs", "n40", "结局", "终局", "选择"], order=449, probability=80)
+    add_ntrs_entry(entries, 'N67', uid=161, keys=["终局抉择", "ntrs", "n40", "结局", "终局", "选择"], order=449, probability=80)
 
     # === uid 165: 【被动NTR事件】PN20 重新争取——被动NTR转折点，三种方式重新走向她 ===
     
@@ -5545,7 +5545,7 @@ def get_uid189_200_entries():
 
     # === uid 191: S38 主动隐奸（NTRS版）——NTRS阶段D ===
     # MD驱动: N63 桌下之手——隐奸手交
-    add_ntrs_entry(entries, 'N67', uid=187, keys=["主动隐奸", "s38", "ntrs", "游戏", "主导", "窗外"], order=280, probability=80)
+    add_ntrs_entry(entries, 'N68', uid=187, keys=["主动隐奸", "s38", "ntrs", "游戏", "主导", "窗外"], order=280, probability=80)
 
     # === uid 192: PN25 主动口交——被动NTR阶段D+ ===
     entries.append(make_entry(
@@ -5589,15 +5589,15 @@ def get_uid189_200_entries():
 
     # === uid 195: S39 桌下之手（给第三者）——NTRS隐奸手交 ===
     # MD驱动: N64 桌下之口——隐奸口交
-    add_ntrs_entry(entries, 'N68', uid=191, keys=["桌下之手", "s39", "ntrs", "隐奸", "手交", "第三者"], order=282, probability=80)
+    add_ntrs_entry(entries, 'N69', uid=191, keys=["桌下之手", "s39", "ntrs", "隐奸", "手交", "第三者"], order=282, probability=80)
 
     # === uid 196: S40 桌下之口（给第三者）——NTRS隐奸口交 ===
     # MD驱动: N65 隐乳交——月光下的视觉盛宴
-    add_ntrs_entry(entries, 'N69', uid=192, keys=["桌下之口", "s40", "ntrs", "隐奸", "口交", "第三者"], order=284, probability=80)
+    add_ntrs_entry(entries, 'N70', uid=192, keys=["桌下之口", "s40", "ntrs", "隐奸", "口交", "第三者"], order=284, probability=80)
 
     # === uid 197: S41 隐乳交（给第三者）——NTRS隐蔽乳交 ===
     # MD驱动: N66 主动隐奸——她设计的游戏
-    add_ntrs_entry(entries, 'N70', uid=193, keys=["隐乳交", "s41", "ntrs", "乳交", "月光", "视觉"], order=286, probability=80)
+    add_ntrs_entry(entries, 'N71', uid=193, keys=["隐乳交", "s41", "ntrs", "乳交", "月光", "视觉"], order=286, probability=80)
 
 
     # === uid 198: PN32 桌下之手（被动NTR）——隐奸手交 ===
@@ -6113,11 +6113,11 @@ def get_uid224_240_entries():
 
     # === uid 234: N52 银流河的脚背 ===
     # MD驱动: N62 主动口交——老手的从容
-    add_ntrs_entry(entries, 'N66', uid=230, keys=["银流河的脚背", "ntrs", "n52", "乔治", "足交", "河边", "后期"], order=432, probability=80)
+    add_ntrs_entry(entries, 'N67', uid=230, keys=["银流河的脚背", "ntrs", "n52", "乔治", "足交", "河边", "后期"], order=432, probability=80)
 
     # === uid 235: N31 石板上的足音 ===
     # MD驱动: N62 主动口交——老手的从容
-    add_ntrs_entry(entries, 'N66', uid=231, keys=["石板上的足音", "ntrs", "n31", "雷恩", "足交", "修道院", "后期"], order=434, probability=80)
+    add_ntrs_entry(entries, 'N67', uid=231, keys=["石板上的足音", "ntrs", "n31", "雷恩", "足交", "修道院", "后期"], order=434, probability=80)
 
     # === uid 236: N32 帐篷里的互服 ===
     # MD驱动: N43 她的游戏——黎恩也参与
