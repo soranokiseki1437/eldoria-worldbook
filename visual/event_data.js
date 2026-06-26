@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-26T13:38:57.001007
+// 自动生成于: 2026-06-26T13:59:45.280368
 // 数据源: docs/05_事件系统.md
 // 生成器: scripts/generate_event_browser.py
 
@@ -1005,7 +1005,7 @@ const EVENTS = [
   },
   {
     "id": "N89",
-    "title": "雷恩的克制——足交的圣殿骑士",
+    "title": "雷恩的白丝——月光下的足交",
     "route": "ntrs",
     "chapter": "堕落之夜",
     "summary": "",
@@ -1013,7 +1013,7 @@ const EVENTS = [
   },
   {
     "id": "N90",
-    "title": "劳拉的骑士本番",
+    "title": "劳拉的骑士本番——卸甲",
     "route": "ntrs",
     "chapter": "堕落之夜",
     "summary": "",
@@ -1021,7 +1021,7 @@ const EVENTS = [
   },
   {
     "id": "N91",
-    "title": "雷恩的跪礼——圣殿骑士的口",
+    "title": "雷恩的口——蜜壶的诱惑",
     "route": "ntrs",
     "chapter": "堕落之夜",
     "summary": "",
@@ -1029,7 +1029,7 @@ const EVENTS = [
   },
   {
     "id": "N92",
-    "title": "第一次自己决定",
+    "title": "书房的恶作剧——白丝踩在手背上",
     "route": "ntrs",
     "chapter": "堕落之夜",
     "summary": "",
@@ -1037,15 +1037,7 @@ const EVENTS = [
   },
   {
     "id": "N93",
-    "title": "凯尔的独白——窗外的归来",
-    "route": "ntrs",
-    "chapter": "堕落之夜",
-    "summary": "",
-    "type": "nsfw"
-  },
-  {
-    "id": "N94",
-    "title": "凯尔的观摩——黎恩的归来本番",
+    "title": "凯尔的窗——从清晨到黎恩归来",
     "route": "ntrs",
     "chapter": "堕落之夜",
     "summary": "",
@@ -1053,14 +1045,6 @@ const EVENTS = [
   },
   {
     "id": "N95",
-    "title": "主动口交——老手的从容",
-    "route": "ntrs",
-    "chapter": "彻底破碎",
-    "summary": "",
-    "type": "nsfw"
-  },
-  {
-    "id": "N96",
     "title": "桌下之手——隐奸手交",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1068,7 +1052,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N97",
+    "id": "N96",
     "title": "桌下之口——隐奸口交",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1076,7 +1060,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N98",
+    "id": "N97",
     "title": "凯尔的邀请——河边的先斩后奏",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1084,7 +1068,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N99",
+    "id": "N98",
     "title": "乔治的测试——导力震动棒",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1092,7 +1076,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N100",
+    "id": "N99",
     "title": "腐化迷雾——半梦半醒的交叉",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1100,7 +1084,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N101",
+    "id": "N100",
     "title": "黑暗中的乳交——她不让开灯",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1108,15 +1092,15 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N102",
-    "title": "催情茶——两个人的轮奸",
+    "id": "N101",
+    "title": "催情茶——第二次轮奸",
     "route": "ntrs",
     "chapter": "彻底破碎",
     "summary": "",
     "type": "nsfw"
   },
   {
-    "id": "N103",
+    "id": "N102",
     "title": "低语者的轮奸——D阶段极限",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1124,7 +1108,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N104",
+    "id": "N103",
     "title": "洗干净的回归",
     "route": "ntrs",
     "chapter": "彻底破碎",
@@ -1132,15 +1116,15 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "N105",
+    "id": "N104",
     "title": "她的情书——独属于两人的完整性爱",
     "route": "ntrs",
-    "chapter": "净化仪式",
+    "chapter": "彻底破碎",
     "summary": "",
     "type": "nsfw"
   },
   {
-    "id": "N106",
+    "id": "N105",
     "title": "终局抉择",
     "route": "ntrs",
     "chapter": "净化仪式",
@@ -1768,7 +1752,7 @@ const CHAPTERS = [
     "num": 18,
     "name": "堕落之夜",
     "phase": "passive",
-    "count": 11
+    "count": 10
   },
   {
     "num": 19,
@@ -1780,7 +1764,7 @@ const CHAPTERS = [
     "num": 20,
     "name": "净化仪式",
     "phase": "passive",
-    "count": 2
+    "count": 1
   },
   {
     "num": 22,
