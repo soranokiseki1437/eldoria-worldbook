@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-26T16:57:20.892781
+// 自动生成于: 2026-06-26T17:00:35.902588
 // 数据源: docs/05_事件系统.md
 // 生成器: scripts/generate_event_browser.py
 
@@ -1151,7 +1151,7 @@ const EVENTS = [
     "id": "N107",
     "title": "她的情书——独属于两人的完整性爱",
     "route": "ntrs",
-    "chapter": "第0章",
+    "chapter": "净化仪式",
     "summary": "",
     "type": "nsfw"
   },
@@ -1159,7 +1159,7 @@ const EVENTS = [
     "id": "N108",
     "title": "终局抉择",
     "route": "ntrs",
-    "chapter": "第0章",
+    "chapter": "净化仪式",
     "summary": "",
     "type": "main"
   },
@@ -1167,7 +1167,7 @@ const EVENTS = [
     "id": "PN1",
     "title": "第一次缺席",
     "route": "passive_ntr",
-    "chapter": "终极抉择",
+    "chapter": "终局",
     "summary": "",
     "type": "main"
   },
@@ -1175,7 +1175,7 @@ const EVENTS = [
     "id": "PN2",
     "title": "Thalion的诱惑（圣光被压制——无法反抗）",
     "route": "passive_ntr",
-    "chapter": "终极抉择",
+    "chapter": "终局",
     "summary": "",
     "type": "nsfw"
   },
@@ -1183,7 +1183,7 @@ const EVENTS = [
     "id": "PN3",
     "title": "乔治的支持（被误解的关心）",
     "route": "passive_ntr",
-    "chapter": "终极抉择",
+    "chapter": "终局",
     "summary": "",
     "type": "main"
   },
@@ -1191,7 +1191,7 @@ const EVENTS = [
     "id": "PN4",
     "title": "亚莉莎的对比（\"她一直在他身边\"）",
     "route": "passive_ntr",
-    "chapter": "终极抉择",
+    "chapter": "终局",
     "summary": "",
     "type": "main"
   },
@@ -1199,7 +1199,7 @@ const EVENTS = [
     "id": "PN5",
     "title": "寂寞的释放——被动NTR被忽视自慰",
     "route": "passive_ntr",
-    "chapter": "终极抉择",
+    "chapter": "终局",
     "summary": "",
     "type": "nsfw"
   },
@@ -1207,7 +1207,7 @@ const EVENTS = [
     "id": "PN6",
     "title": "Thalion的强迫摸乳",
     "route": "passive_ntr",
-    "chapter": "终局",
+    "chapter": "新的开始",
     "summary": "",
     "type": "nsfw"
   },
@@ -1215,7 +1215,7 @@ const EVENTS = [
     "id": "PN7",
     "title": "Thalion的强迫指交",
     "route": "passive_ntr",
-    "chapter": "终局",
+    "chapter": "新的开始",
     "summary": "",
     "type": "nsfw"
   },
@@ -1223,7 +1223,7 @@ const EVENTS = [
     "id": "PN8",
     "title": "甜言蜜语",
     "route": "passive_ntr",
-    "chapter": "终局",
+    "chapter": "新的开始",
     "summary": "",
     "type": "main"
   },
@@ -1231,7 +1231,7 @@ const EVENTS = [
     "id": "PN9",
     "title": "腐蚀的低语",
     "route": "passive_ntr",
-    "chapter": "终局",
+    "chapter": "新的开始",
     "summary": "",
     "type": "main"
   },
@@ -1239,7 +1239,7 @@ const EVENTS = [
     "id": "PN10",
     "title": "药与酒",
     "route": "passive_ntr",
-    "chapter": "终局",
+    "chapter": "新的开始",
     "summary": "",
     "type": "main"
   },
@@ -1247,7 +1247,7 @@ const EVENTS = [
     "id": "PN11",
     "title": "肉体的展示",
     "route": "passive_ntr",
-    "chapter": "终局",
+    "chapter": "新的开始",
     "summary": "",
     "type": "nsfw"
   },
@@ -1255,7 +1255,7 @@ const EVENTS = [
     "id": "PN12",
     "title": "被迫的手",
     "route": "passive_ntr",
-    "chapter": "新的开始",
+    "chapter": "第25章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1263,7 +1263,7 @@ const EVENTS = [
     "id": "PN13",
     "title": "指交的陷阱",
     "route": "passive_ntr",
-    "chapter": "新的开始",
+    "chapter": "第25章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1271,7 +1271,7 @@ const EVENTS = [
     "id": "PN14",
     "title": "被迫的口",
     "route": "passive_ntr",
-    "chapter": "新的开始",
+    "chapter": "第25章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1279,7 +1279,7 @@ const EVENTS = [
     "id": "PN15",
     "title": "乳间的耻辱",
     "route": "passive_ntr",
-    "chapter": "新的开始",
+    "chapter": "第25章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1287,7 +1287,7 @@ const EVENTS = [
     "id": "PN16",
     "title": "半推半就",
     "route": "passive_ntr",
-    "chapter": "新的开始",
+    "chapter": "第25章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1295,7 +1295,7 @@ const EVENTS = [
     "id": "PN17",
     "title": "无法回头",
     "route": "passive_ntr",
-    "chapter": "新的开始",
+    "chapter": "第25章",
     "summary": "",
     "type": "main"
   },
@@ -1303,7 +1303,7 @@ const EVENTS = [
     "id": "PN18",
     "title": "堕落之夜（被动NTR的最低点——Thalion插入）",
     "route": "passive_ntr",
-    "chapter": "第25章",
+    "chapter": "第26章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1311,7 +1311,7 @@ const EVENTS = [
     "id": "PN19",
     "title": "堕落之夜的细节——Thalion的足交玷污",
     "route": "passive_ntr",
-    "chapter": "第25章",
+    "chapter": "第26章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1319,7 +1319,7 @@ const EVENTS = [
     "id": "PN20",
     "title": "耳边的低语",
     "route": "passive_ntr",
-    "chapter": "第25章",
+    "chapter": "第26章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1327,7 +1327,7 @@ const EVENTS = [
     "id": "PN21",
     "title": "不敢出声——被动NTR近发现",
     "route": "passive_ntr",
-    "chapter": "第25章",
+    "chapter": "第26章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1335,7 +1335,7 @@ const EVENTS = [
     "id": "PN22",
     "title": "再次找上门——主动接受",
     "route": "passive_ntr",
-    "chapter": "第26章",
+    "chapter": "第27章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1343,7 +1343,7 @@ const EVENTS = [
     "id": "PN23",
     "title": "窗外的影子——被动NTR近发现",
     "route": "passive_ntr",
-    "chapter": "第26章",
+    "chapter": "第27章",
     "summary": "",
     "type": "main"
   },
@@ -1351,7 +1351,7 @@ const EVENTS = [
     "id": "PN24",
     "title": "趁他睡着——主动隐奸",
     "route": "passive_ntr",
-    "chapter": "第26章",
+    "chapter": "第27章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1359,7 +1359,7 @@ const EVENTS = [
     "id": "PN25",
     "title": "半开的门——被动NTR近发现",
     "route": "passive_ntr",
-    "chapter": "第26章",
+    "chapter": "第27章",
     "summary": "",
     "type": "main"
   },
@@ -1367,7 +1367,7 @@ const EVENTS = [
     "id": "PN26",
     "title": "主动口交——被动NTR阶段D+",
     "route": "passive_ntr",
-    "chapter": "第27章",
+    "chapter": "第28章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1375,7 +1375,7 @@ const EVENTS = [
     "id": "PN27",
     "title": "镜中的自己——被动NTR淫荡觉醒",
     "route": "passive_ntr",
-    "chapter": "第27章",
+    "chapter": "第28章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1383,7 +1383,7 @@ const EVENTS = [
     "id": "PN28",
     "title": "野外暴露——被动NTR阶段D+",
     "route": "passive_ntr",
-    "chapter": "第27章",
+    "chapter": "第28章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1391,7 +1391,7 @@ const EVENTS = [
     "id": "PN29",
     "title": "主动索求——被动NTR淫荡升级",
     "route": "passive_ntr",
-    "chapter": "第27章",
+    "chapter": "第28章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1399,7 +1399,7 @@ const EVENTS = [
     "id": "PN30",
     "title": "主动邀约——被动NTR阶段D+终点",
     "route": "passive_ntr",
-    "chapter": "第28章",
+    "chapter": "第29章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1407,7 +1407,7 @@ const EVENTS = [
     "id": "PN31",
     "title": "故意遗留——被动NTR淫荡巅峰",
     "route": "passive_ntr",
-    "chapter": "第28章",
+    "chapter": "第29章",
     "summary": "",
     "type": "main"
   },
@@ -1415,7 +1415,7 @@ const EVENTS = [
     "id": "PN32",
     "title": "Thalion的伪装——被动NTR桥接",
     "route": "passive_ntr",
-    "chapter": "第28章",
+    "chapter": "第29章",
     "summary": "",
     "type": "main"
   },
@@ -1423,7 +1423,7 @@ const EVENTS = [
     "id": "PN33",
     "title": "桌下之手（被动NTR）——对Thalion隐奸手交",
     "route": "passive_ntr",
-    "chapter": "第28章",
+    "chapter": "第29章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1431,7 +1431,7 @@ const EVENTS = [
     "id": "PN34",
     "title": "桌面下的脚——被动NTR多线操控",
     "route": "passive_ntr",
-    "chapter": "第29章",
+    "chapter": "第30章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1439,7 +1439,7 @@ const EVENTS = [
     "id": "PN35",
     "title": "桌下之口（被动NTR）——对Thalion隐奸口交",
     "route": "passive_ntr",
-    "chapter": "第29章",
+    "chapter": "第30章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1447,7 +1447,7 @@ const EVENTS = [
     "id": "PN36",
     "title": "隐乳交（被动NTR）——对Thalion隐蔽乳交",
     "route": "passive_ntr",
-    "chapter": "第29章",
+    "chapter": "第30章",
     "summary": "",
     "type": "nsfw"
   },
@@ -1455,7 +1455,7 @@ const EVENTS = [
     "id": "PN37",
     "title": "与Thalion的最终战斗（被动NTR版本）",
     "route": "passive_ntr",
-    "chapter": "第30章",
+    "chapter": "第31章",
     "summary": "",
     "type": "main"
   },
@@ -1796,19 +1796,13 @@ const CHAPTERS = [
     "num": 20,
     "name": "净化仪式",
     "phase": "passive",
-    "count": 2
-  },
-  {
-    "num": 22,
-    "name": "终极抉择",
-    "phase": "finale",
-    "count": 5
+    "count": 4
   },
   {
     "num": 23,
     "name": "终局",
     "phase": "finale",
-    "count": 6
+    "count": 5
   },
   {
     "num": 24,
