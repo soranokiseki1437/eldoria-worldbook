@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-26T16:44:08.478183
+// 自动生成于: 2026-06-26T16:53:35.723581
 // 数据源: docs/05_事件系统.md
 // 生成器: scripts/generate_event_browser.py
 
@@ -1109,7 +1109,7 @@ const EVENTS = [
   },
   {
     "id": "N102",
-    "title": "黑暗中的乳交——她不让开灯",
+    "title": "腿间的净化——低语者的解脱",
     "route": "ntrs",
     "chapter": "彻底破碎",
     "summary": "",
@@ -1117,7 +1117,7 @@ const EVENTS = [
   },
   {
     "id": "N103",
-    "title": "催情茶——第二次轮奸",
+    "title": "黑暗中的乳交——她不让开灯",
     "route": "ntrs",
     "chapter": "彻底破碎",
     "summary": "",
@@ -1125,7 +1125,7 @@ const EVENTS = [
   },
   {
     "id": "N104",
-    "title": "腿间的净化——低语者的解脱",
+    "title": "催情茶——第二次轮奸",
     "route": "ntrs",
     "chapter": "彻底破碎",
     "summary": "",
