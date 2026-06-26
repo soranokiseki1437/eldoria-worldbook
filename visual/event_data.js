@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-26T15:42:55.432181
+// 自动生成于: 2026-06-26T15:49:16.786809
 // 数据源: docs/05_事件系统.md
 // 生成器: scripts/generate_event_browser.py
 
@@ -1109,7 +1109,7 @@ const EVENTS = [
   },
   {
     "id": "N102",
-    "title": "低语者的轮奸——D阶段极限",
+    "title": "低语者的轮奸",
     "route": "ntrs",
     "chapter": "彻底破碎",
     "summary": "",
