@@ -2,7 +2,7 @@ ID: PN6
 名称: Thalion的强迫摸乳
 触发: 被动NTR路线, Thalion初次诱惑后, abandonment_count >= 35, thalions_influence >= 40, seraphina_despair >= 45
 NSFW: 是
-性行为等级: 2
+性行为等级: 4
 情感阶段: B（被胁迫→身体背叛——圣光被腐化压制，无法反抗。这是被动NTR性侵递进的第一步）
 黎恩知情: 否——黎恩不在场
 第三者: Thalion

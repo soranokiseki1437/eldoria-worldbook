@@ -2,7 +2,7 @@ ID: PN33
 名称: 桌下之手（被动NTR）——对Thalion隐奸手交
 触发: 被动NTR路线, Thalion必须已获得"净化顾问"公开身份, thalions_influence >= 86, despair <= 25, 会议/聚餐场景, 黎恩和同伴在场
 NSFW: 是
-性行为等级: 4
+性行为等级: 6
 情感阶段: D（被动NTR——桌下之手对Thalion）
 黎恩知情: 否——黎恩和同伴们在同一张桌上讨论，完全不知道桌下发生的事
 第三者: Thalion

@@ -2,7 +2,7 @@ ID: PN35
 名称: 桌下之口（被动NTR）——对Thalion隐奸口交
 触发: 被动NTR路线, Thalion必须有公开身份才能列席, despair <= 20, 会议场景, 黎恩在场
 NSFW: 是
-性行为等级: 6
+性行为等级: 8
 情感阶段: D（被动NTR——桌下之口对Thalion）
 黎恩知情: 否——黎恩在桌上主持会议
 第三者: Thalion

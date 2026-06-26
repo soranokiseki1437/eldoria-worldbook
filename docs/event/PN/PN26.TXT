@@ -2,7 +2,7 @@ ID: PN26
 名称: 主动口交——被动NTR阶段D+
 触发: despair <= 55, thalions_influence >= 75
 NSFW: 是
-性行为等级: 6
+性行为等级: 8
 情感阶段: D（主动口交——她为Thalion口交，享受掌控感）
 黎恩知情: 否
 第三者: Thalion
