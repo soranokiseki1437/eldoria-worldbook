@@ -1,4 +1,4 @@
-ID: N17
+ID: N14
 名称: 雷恩的同意——从拒绝到触碰
 触发: ntrs_awakened=100, trust>=38
 NSFW: 是

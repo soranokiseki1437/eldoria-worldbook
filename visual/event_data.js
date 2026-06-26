@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-26T17:19:06.507949
+// 自动生成于: 2026-06-26T17:24:52.594703
 // 数据源: docs/05_事件系统.md
 // 生成器: scripts/generate_event_browser.py
 
@@ -380,14 +380,6 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "N11",
-    "title": "坐骑上的故意——艾德里安的试探",
-    "route": "ntrs",
-    "chapter": "边界与试探",
-    "summary": "",
-    "type": "nsfw"
-  },
-  {
     "id": "N12",
     "title": "装睡——角落的骑士",
     "route": "ntrs",
@@ -396,7 +388,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N16",
+    "id": "N13",
     "title": "雷恩的初访——正义的拒绝",
     "route": "ntrs",
     "chapter": "第一次见证",
@@ -404,7 +396,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N17",
+    "id": "N14",
     "title": "雷恩的同意——从拒绝到触碰",
     "route": "ntrs",
     "chapter": "第一次见证",
@@ -412,12 +404,20 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N18",
+    "id": "N15",
     "title": "艾德里安的察觉——从容的入局者",
     "route": "ntrs",
     "chapter": "第一次见证",
     "summary": "",
     "type": "main"
+  },
+  {
+    "id": "N16",
+    "title": "坐骑上的故意——艾德里安的试探",
+    "route": "ntrs",
+    "chapter": "第一次见证",
+    "summary": "",
+    "type": "nsfw"
   },
   {
     "id": "N19",
@@ -1748,13 +1748,13 @@ const CHAPTERS = [
     "num": 12,
     "name": "边界与试探",
     "phase": "ntrs",
-    "count": 12
+    "count": 11
   },
   {
     "num": 13,
     "name": "第一次见证",
     "phase": "ntrs",
-    "count": 11
+    "count": 12
   },
   {
     "num": 14,

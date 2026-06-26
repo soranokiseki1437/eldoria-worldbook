@@ -1,4 +1,4 @@
-ID: N18
+ID: N15
 名称: 艾德里安的察觉——从容的入局者
 触发: ntrs_awakened=100, acceptance>=46, 艾德里安在Eldoria
 NSFW: 否
