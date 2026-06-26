@@ -1,4 +1,4 @@
-ID: N95
+ID: N94
 名称: 主动口交——老手的从容
 触发: ntrs_awakened=100, acceptance>=68
 NSFW: 是

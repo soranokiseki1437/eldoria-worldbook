@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-26T14:00:25.590215
+// 自动生成于: 2026-06-26T14:01:23.883163
 // 数据源: docs/05_事件系统.md
 // 生成器: scripts/generate_event_browser.py
 
@@ -1044,6 +1044,14 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
+    "id": "N94",
+    "title": "主动口交——老手的从容",
+    "route": "ntrs",
+    "chapter": "堕落之夜",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
     "id": "N95",
     "title": "桌下之手——隐奸手交",
     "route": "ntrs",
@@ -1752,7 +1760,7 @@ const CHAPTERS = [
     "num": 18,
     "name": "堕落之夜",
     "phase": "passive",
-    "count": 10
+    "count": 11
   },
   {
     "num": 19,
