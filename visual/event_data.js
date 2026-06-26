@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-26T13:07:17.563664
+// 自动生成于: 2026-06-26T13:15:41.990076
 // 数据源: docs/05_事件系统.md
 // 生成器: scripts/generate_event_browser.py
 
@@ -949,7 +949,7 @@ const EVENTS = [
   },
   {
     "id": "N82",
-    "title": "亚莉莎的傲娇本番",
+    "title": "亚莉莎的换装——催情熏香中的傲娇本番",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
     "summary": "",
@@ -957,7 +957,7 @@ const EVENTS = [
   },
   {
     "id": "N83",
-    "title": "野外失控——花田3P",
+    "title": "野外失控——花田轮奸",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
     "summary": "",
