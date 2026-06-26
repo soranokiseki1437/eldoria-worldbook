@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-26T12:09:58.459968
+// 自动生成于: 2026-06-26T12:16:01.845468
 // 数据源: docs/05_事件系统.md
 // 生成器: scripts/generate_event_browser.py
 
@@ -901,7 +901,7 @@ const EVENTS = [
   },
   {
     "id": "N76",
-    "title": "菲的直接本番",
+    "title": "菲的早晨——口交叫醒服务",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
     "summary": "",
