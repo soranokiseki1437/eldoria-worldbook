@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-26T17:00:35.902588
+// 自动生成于: 2026-06-26T17:04:48.113169
 // 数据源: docs/05_事件系统.md
 // 生成器: scripts/generate_event_browser.py
 
@@ -893,14 +893,6 @@ const EVENTS = [
   },
   {
     "id": "N75",
-    "title": "会议桌下的黑丝——凯尔的惩罚",
-    "route": "ntrs",
-    "chapter": "Thalion的诱惑",
-    "summary": "",
-    "type": "nsfw"
-  },
-  {
-    "id": "N76",
     "title": "密林巡逻——树后内射",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
@@ -908,8 +900,16 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "N77",
+    "id": "N76",
     "title": "菲的早晨——口交叫醒服务",
+    "route": "ntrs",
+    "chapter": "Thalion的诱惑",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "N77",
+    "title": "会议桌下的黑丝——凯尔的惩罚",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
     "summary": "",
