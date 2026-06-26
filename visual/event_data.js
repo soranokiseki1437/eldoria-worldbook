@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-26T11:47:24.988281
+// 自动生成于: 2026-06-26T12:09:58.459968
 // 数据源: docs/05_事件系统.md
 // 生成器: scripts/generate_event_browser.py
 
@@ -885,7 +885,7 @@ const EVENTS = [
   },
   {
     "id": "N74",
-    "title": "温泉——凯尔的 humiliation",
+    "title": "温泉——菲娜的羞辱游戏",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
     "summary": "",
@@ -893,7 +893,7 @@ const EVENTS = [
   },
   {
     "id": "N75",
-    "title": "密林即兴——站立后入",
+    "title": "密林巡逻——树后内射",
     "route": "ntrs",
     "chapter": "Thalion的诱惑",
     "summary": "",
