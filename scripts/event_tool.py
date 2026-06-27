@@ -1,16 +1,26 @@
 #!/usr/bin/env python3
 """
-event_tool.py — 事件验证与查看工具 (TXT文件驱动)
+event_tool.py — 事件验证与查看工具 (V9.0 — TXT文件驱动)
 
 用法:
-  python event_tool.py validate [prefix]     # 验证所有/指定前缀TXT
-  python event_tool.py list [prefix]          # 列出事件ID+标题
-  python event_tool.py show <event_id>        # 显示单个事件TXT内容
-  python event_tool.py refs <event_id>        # 查找所有引用了该事件ID的TXT文件
+  python event_tool.py validate              # 验证全部TXT事件
+  python event_tool.py list                  # 列出所有事件ID+标题
+  python event_tool.py show <event_id>       # 显示单个事件TXT内容
+  python event_tool.py refs <event_id>       # 查找所有引用了该事件ID的TXT文件
+
+验证规则:
+  Rule1: 禁止事件编号引用（叙事文本中不得出现纯数字事件ID）
+  Rule2: 第三者间不得互通性行为进度
+  Rule4: Seraphina发色检查（粉色非银色）
+  Rule5: 必填字段检查（ID/名称/NSFW/情境/核心）
+  Rule6: 禁止"不是/不再/并非...是/而是..."句式
+  Rule7: 禁止不良气味描写
+  Rule8: 好感值上限检查（单角色单事件≤10）
+  Rule9: 阶段字段值合法性（8个合法阶段名）
 
 设计原则:
-  - 操作对象: docs/event/{prefix}/*.TXT 文件
-  - 增删改移事件请直接操作TXT文件，然后运行 renumber_events.py + assemble_md.py
+  - 操作对象: docs/event/{章节}/*.TXT 文件
+  - 增删改移事件请操作TXT文件，然后运行 renumber_events.py
 """
 
 import re
@@ -102,14 +112,14 @@ def validate_prefix(prefix):
 
     # Rule 1 (铁律): 事件内容中禁止引用任何事件编号
     # 编号引用会导致未来重编号时连锁失效——描述叙事状态，不偷懒用编号。
-    # 匹配所有前缀: PN01, N01, P1, E1, W1, H1, G1, R1 等
+    # V9.0: 事件编号为纯数字01-170。匹配2-3位数字（排除明显非事件引用的上下文）。
     _EVENT_ID_RE = re.compile(
         r'(?<![A-Za-z0-9])'
         r'(?:'
-        r'PN\d{1,2}'           # PN1-PN99
-        r'|P(?!N)\d{1,2}'      # P1-P99 (排除PN)
-        r'|N\d{2,3}'           # N01-N999
-        r'|[EWHGR]\d{1,2}'     # E/W/H/G/R 1-99
+        r'0[1-9]'              # 01-09 (zero-padded)
+        r'|[1-9]\d'             # 10-99
+        r'|1[0-6]\d'            # 100-169
+        r'|170'                 # 170
         r')'
         r'(?!\d)'
     )
@@ -120,14 +130,25 @@ def validate_prefix(prefix):
         body = content.split('\n', 1)
         body = body[1] if len(body) > 1 else ''
         for m in _EVENT_ID_RE.finditer(body):
-            ref = m.group(0).upper()
-            if ref == eid.upper():
-                continue  # 自身ID行不报
+            ref = m.group(0)
+            if ref.lstrip('0') == eid.lstrip('0'):
+                continue  # 自身ID不报
             # 提取上下文行
             line_start = body.rfind('\n', 0, m.start()) + 1
             line_end = body.find('\n', m.end())
             ctx_line = body[line_start:line_end] if line_end > 0 else body[line_start:]
-            ctx = ctx_line.strip()[:100]
+            ctx = ctx_line.strip()[:120]
+            # 排除非事件引用的数字语境
+            wider_ctx = body[max(0, m.start()-10):min(len(body), m.end()+10)]
+            pre_ctx = body[max(0, m.start()-6):m.start()]
+            post_ctx = body[m.end():min(len(body), m.end()+3)]
+            # 全局排除"69"——在NSFW写作中永远是性行为体位，非事件编号引用
+            if ref in ('69', '069'):
+                continue
+            if re.search(r'[第级等LVlv]\s*$', pre_ctx):
+                continue  # "第X" / "等级X" / "LV.X"
+            if re.search(r'^[章级人号名个次种条件句\)\]）\s]', post_ctx):
+                continue  # "X章" "X级" "X人" "X个"
             violations.append(
                 f'[{eid}] Rule1: 禁止编号引用 — "{ref}" 出现在: {ctx}...'
             )
@@ -163,42 +184,45 @@ def validate_prefix(prefix):
             if '粉银' in text:
                 violations.append(f'[{eid}] 粉银: 应为"粉色"')
 
-    # Rule 5: 必填字段 (N/PN events only)
-    # 仅对有性行为内容的事件检查（NSFW: 是 或 性行为等级 > 0）
+    # Rule 5: 必填字段检查（所有事件）
+    # V9.0必填: ID, 名称, NSFW, 情境, 核心
+    # 条件字段: 性行为等级(NSFW=是时), 阶段, 第三者, 黎恩知情, 占有欲确认, 好感影响
+    REQUIRED_FIELDS = ['ID', '名称', 'NSFW', '情境', '核心']
     for eid, name, fp, data in events:
-        if not (eid.startswith('N') or eid.startswith('PN')):
-            continue
+        for field in REQUIRED_FIELDS:
+            if field not in data or not data[field].strip():
+                violations.append(
+                    f'[{eid}] Rule5: 缺少必填字段「{field}」 — {name}'
+                )
+        # NSFW事件应有性行为等级
         nsfw = data.get('NSFW', '').strip()
-        has_sex = '性行为等级' in data or '性行为' in data
-        sex_val = data.get('性行为等级', '') or data.get('性行为', '')
-        sex_num = re.search(r'(\d+)', sex_val) if sex_val else None
-        sex_level = int(sex_num.group(1)) if sex_num else 0
+        if nsfw == '是' and '性行为等级' not in data:
+            violations.append(
+                f'[{eid}] Rule5: NSFW事件缺少「性行为等级」 — {name}'
+            )
 
-        # 如果有性行为等级字段或其值>0，或标记为NSFW，则检查必填字段
-        if has_sex or nsfw == '是' or sex_level > 0:
-            if not has_sex:
-                violations.append(f'[{eid}] Rule5: 缺少必填字段「性行为等级」 — {name}')
-            if '情感阶段' not in data and '情感' not in data and '阶段' not in data:
-                violations.append(f'[{eid}] Rule5: 缺少必填字段「情感阶段」 — {name}')
-            if sex_level > 0:
-                if '黎恩知情' not in data:
-                    violations.append(f'[{eid}] Rule5: 缺少必填字段「黎恩知情」 — {name}')
-
-    # Rule 6 (去AI化): 禁止"不是...是..."对比句式
+    # Rule 6 (去AI化): 禁止"不是...是..."等否定→肯定迂回句式
     # 该句式是AI写作的标志性废话——直接用肯定句描述，不绕弯否定再肯定。
     # 例："不是因为脏——是因为他舍不得放开" → "他舍不得放开"
     #     "不是命令不是允许，是娇羞的点头" → "她娇羞地点了点头"
-    _NOT_BUT_PAT = re.compile(r'不是.{1,120}是')
+    #     "不再对抗，而是融合" → "交融在一起"
+    # 检测三种模式：不是…是… / 不再…而是… / 并非…而是…
+    _NOT_BUT_PATS = [
+        re.compile(r'不是.{1,120}是'),
+        re.compile(r'不再.{1,120}而是'),
+        re.compile(r'并非.{1,120}而是'),
+    ]
     for eid, name, fp, data in events:
         with open(fp, 'r', encoding='utf-8') as f:
             content = f.read()
         body = content.split('\n', 1)
         body = body[1] if len(body) > 1 else ''
-        for m in _NOT_BUT_PAT.finditer(body):
-            ctx = m.group(0)[:100]
-            violations.append(
-                f'[{eid}] Rule6: 禁止"不是…是…"句式 — {ctx}'
-            )
+        for pat in _NOT_BUT_PATS:
+            for m in pat.finditer(body):
+                ctx = m.group(0)[:100]
+                violations.append(
+                    f'[{eid}] Rule6: 禁止"不是/不再/并非…是/而是…"句式 — {ctx}'
+                )
 
     # Rule 7 (NSFW写作): 禁止不良气味描写
     # 禁止体臭/骚味/体味/汗味/热气等不洁气味。
@@ -228,6 +252,37 @@ def validate_prefix(prefix):
             ctx = body[ctx_start:ctx_end].strip().replace('\n', ' ')[:100]
             violations.append(
                 f'[{eid}] Rule7: 禁止不良气味 — "{m.group(0)}" 出现在: ...{ctx}...'
+            )
+
+    # Rule 8: 好感值上限检查 — 单角色单事件 ≤ 10
+    for eid, name, fp, data in events:
+        affection = data.get('好感影响', '')
+        if not affection.strip():
+            continue
+        # Parse lines like "  - Seraphina: +10" or "  - 凯尔: +8"
+        for line in affection.split('\n'):
+            line = line.strip().lstrip('-').strip()
+            m = re.match(r'^(.+?)[：:]\s*([+-]?\d+)', line)
+            if m:
+                char_name = m.group(1).strip()
+                value = int(m.group(2))
+                if abs(value) > 10:
+                    violations.append(
+                        f'[{eid}] Rule8: 好感值超标 — {char_name}: {value} (上限±10) — {name}'
+                    )
+
+    # Rule 9: 阶段字段值合法性检查
+    VALID_STAGES = {
+        '序章', '试探和暧昧', '挑逗和接受', '渐进接触',
+        '跨线', '享受和掌控', '放纵', '终局', '后日谈',
+    }
+    for eid, name, fp, data in events:
+        stage = data.get('阶段', '').strip()
+        if not stage:
+            continue  # 阶段可留空（非NTRS事件）
+        if stage not in VALID_STAGES:
+            violations.append(
+                f'[{eid}] Rule9: 非法阶段值 — "{stage}" (合法: {", ".join(sorted(VALID_STAGES))}) — {name}'
             )
 
     return violations

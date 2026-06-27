@@ -22,21 +22,19 @@ EVENT_MD = os.path.join(BASE_DIR, "docs", "05_事件系统.md")
 OUTPUT_HTML = os.path.join(BASE_DIR, "visual", "全事件浏览器.html")
 
 # ─── 前缀元数据 ─────────────────────────────────────────
-from event_config import PREFIX_META
+from event_config import PREFIX_META, ALL_PREFIXES
 
-# ─── 章节名称（V4.8.0同步） ──────────────────────────────
-CHAPTER_NAMES = {
-    1: "林间空地的苏醒", 2: "影牙兽的威胁", 3: "心木废墟的秘密",
-    4: "VII班的到来", 5: "森林的庆典", 6: "古老先灵的低语",
-    7: "各方来客", 8: "路线分化",
-    9: "纯爱·守护者契约", 10: "温泉与誓言", 11: "古老的启示",
-    12: "边界与试探", 13: "第一次见证", 14: "第一次共享",
-    15: "多人共享之夜",
-    16: "被动NTR·第一次缺席", 17: "Thalion的诱惑", 170: "Thalion的侵蚀",
-    18: "堕落之夜", 19: "彻底破碎",
-    20: "净化仪式", 21: "与Thalion的决战", 22: "终极抉择",
-    23: "终局", 24: "新的开始",
-}
+# ─── 章节名称（从 DEFAULT_CHAPTERS 动态加载） ──────────────
+def _load_chapter_names():
+    """从 assign_chapters.DEFAULT_CHAPTERS 构建章节名称映射"""
+    sys.path.insert(0, os.path.join(BASE_DIR, 'scripts'))
+    try:
+        from assign_chapters import DEFAULT_CHAPTERS
+        return {ch_num: ch['title'] for ch_num, ch in DEFAULT_CHAPTERS.items()}
+    except ImportError:
+        return {}
+
+CHAPTER_NAMES = _load_chapter_names()
 
 # ─── KNOWN_EVENTS: 从章节映射表动态生成（不再硬编码） ──
 # parse_chapter_mapping 会将所有事件ID提取到 event_names_from_table
@@ -85,7 +83,7 @@ def parse_txt_file(filepath):
 
 def load_events_from_txt():
     """从 docs/event/{prefix}/*.TXT 读取所有事件数据。
-    返回 {event_id: {name, raw_yaml, has_yaml, ...}}"""
+    返回 {event_id: {name, raw_yaml, has_yaml, prefix, ...}}"""
     event_dir = os.path.join(BASE_DIR, 'docs', 'event')
     events_raw = {}
     for pfx in os.listdir(event_dir):
@@ -109,17 +107,22 @@ def load_events_from_txt():
                 'raw_yaml': raw_yaml,
                 'has_yaml': True,
                 'is_nsfw': data.get('NSFW', '').strip() == '是',
+                'prefix': pfx,  # V7.0: 记录来源目录（章节名）
             }
     return events_raw
 
 
-def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None):
-    """推断类型标签。is_nsfw_explicit: TXT中NSFW字段的显式值(True/False)"""
-    prefix = re.match(r'^([A-Z]+)', event_id).group(1)
+def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix=""):
+    """推断类型标签。is_nsfw_explicit: TXT中NSFW字段的显式值(True/False)
+    prefix: V7.0 章节目录名（如'0：序章'）"""
     content_lower = (name + " " + raw_yaml).lower()
     tags = []
-    route_map = {"P": "纯爱", "N": "NTRS", "PN": "被动NTR", "E": "共通",
-                 "G": "共通", "W": "共通", "H": "隐藏", "R": "黎恩"}
+    # V7.0: 从章节目录判断路线
+    route_map = {
+        '0：序章': '共通', '1：试探和暧昧': 'NTRS', '2：挑逗和接受': 'NTRS',
+        '3：渐进接触': 'NTRS', '4：跨线': 'NTRS', '5：享受和掌控': 'NTRS',
+        '6：放纵': 'NTRS', '7：终局': 'NTRS', '8：后日谈': '共通',
+    }
     route = route_map.get(prefix, "")
     if route:
         tags.append(route)
@@ -172,14 +175,14 @@ def build_events():
     seen_ids = set()
     for event_id, raw in events_raw.items():
         seen_ids.add(event_id)
-        prefix = re.match(r'^([A-Z]+)', event_id).group(1)
+        prefix = raw.get('prefix', '')  # V7.0: 从文件来源目录获取
         meta = PREFIX_META.get(prefix, {"name": prefix, "color": "#888", "order": 99})
         chapter = event_chapters.get(event_id, 0)
         raw_yaml = raw["raw_yaml"]
         name = raw["name"]
         trigger = ""
         if raw_yaml:
-            m = re.search(r'触发条件[：:]\s*(.+?)(?:\n|$)', raw_yaml)
+            m = re.search(r'trigger[：:]\s*(.+?)(?:\n|$)', raw_yaml)
             if m:
                 trigger = m.group(1).strip()
         scene_preview = ""
@@ -190,7 +193,7 @@ def build_events():
                     scene_preview = m.group(1).strip()[:200]
                     break
         is_nsfw_flag = raw.get('is_nsfw', None)
-        tags = infer_tags(event_id, name, raw_yaml, is_nsfw_flag)
+        tags = infer_tags(event_id, name, raw_yaml, is_nsfw_flag, prefix=prefix)
         nsfw_level = get_nsfw_level(tags)
         has_branches = "纯爱" in raw_yaml and ("NTRS" in raw_yaml or "被动NTR" in raw_yaml)
         events.append({
@@ -203,7 +206,8 @@ def build_events():
         })
     for event_id, default_name in KNOWN_EVENTS.items():
         if event_id not in seen_ids:
-            prefix = re.match(r'^([A-Z]+)', event_id).group(1)
+            prefix = re.match(r'^([A-Z]+)', event_id)
+            prefix = prefix.group(1) if prefix else ''
             meta = PREFIX_META.get(prefix, {"name": prefix, "color": "#888", "order": 99})
             chapter = event_chapters.get(event_id, 0)
             table_name = event_names_from_table.get(event_id, "")
@@ -234,8 +238,11 @@ def build_events():
 # event_data.js 生成 — 剧情时间线可视化数据
 # ══════════════════════════════════════════════════════════
 
-ROUTE_MAP = {"E": "prologue", "P": "pure", "N": "ntrs", "PN": "passive_ntr",
-             "C": "side", "G": "general", "W": "world", "H": "hidden", "R": "rean"}
+ROUTE_MAP = {
+    '0：序章': 'prologue', '1：试探和暧昧': 'ntrs', '2：挑逗和接受': 'ntrs',
+    '3：渐进接触': 'ntrs', '4：跨线': 'ntrs', '5：享受和掌控': 'ntrs',
+    '6：放纵': 'ntrs', '7：终局': 'ntrs', '8：后日谈': 'epilogue',
+}
 
 def generate_event_data_js(events, event_chapters):
     """从解析结果生成 event_data.js"""
@@ -596,9 +603,18 @@ function getFiltered() {
   });
 }
 
-var PREFIX_ORDER = ['E','P','N','PN','S','C','G','W','H','R'];
-var PREFIX_NAMES = {E:'固定事件',P:'纯爱路线',N:'NTRS路线',PN:'被动NTR',S:'NSFW通用',C:'角色NSFW',G:'通用SFW',W:'世界事件',H:'隐藏事件',R:'黎恩专属'};
-var PREFIX_COLORS = {E:'#4facfe',P:'#f093fb',N:'#fa709a',PN:'#30cfd0',S:'#ff9a9e',C:'#a18cd1',G:'#43e97b',W:'#f5576c',H:'#a8edea',R:'#89f7fe'};
+'''
+
+    # Generate prefix metadata from event_config
+    prefix_order = list(ALL_PREFIXES)
+    prefix_names = {p: PREFIX_META[p]['name'] for p in ALL_PREFIXES}
+    prefix_colors = {p: PREFIX_META[p]['color'] for p in ALL_PREFIXES}
+
+    html += 'var PREFIX_ORDER = ' + json.dumps(prefix_order) + ';\n'
+    html += 'var PREFIX_NAMES = ' + json.dumps(prefix_names) + ';\n'
+    html += 'var PREFIX_COLORS = ' + json.dumps(prefix_colors) + ';\n'
+
+    html += '''
 
 function renderGrid() {
   var filtered = getFiltered();

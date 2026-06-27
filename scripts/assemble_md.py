@@ -19,7 +19,7 @@ BACKUP_DIR = os.path.join(PROJECT_DIR, 'backups')
 
 # 元数据从共享模块导入
 from event_config import SECTION_TITLES, SHORT_LABELS, ALL_PREFIXES
-SECTION_NUMBERING = ['二', '三', '四', '五', '六', '七', '八', '九']
+SECTION_NUMBERING = ['二', '三', '四', '五', '六', '七', '八', '九', '十']
 
 # ═══════════════════════════════════════════════════════════
 # TXT解析（复用 new_event.py parse_template 逻辑）
