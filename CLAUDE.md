@@ -2,7 +2,7 @@
 
 > **定位**：Eldoria世界书 · 剧情深度与NSFW事件增强执行者
 > **前置**：`README.md` → 本文件
-> **版本**：v9.0 · 2026-06-28
+> **版本**：v10.1 · 2026-06-28
 
 ---
 
@@ -295,9 +295,9 @@ docs/event/{章节}/*.TXT   ← ★★★ 事件唯一权威源（最常修改�
 ├── _事件总览.TXT          ← 170事件索引（生成产物）
 ├── chapter/               ← 始终触发条目+概念文件
 ├── character/             ← 14角色档案
-├── world/                 ← 14世界观概念
-├── creature/              ← 11生物设定
-├── location/              ← 20地点设定
+├── world/                 ← 16世界观概念
+├── creature/              ← 22生物设定
+├── location/              ← 24地点设定
 ├── npc/                   ← 7NPC+总览
 scripts/
 ├── event_config.py        ← 共享chapter元数据

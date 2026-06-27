@@ -33,7 +33,7 @@ def _ids(start, end):
 DEFAULT_CHAPTERS[0] = {
     'title': '序章：苏醒与相遇',
     'stage': '序章',
-    'events': _ids(1, 39),
+    'events': _ids(1, 61),
     'anchor': '苏醒→相遇→VII班集结→告白→契约→第三者登场→回归仪式→温泉→森林意志',
 }
 
@@ -41,7 +41,7 @@ DEFAULT_CHAPTERS[0] = {
 DEFAULT_CHAPTERS[1] = {
     'title': '试探和暧昧',
     'stage': '试探和暧昧',
-    'events': _ids(40, 63),
+    'events': _ids(62, 89),
     'anchor': '坦白→建框→注视→蹭触→第三者风格确立→第一次共享(低语者)→回归仪式',
 }
 
@@ -49,7 +49,7 @@ DEFAULT_CHAPTERS[1] = {
 DEFAULT_CHAPTERS[2] = {
     'title': '挑逗和接受',
     'stage': '挑逗和接受',
-    'events': _ids(64, 75),
+    'events': _ids(90, 102),
     'anchor': '主动展示→扣穴试探→第三者指交→口交初体验→主动邀请→回归仪式',
 }
 
@@ -57,7 +57,7 @@ DEFAULT_CHAPTERS[2] = {
 DEFAULT_CHAPTERS[3] = {
     'title': '渐进接触',
     'stage': '渐进接触',
-    'events': _ids(76, 102),
+    'events': _ids(103, 132),
     'anchor': '足交→手交→乳交→口交→隐奸→一对二→边界→逼近跨线→回归仪式',
 }
 
@@ -65,7 +65,7 @@ DEFAULT_CHAPTERS[3] = {
 DEFAULT_CHAPTERS[4] = {
     'title': '跨线',
     'stage': '跨线',
-    'events': _ids(103, 115),
+    'events': _ids(133, 147),
     'anchor': '低语者失败→疗愈→首次人类插入(凯尔)→雷恩插入→自主选择→回归仪式',
 }
 
@@ -73,7 +73,7 @@ DEFAULT_CHAPTERS[4] = {
 DEFAULT_CHAPTERS[5] = {
     'title': '享受和掌控',
     'stage': '享受和掌控',
-    'events': _ids(116, 148),
+    'events': _ids(148, 183),
     'anchor': '主动设计隐奸→多第三者本番→3P→轮奸→极限体验→日常缓冲',
 }
 
@@ -81,7 +81,7 @@ DEFAULT_CHAPTERS[5] = {
 DEFAULT_CHAPTERS[6] = {
     'title': '放纵',
     'stage': '放纵',
-    'events': _ids(149, 167),
+    'events': _ids(184, 202),
     'anchor': '主动服务→反向服务→极限→低语者轮奸→回归仪式',
 }
 
@@ -89,7 +89,7 @@ DEFAULT_CHAPTERS[6] = {
 DEFAULT_CHAPTERS[7] = {
     'title': '终局',
     'stage': '终局',
-    'events': _ids(168, 170),
+    'events': _ids(203, 205),
     'anchor': '决战前夜→净化回归→情书',
 }
 
@@ -97,7 +97,7 @@ DEFAULT_CHAPTERS[7] = {
 DEFAULT_CHAPTERS[8] = {
     'title': '后日谈',
     'stage': '后日谈',
-    'events': [],
+    'events': _ids(206, 207),
     'anchor': '（暂无事件）',
 }
 

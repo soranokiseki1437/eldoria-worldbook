@@ -41,7 +41,7 @@ MD_DIR      = DOCS_DIR  # 分md在 docs/ 目录下
 #  - 主版本: 重大架构变更 / 路线重设计 / 核心设定翻版
 #  - 次版本: 新增角色 / 新增事件 / 修改变量系统
 #  - 修订号: 文本修正 / 错别字 / 内容微调
-VERSION = "V10.0.0"
+VERSION = "V10.1.0"
 VERSION_TAG = f"Eldoria_{VERSION}"  # V10.0.0: 全TXT驱动构建+docs子目录条目+浏览器修复
 
 # 主输出文件 = 带版本号的文件名（输出到 output/ 目录）
