@@ -35,11 +35,8 @@ V9.0起，项目已从多路线分支游戏简化为**单线纯爱NTRS融合线*
 ```
 docs/event/{章节}/*.TXT   ← ★ 事件唯一权威源（170个独立文件）
     │
-    ├── build_eldoria.py 直接读TXT ──→ output/Eldoria_V9*.json
-    ├── assemble_md.py 读TXT ──→ docs/05_事件系统.md（索引，非正文）
+    ├── build_eldoria.py 直接读TXT ──→ output/Eldoria_V10*.json
     └── event_tool.py 读TXT ──→ 验证 / 列表 / 查看
-
-事件正文只在TXT中。05MD退为轻量索引，不含事件正文。
 ```
 
 ### 2.2 标准修改循环（V9.0）
@@ -62,7 +59,7 @@ Step 2 — 执行修改
   └── 修改事件：编辑TXT即可，无需renumber（编号不变）
 
 Step 3 — 构建验证
-  ├── python scripts/rebuild_all.py              ← 一键：assemble → build → browser
+  ├── python scripts/rebuild_all.py              ← 一键：build → browser
   ├── python scripts/event_tool.py validate      ← 验证全部TXT
   └── 检查JSON中对应条目的content
 
@@ -77,7 +74,7 @@ Step 4 — 记录
 |---|------|
 | 1 | **TXT文件是唯一权威数据源** — 绝不手动编辑 `output/Eldoria_V*.json` |
 | 2 | **修改事件只改TXT** — 构建自动同步 |
-| 3 | **05MD是生成产物** — 由 `assemble_md.py` 从TXT生成，不可手动编辑 |
+| 3 | **TXT文件是唯一权威数据源** — 事件正文只在TXT中 |
 | 4 | **增删移事件必跑renumber** — `renumber_events.py` 全局重编号+更新DEFAULT_CHAPTERS+更新交叉引用 |
 | 5 | **删事件前必跑refs** — `event_tool.py refs <ID>` 检查外部引用 |
 | 6 | **新事件ID行填小数** — 如 `ID: 40.5` 标记插入位置（在40和41之间），renumber自动分配整数 |
@@ -159,13 +156,10 @@ python scripts/event_tool.py show <ID>
 python scripts/renumber_events.py
 python scripts/renumber_events.py --dry-run    # 预览变更
 
-# 刷新MD索引
-python scripts/assemble_md.py
-
 # 章节映射报告
 python scripts/update_chapter_map.py
 
-# 刷新事件浏览器网页
+# 刷新事件浏览器网页（直接读TXT）
 python scripts/generate_event_browser.py
 ```
 
@@ -175,12 +169,11 @@ python scripts/generate_event_browser.py
 |------|------|:--:|:--:|
 | `event_tool.py` | 验证/列表/查看/引用扫描（Rule1-9） | TXT | - |
 | `renumber_events.py` | 全局重编号+交叉引用更新+DEFAULT_CHAPTERS更新 | TXT | TXT+assign_chapters.py |
-| `assemble_md.py` | 从TXT生成05MD索引 | TXT | 05MD |
 | `build_eldoria.py` | 构建世界书JSON（读TXT） | TXT+docs/* | output/ |
 | `assign_chapters.py` | DEFAULT_CHAPTERS权威数据源（被多脚本import） | - | - |
 | `update_chapter_map.py` | 只读报告：从DEFAULT_CHAPTERS打印统计 | DEFAULT_CHAPTERS | stdout |
-| `generate_event_browser.py` | 生成可视化事件浏览器HTML（读TXT） | TXT | visual/ |
-| `rebuild_all.py` | 一键：assemble → build → browser | - | 05MD+JSON+HTML |
+| `generate_event_browser.py` | 生成可视化事件浏览器HTML（直接读TXT） | TXT | visual/ |
+| `rebuild_all.py` | 一键：build → browser | - | JSON+HTML |
 | `event_config.py` | 共享chapter元数据（被所有脚本import） | - | - |
 
 ---
@@ -305,16 +298,15 @@ docs/event/{章节}/*.TXT   ← ★★★ 事件唯一权威源（最常修改�
 ├── world/                 ← 14世界观概念
 ├── creature/              ← 11生物设定
 ├── location/              ← 20地点设定
-├── npc/                   ← 4NPC+总览
+├── npc/                   ← 7NPC+总览
 scripts/
 ├── event_config.py        ← 共享chapter元数据
 ├── event_tool.py          ← 验证/列表/查看/引用扫描
 ├── renumber_events.py     ← 全局重编号引擎
-├── assemble_md.py         ← TXT→05MD索引
 ├── build_eldoria.py       ← TXT→世界书JSON
 ├── assign_chapters.py     ← DEFAULT_CHAPTERS数据源
-├── rebuild_all.py         ← 一键全流程
-└── generate_event_browser.py ← TXT→可视化HTML
+├── rebuild_all.py         ← 一键：build → browser
+└── generate_event_browser.py ← 直接读TXT→可视化HTML
 ```
 
 ---

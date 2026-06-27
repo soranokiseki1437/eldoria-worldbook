@@ -19,6 +19,9 @@ memory/
 # Uncomment if you don't want JSON in git:
 # output/*.json
 
+# Generated files
+docs/05_事件系统.md
+
 # Backup directory
 backup/
 

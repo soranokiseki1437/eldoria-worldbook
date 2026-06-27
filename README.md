@@ -41,21 +41,19 @@
 │   ├── character/                   # 角色档案（14角色）
 │   ├── creature/                    # 生物设定（11种）
 │   ├── location/                    # 地点设定（20处）
-│   ├── npc/                         # NPC档案（4人）
-│   ├── world/                       # 世界观概念（14个）
-│   └── 05_事件系统.md               # 事件索引（生成产物）
+│   ├── npc/                         # NPC档案（7人+总览）
+│   └── world/                       # 世界观概念
 │
 ├── scripts/                        # 构建与工具
 │   ├── event_config.py             # 共享chapter元数据
 │   ├── event_tool.py               # 验证 · 列表 · 引用扫描（Rule1-9）
 │   ├── renumber_events.py          # 全局重编号引擎（核心）
-│   ├── assemble_md.py              # TXT → 05MD索引
 │   ├── build_eldoria.py            # TXT → 世界书JSON
 │   ├── assign_chapters.py          # DEFAULT_CHAPTERS权威数据源
 │   ├── update_chapter_map.py       # 章节映射报告
-│   ├── rebuild_all.py              # 一键全流程（assemble→build→browser）
+│   ├── rebuild_all.py              # 一键全流程（build→browser）
 │   ├── backup_restore.py           # 版本备份管理
-│   └── generate_event_browser.py   # TXT → 可视化HTML浏览器
+│   └── generate_event_browser.py   # 直接读TXT → 可视化HTML浏览器
 │
 ├── output/                         # 构建产物（不可手动编辑）
 │   └── Eldoria_V*.json
@@ -75,10 +73,9 @@
 docs/event/{章节}/*.TXT   ← ★ 事件唯一权威源（170个独立文件）
     │
     ├── build_eldoria.py 直接读TXT ──→ output/Eldoria_V*.json
-    ├── assemble_md.py 读TXT ──→ docs/05_事件系统.md（索引）
     └── event_tool.py 读TXT ──→ 验证 / 列表 / 引用扫描
 
-rebuild_all.py = assemble → build → browser 一键完成
+rebuild_all.py = build → browser 一键完成
 ```
 
 ### 铁律
@@ -136,7 +133,7 @@ python scripts/backup_restore.py backup "说明"
 | 理解写作标准与工作流 | `CLAUDE.md` |
 | 查看角色详情 | `docs/character/` |
 | 了解世界观概念 | `docs/world/` |
-| 查看所有事件索引 | `docs/05_事件系统.md` |
+| 浏览事件 | `visual/全事件浏览器.html` |
 | 浏览事件详情 | `visual/全事件浏览器.html` |
 | 新增/修改事件 | `docs/event/_TEMPLATE_RULES.md` |
 

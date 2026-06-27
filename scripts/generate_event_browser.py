@@ -2,7 +2,7 @@
 """
 generate_event_browser.py — 全事件浏览器生成器 (V2 网格布局)
 ==========================================================
-解析 05_事件系统.md 中所有事件，生成自包含的交互式HTML页面。
+直接读取 docs/event/*.TXT 生成自包含的交互式HTML页面。
 V2: 网格卡片布局，紧凑按钮式事件列表。
 
 用法：
@@ -18,7 +18,6 @@ import sys
 
 # ─── 路径配置 ───────────────────────────────────────────
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EVENT_MD = os.path.join(BASE_DIR, "docs", "05_事件系统.md")
 OUTPUT_HTML = os.path.join(BASE_DIR, "visual", "全事件浏览器.html")
 
 # ─── 前缀元数据 ─────────────────────────────────────────
@@ -248,7 +247,7 @@ def generate_event_data_js(events, event_chapters):
     """从解析结果生成 event_data.js"""
     lines = []
     lines.append("// 自动生成于: " + __import__('datetime').datetime.now().isoformat())
-    lines.append("// 数据源: docs/05_事件系统.md")
+    lines.append("// 数据源: docs/event/*.TXT")
     lines.append("// 生成器: scripts/generate_event_browser.py")
     lines.append("")
     lines.append("const EVENTS = [")

@@ -2,7 +2,7 @@
 """
 event_config.py — 事件系统共享元数据（零事件数据，仅prefix映射）
 
-被 assemble_md.py / event_tool.py / renumber_events.py /
+被 event_tool.py / renumber_events.py /
 generate_event_browser.py / build_eldoria.py 导入使用。
 改一处，全项目同步。
 
@@ -36,7 +36,7 @@ PREFIX_META = OrderedDict([
 ])
 
 # ═══════════════════════════════════════════════════════════
-# Section标题（assemble_md / event_tool 的列表/验证输出用）
+# Section标题（event_tool 的列表/验证输出用）
 # ═══════════════════════════════════════════════════════════
 
 SECTION_TITLES = OrderedDict([

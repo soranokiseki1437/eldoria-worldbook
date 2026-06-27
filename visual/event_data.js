@@ -1,5 +1,5 @@
-// 自动生成于: 2026-06-27T19:59:27.039787
-// 数据源: docs/05_事件系统.md
+// 自动生成于: 2026-06-27T21:08:58.644854
+// 数据源: docs/event/*.TXT
 // 生成器: scripts/generate_event_browser.py
 
 const EVENTS = [
