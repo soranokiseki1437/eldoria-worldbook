@@ -97,7 +97,7 @@ DEFAULT_CHAPTERS[7] = {
 DEFAULT_CHAPTERS[8] = {
     'title': '后日谈',
     'stage': '后日谈',
-    'events': _ids(206, 207),
+    'events': _ids(206, 211),
     'anchor': '（暂无事件）',
 }
 

@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-28T03:20:12.315929
+// 自动生成于: 2026-06-28T03:22:02.667151
 // 数据源: docs/event/*.TXT
 // 生成器: scripts/generate_event_browser.py
 
@@ -1659,6 +1659,38 @@ const EVENTS = [
     "summary": "",
     "type": "nsfw"
   },
+  {
+    "id": "208",
+    "title": "温柔的净化——另一种安详",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "209",
+    "title": "满月双人——狼首与灰骑",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "210",
+    "title": "主动的腰——蜜穴的慈悲",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "211",
+    "title": "轮奸净化——淫荡的救赎",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "nsfw"
+  },
 ];
 
 const CHAPTERS = [
@@ -1708,7 +1740,7 @@ const CHAPTERS = [
     "num": 8,
     "name": "后日谈",
     "phase": "prologue",
-    "count": 2
+    "count": 6
   },
 ];
 
