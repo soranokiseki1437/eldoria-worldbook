@@ -455,7 +455,7 @@ def make_entry(uid, keys, comment, content, order,
                constant=False, probability=100, use_probability=True,
                keysecondary=None, selective=True, position=1,
                group="", depth=4):
-    """创建一条 SillyTavern 原生格式的世界书条目（对齐京介ver1.41格式）。"""
+    """创建一条 SillyTavern 原生格式的世界书条目（对齐俺妹ver1.41健康版格式）。"""
     return {
         "uid": uid,
         "key": keys,
@@ -490,11 +490,51 @@ def make_entry(uid, keys, comment, content, order,
         "matchWholeWords": None,
         "useGroupScoring": False,
         "automationId": "",
-        "role": 0,
+        "role": None,
         "sticky": 0,
         "cooldown": 0,
         "delay": 0,
         "displayIndex": 0,
+        "outletName": "",
+        "ignoreBudget": False,
+        "extensions": {
+            "position": position,
+            "exclude_recursion": False,
+            "display_index": 0,
+            "probability": probability,
+            "useProbability": use_probability,
+            "depth": depth,
+            "selectiveLogic": 0,
+            "group": group,
+            "group_override": False,
+            "group_weight": 100,
+            "prevent_recursion": False,
+            "delay_until_recursion": False,
+            "scan_depth": None,
+            "match_whole_words": None,
+            "use_group_scoring": False,
+            "case_sensitive": None,
+            "automation_id": "",
+            "role": 0,
+            "vectorized": False,
+            "sticky": 0,
+            "cooldown": 0,
+            "delay": 0,
+            "match_persona_description": False,
+            "match_character_description": False,
+            "match_character_personality": False,
+            "match_character_depth_prompt": False,
+            "match_scenario": False,
+            "match_creator_notes": False,
+            "triggers": [],
+            "ignore_budget": False,
+        },
+        "triggers": [],
+        "characterFilter": {
+            "isExclude": False,
+            "names": [],
+            "tags": [],
+        },
     }
 
 
@@ -709,12 +749,16 @@ def validate_entries(entries):
 
 
 def assemble_json(entries):
-    """将条目列表组装为 SillyTavern 原生世界书 JSON 格式"""
+    """将条目列表组装为 SillyTavern 原生世界书 JSON 格式（对齐俺妹ver1.41健康版）"""
     entries_dict = {}
     for e in entries:
         entries_dict[str(e["uid"])] = e
     return {
         "entries": entries_dict,
+        "originalData": {
+            "entries": entries_dict,
+            "name": CHAR_NAME,
+        },
         "_meta": {
             "version": VERSION_TAG,
             "version_short": VERSION,
