@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-28T15:12:03.113154
+// 自动生成于: 2026-06-28T15:18:22.668196
 // 数据源: docs/event/*.TXT
 // 生成器: scripts/generate_event_browser.py
 
@@ -941,11 +941,11 @@ const EVENTS = [
   },
   {
     "id": "118",
-    "title": "意外的发现——凯尔的秘密",
+    "title": "意外的请求——踩踏与羞耻",
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "main"
+    "type": "nsfw"
   },
   {
     "id": "119",
