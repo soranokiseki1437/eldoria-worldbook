@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-28T04:30:15.887670
+// 自动生成于: 2026-06-28T09:35:27.590336
 // 数据源: docs/event/*.TXT
 // 生成器: scripts/generate_event_browser.py
 
@@ -1645,7 +1645,7 @@ const EVENTS = [
   },
   {
     "id": "206",
-    "title": "雷恩的白丝——月光下的足交",
+    "title": "菲娜的白丝——月光下的足交",
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
