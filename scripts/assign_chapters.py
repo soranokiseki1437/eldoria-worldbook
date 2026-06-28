@@ -73,7 +73,7 @@ DEFAULT_CHAPTERS[4] = {
 DEFAULT_CHAPTERS[5] = {
     'title': '享受和掌控',
     'stage': '享受和掌控',
-    'events': _ids(155, 200),
+    'events': _ids(155, 201),
     'anchor': '主动设计隐奸→多第三者本番→3P→轮奸→极限体验→日常缓冲',
 }
 
@@ -81,7 +81,7 @@ DEFAULT_CHAPTERS[5] = {
 DEFAULT_CHAPTERS[6] = {
     'title': '放纵',
     'stage': '放纵',
-    'events': _ids(201, 224),
+    'events': _ids(202, 226),
     'anchor': '主动服务→反向服务→极限→低语者轮奸→回归仪式',
 }
 
@@ -89,7 +89,7 @@ DEFAULT_CHAPTERS[6] = {
 DEFAULT_CHAPTERS[7] = {
     'title': '终局',
     'stage': '终局',
-    'events': _ids(225, 227),
+    'events': _ids(227, 229),
     'anchor': '决战前夜→净化回归→情书',
 }
 
@@ -97,7 +97,7 @@ DEFAULT_CHAPTERS[7] = {
 DEFAULT_CHAPTERS[8] = {
     'title': '后日谈',
     'stage': '后日谈',
-    'events': _ids(228, 233),
+    'events': _ids(230, 235),
     'anchor': '（暂无事件）',
 }
 
