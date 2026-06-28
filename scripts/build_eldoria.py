@@ -389,16 +389,22 @@ def load_reference_entries():
         '叙述风格指令':  {'depth': 1, 'order': 100},
     }
 
+    # Supplementary systems: pos=4, depth=4 (参照俺妹 好感度分级系统)
+    SUPPLEMENTARY_SYSTEMS = {
+        '好感度分级系统总览': {'position': 4, 'depth': 4, 'order': 100},
+    }
+
     # Subdirectory order and metadata
     ref_dirs = [
-        ('chapter',   True),    # (dir_name, all_constant)
-        ('magic',     False),
-        ('world',     False),
-        ('system',    False),
-        ('character', False),
-        ('location',  False),
-        ('creature',  False),
-        ('npc',       False),
+        ('chapter',    True),    # (dir_name, all_constant)
+        ('magic',      False),
+        ('world',      False),
+        ('system',     False),
+        ('character',  False),
+        ('location',   False),
+        ('creature',   False),
+        ('npc',        False),
+        ('affection',  False),
     ]
 
     for subdir_name, all_constant in ref_dirs:
@@ -429,6 +435,9 @@ def load_reference_entries():
             if name in SYSTEM_INSTRUCTIONS:
                 si = SYSTEM_INSTRUCTIONS[name]
                 entry = _make_ref_entry(data, si['order'], position=4, depth=si['depth'])
+            elif name in SUPPLEMENTARY_SYSTEMS:
+                ss = SUPPLEMENTARY_SYSTEMS[name]
+                entry = _make_ref_entry(data, ss['order'], position=ss['position'], depth=ss['depth'])
             elif always_on:
                 # All constant entries → pos=0, depth=4, order=100
                 entry = _make_ref_entry(data, 100, position=0, depth=4)
