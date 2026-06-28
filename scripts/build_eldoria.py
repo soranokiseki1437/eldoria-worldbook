@@ -148,6 +148,10 @@ def _load_all_events():
                         _lines.append(f'{_label}：{_val}')
 
             _content = '\n'.join(_lines)
+            # Strip leading "- " bullets from content (参照格式：纯文本换行)
+            _content = _re.sub(r'^[ \t]*-[ \t]', '', _content, flags=_re.MULTILINE)
+            # Also strip "- " immediately after "：" (情境：- xxx → 情境：xxx)
+            _content = _re.sub(r'：- ', '：', _content)
 
             _ALL_EVENTS_CACHE[_eid] = {
                 'title': _title,
@@ -249,46 +253,11 @@ _PHASE_KEYWORDS = {
 
 
 def _auto_keys(event_id, data):
-    """从事件元数据自动生成关键词列表。零硬编码，通用所有前缀。"""
+    """事件条目关键词：仅"事件x"。"""
     import re as _re
-    _keys = []
-
-    # 1. 标题分词
-    _title = data.get('title', '')
-    _main_title = _title.split('——')[0].strip() if '——' in _title else _title
-    _title_words = _re.findall(r'[一-鿿]{2,4}', _main_title)
-    _keys.extend(_title_words[:4])
-
-    # 2. 第三者/角色名
-    _tp = data.get('third_party', '')
-    if _tp and _tp != '无':
-        _tp_names = _re.findall(r'[一-鿿]{2,4}', _tp.split('（')[0])
-        _keys.extend(_tp_names[:2])
-
-    # 3. 性行为类型
-    _sa = data.get('sex_act', '')
-    if _sa:
-        for _act_type, _kw_list in _SEX_ACT_KEYWORDS.items():
-            if _act_type in _sa:
-                _keys.extend(_kw_list[:2])
-                break
-
-    # 4. 阶段
-    _ph = data.get('phase', '')
-    if _ph:
-        for _phase_key, _kw_list in _PHASE_KEYWORDS.items():
-            if _phase_key in _ph:
-                _keys.append(_kw_list[0])
-                break
-
-    # 5. 去重
-    _seen = set()
-    _unique = []
-    for _k in _keys:
-        if _k not in _seen and _k.strip():
-            _seen.add(_k)
-            _unique.append(_k)
-    return _unique[:8]
+    _num = _re.search(r'\d+', event_id)
+    _n = _num.group() if _num else event_id
+    return [f'事件{_n}']
 
 
 def _auto_order(event_id):
@@ -302,26 +271,36 @@ def _get_md_entries(prefix, tag, base_order=160):
     """★ 通用TXT驱动条目生成器——零硬编码。
 
     Args:
-        prefix: 事件前缀 ('N', 'P', 'PN', 'W', 'H', 'G', 'R')
-        tag: 键词标签 ('ntrs', 'pure', 'passive_ntr', 'world', 'hidden', 'game', 'rean')
-        base_order: 起始order值
+        prefix: 章节目录名 ('0：序章', '1：试探和暧昧', ...)
+        tag: 键词标签 (unused, kept for compatibility)
+        base_order: 起始order值 (deprecated, 由CHAPTER_ORDER_BASE计算)
 
     Returns:
-        条目列表（uid=None）
+        条目列表（uid=None），position=4, depth=2
     """
+    # 章节索引 → order起始值
+    CHAPTER_ORDER_BASE = {
+        '0：序章': 600, '1：试探和暧昧': 700, '2：挑逗和接受': 800,
+        '3：渐进接触': 900, '4：跨线': 1000, '5：享受和掌控': 1100,
+        '6：放纵': 1200, '7：终局': 1300, '8：后日谈': 1400,
+    }
+    _order_base = CHAPTER_ORDER_BASE.get(prefix, 600)
+
     _entries = []
     _all = _load_all_events()
     _events = {k: v for k, v in _all.items() if v['prefix'] == prefix}
-    for _eid in sorted(_events.keys()):
+    for _idx, _eid in enumerate(sorted(_events.keys())):
         _data = _events[_eid]
         _keys = _auto_keys(_eid, _data)
         _entries.append(make_entry(
             uid=None,
-            keys=_keys + [_eid.lower(), tag],
+            keys=_keys,
             comment=_data['comment'],
-            order=_auto_order(_eid),
-            probability=80,
+            order=_order_base + _idx,
+            probability=100,
             content=_data['content'],
+            position=4,
+            depth=2,
         ))
     return _entries
 
@@ -360,14 +339,22 @@ def _parse_reference_txt(filepath):
     return data
 
 
-def _make_ref_entry(data, order_start, uid=None):
+def _make_ref_entry(data, order_start, uid=None, position=1, depth=None):
     """Create a world book entry from a parsed reference TXT.
-    Maps TXT fields to JSON entry format (参照 我的妹妹...ver1.41)."""
+    Maps TXT fields to JSON entry format (参照 我的妹妹...ver1.41).
+
+    Args:
+        position: 插入段位 (0=角色定义前, 1=角色定义后, 4=深度上下文)
+        depth: 段位内优先级。None时从TXT '注入深度'字段读取
+    """
     name = data.get('名称', 'Unknown')
     keywords_str = data.get('触发关键词', '')
     always_on = data.get('始终触发', '否').strip() == '是'
-    depth = int(data.get('注入深度', '3'))
+    if depth is None:
+        depth = int(data.get('注入深度', '3'))
     content = data.get('内容', '')
+    # Strip leading "- " bullets from content lines (参照格式：纯文本换行，不bullet)
+    content = re.sub(r'^[ \t]*-[ \t]', '', content, flags=re.MULTILINE)
 
     # Parse keywords: comma-separated → list
     if keywords_str.strip():
@@ -386,15 +373,29 @@ def _make_ref_entry(data, order_start, uid=None):
         probability=100,
         selective=True,
         depth=depth,
+        position=position,
     )
 
 
 def load_reference_entries():
     """Scan all docs/ subdirectories for TXT files and generate entries.
     Returns list of entries in display order.
+
+    Position assignment (参照 俺妹 ver1.41 健康版):
+    - System instructions (事件追踪/游戏状态/叙述风格) → pos=4
+    - chapter/ constant=true → pos=0 (world-building constants)
+    - Other dirs constant=true → pos=0 (overview tables)
+    - Other dirs constant=false → pos=1 (triggered reference)
     """
     entries = []
     order = 100
+
+    # System instructions: special depth/order at pos=4
+    SYSTEM_INSTRUCTIONS = {
+        '事件追踪指令':  {'depth': 0, 'order': 999},
+        '游戏状态界面':  {'depth': 0, 'order': 998},
+        '叙述风格指令':  {'depth': 1, 'order': 100},
+    }
 
     # Subdirectory order and metadata
     ref_dirs = [
@@ -428,7 +429,20 @@ def load_reference_entries():
                 print(f'  ⚠ 跳过（无名称字段）: {subdir_name}/{fname}')
                 continue
 
-            entry = _make_ref_entry(data, order)
+            always_on = data.get('始终触发', '否').strip() == '是'
+            name = data.get('名称', 'Unknown')
+
+            # Determine position and depth
+            if name in SYSTEM_INSTRUCTIONS:
+                si = SYSTEM_INSTRUCTIONS[name]
+                entry = _make_ref_entry(data, si['order'], position=4, depth=si['depth'])
+            elif always_on:
+                # All constant entries → pos=0 (world-building / overview)
+                entry = _make_ref_entry(data, order, position=0, depth=4)
+            else:
+                # Non-constant entries → pos=1 (triggered reference details)
+                entry = _make_ref_entry(data, order, position=1, depth=4)
+
             entry['group'] = subdir_name
             entries.append(entry)
             order += 1
@@ -677,8 +691,8 @@ def validate_entries(entries):
         if not e.get("constant"):
             if not keys:
                 errors.append(f"uid {uid} key 为空")
-            if len(keys) < 2:
-                errors.append(f"uid {uid} key 数量不足 (至少2个): {len(keys)}")
+            if len(keys) < 1:
+                errors.append(f"uid {uid} key 数量不足 (至少1个): {len(keys)}")
 
         prob = e.get("probability", -1)
         if not (0 <= prob <= 100):
