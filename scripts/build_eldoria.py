@@ -273,30 +273,22 @@ def _get_md_entries(prefix, tag, base_order=160):
     Args:
         prefix: 章节目录名 ('0：序章', '1：试探和暧昧', ...)
         tag: 键词标签 (unused, kept for compatibility)
-        base_order: 起始order值 (deprecated, 由CHAPTER_ORDER_BASE计算)
+        base_order: 起始order值 (deprecated)
 
     Returns:
-        条目列表（uid=None），position=4, depth=2
+        条目列表（uid=None），position=4, depth=2, order=600
     """
-    # 章节索引 → order起始值
-    CHAPTER_ORDER_BASE = {
-        '0：序章': 600, '1：试探和暧昧': 700, '2：挑逗和接受': 800,
-        '3：渐进接触': 900, '4：跨线': 1000, '5：享受和掌控': 1100,
-        '6：放纵': 1200, '7：终局': 1300, '8：后日谈': 1400,
-    }
-    _order_base = CHAPTER_ORDER_BASE.get(prefix, 600)
-
     _entries = []
     _all = _load_all_events()
     _events = {k: v for k, v in _all.items() if v['prefix'] == prefix}
-    for _idx, _eid in enumerate(sorted(_events.keys())):
+    for _eid in sorted(_events.keys()):
         _data = _events[_eid]
         _keys = _auto_keys(_eid, _data)
         _entries.append(make_entry(
             uid=None,
             keys=_keys,
             comment=_data['comment'],
-            order=_order_base + _idx,
+            order=600,
             probability=100,
             content=_data['content'],
             position=4,
@@ -432,20 +424,20 @@ def load_reference_entries():
             always_on = data.get('始终触发', '否').strip() == '是'
             name = data.get('名称', 'Unknown')
 
-            # Determine position and depth
+            # Determine position, depth, order
+            # 参照俺妹健康版：同position+depth的条目共享相同order
             if name in SYSTEM_INSTRUCTIONS:
                 si = SYSTEM_INSTRUCTIONS[name]
                 entry = _make_ref_entry(data, si['order'], position=4, depth=si['depth'])
             elif always_on:
-                # All constant entries → pos=0 (world-building / overview)
-                entry = _make_ref_entry(data, order, position=0, depth=4)
+                # All constant entries → pos=0, depth=4, order=100
+                entry = _make_ref_entry(data, 100, position=0, depth=4)
             else:
-                # Non-constant entries → pos=1 (triggered reference details)
-                entry = _make_ref_entry(data, order, position=1, depth=4)
+                # Non-constant entries → pos=1, depth=4, order=100
+                entry = _make_ref_entry(data, 100, position=1, depth=4)
 
             entry['group'] = subdir_name
             entries.append(entry)
-            order += 1
 
     return entries
 
