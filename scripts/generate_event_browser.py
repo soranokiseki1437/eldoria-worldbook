@@ -188,14 +188,17 @@ def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix="", sex_l
             if any(kw in title_lower for kw in kws):
                 tags.append(tag)
 
-        # 核心字段兜底：标题未命中时，从核心/情境文本中匹配精准关键词
+        # 核心字段兜底：标题未命中时，从文本中匹配（排除"没有X交"等否定句式）
         text_map = {
             "口交": ["口交"], "足交": ["足交"], "手交": ["手交", "打飞机"], "乳交": ["乳交"],
             "群交": ["轮奸"], "隐奸": ["隐奸"],
         }
         for tag, kws in text_map.items():
-            if tag not in tags and any(kw in text_lower for kw in kws):
-                tags.append(tag)
+            if tag not in tags:
+                for kw in kws:
+                    if re.search(r'(?<!没有)(?<!不是)(?<!无)' + re.escape(kw), text_lower):
+                        tags.append(tag)
+                        break
 
         # 性行为等级辅助：等级≥9 必为本番（插入/内射）
         if "本番" not in tags and sex_level is not None and sex_level >= 9:
