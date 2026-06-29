@@ -168,33 +168,19 @@ def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix=""):
 
     if is_nsfw_explicit is True:
         tags.append("NSFW")
-        # 标题优先匹配（章节名已明确标注类型）
+        # 纯标题匹配：全标题（主+副）中提取类型，标题是作者显式标注的唯一可靠来源
         title_map = {
-            "口交": ["口交", "含入", "吞下", "之口", "的口", "唇"],
-            "足交": ["足交", "足下的", "裸足", "足部"],
-            "本番": ["本番", "结合", "插入", "内射", "交合"],
+            "口交": ["口交", "含入", "吞", "之口", "的口", "唇"],
+            "足交": ["足交", "足下的", "裸足"],
+            "本番": ["本番", "插入", "内射"],
             "手交": ["手交", "打飞机", "手淫"],
-            "乳交": ["乳交", "圣光之谷", "乳沟"],
-            "腿交": ["腿交", "大腿之间"],
+            "乳交": ["乳交", "圣光之谷", "乳沟", "乳的"],
+            "腿交": ["腿交"],
             "隐奸": ["隐奸", "桌下"],
-            "群交": ["群交", "轮奸", "3P", "共享"],
+            "群交": ["群交", "轮奸", "3P"],
         }
         for tag, kws in title_map.items():
             if any(kw in title_lower for kw in kws):
-                tags.append(tag)
-
-        # 兜底：全文本精准关键词（只在标题未命中时）
-        fallback_map = {
-            "口交": ["口交"],
-            "本番": ["本番"],
-            "手交": ["打飞机", "手交"],
-            "乳交": ["乳交"],
-            "足交": ["足交"],
-            "群交": ["轮奸"],
-            "隐奸": ["隐奸"],
-        }
-        for tag, kws in fallback_map.items():
-            if tag not in tags and any(kw in text_lower for kw in kws):
                 tags.append(tag)
     elif is_nsfw_explicit is False:
         tags.append("SFW")
