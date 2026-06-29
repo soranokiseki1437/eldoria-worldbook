@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-29T19:20:48.099473
+// 自动生成于: 2026-06-29T19:23:41.701933
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -713,7 +713,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "试探和暧昧",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "90",
