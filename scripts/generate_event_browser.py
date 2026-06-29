@@ -161,32 +161,48 @@ def load_events_from_txt():
 
 
 def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix=""):
-    """推断类型标签（仅NSFW/SFW+具体行为，无路线标签）"""
-    content_lower = (name + " " + raw_yaml).lower()
+    """推断类型标签：标题优先 + 精准关键词兜底。"""
+    title_lower = name.lower()
+    text_lower = (name + " " + raw_yaml).lower()
     tags = []
 
-    # 优先用TXT显式NSFW字段
     if is_nsfw_explicit is True:
         tags.append("NSFW")
-        type_map = {
-            "足交": ["足交", "裸足", "足部", "足下", "足控", "晨露", "玉足"],
-            "本番": ["本番", "契约之夜", "交融", "清晨", "即兴", "倒影", "直接本番", "傲娇本番", "游戏本番", "骑士本番"],
-            "手交": ["手交"], "口交": ["口交", "含入", "唇"],
-            "乳交": ["乳交", "圣光之谷", "胸怀"], "腿交": ["腿交", "大腿之间"],
-            "隐奸": ["隐奸", "桌下之"], "群交": ["群交", "赌局", "共享之夜"],
+        # 标题优先匹配（章节名已明确标注类型）
+        title_map = {
+            "口交": ["口交", "含入", "吞下", "之口", "的口", "唇"],
+            "足交": ["足交", "足下的", "裸足", "足部"],
+            "本番": ["本番", "结合", "插入", "内射", "交合"],
+            "手交": ["手交", "打飞机", "手淫"],
+            "乳交": ["乳交", "圣光之谷", "乳沟"],
+            "腿交": ["腿交", "大腿之间"],
+            "隐奸": ["隐奸", "桌下"],
+            "群交": ["群交", "轮奸", "3P", "共享"],
         }
-        for tag, keywords in type_map.items():
-            if any(kw in content_lower for kw in keywords):
+        for tag, kws in title_map.items():
+            if any(kw in title_lower for kw in kws):
+                tags.append(tag)
+
+        # 兜底：全文本精准关键词（只在标题未命中时）
+        fallback_map = {
+            "口交": ["口交"],
+            "本番": ["本番"],
+            "手交": ["打飞机", "手交"],
+            "乳交": ["乳交"],
+            "足交": ["足交"],
+            "群交": ["轮奸"],
+            "隐奸": ["隐奸"],
+        }
+        for tag, kws in fallback_map.items():
+            if tag not in tags and any(kw in text_lower for kw in kws):
                 tags.append(tag)
     elif is_nsfw_explicit is False:
         tags.append("SFW")
     else:
-        # Fallback：关键词匹配
-        nsfw_kws = ["足交", "本番", "手交", "口交", "乳交", "腿交",
-                    "隐奸", "群交", "夜袭", "暴露", "足下的", "足部", "裸足",
-                    "丝袜", "玷污", "堕落之夜", "足控", "含入", "契约之夜",
-                    "鬼之圣光", "温泉的清晨", "晨露", "桌下之", "即兴", "倒影"]
-        if any(kw in content_lower for kw in nsfw_kws):
+        # 无显式NSFW字段：关键词兜底
+        nsfw_kws = ["口交", "足交", "本番", "手交", "乳交", "腿交",
+                    "隐奸", "群交", "插入", "内射"]
+        if any(kw in text_lower for kw in nsfw_kws):
             tags.append("NSFW")
         else:
             tags.append("SFW")
