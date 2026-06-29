@@ -25,7 +25,7 @@
 ### 1.2 章节体系
 
 - 302个章节，纯数字编号，线性叙事，无分支
-- 9个阶段目录（`docs/event/{0：序章/ ... 8：后日谈/}`）
+- 9个阶段目录（`docs/story/{0：序章/ ... 8：后日谈/}`）
 - 章节key：`['第N章']` — 单key，`selectiveLogic: 0`（OR匹配）
 - `{{user}}` = 黎恩·舒华泽（第三人称叙事）
 
@@ -46,22 +46,22 @@
 
 ```
 Step 0 — 确认范围
-  ├── 定位 docs/event/{章节}/{ID}：{名称}.TXT
-  └── 检查交叉引用：event_tool.py refs <ID>
+  ├── 定位 docs/story/{章节}/{ID}：{名称}.TXT
+  └── 检查交叉引用：story_tool.py refs <ID>
 
 Step 1 — 阅读权威源
   ├── 阅读 TXT（唯一权威）
-  └── 新增章节：参照 docs/event/_TEMPLATE.TXT
+  └── 新增章节：参照 docs/story/_TEMPLATE.TXT
 
 Step 2 — 执行修改
   ├── 编辑TXT文件（key: value格式）
   ├── 新增：cp模板→填充→ID行填小数→renumber_events.py
-  ├── 删除：event_tool.py refs <ID>→删TXT→renumber_events.py
+  ├── 删除：story_tool.py refs <ID>→删TXT→renumber_events.py
   └── 修改：编辑TXT即可，无需renumber
 
 Step 3 — 构建验证
   ├── python scripts/build_eldoria.py           ← 构建JSON
-  ├── python scripts/event_tool.py validate     ← 验证TXT
+  ├── python scripts/story_tool.py validate     ← 验证TXT
   └── 检查JSON中对应条目的content
 
 Step 4 — 记录
@@ -94,8 +94,8 @@ Step 4 — 记录
 python scripts/build_eldoria.py              # 构建JSON（自动备份）
 python scripts/build_eldoria.py --dry-run    # 仅验证不写盘
 python scripts/rebuild_all.py                # build → browser
-python scripts/event_tool.py validate        # 验证全部TXT
-python scripts/event_tool.py refs <ID>       # 查引用（删前必跑）
+python scripts/story_tool.py validate        # 验证全部TXT
+python scripts/story_tool.py refs <ID>       # 查引用（删前必跑）
 python scripts/renumber_events.py            # 全局重编号
 python scripts/renumber_events.py --dry-run  # 预览变更
 ```
@@ -155,7 +155,7 @@ Seraphina永远是强者——共享是双方同意的体验，回归是情感�
 ## 五、文档依赖链
 
 ```
-docs/event/{章节}/*.TXT     ← ★ 章节唯一权威源
+docs/story/{章节}/*.TXT     ← ★ 章节唯一权威源
 ├── _TEMPLATE.TXT            ← 新章节模板
 ├── chapter/                 ← 系统指令+概念文件
 │   ├── _章节追踪指令.TXT    ← 玩家上下文驱动的重构流程
@@ -171,9 +171,9 @@ docs/event/{章节}/*.TXT     ← ★ 章节唯一权威源
 ├── affection/               ← 好感度分级
 scripts/
 ├── build_eldoria.py         ← TXT→世界书JSON（逐字段对齐俺妹格式）
-├── event_tool.py            ← 验证/列表/查看/引用扫描
+├── story_tool.py            ← 验证/列表/查看/引用扫描
 ├── renumber_events.py       ← 全局重编号引擎
-├── generate_event_browser.py ← 全章节浏览器生成器(V5.0 角色×阶段分类)
+├── generate_chapter_browser.py ← 全章节浏览器生成器(V5.0 角色×阶段分类)
 └── rebuild_all.py           ← 一键重建(build→browser)
 开场白.txt                   ← 首个消息（含<overall>状态块）
 output/Eldoria_V10.3.0.json  ← 派生产物，不可手动编辑

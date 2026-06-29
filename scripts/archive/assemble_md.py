@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 """
-assemble_md.py — 从 docs/event/{prefix}/*.TXT 组装 05_事件系统.md 索引
+assemble_md.py — 从 docs/story/{prefix}/*.TXT 组装 05_章节系统.md 索引
 
-零硬编码：事件ID/名称/排序全部由TXT文件驱动。
+零硬编码：章节ID/名称/排序全部由TXT文件驱动。
 章节分组由 assign_chapters.DEFAULT_CHAPTERS 提供。
-Section标题映射为30行元数据config，不含任何事件数据。
+Section标题映射为30行元数据config，不含任何章节数据。
 
-输出：docs/05_事件系统.md（仅索引——无事件正文）
+输出：docs/05_章节系统.md（仅索引——无章节正文）
 """
 
 import os, re, sys
 from collections import OrderedDict
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EVENT_DIR = os.path.join(PROJECT_DIR, 'docs', 'event')
-MD_PATH = os.path.join(PROJECT_DIR, 'docs', '05_事件系统.md')
+EVENT_DIR = os.path.join(PROJECT_DIR, 'docs', 'story')
+MD_PATH = os.path.join(PROJECT_DIR, 'docs', '05_章节系统.md')
 BACKUP_DIR = os.path.join(PROJECT_DIR, 'backups')
 
 # 元数据从共享模块导入
-from event_config import SECTION_TITLES, SHORT_LABELS, ALL_PREFIXES
+from story_config import SECTION_TITLES, SHORT_LABELS, ALL_PREFIXES
 SECTION_NUMBERING = ['二', '三', '四', '五', '六', '七', '八', '九', '十']
 
 # ═══════════════════════════════════════════════════════════
@@ -61,7 +61,7 @@ def parse_txt(filepath):
 
 
 def list_all_events():
-    """Scan docs/event/ and return OrderedDict {eid: {prefix, name, filepath}}."""
+    """Scan docs/story/ and return OrderedDict {eid: {prefix, name, filepath}}."""
     events = OrderedDict()
     for prefix in SECTION_TITLES:
         pfx_dir = os.path.join(EVENT_DIR, prefix)
@@ -124,9 +124,9 @@ def generate_header():
             return m.group(1).rstrip() + '\n'
     # Fallback header
     return (
-        '# 05 — 事件系统\n\n'
-        '> **版本**: v6.5 | **自动生成** | 事件本体在 docs/event/ 子文件中\n'
-        '> 本文档为**索引**——不含事件正文。增删改移事件请操作 docs/event/ 目录下的TXT文件。\n\n'
+        '# 05 — 章节系统\n\n'
+        '> **版本**: v6.5 | **自动生成** | 章节本体在 docs/story/ 子文件中\n'
+        '> 本文档为**索引**——不含章节正文。增删改移章节请操作 docs/story/ 目录下的TXT文件。\n\n'
         '---\n'
     )
 
@@ -146,7 +146,7 @@ def generate_summary(events):
             lines.append(f'  {label}: {counts[pfx]}个')
             total += counts[pfx]
     lines.append('  ──')
-    lines.append(f'  总计: {total}个事件')
+    lines.append(f'  总计: {total}个章节')
     lines.append('```')
     return '\n'.join(lines)
 
@@ -219,10 +219,10 @@ def generate_chapter_architecture(chapters):
 # ═══════════════════════════════════════════════════════════
 
 def assemble_md(dry_run=False):
-    """Assemble 05_事件系统.md from TXT files."""
-    print('[assemble] 扫描 docs/event/ ...')
+    """Assemble 05_章节系统.md from TXT files."""
+    print('[assemble] 扫描 docs/story/ ...')
     events = list_all_events()
-    print(f'  发现 {len(events)} 个事件 ({len(SECTION_TITLES)} 个类别)')
+    print(f'  发现 {len(events)} 个章节 ({len(SECTION_TITLES)} 个类别)')
 
     print('[assemble] 加载章节映射 ...')
     chapters = load_chapter_map()

@@ -1,8 +1,8 @@
-# 世界书事件全局润色提示词
+# 世界书章节全局润色提示词
 
-> **用途**：逐事件润色，消除违规表述，保留人物活人感
-> **目标文件**：`docs/event/{0-8章节}/*.TXT`（~286个事件）
-> **前置**：务必先阅读 `docs/event/_TEMPLATE_RULES.md` 全文和 `CLAUDE.md` §3-§4
+> **用途**：逐章节润色，消除违规表述，保留人物活人感
+> **目标文件**：`docs/story/{0-8章节}/*.TXT`（~302个章节）
+> **前置**：务必先阅读 `docs/story/_TEMPLATE_RULES.md` 全文和 `CLAUDE.md` §3-§4
 > **版本**：V1.0 · 2026-06-28
 
 ---
@@ -215,7 +215,7 @@
 ```
 1. 按章节顺序处理（0：序章 → 8：后日谈）
 2. 每个事件：阅读→Step 2逐条检查→修改→自检→下一个
-3. 每完成一个章节，跑 python scripts/event_tool.py validate 确认
+3. 每完成一个章节，跑 python scripts/story_tool.py validate 确认
 4. 全章节完成后，跑 python scripts/rebuild_all.py 构建验证
 ```
 

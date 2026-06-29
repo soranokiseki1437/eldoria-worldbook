@@ -3,7 +3,7 @@
 assign_chapters.py — 章节-事件映射权威数据源
 =============================
 DEFAULT_CHAPTERS 是章节↔事件映射的唯一权威数据。
-被 update_chapter_map.py / build_eldoria.py / generate_event_browser.py 导入使用。
+被 update_chapter_map.py / build_eldoria.py / generate_chapter_browser.py 导入使用。
 
 V9.0: 单线纯爱NTRS融合线，170事件纯数字编号(01-170)，9章节目录。
 

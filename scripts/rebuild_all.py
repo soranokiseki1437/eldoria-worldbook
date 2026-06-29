@@ -8,7 +8,7 @@ rebuild_all.py — 一键全流程重建
 
 等价于:
   python scripts/build_eldoria.py
-  python scripts/generate_event_browser.py
+  python scripts/generate_chapter_browser.py
 """
 
 import sys, os, subprocess
@@ -35,19 +35,19 @@ def main():
     if validate:
         print('[pre-validate] 运行事件验证...')
         result = subprocess.run(
-            [sys.executable, os.path.join(SCRIPTS_DIR, 'event_tool.py'), 'validate'],
+            [sys.executable, os.path.join(SCRIPTS_DIR, 'story_tool.py'), 'validate'],
             cwd=os.path.dirname(SCRIPTS_DIR)
         )
         if result.returncode != 0:
             print('  ⚠️  验证发现警告（不阻塞构建）')
 
     run('build_eldoria.py')
-    run('generate_event_browser.py')
+    run('generate_chapter_browser.py')
 
     print(f'\n{"="*60}')
     print('  ✅ 全流程重建完成')
     print(f'     输出: output/Eldoria_V10.1.0.json')
-    print(f'     浏览器: visual/全事件浏览器.html')
+    print(f'     浏览器: visual/全章节浏览器.html')
     print(f'{"="*60}')
 
 

@@ -2,7 +2,7 @@
 """
 build_eldoria.py — Eldoria 世界书 JSON 构建脚本 (V10.3)
 ===========================================================
-权威数据源：docs/ 子目录全部TXT文件（chapter/ character/ world/ creature/ location/ npc/ event/）
+权威数据源：docs/ 子目录全部TXT文件（chapter/ character/ world/ creature/ location/ npc/ story/）
 派生产物：output/Eldoria_V10.3.0.json（本脚本输出，不可手动编辑）
 
 工作流：编辑 docs/ 下的 TXT 文件（权威数据源）→ 运行本脚本 → 产出 JSON
@@ -118,7 +118,7 @@ _ALL_EVENTS_CACHE = None
 
 
 def _load_all_events():
-    """从 docs/event/{prefix}/*.TXT 读取所有事件，返回{N##: {title, content, ...}, ...}"""
+    """从 docs/story/{prefix}/*.TXT 读取所有章节，返回{N##: {title, content, ...}, ...}"""
     global _ALL_EVENTS_CACHE
     if _ALL_EVENTS_CACHE is not None:
         return _ALL_EVENTS_CACHE
@@ -126,7 +126,7 @@ def _load_all_events():
     import re as _re
     import glob as _glob
 
-    _event_dir = os.path.join(PROJECT_DIR, 'docs', 'event')
+    _event_dir = os.path.join(PROJECT_DIR, 'docs', 'story')
     _ALL_EVENTS_CACHE = {}
 
     for _prefix_dir in sorted(os.listdir(_event_dir)):
@@ -599,7 +599,7 @@ def build(dry_run=False):
     ref_const = sum(1 for e in ref_entries if e.get('constant'))
     print(f"[step 1] Reference条目 (docs/子目录TXT驱动): {len(ref_entries)} 条 ({ref_const} 始终触发)")
 
-    # 2. Event entries: docs/event/{章节}/*.TXT
+    # 2. Chapter entries: docs/story/{章节}/*.TXT
     # Events loaded via _REGISTRY collector (keeps existing mechanism)
     event_labels = []
     for ch_dir, ch_label in [('0：序章', '2ch0'), ('1：试探和暧昧', '2ch1'),

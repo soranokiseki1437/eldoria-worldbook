@@ -46,14 +46,14 @@
 │
 ├── scripts/                        # 构建与工具
 │   ├── event_config.py             # 共享chapter元数据
-│   ├── event_tool.py               # 验证 · 列表 · 引用扫描（Rule1-9）
+│   ├── story_tool.py               # 验证 · 列表 · 引用扫描（Rule1-9）
 │   ├── renumber_events.py          # 全局重编号引擎（核心）
 │   ├── build_eldoria.py            # TXT → 世界书JSON
 │   ├── assign_chapters.py          # DEFAULT_CHAPTERS权威数据源
 │   ├── update_chapter_map.py       # 章节映射报告
 │   ├── rebuild_all.py              # 一键全流程（build→browser）
 │   ├── backup_restore.py           # 版本备份管理
-│   └── generate_event_browser.py   # 直接读TXT → 可视化HTML浏览器
+│   └── generate_chapter_browser.py   # 直接读TXT → 可视化HTML浏览器
 │
 ├── output/                         # 构建产物（不可手动编辑）
 │   └── Eldoria_V*.json
@@ -70,10 +70,10 @@
 ## 工作流
 
 ```
-docs/event/{章节}/*.TXT   ← ★ 事件唯一权威源（170个独立文件）
+docs/story/{章节}/*.TXT   ← ★ 章节唯一权威源（302个独立文件）
     │
     ├── build_eldoria.py 直接读TXT ──→ output/Eldoria_V*.json
-    └── event_tool.py 读TXT ──→ 验证 / 列表 / 引用扫描
+    └── story_tool.py 读TXT ──→ 验证 / 列表 / 引用扫描
 
 rebuild_all.py = build → browser 一键完成
 ```
@@ -84,8 +84,8 @@ rebuild_all.py = build → browser 一键完成
 |---|------|
 | 1 | **TXT文件是唯一权威数据源** — 绝不手动编辑 JSON |
 | 2 | **修改流程**：编辑TXT → `python scripts/rebuild_all.py` |
-| 3 | **增删移事件**：操作TXT → `python scripts/renumber_events.py` → `rebuild_all.py` |
-| 4 | **删前必查引用**：`python scripts/event_tool.py refs <ID>` |
+| 3 | **增删移章节**：操作TXT → `python scripts/renumber_events.py` → `rebuild_all.py` |
+| 4 | **删前必查引用**：`python scripts/story_tool.py refs <ID>` |
 | 5 | **参照 CLAUDE.md** — 所有内容编辑遵循写作铁律 |
 
 ### 常用命令
@@ -95,13 +95,13 @@ rebuild_all.py = build → browser 一键完成
 python scripts/rebuild_all.py
 
 # 验证全部TXT
-python scripts/event_tool.py validate
+python scripts/story_tool.py validate
 
-# 查找事件引用（删前必查）
-python scripts/event_tool.py refs <ID>
+# 查找章节引用（删前必查）
+python scripts/story_tool.py refs <ID>
 
-# 查看事件内容
-python scripts/event_tool.py show <ID>
+# 查看章节内容
+python scripts/story_tool.py show <ID>
 
 # 重编号（增删移事件后运行）
 python scripts/renumber_events.py
@@ -135,7 +135,7 @@ python scripts/backup_restore.py backup "说明"
 | 了解世界观概念 | `docs/world/` |
 | 浏览事件 | `visual/全事件浏览器.html` |
 | 浏览事件详情 | `visual/全事件浏览器.html` |
-| 新增/修改事件 | `docs/event/_TEMPLATE_RULES.md` |
+| 新增/修改章节 | `docs/story/_TEMPLATE_RULES.md` |
 
 ---
 
