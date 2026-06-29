@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eldoria 全事件浏览器 - V4.7.1</title>
+<title>Eldoria 全章节浏览器 - V5.0</title>
 <style>
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -170,10 +170,10 @@
 </head>
 <body>
 <div class="topbar">
-<h1>Eldoria 全事件浏览器</h1>
-<span class="stats-inline">共 <em>302</em> 事件 &middot; 已完善 <em>302</em> &middot; NSFW <em>166</em> &middot; SFW <em>136</em> &middot; <em>V4.7.1</em></span>
+<h1>Eldoria 全章节浏览器</h1>
+<span class="stats-inline">共 <em>302</em> 章节 &middot; 已完善 <em>302</em> &middot; NSFW <em>166</em> &middot; SFW <em>136</em> &middot; <em>V5.0</em></span>
 <div class="topbar-row">
-<input type="text" class="search-input" id="searchInput" placeholder="🔍 搜索事件 (Ctrl+K) - ID / 名称 / 关键词">
+<input type="text" class="search-input" id="searchInput" placeholder="🔍 搜索章节 (Ctrl+K) - ID / 名称 / 关键词">
 <div class="filter-section" id="filterPrefix">
 <h3 onclick="toggleFilter(this)">📂 前缀</h3>
 <div class="filter-btns" id="prefixFilters">
@@ -195,7 +195,7 @@
 <button class="filter-btn type-btn active" data-filter="tag" data-value="all">全部</button>
 <button class="filter-btn type-btn" data-filter="tag" data-value="SFW">SFW(136)</button>
 <button class="filter-btn type-btn" data-filter="tag" data-value="NSFW">NSFW(166)</button>
-<button class="filter-btn type-btn" data-filter="tag" data-value="足交">足交(40)</button>
+<button class="filter-btn type-btn" data-filter="tag" data-value="足交">足交(28)</button>
 <button class="filter-btn type-btn" data-filter="tag" data-value="本番">本番(34)</button>
 <button class="filter-btn type-btn" data-filter="tag" data-value="手交">手交(29)</button>
 <button class="filter-btn type-btn" data-filter="tag" data-value="口交">口交(108)</button>
@@ -203,8 +203,6 @@
 <button class="filter-btn type-btn" data-filter="tag" data-value="腿交">腿交(1)</button>
 <button class="filter-btn type-btn" data-filter="tag" data-value="隐奸">隐奸(11)</button>
 <button class="filter-btn type-btn" data-filter="tag" data-value="群交">群交(2)</button>
-<button class="filter-btn type-btn" data-filter="tag" data-value="NTRS">NTRS(221)</button>
-<button class="filter-btn type-btn" data-filter="tag" data-value="共通">共通(81)</button>
 </div>
 </div>
 <div class="filter-section" id="filterChapter">
@@ -225,24 +223,23 @@
 <h3 onclick="toggleFilter(this)">👤 角色</h3>
 <div class="filter-btns" id="characterFilters">
 <button class="filter-btn char-btn active" data-filter="character" data-value="all">全部</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="Seraphina">Seraphina(254)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="黎恩">黎恩(302)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="凯尔">凯尔(65)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="艾玛">艾玛(59)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="劳拉">劳拉(36)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="菲">菲(46)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="亚莉莎">亚莉莎(40)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="玲">玲(13)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="爱丽榭">爱丽榭(15)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="亚尔缇娜">亚尔缇娜(33)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="乔治">乔治(42)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="艾德里安">艾德里安(48)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="雷恩">雷恩(55)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="奥蕾莉亚">奥蕾莉亚(29)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="多尔金">多尔金(38)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="哈根">哈根(41)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="法林">法林(40)</button>
-<button class="filter-btn char-btn" data-filter="character" data-value="罗恩">罗恩(21)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="凯尔">凯尔(36)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="艾玛">艾玛(26)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="劳拉">劳拉(8)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="菲">菲(18)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="亚莉莎">亚莉莎(16)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="玲">玲(5)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="爱丽榭">爱丽榭(3)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="亚尔缇娜">亚尔缇娜(15)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="乔治">乔治(25)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="艾德里安">艾德里安(27)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="雷恩">雷恩(25)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="奥蕾莉亚">奥蕾莉亚(14)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="多尔金">多尔金(13)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="哈根">哈根(13)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="法林">法林(8)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="罗恩">罗恩(6)</button>
+<button class="filter-btn char-btn" data-filter="character" data-value="加尔">加尔(4)</button>
 </div>
 </div>
 </div></div>
@@ -264,7 +261,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -288,7 +284,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -312,7 +307,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -336,7 +330,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -360,7 +353,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -385,7 +377,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -399,7 +390,6 @@ const EVENTS = [
       "Seraphina",
       "黎恩",
       "劳拉",
-      "亚莉莎",
       "乔治"
     ]
   },
@@ -412,7 +402,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -438,7 +427,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -452,9 +440,7 @@ const EVENTS = [
       "Seraphina",
       "黎恩",
       "艾玛",
-      "劳拉",
-      "菲",
-      "亚莉莎"
+      "菲"
     ]
   },
   {
@@ -466,7 +452,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -490,7 +475,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -502,12 +486,7 @@ const EVENTS = [
     "prefix_color": "#4facfe",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "艾玛",
-      "劳拉",
-      "菲",
-      "亚莉莎",
-      "乔治"
+      "黎恩"
     ]
   },
   {
@@ -519,7 +498,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -548,7 +526,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -572,7 +549,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -596,7 +572,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -620,7 +595,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -632,9 +606,7 @@ const EVENTS = [
     "prefix_color": "#4facfe",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "菲",
-      "乔治"
+      "黎恩"
     ]
   },
   {
@@ -646,7 +618,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -670,7 +641,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -694,7 +664,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -718,7 +687,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -742,7 +710,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "足交",
       "本番",
@@ -769,7 +736,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -793,7 +759,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "本番",
       "手交"
@@ -819,7 +784,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "足交",
       "本番",
@@ -834,8 +798,7 @@ const EVENTS = [
     "prefix_color": "#4facfe",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "罗恩"
+      "黎恩"
     ]
   },
   {
@@ -847,7 +810,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "足交",
       "本番",
@@ -875,7 +837,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "足交",
       "本番",
@@ -903,7 +864,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "口交"
     ],
@@ -928,7 +888,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -957,7 +916,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -981,7 +939,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1005,7 +962,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1029,7 +985,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1053,7 +1008,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1065,8 +1019,7 @@ const EVENTS = [
     "prefix_color": "#4facfe",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "艾玛"
+      "黎恩"
     ]
   },
   {
@@ -1078,7 +1031,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1102,7 +1054,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1115,9 +1066,8 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "多尔金",
-      "哈根",
-      "法林"
+      "菲娜",
+      "菲"
     ]
   },
   {
@@ -1129,7 +1079,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1142,9 +1091,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "多尔金",
-      "哈根",
-      "法林"
+      "多尔金"
     ]
   },
   {
@@ -1156,7 +1103,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1182,7 +1128,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1193,11 +1138,9 @@ const EVENTS = [
     "prefix_name": "序章：苏醒与相遇",
     "prefix_color": "#4facfe",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "亚尔缇娜",
-      "多尔金",
-      "哈根",
-      "法林"
+      "亚尔缇娜"
     ]
   },
   {
@@ -1209,7 +1152,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1233,7 +1175,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1258,7 +1199,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1282,7 +1222,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1306,7 +1245,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1331,7 +1269,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1342,11 +1279,9 @@ const EVENTS = [
     "prefix_name": "序章：苏醒与相遇",
     "prefix_color": "#4facfe",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "劳拉",
-      "菲",
-      "艾德里安",
-      "奥蕾莉亚"
+      "艾德里安"
     ]
   },
   {
@@ -1358,7 +1293,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1383,7 +1317,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1394,6 +1327,7 @@ const EVENTS = [
     "prefix_name": "序章：苏醒与相遇",
     "prefix_color": "#4facfe",
     "characters": [
+      "Seraphina",
       "黎恩",
       "凯尔"
     ]
@@ -1407,7 +1341,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1433,7 +1366,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1446,8 +1378,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "玲",
-      "亚尔缇娜"
+      "玲"
     ]
   },
   {
@@ -1459,7 +1390,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1470,6 +1400,7 @@ const EVENTS = [
     "prefix_name": "序章：苏醒与相遇",
     "prefix_color": "#4facfe",
     "characters": [
+      "Seraphina",
       "黎恩",
       "艾德里安"
     ]
@@ -1483,7 +1414,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1494,6 +1424,7 @@ const EVENTS = [
     "prefix_name": "序章：苏醒与相遇",
     "prefix_color": "#4facfe",
     "characters": [
+      "Seraphina",
       "黎恩",
       "雷恩"
     ]
@@ -1507,7 +1438,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1518,6 +1448,7 @@ const EVENTS = [
     "prefix_name": "序章：苏醒与相遇",
     "prefix_color": "#4facfe",
     "characters": [
+      "Seraphina",
       "黎恩",
       "凯尔"
     ]
@@ -1531,7 +1462,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1544,17 +1474,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "艾玛",
-      "劳拉",
-      "菲",
-      "亚莉莎",
-      "玲",
-      "爱丽榭",
-      "亚尔缇娜",
-      "艾德里安",
-      "雷恩",
-      "奥蕾莉亚"
+      "亚莉莎"
     ]
   },
   {
@@ -1566,7 +1486,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1578,10 +1497,7 @@ const EVENTS = [
     "prefix_color": "#4facfe",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔",
-      "艾德里安",
-      "雷恩"
+      "黎恩"
     ]
   },
   {
@@ -1593,7 +1509,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1605,18 +1520,7 @@ const EVENTS = [
     "prefix_color": "#4facfe",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔",
-      "艾玛",
-      "劳拉",
-      "菲",
-      "亚莉莎",
-      "玲",
-      "爱丽榭",
-      "亚尔缇娜",
-      "乔治",
-      "艾德里安",
-      "雷恩"
+      "黎恩"
     ]
   },
   {
@@ -1628,7 +1532,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1641,10 +1544,10 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾玛",
+      "菲娜",
+      "菲",
       "玲",
-      "爱丽榭",
-      "奥蕾莉亚"
+      "爱丽榭"
     ]
   },
   {
@@ -1656,7 +1559,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1680,7 +1582,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1693,11 +1594,9 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "艾玛",
-      "乔治",
-      "艾德里安",
-      "雷恩"
+      "菲娜",
+      "菲",
+      "艾德里安"
     ]
   },
   {
@@ -1709,7 +1608,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1733,7 +1631,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1757,7 +1654,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "足交",
       "本番",
@@ -1784,7 +1680,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1808,7 +1703,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1832,7 +1726,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "口交"
     ],
@@ -1858,7 +1751,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1870,8 +1762,7 @@ const EVENTS = [
     "prefix_color": "#f093fb",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "雷恩"
+      "黎恩"
     ]
   },
   {
@@ -1883,7 +1774,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1907,7 +1797,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交"
     ],
@@ -1920,8 +1809,7 @@ const EVENTS = [
     "prefix_color": "#f093fb",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔"
+      "黎恩"
     ]
   },
   {
@@ -1933,7 +1821,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1945,8 +1832,7 @@ const EVENTS = [
     "prefix_color": "#f093fb",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "劳拉"
+      "黎恩"
     ]
   },
   {
@@ -1958,7 +1844,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1970,11 +1855,7 @@ const EVENTS = [
     "prefix_color": "#f093fb",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "劳拉",
-      "菲",
-      "亚莉莎",
-      "爱丽榭"
+      "黎恩"
     ]
   },
   {
@@ -1986,7 +1867,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -1999,10 +1879,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "乔治",
-      "多尔金",
-      "哈根",
-      "法林"
+      "乔治"
     ]
   },
   {
@@ -2014,7 +1891,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2027,13 +1903,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "劳拉",
-      "菲",
-      "亚莉莎",
-      "乔治",
-      "艾德里安",
-      "雷恩"
+      "乔治"
     ]
   },
   {
@@ -2045,7 +1915,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交"
     ],
@@ -2059,8 +1928,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "亚尔缇娜"
+      "凯尔"
     ]
   },
   {
@@ -2072,7 +1940,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2084,10 +1951,7 @@ const EVENTS = [
     "prefix_color": "#f093fb",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔",
-      "菲",
-      "罗恩"
+      "黎恩"
     ]
   },
   {
@@ -2099,7 +1963,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -2113,7 +1976,6 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾玛",
       "艾德里安"
     ]
   },
@@ -2126,7 +1988,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2137,6 +1998,7 @@ const EVENTS = [
     "prefix_name": "试探和暧昧",
     "prefix_color": "#f093fb",
     "characters": [
+      "Seraphina",
       "黎恩",
       "亚尔缇娜",
       "哈根"
@@ -2151,7 +2013,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2164,9 +2025,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "劳拉",
-      "艾德里安",
-      "雷恩"
+      "艾德里安"
     ]
   },
   {
@@ -2178,7 +2037,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2191,11 +2049,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "菲",
-      "亚莉莎",
-      "玲",
-      "乔治",
-      "艾德里安"
+      "亚莉莎"
     ]
   },
   {
@@ -2207,7 +2061,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2219,17 +2072,7 @@ const EVENTS = [
     "prefix_color": "#f093fb",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔",
-      "劳拉",
-      "菲",
-      "亚莉莎",
-      "玲",
-      "爱丽榭",
-      "亚尔缇娜",
-      "乔治",
-      "艾德里安",
-      "雷恩"
+      "黎恩"
     ]
   },
   {
@@ -2241,7 +2084,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2253,9 +2095,7 @@ const EVENTS = [
     "prefix_color": "#f093fb",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "菲",
-      "奥蕾莉亚"
+      "黎恩"
     ]
   },
   {
@@ -2267,7 +2107,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交"
     ],
@@ -2293,7 +2132,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -2319,7 +2157,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2344,7 +2181,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2369,7 +2205,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -2394,7 +2229,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2419,7 +2253,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2444,7 +2277,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2457,8 +2289,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "雷恩",
-      "哈根"
+      "雷恩"
     ]
   },
   {
@@ -2470,7 +2301,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -2483,8 +2313,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "雷恩",
-      "哈根"
+      "雷恩"
     ]
   },
   {
@@ -2496,7 +2325,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2508,8 +2336,7 @@ const EVENTS = [
     "prefix_color": "#f093fb",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "艾玛"
+      "黎恩"
     ]
   },
   {
@@ -2521,7 +2348,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -2546,7 +2372,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -2571,7 +2396,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -2596,7 +2420,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2609,8 +2432,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾德里安",
-      "雷恩"
+      "艾德里安"
     ]
   },
   {
@@ -2622,7 +2444,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交"
     ],
@@ -2648,7 +2469,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -2673,7 +2493,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -2698,7 +2517,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2710,12 +2528,7 @@ const EVENTS = [
     "prefix_color": "#f093fb",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔",
-      "乔治",
-      "艾德里安",
-      "雷恩",
-      "罗恩"
+      "黎恩"
     ]
   },
   {
@@ -2727,7 +2540,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2752,7 +2564,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -2776,7 +2587,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番"
     ],
@@ -2801,7 +2611,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2813,9 +2622,7 @@ const EVENTS = [
     "prefix_color": "#f093fb",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "菲",
-      "乔治"
+      "黎恩"
     ]
   },
   {
@@ -2827,7 +2634,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -2841,9 +2647,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾德里安",
-      "多尔金",
-      "哈根"
+      "艾德里安"
     ]
   },
   {
@@ -2855,11 +2659,9 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
-      "NSFW",
-      "足交"
+      "NSFW"
     ],
-    "nsfw_level": "足交",
+    "nsfw_level": "NSFW",
     "has_branches": false,
     "has_yaml": true,
     "is_summary": false,
@@ -2869,9 +2671,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "亚莉莎",
-      "亚尔缇娜"
+      "凯尔"
     ]
   },
   {
@@ -2883,7 +2683,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2908,7 +2707,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2921,8 +2719,6 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "劳拉",
-      "雷恩",
       "奥蕾莉亚"
     ]
   },
@@ -2935,7 +2731,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2959,7 +2754,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2970,9 +2764,9 @@ const EVENTS = [
     "prefix_name": "挑逗和接受",
     "prefix_color": "#fa709a",
     "characters": [
+      "Seraphina",
       "黎恩",
       "亚尔缇娜",
-      "哈根",
       "法林"
     ]
   },
@@ -2985,7 +2779,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -2996,11 +2789,9 @@ const EVENTS = [
     "prefix_name": "挑逗和接受",
     "prefix_color": "#fa709a",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "凯尔",
-      "菲",
-      "亚莉莎",
-      "罗恩"
+      "亚莉莎"
     ]
   },
   {
@@ -3012,7 +2803,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -3037,7 +2827,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -3049,8 +2838,7 @@ const EVENTS = [
     "prefix_color": "#fa709a",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "雷恩"
+      "黎恩"
     ]
   },
   {
@@ -3062,7 +2850,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -3075,10 +2862,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾玛",
-      "雷恩",
-      "哈根",
-      "法林"
+      "哈根"
     ]
   },
   {
@@ -3090,7 +2874,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -3115,7 +2898,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -3139,7 +2921,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -3152,8 +2933,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "乔治",
-      "雷恩"
+      "乔治"
     ]
   },
   {
@@ -3165,7 +2945,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -3191,7 +2970,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -3204,8 +2982,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾德里安",
-      "雷恩"
+      "艾德里安"
     ]
   },
   {
@@ -3217,7 +2994,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -3243,7 +3019,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番",
       "口交"
@@ -3257,8 +3032,7 @@ const EVENTS = [
     "prefix_color": "#fa709a",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "艾德里安"
+      "黎恩"
     ]
   },
   {
@@ -3270,11 +3044,9 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
-      "NSFW",
-      "足交"
+      "NSFW"
     ],
-    "nsfw_level": "足交",
+    "nsfw_level": "NSFW",
     "has_branches": false,
     "has_yaml": true,
     "is_summary": false,
@@ -3284,8 +3056,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "亚尔缇娜"
+      "凯尔"
     ]
   },
   {
@@ -3297,7 +3068,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -3308,8 +3078,8 @@ const EVENTS = [
     "prefix_name": "挑逗和接受",
     "prefix_color": "#fa709a",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "劳拉",
       "奥蕾莉亚"
     ]
   },
@@ -3322,7 +3092,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交",
       "口交"
@@ -3349,7 +3118,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交"
     ],
@@ -3375,7 +3143,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番",
       "口交"
@@ -3401,7 +3168,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -3412,15 +3178,9 @@ const EVENTS = [
     "prefix_name": "渐进接触",
     "prefix_color": "#f5576c",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "劳拉",
-      "菲",
-      "亚莉莎",
-      "艾德里安",
-      "雷恩",
-      "奥蕾莉亚",
-      "多尔金",
-      "法林"
+      "多尔金"
     ]
   },
   {
@@ -3432,7 +3192,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -3446,8 +3205,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "亚尔缇娜"
+      "凯尔"
     ]
   },
   {
@@ -3459,7 +3217,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交",
       "手交",
@@ -3487,7 +3244,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -3500,11 +3256,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾玛",
-      "多尔金",
-      "哈根",
-      "法林",
-      "罗恩"
+      "法林"
     ]
   },
   {
@@ -3516,7 +3268,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -3529,11 +3280,7 @@ const EVENTS = [
     "prefix_color": "#f5576c",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "爱丽榭",
-      "多尔金",
-      "哈根",
-      "法林"
+      "黎恩"
     ]
   },
   {
@@ -3545,7 +3292,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交",
       "口交"
@@ -3560,8 +3306,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "玲",
-      "艾德里安"
+      "玲"
     ]
   },
   {
@@ -3573,7 +3318,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交"
     ],
@@ -3587,9 +3331,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "菲",
-      "玲",
-      "亚尔缇娜"
+      "玲"
     ]
   },
   {
@@ -3601,7 +3343,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -3613,10 +3354,10 @@ const EVENTS = [
     "prefix_name": "渐进接触",
     "prefix_color": "#f5576c",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "亚莉莎",
-      "罗恩"
+      "罗恩",
+      "亚莉莎"
     ]
   },
   {
@@ -3628,7 +3369,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "隐奸"
     ],
@@ -3641,11 +3381,7 @@ const EVENTS = [
     "prefix_color": "#f5576c",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "劳拉",
-      "菲",
-      "亚莉莎",
-      "乔治"
+      "黎恩"
     ]
   },
   {
@@ -3657,7 +3393,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交"
     ],
@@ -3671,8 +3406,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "菲",
-      "玲"
+      "菲"
     ]
   },
   {
@@ -3684,7 +3418,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交"
     ],
@@ -3696,7 +3429,9 @@ const EVENTS = [
     "prefix_name": "渐进接触",
     "prefix_color": "#f5576c",
     "characters": [
+      "Seraphina",
       "黎恩",
+      "加尔",
       "奥蕾莉亚"
     ]
   },
@@ -3709,7 +3444,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -3720,10 +3454,9 @@ const EVENTS = [
     "prefix_name": "渐进接触",
     "prefix_color": "#f5576c",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "哈根",
-      "法林"
+      "艾玛"
     ]
   },
   {
@@ -3735,7 +3468,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交",
       "隐奸"
@@ -3749,11 +3481,7 @@ const EVENTS = [
     "prefix_color": "#f5576c",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "劳拉",
-      "菲",
-      "亚莉莎",
-      "乔治"
+      "黎恩"
     ]
   },
   {
@@ -3765,7 +3493,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -3776,11 +3503,10 @@ const EVENTS = [
     "prefix_name": "渐进接触",
     "prefix_color": "#f5576c",
     "characters": [
+      "Seraphina",
       "黎恩",
       "亚尔缇娜",
-      "多尔金",
-      "哈根",
-      "法林"
+      "多尔金"
     ]
   },
   {
@@ -3792,7 +3518,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -3804,7 +3529,9 @@ const EVENTS = [
     "prefix_color": "#f5576c",
     "characters": [
       "Seraphina",
-      "黎恩"
+      "黎恩",
+      "菲娜",
+      "菲"
     ]
   },
   {
@@ -3816,7 +3543,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交"
     ],
@@ -3842,7 +3568,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -3854,8 +3579,7 @@ const EVENTS = [
     "prefix_color": "#f5576c",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "奥蕾莉亚"
+      "黎恩"
     ]
   },
   {
@@ -3867,7 +3591,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交"
     ],
@@ -3893,7 +3616,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交",
       "口交"
@@ -3908,8 +3630,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "乔治"
+      "凯尔"
     ]
   },
   {
@@ -3921,7 +3642,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交"
     ],
@@ -3935,8 +3655,8 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "乔治"
+      "乔治",
+      "凯尔"
     ]
   },
   {
@@ -3948,7 +3668,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交",
       "口交",
@@ -3964,8 +3683,6 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "乔治",
       "艾德里安"
     ]
   },
@@ -3978,7 +3695,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交",
       "乳交"
@@ -4005,7 +3721,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交",
       "乳交"
@@ -4032,7 +3747,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -4044,9 +3758,7 @@ const EVENTS = [
     "prefix_color": "#f5576c",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "菲",
-      "奥蕾莉亚"
+      "黎恩"
     ]
   },
   {
@@ -4058,7 +3770,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交",
       "乳交"
@@ -4085,7 +3796,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交",
       "乳交"
@@ -4100,8 +3810,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "艾德里安"
+      "凯尔"
     ]
   },
   {
@@ -4113,7 +3822,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交",
       "口交"
@@ -4128,8 +3836,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "乔治",
-      "艾德里安"
+      "乔治"
     ]
   },
   {
@@ -4141,7 +3848,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -4167,7 +3873,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -4192,7 +3897,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交",
       "口交"
@@ -4219,7 +3923,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -4245,7 +3948,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -4257,10 +3959,7 @@ const EVENTS = [
     "prefix_color": "#f5576c",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔",
-      "乔治",
-      "雷恩"
+      "黎恩"
     ]
   },
   {
@@ -4272,7 +3971,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交",
       "本番"
@@ -4298,7 +3996,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -4324,7 +4021,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -4348,9 +4044,7 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
-      "足交",
       "口交"
     ],
     "nsfw_level": "口交",
@@ -4363,7 +4057,6 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "亚尔缇娜",
       "雷恩"
     ]
   },
@@ -4376,7 +4069,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番"
     ],
@@ -4401,7 +4093,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -4412,11 +4103,9 @@ const EVENTS = [
     "prefix_name": "跨线",
     "prefix_color": "#a8edea",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "多尔金",
-      "哈根",
-      "法林"
+      "艾玛"
     ]
   },
   {
@@ -4428,7 +4117,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交",
       "口交"
@@ -4442,8 +4130,7 @@ const EVENTS = [
     "prefix_color": "#a8edea",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "雷恩"
+      "黎恩"
     ]
   },
   {
@@ -4455,7 +4142,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -4466,11 +4152,9 @@ const EVENTS = [
     "prefix_name": "跨线",
     "prefix_color": "#a8edea",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "多尔金",
-      "哈根",
-      "法林"
+      "艾玛"
     ]
   },
   {
@@ -4482,7 +4166,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番",
       "口交"
@@ -4509,7 +4192,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -4522,11 +4204,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾玛",
-      "亚尔缇娜",
-      "多尔金",
-      "哈根",
-      "法林"
+      "亚尔缇娜"
     ]
   },
   {
@@ -4538,7 +4216,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -4562,7 +4239,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交"
     ],
@@ -4574,10 +4250,10 @@ const EVENTS = [
     "prefix_name": "跨线",
     "prefix_color": "#a8edea",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "劳拉",
-      "亚莉莎",
-      "罗恩"
+      "罗恩",
+      "亚莉莎"
     ]
   },
   {
@@ -4589,9 +4265,7 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
-      "足交",
       "本番",
       "口交"
     ],
@@ -4605,9 +4279,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "菲",
-      "亚尔缇娜"
+      "凯尔"
     ]
   },
   {
@@ -4619,7 +4291,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -4631,11 +4302,7 @@ const EVENTS = [
     "prefix_color": "#a8edea",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "艾玛",
-      "劳拉",
-      "菲",
-      "法林"
+      "黎恩"
     ]
   },
   {
@@ -4647,7 +4314,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交",
       "乳交"
@@ -4662,10 +4328,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾玛",
-      "多尔金",
-      "哈根",
-      "法林"
+      "哈根"
     ]
   },
   {
@@ -4677,7 +4340,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "乳交"
     ],
@@ -4689,7 +4351,9 @@ const EVENTS = [
     "prefix_name": "跨线",
     "prefix_color": "#a8edea",
     "characters": [
+      "Seraphina",
       "黎恩",
+      "加尔",
       "奥蕾莉亚"
     ]
   },
@@ -4702,9 +4366,7 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
-      "足交",
       "口交"
     ],
     "nsfw_level": "口交",
@@ -4717,8 +4379,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "亚尔缇娜"
+      "凯尔"
     ]
   },
   {
@@ -4730,7 +4391,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -4743,9 +4403,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "艾玛",
-      "菲"
+      "艾玛"
     ]
   },
   {
@@ -4757,7 +4415,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番"
     ],
@@ -4770,8 +4427,7 @@ const EVENTS = [
     "prefix_color": "#a8edea",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔"
+      "黎恩"
     ]
   },
   {
@@ -4783,7 +4439,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -4807,7 +4462,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交"
     ],
@@ -4819,9 +4473,9 @@ const EVENTS = [
     "prefix_name": "跨线",
     "prefix_color": "#a8edea",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "法林"
+      "艾玛"
     ]
   },
   {
@@ -4833,7 +4487,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -4847,7 +4500,6 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾德里安",
       "奥蕾莉亚"
     ]
   },
@@ -4860,7 +4512,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -4885,7 +4536,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -4897,8 +4547,7 @@ const EVENTS = [
     "prefix_color": "#a8edea",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔"
+      "黎恩"
     ]
   },
   {
@@ -4910,7 +4559,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交",
       "口交"
@@ -4937,7 +4585,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -4948,9 +4595,10 @@ const EVENTS = [
     "prefix_name": "跨线",
     "prefix_color": "#a8edea",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "雷恩",
-      "奥蕾莉亚"
+      "奥蕾莉亚",
+      "雷恩"
     ]
   },
   {
@@ -4962,7 +4610,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交",
       "手交",
@@ -4991,7 +4638,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交",
       "口交"
@@ -5006,8 +4652,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "雷恩"
+      "凯尔"
     ]
   },
   {
@@ -5019,7 +4664,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -5032,8 +4676,6 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "艾德里安",
       "雷恩"
     ]
   },
@@ -5046,7 +4688,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -5071,9 +4712,7 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
-      "足交",
       "口交"
     ],
     "nsfw_level": "口交",
@@ -5098,7 +4737,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -5110,12 +4748,7 @@ const EVENTS = [
     "prefix_color": "#43e97b",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔",
-      "艾玛",
-      "乔治",
-      "艾德里安",
-      "雷恩"
+      "黎恩"
     ]
   },
   {
@@ -5127,7 +4760,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -5138,11 +4770,9 @@ const EVENTS = [
     "prefix_name": "享受和掌控",
     "prefix_color": "#43e97b",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "多尔金",
-      "哈根",
-      "法林"
+      "艾玛"
     ]
   },
   {
@@ -5154,9 +4784,7 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
-      "足交",
       "本番",
       "口交",
       "隐奸"
@@ -5183,7 +4811,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -5195,13 +4822,7 @@ const EVENTS = [
     "prefix_color": "#43e97b",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔",
-      "劳拉",
-      "菲",
-      "乔治",
-      "艾德里安",
-      "雷恩"
+      "黎恩"
     ]
   },
   {
@@ -5213,7 +4834,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -5224,9 +4844,9 @@ const EVENTS = [
     "prefix_name": "享受和掌控",
     "prefix_color": "#43e97b",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "法林"
+      "艾玛"
     ]
   },
   {
@@ -5238,7 +4858,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "乳交"
     ],
@@ -5252,9 +4871,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "劳拉",
-      "菲",
-      "亚莉莎"
+      "劳拉"
     ]
   },
   {
@@ -5266,7 +4883,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交"
     ],
@@ -5280,7 +4896,9 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "爱丽榭"
+      "爱丽榭",
+      "菲娜",
+      "菲"
     ]
   },
   {
@@ -5292,7 +4910,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番",
       "口交"
@@ -5319,7 +4936,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交"
     ],
@@ -5331,10 +4947,9 @@ const EVENTS = [
     "prefix_name": "享受和掌控",
     "prefix_color": "#43e97b",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "哈根",
-      "法林"
+      "艾玛"
     ]
   },
   {
@@ -5346,7 +4961,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -5358,8 +4972,7 @@ const EVENTS = [
     "prefix_color": "#43e97b",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "艾德里安"
+      "黎恩"
     ]
   },
   {
@@ -5371,7 +4984,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -5383,15 +4995,7 @@ const EVENTS = [
     "prefix_color": "#43e97b",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔",
-      "艾玛",
-      "劳拉",
-      "菲",
-      "亚莉莎",
-      "乔治",
-      "艾德里安",
-      "雷恩"
+      "黎恩"
     ]
   },
   {
@@ -5403,7 +5007,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交",
       "隐奸"
@@ -5416,11 +5019,10 @@ const EVENTS = [
     "prefix_name": "享受和掌控",
     "prefix_color": "#43e97b",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "多尔金",
-      "哈根",
-      "法林"
+      "法林",
+      "艾玛"
     ]
   },
   {
@@ -5432,11 +5034,9 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
-      "NSFW",
-      "足交"
+      "NSFW"
     ],
-    "nsfw_level": "足交",
+    "nsfw_level": "NSFW",
     "has_branches": false,
     "has_yaml": true,
     "is_summary": false,
@@ -5446,9 +5046,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "劳拉",
-      "亚莉莎",
-      "爱丽榭"
+      "亚莉莎"
     ]
   },
   {
@@ -5460,7 +5058,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交",
       "群交"
@@ -5475,10 +5072,9 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
       "乔治",
-      "艾德里安",
-      "雷恩"
+      "凯尔",
+      "艾德里安"
     ]
   },
   {
@@ -5490,7 +5086,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交",
       "口交"
@@ -5503,10 +5098,10 @@ const EVENTS = [
     "prefix_name": "享受和掌控",
     "prefix_color": "#43e97b",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "哈根",
-      "法林"
+      "法林",
+      "艾玛"
     ]
   },
   {
@@ -5518,7 +5113,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交",
       "乳交"
@@ -5533,8 +5127,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "劳拉",
-      "雷恩"
+      "劳拉"
     ]
   },
   {
@@ -5546,7 +5139,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交",
       "口交"
@@ -5573,7 +5165,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -5587,8 +5178,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "劳拉",
-      "艾德里安"
+      "劳拉"
     ]
   },
   {
@@ -5600,7 +5190,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -5626,7 +5215,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番",
       "手交",
@@ -5642,13 +5230,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "劳拉",
-      "菲",
-      "亚莉莎",
-      "玲",
-      "爱丽榭",
-      "亚尔缇娜",
-      "艾德里安"
+      "劳拉"
     ]
   },
   {
@@ -5660,7 +5242,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交",
       "乳交"
@@ -5673,10 +5254,9 @@ const EVENTS = [
     "prefix_name": "享受和掌控",
     "prefix_color": "#43e97b",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "爱丽榭",
-      "法林"
+      "艾玛"
     ]
   },
   {
@@ -5688,7 +5268,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -5702,7 +5281,6 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾玛",
       "乔治"
     ]
   },
@@ -5715,7 +5293,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番",
       "口交"
@@ -5742,7 +5319,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交",
       "隐奸"
@@ -5755,11 +5331,10 @@ const EVENTS = [
     "prefix_name": "享受和掌控",
     "prefix_color": "#43e97b",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "多尔金",
-      "哈根",
-      "法林"
+      "法林",
+      "艾玛"
     ]
   },
   {
@@ -5771,7 +5346,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -5783,8 +5357,7 @@ const EVENTS = [
     "prefix_color": "#43e97b",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "罗恩"
+      "黎恩"
     ]
   },
   {
@@ -5796,7 +5369,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -5822,7 +5394,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -5848,7 +5419,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -5873,7 +5443,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番"
     ],
@@ -5887,7 +5456,9 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔"
+      "凯尔",
+      "菲娜",
+      "菲"
     ]
   },
   {
@@ -5899,7 +5470,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -5913,8 +5483,6 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "劳拉",
       "艾德里安"
     ]
   },
@@ -5927,7 +5495,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -5939,10 +5506,9 @@ const EVENTS = [
     "prefix_name": "享受和掌控",
     "prefix_color": "#43e97b",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "玲",
-      "法林"
+      "艾玛"
     ]
   },
   {
@@ -5954,7 +5520,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番",
       "口交"
@@ -5981,7 +5546,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交",
       "口交"
@@ -5996,8 +5560,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "亚尔缇娜"
+      "凯尔"
     ]
   },
   {
@@ -6009,7 +5572,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交"
     ],
@@ -6023,8 +5585,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "亚尔缇娜"
+      "凯尔"
     ]
   },
   {
@@ -6036,7 +5597,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交",
       "口交"
@@ -6051,8 +5611,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "亚莉莎"
+      "凯尔"
     ]
   },
   {
@@ -6064,7 +5623,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -6076,6 +5634,7 @@ const EVENTS = [
     "prefix_name": "享受和掌控",
     "prefix_color": "#43e97b",
     "characters": [
+      "Seraphina",
       "黎恩",
       "艾玛"
     ]
@@ -6089,7 +5648,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -6101,9 +5659,7 @@ const EVENTS = [
     "prefix_color": "#43e97b",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "菲",
-      "雷恩"
+      "黎恩"
     ]
   },
   {
@@ -6115,7 +5671,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番",
       "口交"
@@ -6142,7 +5697,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -6168,7 +5722,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -6181,10 +5734,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾玛",
-      "乔治",
-      "多尔金",
-      "法林"
+      "乔治"
     ]
   },
   {
@@ -6196,7 +5746,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交",
       "乳交",
@@ -6212,10 +5761,8 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾玛",
-      "多尔金",
       "哈根",
-      "法林"
+      "多尔金"
     ]
   },
   {
@@ -6227,7 +5774,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -6240,9 +5786,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "艾玛",
-      "菲"
+      "艾玛"
     ]
   },
   {
@@ -6254,7 +5798,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -6266,14 +5809,7 @@ const EVENTS = [
     "prefix_color": "#43e97b",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔",
-      "艾玛",
-      "爱丽榭",
-      "奥蕾莉亚",
-      "多尔金",
-      "哈根",
-      "罗恩"
+      "黎恩"
     ]
   },
   {
@@ -6285,7 +5821,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -6299,8 +5834,8 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "乔治",
-      "艾德里安"
+      "艾德里安",
+      "乔治"
     ]
   },
   {
@@ -6312,7 +5847,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交"
     ],
@@ -6338,7 +5872,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番",
       "口交"
@@ -6353,7 +5886,6 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾玛",
       "亚莉莎"
     ]
   },
@@ -6366,7 +5898,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -6392,7 +5923,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -6405,11 +5935,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "菲",
-      "亚莉莎",
-      "艾德里安",
-      "雷恩"
+      "艾德里安"
     ]
   },
   {
@@ -6421,7 +5947,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -6445,7 +5970,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交"
     ],
@@ -6459,11 +5983,6 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾玛",
-      "劳拉",
-      "菲",
-      "亚莉莎",
-      "玲",
       "亚尔缇娜"
     ]
   },
@@ -6476,11 +5995,9 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
-      "NSFW",
-      "足交"
+      "NSFW"
     ],
-    "nsfw_level": "足交",
+    "nsfw_level": "NSFW",
     "has_branches": false,
     "has_yaml": true,
     "is_summary": false,
@@ -6490,9 +6007,8 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "亚尔缇娜",
       "多尔金",
-      "哈根"
+      "亚尔缇娜"
     ]
   },
   {
@@ -6504,7 +6020,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番",
       "口交"
@@ -6519,8 +6034,8 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "雷恩"
+      "雷恩",
+      "凯尔"
     ]
   },
   {
@@ -6532,7 +6047,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番",
       "口交"
@@ -6559,7 +6073,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交",
       "隐奸"
@@ -6572,10 +6085,10 @@ const EVENTS = [
     "prefix_name": "放纵",
     "prefix_color": "#30cfd0",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "多尔金",
-      "法林"
+      "法林",
+      "艾玛"
     ]
   },
   {
@@ -6587,7 +6100,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交",
       "乳交"
@@ -6600,10 +6112,10 @@ const EVENTS = [
     "prefix_name": "放纵",
     "prefix_color": "#30cfd0",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "哈根",
-      "法林"
+      "法林",
+      "艾玛"
     ]
   },
   {
@@ -6615,7 +6127,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交",
       "隐奸"
@@ -6628,9 +6139,9 @@ const EVENTS = [
     "prefix_name": "放纵",
     "prefix_color": "#30cfd0",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "法林"
+      "艾玛"
     ]
   },
   {
@@ -6642,9 +6153,7 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
-      "足交",
       "口交"
     ],
     "nsfw_level": "口交",
@@ -6655,11 +6164,10 @@ const EVENTS = [
     "prefix_name": "放纵",
     "prefix_color": "#30cfd0",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "爱丽榭",
-      "亚尔缇娜",
-      "多尔金",
-      "哈根"
+      "哈根",
+      "亚尔缇娜"
     ]
   },
   {
@@ -6671,7 +6179,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交"
     ],
@@ -6697,7 +6204,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番",
       "口交"
@@ -6724,7 +6230,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "足交",
       "口交"
@@ -6739,7 +6244,9 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "雷恩"
+      "雷恩",
+      "菲娜",
+      "菲"
     ]
   },
   {
@@ -6751,7 +6258,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -6764,10 +6270,8 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾玛",
-      "多尔金",
       "哈根",
-      "法林"
+      "多尔金"
     ]
   },
   {
@@ -6779,7 +6283,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番"
     ],
@@ -6793,8 +6296,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "劳拉",
-      "亚莉莎"
+      "劳拉"
     ]
   },
   {
@@ -6806,7 +6308,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -6832,7 +6333,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交",
       "口交"
@@ -6859,7 +6359,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番",
       "口交"
@@ -6872,11 +6371,11 @@ const EVENTS = [
     "prefix_name": "放纵",
     "prefix_color": "#30cfd0",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "亚尔缇娜",
       "多尔金",
       "哈根",
-      "法林"
+      "亚尔缇娜"
     ]
   },
   {
@@ -6888,9 +6387,7 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
-      "足交",
       "口交",
       "乳交"
     ],
@@ -6916,7 +6413,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -6928,11 +6424,10 @@ const EVENTS = [
     "prefix_name": "放纵",
     "prefix_color": "#30cfd0",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "多尔金",
-      "哈根",
-      "法林"
+      "法林",
+      "艾玛"
     ]
   },
   {
@@ -6944,7 +6439,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交",
       "隐奸"
@@ -6959,8 +6453,8 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "多尔金",
-      "哈根"
+      "哈根",
+      "多尔金"
     ]
   },
   {
@@ -6972,7 +6466,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番",
       "口交"
@@ -6999,7 +6492,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -7025,7 +6517,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "隐奸"
     ],
@@ -7039,9 +6530,6 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "劳拉",
-      "菲",
-      "亚莉莎",
       "艾德里安"
     ]
   },
@@ -7054,7 +6542,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7065,11 +6552,9 @@ const EVENTS = [
     "prefix_name": "放纵",
     "prefix_color": "#30cfd0",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "亚尔缇娜",
-      "多尔金",
-      "哈根",
-      "法林"
+      "亚尔缇娜"
     ]
   },
   {
@@ -7081,7 +6566,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交",
       "口交",
@@ -7097,9 +6581,6 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "菲",
-      "亚莉莎",
-      "乔治",
       "艾德里安"
     ]
   },
@@ -7112,7 +6593,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "本番"
     ],
@@ -7138,7 +6618,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交",
       "口交"
@@ -7153,8 +6632,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "亚尔缇娜"
+      "凯尔"
     ]
   },
   {
@@ -7166,7 +6644,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7178,8 +6655,7 @@ const EVENTS = [
     "prefix_color": "#30cfd0",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "奥蕾莉亚"
+      "黎恩"
     ]
   },
   {
@@ -7191,7 +6667,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -7203,11 +6678,11 @@ const EVENTS = [
     "prefix_name": "放纵",
     "prefix_color": "#30cfd0",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "亚尔缇娜",
       "多尔金",
       "哈根",
-      "法林"
+      "亚尔缇娜"
     ]
   },
   {
@@ -7219,7 +6694,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -7245,7 +6719,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7258,9 +6731,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "多尔金",
-      "哈根",
-      "法林"
+      "多尔金"
     ]
   },
   {
@@ -7272,7 +6743,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -7298,7 +6768,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "手交",
       "口交"
@@ -7324,7 +6793,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "乳交"
     ],
@@ -7350,7 +6818,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -7363,7 +6830,6 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾玛",
       "雷恩"
     ]
   },
@@ -7376,7 +6842,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7388,10 +6853,7 @@ const EVENTS = [
     "prefix_color": "#30cfd0",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "艾玛",
-      "菲",
-      "奥蕾莉亚"
+      "黎恩"
     ]
   },
   {
@@ -7403,7 +6865,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -7427,7 +6888,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "乳交"
     ],
@@ -7452,7 +6912,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7464,12 +6923,7 @@ const EVENTS = [
     "prefix_color": "#30cfd0",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "艾玛",
-      "劳拉",
-      "菲",
-      "亚莉莎",
-      "雷恩"
+      "黎恩"
     ]
   },
   {
@@ -7481,7 +6935,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7505,7 +6958,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7529,7 +6981,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -7542,10 +6993,7 @@ const EVENTS = [
     "prefix_color": "#89f7fe",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔",
-      "艾德里安",
-      "雷恩"
+      "黎恩"
     ]
   },
   {
@@ -7557,7 +7005,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7569,13 +7016,7 @@ const EVENTS = [
     "prefix_color": "#89f7fe",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "艾玛",
-      "奥蕾莉亚",
-      "多尔金",
-      "哈根",
-      "法林",
-      "罗恩"
+      "黎恩"
     ]
   },
   {
@@ -7587,7 +7028,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7599,15 +7039,7 @@ const EVENTS = [
     "prefix_color": "#89f7fe",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔",
-      "艾玛",
-      "劳拉",
-      "菲",
-      "亚莉莎",
-      "雷恩",
-      "奥蕾莉亚",
-      "罗恩"
+      "黎恩"
     ]
   },
   {
@@ -7619,7 +7051,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7632,12 +7063,8 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "艾玛",
-      "菲",
-      "亚莉莎",
-      "奥蕾莉亚",
-      "多尔金"
+      "菲娜",
+      "菲"
     ]
   },
   {
@@ -7649,7 +7076,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "NSFW",
       "口交"
     ],
@@ -7662,8 +7088,7 @@ const EVENTS = [
     "prefix_color": "#89f7fe",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔"
+      "黎恩"
     ]
   },
   {
@@ -7675,7 +7100,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7687,10 +7111,7 @@ const EVENTS = [
     "prefix_color": "#89f7fe",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "劳拉",
-      "奥蕾莉亚",
-      "多尔金"
+      "黎恩"
     ]
   },
   {
@@ -7702,7 +7123,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7726,7 +7146,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7750,7 +7169,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7762,17 +7180,7 @@ const EVENTS = [
     "prefix_color": "#89f7fe",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔",
-      "劳拉",
-      "菲",
-      "亚莉莎",
-      "爱丽榭",
-      "雷恩",
-      "奥蕾莉亚",
-      "多尔金",
-      "哈根",
-      "法林"
+      "黎恩"
     ]
   },
   {
@@ -7784,7 +7192,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "NTRS",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7796,10 +7203,7 @@ const EVENTS = [
     "prefix_color": "#89f7fe",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "爱丽榭",
-      "多尔金",
-      "罗恩"
+      "黎恩"
     ]
   },
   {
@@ -7811,7 +7215,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "足交",
       "口交"
@@ -7826,9 +7229,7 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "凯尔",
-      "亚尔缇娜",
-      "罗恩"
+      "凯尔"
     ]
   },
   {
@@ -7840,7 +7241,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "口交"
     ],
@@ -7853,9 +7253,7 @@ const EVENTS = [
     "prefix_color": "#c4a0ff",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "凯尔",
-      "罗恩"
+      "黎恩"
     ]
   },
   {
@@ -7867,7 +7265,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "口交"
     ],
@@ -7880,8 +7277,7 @@ const EVENTS = [
     "prefix_color": "#c4a0ff",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "艾玛"
+      "黎恩"
     ]
   },
   {
@@ -7893,7 +7289,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7904,9 +7299,9 @@ const EVENTS = [
     "prefix_name": "后日谈",
     "prefix_color": "#c4a0ff",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "亚莉莎",
-      "罗恩"
+      "亚莉莎"
     ]
   },
   {
@@ -7918,7 +7313,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "口交"
     ],
@@ -7931,8 +7325,7 @@ const EVENTS = [
     "prefix_color": "#c4a0ff",
     "characters": [
       "Seraphina",
-      "黎恩",
-      "罗恩"
+      "黎恩"
     ]
   },
   {
@@ -7944,7 +7337,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "SFW"
     ],
     "nsfw_level": "",
@@ -7955,6 +7347,7 @@ const EVENTS = [
     "prefix_name": "后日谈",
     "prefix_color": "#c4a0ff",
     "characters": [
+      "Seraphina",
       "黎恩",
       "奥蕾莉亚"
     ]
@@ -7968,7 +7361,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "口交"
     ],
@@ -7980,9 +7372,10 @@ const EVENTS = [
     "prefix_name": "后日谈",
     "prefix_color": "#c4a0ff",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "亚莉莎",
-      "罗恩"
+      "罗恩",
+      "亚莉莎"
     ]
   },
   {
@@ -7994,7 +7387,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "口交"
     ],
@@ -8019,7 +7411,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "手交",
       "口交"
@@ -8035,9 +7426,7 @@ const EVENTS = [
       "Seraphina",
       "黎恩",
       "凯尔",
-      "亚莉莎",
-      "亚尔缇娜",
-      "罗恩"
+      "亚莉莎"
     ]
   },
   {
@@ -8049,7 +7438,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "手交",
       "口交",
@@ -8063,7 +7451,9 @@ const EVENTS = [
     "prefix_name": "后日谈",
     "prefix_color": "#c4a0ff",
     "characters": [
+      "Seraphina",
       "黎恩",
+      "加尔",
       "奥蕾莉亚"
     ]
   },
@@ -8076,7 +7466,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "本番",
       "口交"
@@ -8089,9 +7478,10 @@ const EVENTS = [
     "prefix_name": "后日谈",
     "prefix_color": "#c4a0ff",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "亚莉莎",
-      "罗恩"
+      "罗恩",
+      "亚莉莎"
     ]
   },
   {
@@ -8103,7 +7493,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "口交"
     ],
@@ -8128,7 +7517,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW"
     ],
     "nsfw_level": "NSFW",
@@ -8141,10 +7529,8 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "艾玛",
-      "多尔金",
       "哈根",
-      "法林"
+      "多尔金"
     ]
   },
   {
@@ -8156,7 +7542,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "本番",
       "口交"
@@ -8169,7 +7554,9 @@ const EVENTS = [
     "prefix_name": "后日谈",
     "prefix_color": "#c4a0ff",
     "characters": [
+      "Seraphina",
       "黎恩",
+      "加尔",
       "奥蕾莉亚"
     ]
   },
@@ -8182,7 +7569,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "本番",
       "口交",
@@ -8198,9 +7584,11 @@ const EVENTS = [
     "characters": [
       "Seraphina",
       "黎恩",
-      "亚尔缇娜",
       "多尔金",
-      "哈根"
+      "哈根",
+      "亚尔缇娜",
+      "菲娜",
+      "菲"
     ]
   },
   {
@@ -8212,7 +7600,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "本番",
       "口交"
@@ -8225,10 +7612,10 @@ const EVENTS = [
     "prefix_name": "后日谈",
     "prefix_color": "#c4a0ff",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "劳拉",
-      "亚莉莎",
-      "罗恩"
+      "罗恩",
+      "亚莉莎"
     ]
   },
   {
@@ -8240,7 +7627,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "手交",
       "口交"
@@ -8253,10 +7639,11 @@ const EVENTS = [
     "prefix_name": "后日谈",
     "prefix_color": "#c4a0ff",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "亚尔缇娜",
       "多尔金",
-      "哈根"
+      "哈根",
+      "亚尔缇娜"
     ]
   },
   {
@@ -8268,9 +7655,7 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
-      "足交",
       "口交"
     ],
     "nsfw_level": "口交",
@@ -8281,12 +7666,10 @@ const EVENTS = [
     "prefix_name": "后日谈",
     "prefix_color": "#c4a0ff",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "亚尔缇娜",
-      "多尔金",
       "哈根",
-      "法林"
+      "亚尔缇娜"
     ]
   },
   {
@@ -8298,7 +7681,6 @@ const EVENTS = [
     "trigger": "",
     "scene_preview": "",
     "tags": [
-      "共通",
       "NSFW",
       "本番",
       "口交"
@@ -8311,11 +7693,10 @@ const EVENTS = [
     "prefix_name": "后日谈",
     "prefix_color": "#c4a0ff",
     "characters": [
+      "Seraphina",
       "黎恩",
-      "艾玛",
-      "菲",
-      "亚莉莎",
-      "罗恩"
+      "罗恩",
+      "亚莉莎"
     ]
   }
 ];
@@ -8354,7 +7735,7 @@ function renderGrid() {
   var filtered = getFiltered();
 
   if (!filtered.length) {
-    $grid.innerHTML = '<div class="empty-state">无匹配事件</div>';
+    $grid.innerHTML = '<div class="empty-state">无匹配章节</div>';
     return;
   }
 
@@ -8471,7 +7852,7 @@ function selectEvent(eventId) {
     + (event.raw_yaml
       ? '<div class="detail-yaml">' + yamlHighlighted + '</div>'
       + '<button class="copy-btn" onclick="copyYAML()">📋 复制YAML</button>'
-      : '<div style="padding:20px;color:#666;">⚠️ 此事件无详细 YAML 定义</div>');
+      : '<div style="padding:20px;color:#666;">⚠️ 此章节无详细 YAML 定义</div>');
 
   $detail.classList.add('open');
   $overlay.classList.add('show');

@@ -539,9 +539,9 @@ def make_entry(uid, keys, comment, content, order,
             ("exclude_recursion", False),
             ("display_index", 0),
             ("probability", probability),
-            ("use_probability", use_probability),
+            ("useProbability", use_probability),
             ("depth", depth),
-            ("selective_logic", 0),
+            ("selectiveLogic", 0),
             ("group", group),
             ("group_override", False),
             ("group_weight", 100),
@@ -786,16 +786,100 @@ def validate_entries(entries):
     return errors
 
 
-def assemble_json(entries):
-    """将条目列表组装为 SillyTavern 原生世界书 JSON 格式。
+def _to_v3_entry(old_entry):
+    """将内部12字段条目转换为43字段V3格式（100%对齐俺妹ver1.41）。
 
-    100%对齐俺妹ver1.41：entries为list，无originalData冗余。
+    V3格式：43个flat字段(camelCase) + characterFilter + extensions(snake_case)。
+    entries为OBJECT（非array），keyed by string uid。
     """
-    # make_entry() 已输出俺妹12字段紧凑格式，直接使用
-    entries_list = list(entries)
+    ext = old_entry.get("extensions", {})
+
+    # position 映射: string → int
+    POS_TO_INT = {"before_char": 0, "after_char": 1, "in_chat": 4}
+    pos_int = POS_TO_INT.get(old_entry.get("position", "after_char"), 1)
+
+    is_constant = old_entry.get("constant", False)
+    uid = old_entry.get("id", 0)
+
+    # role: constant+position=0 的条目用 null，其余用 0
+    flat_role = None if (is_constant and pos_int == 0) else 0
 
     return OrderedDict([
-        ("entries", entries_list),
+        # ── 核心字段 ──
+        ("key", old_entry.get("keys", [])),
+        ("keysecondary", old_entry.get("secondary_keys", [])),
+        ("comment", old_entry.get("comment", "")),
+        ("content", old_entry.get("content", "")),
+        ("constant", is_constant),
+        ("vectorized", ext.get("vectorized", False)),
+        ("selective", old_entry.get("selective", True)),
+        ("selectiveLogic", ext.get("selectiveLogic", 0)),
+        ("addMemo", True),
+        ("order", old_entry.get("insertion_order", 100)),
+        ("position", pos_int),
+        ("disable", not old_entry.get("enabled", True)),
+        ("ignoreBudget", ext.get("ignore_budget", False)),
+        ("excludeRecursion", ext.get("exclude_recursion", False)),
+        ("preventRecursion", ext.get("prevent_recursion", False)),
+        ("matchPersonaDescription", ext.get("match_persona_description", False)),
+        ("matchCharacterDescription", ext.get("match_character_description", False)),
+        ("matchCharacterPersonality", ext.get("match_character_personality", False)),
+        ("matchCharacterDepthPrompt", ext.get("match_character_depth_prompt", False)),
+        ("matchScenario", ext.get("match_scenario", False)),
+        ("matchCreatorNotes", ext.get("match_creator_notes", False)),
+        ("delayUntilRecursion", ext.get("delay_until_recursion", False)),
+        ("probability", ext.get("probability", 100)),
+        ("useProbability", ext.get("useProbability", True)),
+        ("depth", ext.get("depth", 4)),
+        ("outletName", ext.get("outlet_name", "")),
+        ("group", ext.get("group", "")),
+        ("groupOverride", ext.get("group_override", False)),
+        ("groupWeight", ext.get("group_weight", 100)),
+        ("scanDepth", ext.get("scan_depth", None)),
+        ("caseSensitive", ext.get("case_sensitive", None)),
+        ("matchWholeWords", ext.get("match_whole_words", None)),
+        ("useGroupScoring", ext.get("use_group_scoring", False)),
+        ("automationId", ext.get("automation_id", "")),
+        ("role", flat_role),
+        ("sticky", ext.get("sticky", 0)),
+        ("cooldown", ext.get("cooldown", 0)),
+        ("delay", ext.get("delay", 0)),
+        ("triggers", ext.get("triggers", [])),
+        ("uid", uid),
+        ("displayIndex", uid),
+        # ── 嵌套对象（与flat字段双向冗余）──
+        ("extensions", ext),
+        ("characterFilter", OrderedDict([
+            ("isExclude", False),
+            ("names", []),
+            ("tags", []),
+        ])),
+    ])
+
+
+def assemble_json(entries):
+    """将条目列表组装为 SillyTavern 世界书 JSON（100%对齐俺妹ver1.41）。
+
+    输出结构：
+    - entries: OBJECT keyed by string uid, 每项43字段V3格式
+    - originalData: { entries: OBJECT(12字段旧格式), name: str }
+    """
+    entries_obj = OrderedDict()
+    original_entries_obj = OrderedDict()
+
+    for e in entries:
+        uid_str = str(e.get("id", 0))
+        # V3格式（43字段 camelCase + characterFilter）
+        entries_obj[uid_str] = _to_v3_entry(e)
+        # 旧格式（12字段，用于 originalData.entries）
+        original_entries_obj[uid_str] = e
+
+    return OrderedDict([
+        ("entries", entries_obj),
+        ("originalData", OrderedDict([
+            ("entries", original_entries_obj),
+            ("name", "Eldoria - 艾尔多利亚守护者"),
+        ])),
     ])
 
 

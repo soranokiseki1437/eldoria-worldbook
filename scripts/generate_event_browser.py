@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-generate_event_browser.py — 全事件浏览器生成器 (V2 网格布局)
+generate_event_browser.py — 全章节浏览器生成器 (V5.0 角色分类)
 ==========================================================
 直接读取 docs/event/*.TXT 生成自包含的交互式HTML页面。
-V2: 网格卡片布局，紧凑按钮式事件列表。
+V5.0: 网格卡片布局，角色×阶段分类，第三者字段精准匹配。
 
 用法：
     python scripts/generate_event_browser.py
@@ -18,7 +18,7 @@ import sys
 
 # ─── 路径配置 ───────────────────────────────────────────
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUTPUT_HTML = os.path.join(BASE_DIR, "visual", "全事件浏览器.html")
+OUTPUT_HTML = os.path.join(BASE_DIR, "visual", "全章节浏览器.html")
 
 # ─── 前缀元数据 ─────────────────────────────────────────
 from event_config import PREFIX_META, ALL_PREFIXES
@@ -40,38 +40,51 @@ CHAPTER_NAMES = _load_chapter_names()
 # 此处仅设置空字典，build_events 会从映射表中自动填充缺失事件
 KNOWN_EVENTS = {}
 
-# ─── 角色关键词（用于事件→角色归属检测） ─────────────────
-CHARACTER_KEYWORDS = {
-    "Seraphina": ["Seraphina", "菲娜", "塞拉菲娜", "粉发"],
-    "黎恩": ["黎恩", "舒华泽", r"\{\{user\}\}"],
-    "凯尔": ["凯尔"],
-    "艾玛": ["艾玛", "米尔斯汀", "魔女"],
-    "劳拉": ["劳拉", "亚尔赛德"],
-    "菲": ["菲(?!娜)", "克劳塞尔", "猎兵"],
-    "亚莉莎": ["亚莉莎", "莱恩福尔特", "金发"],
-    "玲": ["玲", "布莱特", "执行者", "镰刀"],
-    "爱丽榭": ["爱丽榭", "妹妹"],
-    "亚尔缇娜": ["亚尔缇娜", "黑丝", "黑兔", "情报局"],
-    "乔治": ["乔治", "诺姆", "技术宅"],
-    "艾德里安": ["艾德里安", "浪子", "没落贵族"],
-    "雷恩": ["雷恩", "圣殿骑士"],
-    "奥蕾莉亚": ["奥蕾莉亚", "黄金罗刹", "勒瑰恩", "分校"],
-    "多尔金": ["多尔金", "矮人锻造师", "铁砧"],
-    "哈根": ["哈根", "矮人工程师"],
-    "法林": ["法林", "矮人魔法工匠", "符文工匠"],
-    "罗恩": ["罗恩", "狼人法师", "满月"],
-}
+# ─── 角色名集合（用于标题匹配） ─────────────────
+CHARACTER_NAMES = [
+    "Seraphina", "菲娜", "黎恩", "凯尔", "艾玛", "劳拉", "菲", "亚莉莎",
+    "玲", "爱丽榭", "亚尔缇娜", "乔治", "艾德里安", "雷恩", "奥蕾莉亚",
+    "多尔金", "哈根", "法林", "罗恩", "加尔",
+]
 
+# ─── 角色检测：第三者 + 好感影响 + 标题 ─────────────────
+def extract_main_characters(raw_yaml, event_name):
+    """三层提取主角角色名：
+    1) 第三者字段（NSFW第三方）
+    2) 好感影响字段（有数值变化=本章主角）
+    3) 标题中的角色名（兜底）
+    Seraphina + 黎恩 始终在内。
+    """
+    chars = ["Seraphina", "黎恩"]
 
-def extract_characters(raw_yaml, name):
-    """从事件文本中检测出现的角色"""
-    text = (name + " " + raw_yaml)
-    chars = []
-    for char_name, patterns in CHARACTER_KEYWORDS.items():
-        for pat in patterns:
-            if re.search(pat, text):
-                chars.append(char_name)
-                break
+    if not raw_yaml:
+        return chars
+
+    # 第一层：第三者字段
+    m = re.search(r'^第三者:\s*(.+)', raw_yaml, re.MULTILINE)
+    if m:
+        tp_raw = m.group(1).strip()
+        if tp_raw and not tp_raw.startswith('黎恩知情') and not tp_raw.startswith('N/A'):
+            cleaned = re.sub(r'[（(][^)）]*[)）]', '', tp_raw)
+            cleaned = cleaned.replace('×', '+')
+            for name in re.split(r'[+、]', cleaned):
+                name = name.strip()
+                if name in CHARACTER_NAMES:
+                    chars.append(name)
+
+    # 第二层：好感影响字段（有数值变化=本章主角）
+    m2 = re.search(r'^好感影响:\s*(.+)', raw_yaml, re.MULTILINE)
+    if m2:
+        aff_text = m2.group(1)
+        for cname in CHARACTER_NAMES:
+            if cname in aff_text and cname not in chars:
+                chars.append(cname)
+
+    # 第三层：标题中的角色名（兜底）
+    for cname in CHARACTER_NAMES:
+        if cname in event_name and cname not in chars:
+            chars.append(cname)
+
     return chars
 
 
@@ -146,26 +159,15 @@ def load_events_from_txt():
 
 
 def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix=""):
-    """推断类型标签。is_nsfw_explicit: TXT中NSFW字段的显式值(True/False)
-    prefix: V7.0 章节目录名（如'0：序章'）"""
+    """推断类型标签（仅NSFW/SFW+具体行为，无路线标签）"""
     content_lower = (name + " " + raw_yaml).lower()
     tags = []
-    # V7.0: 从章节目录判断路线
-    route_map = {
-        '0：序章': '共通', '1：试探和暧昧': 'NTRS', '2：挑逗和接受': 'NTRS',
-        '3：渐进接触': 'NTRS', '4：跨线': 'NTRS', '5：享受和掌控': 'NTRS',
-        '6：放纵': 'NTRS', '7：终局': 'NTRS', '8：后日谈': '共通',
-    }
-    route = route_map.get(prefix, "")
-    if route:
-        tags.append(route)
 
-    # 优先用TXT显式NSFW字段，fallback到关键词匹配
+    # 优先用TXT显式NSFW字段
     if is_nsfw_explicit is True:
         tags.append("NSFW")
-        # 推断具体类型
         type_map = {
-            "足交": ["足交", "裸足", "足部", "丝袜", "足下", "足控", "晨露", "玉足"],
+            "足交": ["足交", "裸足", "足部", "足下", "足控", "晨露", "玉足"],
             "本番": ["本番", "契约之夜", "交融", "清晨", "即兴", "倒影", "直接本番", "傲娇本番", "游戏本番", "骑士本番"],
             "手交": ["手交"], "口交": ["口交", "含入", "唇"],
             "乳交": ["乳交", "圣光之谷", "胸怀"], "腿交": ["腿交", "大腿之间"],
@@ -177,17 +179,13 @@ def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix=""):
     elif is_nsfw_explicit is False:
         tags.append("SFW")
     else:
-        # Fallback：关键词匹配（兼容无NSFW字段的旧数据）
+        # Fallback：关键词匹配
         nsfw_kws = ["足交", "本番", "手交", "口交", "乳交", "腿交",
                     "隐奸", "群交", "夜袭", "暴露", "足下的", "足部", "裸足",
                     "丝袜", "玷污", "堕落之夜", "足控", "含入", "契约之夜",
                     "鬼之圣光", "温泉的清晨", "晨露", "桌下之", "即兴", "倒影"]
-        sfw_kws = ["训练", "狩猎", "篝火故事", "对话", "约会", "净化仪式",
-                   "战斗准备", "启示", "修炼", "守护夜", "正式介绍", "宣誓"]
         if any(kw in content_lower for kw in nsfw_kws):
             tags.append("NSFW")
-        elif any(kw in name for kw in sfw_kws) or prefix in ("E", "G", "W"):
-            tags.append("SFW")
         else:
             tags.append("SFW")
     return tags
@@ -229,7 +227,7 @@ def build_events():
         tags = infer_tags(event_id, name, raw_yaml, is_nsfw_flag, prefix=prefix)
         nsfw_level = get_nsfw_level(tags)
         has_branches = "纯爱" in raw_yaml and ("NTRS" in raw_yaml or "被动NTR" in raw_yaml)
-        characters = extract_characters(raw_yaml, name)
+        characters = extract_main_characters(raw_yaml, name)
         events.append({
             "id": event_id, "prefix": prefix, "name": name,
             "chapter": chapter, "chapter_name": CHAPTER_NAMES.get(chapter, ""),
@@ -547,8 +545,7 @@ def generate_html(events):
     for e in events:
         for t in e["tags"]:
             all_tags.add(t)
-    tag_order = ["SFW", "NSFW", "足交", "本番", "手交", "口交", "乳交", "腿交", "隐奸", "群交",
-                 "纯爱", "NTRS", "被动NTR", "共通", "隐藏", "黎恩"]
+    tag_order = ["SFW", "NSFW", "足交", "本番", "手交", "口交", "乳交", "腿交", "隐奸", "群交"]
     tag_btns = ['<button class="filter-btn type-btn active" data-filter="tag" data-value="all">全部</button>']
     for t in tag_order:
         if t in all_tags:
@@ -568,33 +565,34 @@ def generate_html(events):
                 'title="第{}章 {}">Ch.{}<span>{}({})</span></button>'.format(ch, ch, ch_name, ch, short, count)
             )
 
-    # 角色按钮
+    # 角色按钮（按CHARACTER_NAMES顺序，只显示有出场的）
     all_characters = set()
     for e in events:
         for c in e.get("characters", []):
             all_characters.add(c)
-    char_order = list(CHARACTER_KEYWORDS.keys())
+    # 过滤掉Seraphina和黎恩（每章都有，无筛选意义），按标准顺序排
+    char_order = [c for c in CHARACTER_NAMES if c in all_characters
+                  and c not in ('Seraphina', '菲娜', '黎恩')]
     char_btns = ['<button class="filter-btn char-btn active" data-filter="character" data-value="all">全部</button>']
     for c in char_order:
-        if c in all_characters:
-            count = sum(1 for e in events if c in e.get("characters", []))
-            char_btns.append(
-                '<button class="filter-btn char-btn" data-filter="character" data-value="{}">{}({})</button>'.format(c, c, count)
-            )
+        count = sum(1 for e in events if c in e.get("characters", []))
+        char_btns.append(
+            '<button class="filter-btn char-btn" data-filter="character" data-value="{}">{}({})</button>'.format(c, c, count)
+        )
 
     html = '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n'
     html += '<meta charset="UTF-8">\n'
     html += '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
-    html += '<title>Eldoria 全事件浏览器 - V4.7.1</title>\n'
+    html += '<title>Eldoria 全章节浏览器 - V5.0</title>\n'
     html += '<style>\n' + CSS + '\n</style>\n</head>\n<body>\n'
 
     # 顶部栏
     html += '<div class="topbar">\n'
-    html += '<h1>Eldoria 全事件浏览器</h1>\n'
-    html += '<span class="stats-inline">共 <em>{}</em> 事件 &middot; 已完善 <em>{}</em> &middot; NSFW <em>{}</em> &middot; SFW <em>{}</em> &middot; <em>V4.7.1</em></span>\n'.format(
+    html += '<h1>Eldoria 全章节浏览器</h1>\n'
+    html += '<span class="stats-inline">共 <em>{}</em> 章节 &middot; 已完善 <em>{}</em> &middot; NSFW <em>{}</em> &middot; SFW <em>{}</em> &middot; <em>V5.0</em></span>\n'.format(
         total, has_yaml_count, nsfw_count, sfw_count)
     html += '<div class="topbar-row">\n'
-    html += '<input type="text" class="search-input" id="searchInput" placeholder="🔍 搜索事件 (Ctrl+K) - ID / 名称 / 关键词">\n'
+    html += '<input type="text" class="search-input" id="searchInput" placeholder="🔍 搜索章节 (Ctrl+K) - ID / 名称 / 关键词">\n'
 
     html += '<div class="filter-section" id="filterPrefix">\n'
     html += '<h3 onclick="toggleFilter(this)">📂 前缀</h3>\n'
@@ -676,7 +674,7 @@ function renderGrid() {
   var filtered = getFiltered();
 
   if (!filtered.length) {
-    $grid.innerHTML = '<div class="empty-state">无匹配事件</div>';
+    $grid.innerHTML = '<div class="empty-state">无匹配章节</div>';
     return;
   }
 
@@ -793,7 +791,7 @@ function selectEvent(eventId) {
     + (event.raw_yaml
       ? '<div class="detail-yaml">' + yamlHighlighted + '</div>'
       + '<button class="copy-btn" onclick="copyYAML()">📋 复制YAML</button>'
-      : '<div style="padding:20px;color:#666;">⚠️ 此事件无详细 YAML 定义</div>');
+      : '<div style="padding:20px;color:#666;">⚠️ 此章节无详细 YAML 定义</div>');
 
   $detail.classList.add('open');
   $overlay.classList.add('show');
