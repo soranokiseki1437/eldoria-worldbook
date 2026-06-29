@@ -40,6 +40,40 @@ CHAPTER_NAMES = _load_chapter_names()
 # 此处仅设置空字典，build_events 会从映射表中自动填充缺失事件
 KNOWN_EVENTS = {}
 
+# ─── 角色关键词（用于事件→角色归属检测） ─────────────────
+CHARACTER_KEYWORDS = {
+    "Seraphina": ["Seraphina", "菲娜", "塞拉菲娜", "粉发"],
+    "黎恩": ["黎恩", "舒华泽", r"\{\{user\}\}"],
+    "凯尔": ["凯尔"],
+    "艾玛": ["艾玛", "米尔斯汀", "魔女"],
+    "劳拉": ["劳拉", "亚尔赛德"],
+    "菲": ["菲(?!娜)", "克劳塞尔", "猎兵"],
+    "亚莉莎": ["亚莉莎", "莱恩福尔特", "金发"],
+    "玲": ["玲", "布莱特", "执行者", "镰刀"],
+    "爱丽榭": ["爱丽榭", "妹妹"],
+    "亚尔缇娜": ["亚尔缇娜", "黑丝", "黑兔", "情报局"],
+    "乔治": ["乔治", "诺姆", "技术宅"],
+    "艾德里安": ["艾德里安", "浪子", "没落贵族"],
+    "雷恩": ["雷恩", "圣殿骑士"],
+    "奥蕾莉亚": ["奥蕾莉亚", "黄金罗刹", "勒瑰恩", "分校"],
+    "多尔金": ["多尔金", "矮人锻造师", "铁砧"],
+    "哈根": ["哈根", "矮人工程师"],
+    "法林": ["法林", "矮人魔法工匠", "符文工匠"],
+    "罗恩": ["罗恩", "狼人法师", "满月"],
+}
+
+
+def extract_characters(raw_yaml, name):
+    """从事件文本中检测出现的角色"""
+    text = (name + " " + raw_yaml)
+    chars = []
+    for char_name, patterns in CHARACTER_KEYWORDS.items():
+        for pat in patterns:
+            if re.search(pat, text):
+                chars.append(char_name)
+                break
+    return chars
+
 
 def load_chapter_mapping():
     """从 assign_chapters.DEFAULT_CHAPTERS 加载事件→章节映射。"""
@@ -195,6 +229,7 @@ def build_events():
         tags = infer_tags(event_id, name, raw_yaml, is_nsfw_flag, prefix=prefix)
         nsfw_level = get_nsfw_level(tags)
         has_branches = "纯爱" in raw_yaml and ("NTRS" in raw_yaml or "被动NTR" in raw_yaml)
+        characters = extract_characters(raw_yaml, name)
         events.append({
             "id": event_id, "prefix": prefix, "name": name,
             "chapter": chapter, "chapter_name": CHAPTER_NAMES.get(chapter, ""),
@@ -202,6 +237,7 @@ def build_events():
             "tags": tags, "nsfw_level": nsfw_level, "has_branches": has_branches,
             "has_yaml": raw["has_yaml"], "is_summary": False, "raw_yaml": raw_yaml,
             "prefix_name": meta["name"], "prefix_color": meta["color"],
+            "characters": characters,
         })
     for event_id, default_name in KNOWN_EVENTS.items():
         if event_id not in seen_ids:
@@ -220,6 +256,7 @@ def build_events():
                 "has_branches": False, "has_yaml": False, "is_summary": True,
                 "raw_yaml": "",
                 "prefix_name": meta["name"], "prefix_color": meta["color"],
+                "characters": [],
             })
             seen_ids.add(event_id)
 
@@ -531,6 +568,20 @@ def generate_html(events):
                 'title="第{}章 {}">Ch.{}<span>{}({})</span></button>'.format(ch, ch, ch_name, ch, short, count)
             )
 
+    # 角色按钮
+    all_characters = set()
+    for e in events:
+        for c in e.get("characters", []):
+            all_characters.add(c)
+    char_order = list(CHARACTER_KEYWORDS.keys())
+    char_btns = ['<button class="filter-btn char-btn active" data-filter="character" data-value="all">全部</button>']
+    for c in char_order:
+        if c in all_characters:
+            count = sum(1 for e in events if c in e.get("characters", []))
+            char_btns.append(
+                '<button class="filter-btn char-btn" data-filter="character" data-value="{}">{}({})</button>'.format(c, c, count)
+            )
+
     html = '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n'
     html += '<meta charset="UTF-8">\n'
     html += '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
@@ -561,6 +612,11 @@ def generate_html(events):
     html += '<div class="filter-btns" id="chapterFilters">\n'
     html += '\n'.join(chapter_btns) + '\n</div>\n</div>\n'
 
+    html += '<div class="filter-section" id="filterCharacter">\n'
+    html += '<h3 onclick="toggleFilter(this)">👤 角色</h3>\n'
+    html += '<div class="filter-btns" id="characterFilters">\n'
+    html += '\n'.join(char_btns) + '\n</div>\n</div>\n'
+
     html += '</div></div>\n'  # close topbar-row, topbar
 
     # 网格容器
@@ -578,7 +634,7 @@ def generate_html(events):
     html += '<script>\n'
     html += 'const EVENTS = {};\n'.format(events_json)
     html += '''
-let activeFilters = { prefix: 'all', tag: 'all', chapter: 'all', search: '' };
+let activeFilters = { prefix: 'all', tag: 'all', chapter: 'all', character: 'all', search: '' };
 let selectedEventId = null;
 
 const $grid = document.getElementById('eventGrid');
@@ -592,6 +648,7 @@ function getFiltered() {
     if (activeFilters.prefix !== 'all' && e.prefix !== activeFilters.prefix) return false;
     if (activeFilters.tag !== 'all' && e.tags.indexOf(activeFilters.tag) === -1) return false;
     if (activeFilters.chapter !== 'all' && e.chapter !== parseInt(activeFilters.chapter)) return false;
+    if (activeFilters.character !== 'all' && (e.characters || []).indexOf(activeFilters.character) === -1) return false;
     if (activeFilters.search) {
       var q = activeFilters.search.toLowerCase();
       var hay = (e.id + ' ' + e.name + ' ' + e.tags.join(' ') + ' ' +
@@ -726,6 +783,7 @@ function selectEvent(eventId) {
     + '<div class="meta-row">'
     + '<span>📂 ' + event.prefix_name + '</span>'
     + (event.chapter > 0 ? '<span>📖 第' + event.chapter + '章 ' + (event.chapter_name || '') + '</span>' : '')
+    + (event.characters && event.characters.length ? '<span>👤 ' + event.characters.join(', ') + '</span>' : '')
     + '<span>' + (event.has_yaml ? '✅ YAML' : '⚠️ 摘要') + '</span>'
     + (event.trigger ? '<span>🔔 ' + event.trigger.substring(0, 50) + '</span>' : '')
     + '</div>'

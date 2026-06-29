@@ -438,9 +438,10 @@ def load_reference_entries():
 
     # System instructions: special depth/order at pos=4
     SYSTEM_INSTRUCTIONS = {
-        '章节追踪指令':  {'depth': 0, 'order': 999},
-        '游戏状态界面':  {'depth': 0, 'order': 998},
-        '叙述风格指令':  {'depth': 1, 'order': 100},
+        '章节追踪指令':        {'depth': 0, 'order': 999},
+        '游戏状态界面':        {'depth': 0, 'order': 998},
+        '叙述风格指令':        {'depth': 1, 'order': 100},
+        '世界时间并行和隐奸':  {'depth': 1, 'order': 100},
     }
 
     # Supplementary systems: pos=4, depth=4 (参照俺妹 好感度分级系统)
@@ -499,8 +500,7 @@ def load_reference_entries():
                 # Non-constant entries → pos=1, depth=4, order=100
                 entry = _make_ref_entry(data, 100, position=1, depth=4)
 
-            # 对齐俺妹ver1.41：所有条目group=""（参考文件无分组）
-            entry['group'] = ""
+            # 对齐俺妹ver1.41：group仅在extensions内
             entry['extensions']['group'] = ""
             entries.append(entry)
 
@@ -512,62 +512,36 @@ def make_entry(uid, keys, comment, content, order,
                constant=False, probability=100, use_probability=True,
                keysecondary=None, selective=True, position=1,
                group="", depth=4):
-    """创建一条 SillyTavern 原生格式的世界书条目（100%对齐俺妹ver1.41格式）。
+    """创建一条 SillyTavern 原生格式的世界书条目（对齐俺妹ver1.41——12字段紧凑格式）。
 
-    字段顺序、命名、extensions包装、characterFilter——
-    全部照抄已验证可运行的参考文件，不做任何"优化"。
+    俺妹每条仅12顶层字段，其余配置全部收敛进 extensions。
     """
     _ks = keysecondary if keysecondary is not None else []
+
+    # position 映射为SillyTavern字符串格式
+    POSITION_MAP = {0: "before_char", 1: "after_char", 4: "in_chat"}
+    pos_str = POSITION_MAP.get(position, "after_char")
+
     return OrderedDict([
-        ("key", keys),
-        ("keysecondary", _ks),
+        ("id", uid),
+        ("keys", keys),
+        ("secondary_keys", _ks),
         ("comment", comment),
         ("content", content),
         ("constant", constant),
-        ("vectorized", False),
         ("selective", selective),
-        ("selectiveLogic", 0),
-        ("addMemo", True),
-        ("order", order),
-        ("position", position),
-        ("disable", False),
-        ("ignoreBudget", False),
-        ("excludeRecursion", False),
-        ("preventRecursion", False),
-        ("matchPersonaDescription", False),
-        ("matchCharacterDescription", False),
-        ("matchCharacterPersonality", False),
-        ("matchCharacterDepthPrompt", False),
-        ("matchScenario", False),
-        ("matchCreatorNotes", False),
-        ("delayUntilRecursion", False),
-        ("probability", probability),
-        ("useProbability", use_probability),
-        ("depth", depth),
-        ("outletName", ""),
-        ("group", group),
-        ("groupOverride", False),
-        ("groupWeight", 100),
-        ("scanDepth", None),
-        ("caseSensitive", None),
-        ("matchWholeWords", None),
-        ("useGroupScoring", False),
-        ("automationId", ""),
-        ("role", None),
-        ("sticky", 0),
-        ("cooldown", 0),
-        ("delay", 0),
-        ("triggers", []),
-        ("uid", uid),
-        ("displayIndex", 0),
+        ("insertion_order", order),
+        ("enabled", True),
+        ("position", pos_str),
+        ("use_regex", True),
         ("extensions", OrderedDict([
             ("position", position),
             ("exclude_recursion", False),
             ("display_index", 0),
             ("probability", probability),
-            ("useProbability", use_probability),
+            ("use_probability", use_probability),
             ("depth", depth),
-            ("selectiveLogic", 0),
+            ("selective_logic", 0),
             ("group", group),
             ("group_override", False),
             ("group_weight", 100),
@@ -591,11 +565,7 @@ def make_entry(uid, keys, comment, content, order,
             ("match_creator_notes", False),
             ("triggers", []),
             ("ignore_budget", False),
-        ])),
-        ("characterFilter", OrderedDict([
-            ("isExclude", False),
-            ("names", []),
-            ("tags", []),
+            ("outlet_name", None),
         ])),
     ])
 
@@ -680,36 +650,36 @@ def build(dry_run=False):
     # 3. V10.0: 所有条目均由TXT驱动，无需硬编码基础条目
     # first_mes 是JSON顶层字段，非条目
 
-    # ─── 合并 + 分配 uid ──────────────────────────────────
+    # ─── 合并 + 分配 id ──────────────────────────────────
     all_entries = list(ref_entries)
     for label, entries in _REGISTRY.items():
         all_entries.extend(entries)
 
-    # 为 uid=None 的条目自动分配连续 uid
-    next_uid = max((e.get("uid", -1) for e in all_entries if e.get("uid") is not None), default=-1) + 1
+    # 为 uid=None 的条目自动分配连续 id
+    next_uid = max((e.get("id", -1) for e in all_entries if e.get("id") is not None), default=-1) + 1
     auto_assigned = 0
     for e in all_entries:
-        if e.get("uid") is None:
-            e["uid"] = next_uid
+        if e.get("id") is None:
+            e["id"] = next_uid
             next_uid += 1
             auto_assigned += 1
     if auto_assigned:
-        print(f"      [auto-uid] 自动分配 {auto_assigned} 个 uid")
+        print(f"      [auto-uid] 自动分配 {auto_assigned} 个 id")
 
     # 确保 uid 连续
-    all_entries.sort(key=lambda e: e.get("uid", 0))
+    all_entries.sort(key=lambda e: e.get("id", 0))
     for i, e in enumerate(all_entries):
-        e["uid"] = i
-    all_entries.sort(key=lambda e: e.get("uid", 0))
+        e["id"] = i
+    all_entries.sort(key=lambda e: e.get("id", 0))
     print(f"[step 3] 合并后总计: {len(all_entries)} 条")
 
     # 3.5. 永久触发 — 基于 constant=True 字段（不再硬编码 uid）
-    constant_uids = [e["uid"] for e in all_entries if e.get("constant")]
+    constant_ids = [e["id"] for e in all_entries if e.get("constant")]
     for e in all_entries:
         if e.get("constant"):
             e["constant"] = True
-    if constant_uids:
-        print(f"[step 3.5] 永久触发: uid {sorted(constant_uids)}")
+    if constant_ids:
+        print(f"[step 3.5] 永久触发: id {sorted(constant_ids)}")
 
     # 4. 验证
     errors = validate_entries(all_entries)
@@ -768,49 +738,50 @@ def build(dry_run=False):
 
 
 def validate_entries(entries):
-    """验证条目列表的完整性和一致性"""
+    """验证条目列表的完整性和一致性（俺妹12字段紧凑格式）"""
     errors = []
-    seen_uids = set()
+    seen_ids = set()
 
     required_fields = [
-        "uid", "key", "content", "comment", "constant",
-        "selective", "probability", "order", "position",
-        "group", "useProbability",
+        "id", "keys", "content", "comment", "constant",
+        "selective", "insertion_order", "position", "enabled",
     ]
 
     for e in entries:
-        uid = e.get("uid")
+        eid = e.get("id")
 
-        if uid in seen_uids:
-            errors.append(f"uid {uid} 重复")
-        seen_uids.add(uid)
+        if eid in seen_ids:
+            errors.append(f"id {eid} 重复")
+        seen_ids.add(eid)
 
         for field in required_fields:
             if field not in e:
-                errors.append(f"uid {uid} 缺少字段: {field}")
+                errors.append(f"id {eid} 缺少字段: {field}")
 
         content = e.get("content", "")
         if not content or not content.strip():
-            errors.append(f"uid {uid} content 为空")
+            errors.append(f"id {eid} content 为空")
 
         # 始终触发条目不依赖key匹配，豁免key检查
-        keys = e.get("key", [])
+        keys = e.get("keys", [])
         if not e.get("constant"):
             if not keys:
-                errors.append(f"uid {uid} key 为空")
+                errors.append(f"id {eid} keys 为空")
             if len(keys) < 1:
-                errors.append(f"uid {uid} key 数量不足 (至少1个): {len(keys)}")
+                errors.append(f"id {eid} keys 数量不足 (至少1个): {len(keys)}")
 
-        prob = e.get("probability", -1)
+        # probability 在 extensions 内
+        ext = e.get("extensions", {})
+        prob = ext.get("probability", -1)
         if not (0 <= prob <= 100):
-            errors.append(f"uid {uid} probability 超出范围: {prob}")
+            errors.append(f"id {eid} probability 超出范围: {prob}")
 
-    sorted_uids = sorted(seen_uids)
-    expected = list(range(len(sorted_uids)))
-    if sorted_uids != expected:
-        missing = set(expected) - set(sorted_uids)
+    sorted_ids = sorted(seen_ids)
+    expected = list(range(len(sorted_ids)))
+    if sorted_ids != expected:
+        missing = set(expected) - set(sorted_ids)
         if missing:
-            errors.append(f"缺少 uid: {sorted(missing)}")
+            errors.append(f"缺少 id: {sorted(missing)}")
 
     return errors
 
@@ -818,39 +789,13 @@ def validate_entries(entries):
 def assemble_json(entries):
     """将条目列表组装为 SillyTavern 原生世界书 JSON 格式。
 
-    100%对齐俺妹ver1.41：同时输出 entries（处理格式）和 originalData（导入格式）。
+    100%对齐俺妹ver1.41：entries为list，无originalData冗余。
     """
-    POSITION_MAP = {0: "before_char", 1: "after_char", 4: "in_chat"}
-
-    entries_dict = OrderedDict()
-    od_entries = []
-    for e in entries:
-        uid = e["uid"]
-        entries_dict[str(uid)] = e
-
-        # 构建 originalData 条目（字段名：snake_case + 不同命名约定）
-        od_entry = OrderedDict([
-            ("id", uid),
-            ("keys", e.get("key", [])),
-            ("secondary_keys", e.get("keysecondary", [])),
-            ("comment", e.get("comment", "")),
-            ("content", e.get("content", "")),
-            ("constant", e.get("constant", False)),
-            ("selective", e.get("selective", True)),
-            ("insertion_order", e.get("order", 100)),
-            ("enabled", not e.get("disable", False)),
-            ("position", POSITION_MAP.get(e.get("position", 1), "after_char")),
-            ("use_regex", True),
-            ("extensions", e.get("extensions", {})),
-        ])
-        od_entries.append(od_entry)
+    # make_entry() 已输出俺妹12字段紧凑格式，直接使用
+    entries_list = list(entries)
 
     return OrderedDict([
-        ("entries", entries_dict),
-        ("originalData", OrderedDict([
-            ("name", "Eldoria - 艾尔多利亚守护者"),
-            ("entries", od_entries),
-        ])),
+        ("entries", entries_list),
     ])
 
 
