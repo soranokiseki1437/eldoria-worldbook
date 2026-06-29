@@ -566,7 +566,7 @@ def generate_html(events):
     tag_order = ["SFW", "NSFW", "肛交", "本番", "口交", "乳交", "腿交", "足交", "手交", "指交", "蹭穴", "接吻", "暴露", "触碰", "隐奸", "群交", "未分类"]
     tag_btns = ['<button class="filter-btn type-btn active" data-filter="tag" data-value="all">全部</button>']
     for t in tag_order:
-        if t in all_tags:
+        if t in all_tags or t == "未分类":
             count = sum(1 for e in events if t in e["tags"])
             tag_btns.append('<button class="filter-btn type-btn" data-filter="tag" data-value="{}">{}({})</button>'.format(t, t, count))
 
