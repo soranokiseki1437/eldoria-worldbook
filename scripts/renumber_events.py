@@ -25,11 +25,11 @@ from collections import OrderedDict
 from datetime import datetime
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EVENT_DIR = os.path.join(PROJECT_DIR, 'docs', 'event')
+EVENT_DIR = os.path.join(PROJECT_DIR, 'docs', 'story')
 SCRIPTS_DIR = os.path.join(PROJECT_DIR, 'scripts')
 ASSIGN_CHAPTERS_PATH = os.path.join(SCRIPTS_DIR, 'assign_chapters.py')
 
-from event_config import ALL_PREFIXES
+from story_config import ALL_PREFIXES
 
 
 # ═══════════════════════════════════════════════════════════

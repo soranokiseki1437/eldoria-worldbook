@@ -13,7 +13,7 @@ story_tool.py — 章节验证与查看工具 (V10.3 — TXT文件驱动)
   Rule2: 第三者间不得互通性行为进度
   Rule4: Seraphina发色检查（粉色非银色）
   Rule5: 必填字段检查（ID/名称/NSFW/情境/核心）
-  Rule6: 禁止"不是/不再/并非...是/而是..."句式
+  Rule6: 禁止否定迂回句式（不是/不再/并非…是… / 没有…只是… / 没有…没有…）
   Rule7: 禁止不良气味描写
   Rule8: 好感值上限检查（单角色单事件≤10）
   Rule9: 阶段字段值合法性（8个合法阶段名）
@@ -201,29 +201,42 @@ def validate_prefix(prefix):
                 f'[{eid}] Rule5: NSFW事件缺少「性行为等级」 — {name}'
             )
 
-    # Rule 6 (去AI化): 禁止"不是...是..."等否定→肯定迂回句式
-    # 该句式是AI写作的标志性废话——直接用肯定句描述，不绕弯否定再肯定。
-    # 例："不是因为脏——是因为他舍不得放开" → "他舍不得放开"
-    #     "不是命令不是允许，是娇羞的点头" → "她娇羞地点了点头"
-    #     "不再对抗，而是融合" → "交融在一起"
-    # 检测三种模式：不是…是… / 不再…而是… / 并非…而是…
-    _NOT_BUT_PATS = [
-        re.compile(r'不是.{1,120}是'),
-        re.compile(r'不再.{1,120}而是'),
-        re.compile(r'并非.{1,120}而是'),
+    # Rule 6 (去AI化): 禁止否定迂回句式
+    # 6a. "不是/不再/并非…是/而是…" — 用否定衬托肯定的迂回写法
+    #     例："不是因为脏——是因为他舍不得放开" → "他舍不得放开"
+    #         "不再对抗，而是融合" → "交融在一起"
+    # 6b. "没有…只是…" — 先否定再轻微转折，同样是迂回
+    #     例："她没有问为什么。只是微微低下头" → "她微微低下头"
+    # 6c. "没有…没有…" — 成对否定（建议审视，可能为AI修辞惯性）
+    #     例："没有声音，没有动作" → "寂静。静止。"
+    _NEG_AFFIRM_PATS = [
+        re.compile(r'不是.{1,150}是'),                  # 不是X是Y / 不是X而是Y
+        re.compile(r'不再.{1,150}是'),                  # 不再是X(而)是Y
+        re.compile(r'并非.{1,150}是'),                  # 并非X(而)是Y
+        re.compile(r'没有.{1,80}只是'),                 # 没有X只是Y
     ]
+    _DOUBLE_NEG_RE = re.compile(r'没有.{1,30}没有')      # 没有X没有Y（紧密成对）
+
     for eid, name, fp, data in events:
         with open(fp, 'r', encoding='utf-8') as f:
             content = f.read()
         body = content.split('\n', 1)
         body = body[1] if len(body) > 1 else ''
-        for pat in _NOT_BUT_PATS:
+
+        # 6a/6b: 迂回肯定 + 否定后转折
+        for pat in _NEG_AFFIRM_PATS:
             for m in pat.finditer(body):
                 ctx = m.group(0)[:100]
                 violations.append(
-                    f'[{eid}] Rule6: 禁止"不是/不再/并非…是/而是…"句式 — {ctx}'
+                    f'[{eid}] Rule6: 禁止否定迂回句式 — {ctx}'
                 )
 
+        # 6c: 成对否定（警告级别）
+        for m in _DOUBLE_NEG_RE.finditer(body):
+            ctx = m.group(0)[:100]
+            violations.append(
+                f'[{eid}] Rule6c: 成对否定（建议审视是否可改为肯定描写） — {ctx}'
+            )
     # Rule 7 (NSFW写作): 禁止不良气味描写
     # 禁止体臭/骚味/体味/汗味/热气等不洁气味。
     # 清新体香、花香、草药香等干净气息可以通过。

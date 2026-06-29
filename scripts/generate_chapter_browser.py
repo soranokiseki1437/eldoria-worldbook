@@ -892,7 +892,7 @@ renderGrid();
 
 # ─── 入口 ──────────────────────────────────────────────
 if __name__ == "__main__":
-    print(f"扫描: {os.path.join(BASE_DIR, 'docs', 'event')}")
+    print(f"扫描: {os.path.join(BASE_DIR, 'docs', 'story')}")
     events, event_chapters, event_names = build_events()
 
     prefixes = {}
