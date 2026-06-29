@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-build_eldoria.py — Eldoria 世界书 JSON 构建脚本 (V10.0)
+build_eldoria.py — Eldoria 世界书 JSON 构建脚本 (V10.3)
 ===========================================================
 权威数据源：docs/ 子目录全部TXT文件（chapter/ character/ world/ creature/ location/ npc/ event/）
-派生产物：output/Eldoria_V10.0.0.json（本脚本输出，不可手动编辑）
+派生产物：output/Eldoria_V10.3.0.json（本脚本输出，不可手动编辑）
 
 工作流：编辑 docs/ 下的 TXT 文件（权威数据源）→ 运行本脚本 → 产出 JSON
 
-架构 (V10.0):
+架构 (V10.3):
   - 全TXT驱动，零硬编码条目
-  - Reference条目: docs/chapter|character|world|creature|location|npc/*.TXT → 69条
-  - 事件条目: docs/event/{章节}/*.TXT → 170条
-  - 始终触发条目: chapter/全部(6) + 各子目录_总览文件(5) = 11条
+  - 输出格式：entries Object(keyed by string uid) + _meta
+  - 每条目11字段：uid/key/keysecondary/comment/content/constant/selective/order/position/depth/group
+  - 无 extensions/originalData/characterFilter 膨胀
   - JSON不可手动编辑，所有修改通过TXT + rebuild
 
 用法：
@@ -43,7 +43,7 @@ MD_DIR      = DOCS_DIR  # 分md在 docs/ 目录下
 #  - 次版本: 新增角色 / 新增事件 / 修改变量系统
 #  - 修订号: 文本修正 / 错别字 / 内容微调
 VERSION = "V10.3.0"
-VERSION_TAG = f"Eldoria_{VERSION}"  # V10.3.0: SillyTavern导入格式修复——100%对齐俺妹ver1.41
+VERSION_TAG = f"Eldoria_{VERSION}"  # V10.3.0: 11字段精简Object格式 — 修复Array导入失败+砍掉extensions/originalData/characterFilter膨胀(-67%)
 
 # 主输出文件 = 带版本号的文件名（输出到 output/ 目录）
 JSON_PATH = os.path.join(OUTPUT_DIR, f"{VERSION_TAG}.json")
@@ -511,61 +511,26 @@ def make_entry(uid, keys, comment, content, order,
                constant=False, probability=100, use_probability=True,
                keysecondary=None, selective=True, position=1,
                group="", depth=4):
-    """创建一条 SillyTavern 原生格式的世界书条目（对齐俺妹ver1.41——12字段紧凑格式）。
+    """创建一条世界书条目 — V10.3精简11字段格式。
 
-    俺妹每条仅12顶层字段，其余配置全部收敛进 extensions。
+    输出字段：uid/key/keysecondary/comment/content/constant/
+    selective/order/position(整数0/1/4)/depth/group。
+    probability/use_probability 保留签名兼容但不出现在输出中。
     """
     _ks = keysecondary if keysecondary is not None else []
 
-    # position 映射为SillyTavern字符串格式
-    POSITION_MAP = {0: "before_char", 1: "after_char", 4: "in_chat"}
-    pos_str = POSITION_MAP.get(position, "after_char")
-
     return OrderedDict([
-        ("id", uid),
-        ("keys", keys),
-        ("secondary_keys", _ks),
+        ("uid", uid),
+        ("key", keys),
+        ("keysecondary", _ks),
         ("comment", comment),
         ("content", content),
         ("constant", constant),
         ("selective", selective),
-        ("insertion_order", order),
-        ("enabled", True),
-        ("position", pos_str),
-        ("use_regex", True),
-        ("extensions", OrderedDict([
-            ("position", position),
-            ("exclude_recursion", False),
-            ("display_index", 0),
-            ("probability", probability),
-            ("use_probability", use_probability),
-            ("depth", depth),
-            ("selective_logic", 0),
-            ("group", group),
-            ("group_override", False),
-            ("group_weight", 100),
-            ("prevent_recursion", False),
-            ("delay_until_recursion", False),
-            ("scan_depth", None),
-            ("match_whole_words", None),
-            ("use_group_scoring", False),
-            ("case_sensitive", None),
-            ("automation_id", ""),
-            ("role", 0),
-            ("vectorized", False),
-            ("sticky", 0),
-            ("cooldown", 0),
-            ("delay", 0),
-            ("match_persona_description", False),
-            ("match_character_description", False),
-            ("match_character_personality", False),
-            ("match_character_depth_prompt", False),
-            ("match_scenario", False),
-            ("match_creator_notes", False),
-            ("triggers", []),
-            ("ignore_budget", False),
-            ("outlet_name", None),
-        ])),
+        ("order", order),
+        ("position", position),
+        ("depth", depth),
+        ("group", group),
     ])
 
 

@@ -149,26 +149,31 @@ def load_events_from_txt():
                 continue
             # Build yaml-like text from key-value pairs for tag inference
             raw_yaml = '\n'.join(f'{k}: {v}' for k, v in data.items())
+            # Extract numeric 性行为等级 (TXT field, e.g. "9" or "8（腿交——...）")
+            sex_lv_raw = data.get('性行为等级', '').strip()
+            sex_lv_m = re.match(r'(\d+)', sex_lv_raw)
+            sex_level = int(sex_lv_m.group(1)) if sex_lv_m else None
             events_raw[eid] = {
                 'name': name,
                 'raw_name': name,
                 'raw_yaml': raw_yaml,
                 'has_yaml': True,
                 'is_nsfw': data.get('NSFW', '').strip() == '是',
-                'prefix': pfx,  # V7.0: 记录来源目录（章节名）
+                'sex_level': sex_level,
+                'prefix': pfx,
             }
     return events_raw
 
 
-def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix=""):
-    """推断类型标签：标题优先 + 精准关键词兜底。"""
+def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix="", sex_level=None):
+    """推断类型标签：标题优先 + 性行为等级辅助。"""
     title_lower = name.lower()
     text_lower = (name + " " + raw_yaml).lower()
     tags = []
 
     if is_nsfw_explicit is True:
         tags.append("NSFW")
-        # 纯标题匹配：全标题（主+副）中提取类型，标题是作者显式标注的唯一可靠来源
+        # 纯标题匹配：全标题（主+副）中提取类型
         title_map = {
             "口交": ["口交", "吞", "之口", "的口"],
             "足交": ["足交", "足下的", "裸足", "的足"],
@@ -182,6 +187,10 @@ def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix=""):
         for tag, kws in title_map.items():
             if any(kw in title_lower for kw in kws):
                 tags.append(tag)
+
+        # 性行为等级辅助：等级≥9 必为本番（插入/内射）
+        if "本番" not in tags and sex_level is not None and sex_level >= 9:
+            tags.append("本番")
     elif is_nsfw_explicit is False:
         tags.append("SFW")
     else:
@@ -228,7 +237,7 @@ def build_events():
                     scene_preview = m.group(1).strip()[:200]
                     break
         is_nsfw_flag = raw.get('is_nsfw', None)
-        tags = infer_tags(event_id, name, raw_yaml, is_nsfw_flag, prefix=prefix)
+        tags = infer_tags(event_id, name, raw_yaml, is_nsfw_flag, prefix=prefix, sex_level=raw.get('sex_level'))
         nsfw_level = get_nsfw_level(tags)
         has_branches = "纯爱" in raw_yaml and ("NTRS" in raw_yaml or "被动NTR" in raw_yaml)
         characters = extract_main_characters(raw_yaml, name)
