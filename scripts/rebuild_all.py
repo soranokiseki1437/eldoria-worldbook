@@ -46,7 +46,7 @@ def main():
 
     print(f'\n{"="*60}')
     print('  ✅ 全流程重建完成')
-    print(f'     输出: output/Eldoria_V10.1.0.json')
+    print(f'     输出: output/Eldoria_V10.4.0.json')
     print(f'     浏览器: visual/全章节浏览器.html')
     print(f'{"="*60}')
 
