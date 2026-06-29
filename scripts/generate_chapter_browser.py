@@ -178,9 +178,11 @@ def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix="", sex_l
             "口交": ["口交", "吞", "之口", "的口"],
             "足交": ["足交", "足下的", "裸足", "的足"],
             "本番": ["本番", "插入", "内射", "肛交", "后门", "结合"],
-            "手交": ["手交", "打飞机", "手淫", "指交", "扣穴"],
+            "手交": ["手交", "打飞机", "手淫"],
+            "指交": ["指交", "扣穴"],
             "乳交": ["乳交", "乳沟", "乳的", "的乳"],
             "腿交": ["腿交"],
+            "蹭穴": ["蹭穴", "擦过阴蒂"],
             "隐奸": ["隐奸", "桌下"],
             "群交": ["群交", "轮奸", "3P"],
         }
@@ -188,9 +190,10 @@ def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix="", sex_l
             if any(kw in title_lower for kw in kws):
                 tags.append(tag)
 
-        # 核心字段兜底：标题未命中时，从文本中匹配（排除"没有X交"等否定句式）
+        # 核心字段兜底：标题未命中时，从文本中匹配（排除否定句式）
         text_map = {
-            "口交": ["口交"], "足交": ["足交"], "手交": ["手交", "打飞机", "指交", "扣穴"], "乳交": ["乳交"],
+            "口交": ["口交"], "足交": ["足交"], "手交": ["手交", "打飞机"], "指交": ["指交", "扣穴"],
+            "乳交": ["乳交"], "蹭穴": ["蹭穴", "擦过阴蒂"],
             "群交": ["轮奸"], "隐奸": ["隐奸"],
         }
         for tag, kws in text_map.items():
@@ -217,7 +220,7 @@ def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix="", sex_l
 
 
 def get_nsfw_level(tags):
-    levels = ["本番", "口交", "乳交", "腿交", "足交", "手交", "隐奸", "群交", "NSFW"]
+    levels = ["本番", "口交", "乳交", "腿交", "足交", "手交", "指交", "蹭穴", "隐奸", "群交", "NSFW"]
     for lv in levels:
         if lv in tags:
             return lv
@@ -570,7 +573,7 @@ def generate_html(events):
     for e in events:
         for t in e["tags"]:
             all_tags.add(t)
-    tag_order = ["SFW", "NSFW", "足交", "本番", "手交", "口交", "乳交", "腿交", "隐奸", "群交"]
+    tag_order = ["SFW", "NSFW", "本番", "口交", "乳交", "腿交", "足交", "手交", "指交", "蹭穴", "隐奸", "群交"]
     tag_btns = ['<button class="filter-btn type-btn active" data-filter="tag" data-value="all">全部</button>']
     for t in tag_order:
         if t in all_tags:
