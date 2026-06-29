@@ -165,69 +165,49 @@ def load_events_from_txt():
     return events_raw
 
 
-def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix="", sex_level=None):
-    """推断类型标签：标题优先 + 性行为等级辅助。"""
-    title_lower = name.lower()
-    text_lower = (name + " " + raw_yaml).lower()
-    tags = []
+def load_sex_index():
+    """读取 docs/story/_sex_index.txt → {章节ID: [标签列表]}"""
+    index_path = os.path.join(BASE_DIR, 'docs', 'story', '_sex_index.txt')
+    index = {}
+    current_tag = None
+    if not os.path.exists(index_path):
+        return index
+    with open(index_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            if line.startswith('## '):
+                current_tag = line[3:].split(' (')[0].strip()
+                continue
+            m = re.match(r'^(\d+):', line)
+            if m and current_tag:
+                ch_id = m.group(1)
+                if ch_id not in index:
+                    index[ch_id] = []
+                index[ch_id].append(current_tag)
+    return index
 
+
+def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix="", sex_level=None):
+    """从 _sex_index.txt 读取章节类型标签（手工维护，无自动推断）。"""
+    tags = []
     if is_nsfw_explicit is True:
         tags.append("NSFW")
-        # 纯标题匹配：全标题（主+副）中提取类型
-        title_map = {
-            "口交": ["口交", "吞", "之口", "的口"],
-            "足交": ["足交", "足下的", "裸足", "的足"],
-            "本番": ["本番", "插入", "内射", "肛交", "后门", "结合"],
-            "手交": ["手交", "打飞机", "手淫", "手把手"],
-            "指交": ["指交", "扣穴"],
-            "乳交": ["乳交", "乳沟", "乳的", "的乳"],
-            "腿交": ["腿交"],
-            "蹭穴": ["蹭穴", "擦过阴蒂"],
-            "接吻": ["接吻", "亲吻"],
-            "隐奸": ["隐奸", "桌下"],
-            "群交": ["群交", "轮奸", "3P"],
-        }
-        for tag, kws in title_map.items():
-            if any(kw in title_lower for kw in kws):
-                tags.append(tag)
-
-        # 核心字段兜底：标题未命中时，从文本中匹配（排除否定句式）
-        text_map = {
-            "口交": ["口交", "舔"],
-            "足交": ["足交"],
-            "手交": ["手交", "打飞机", "手把手"],
-            "指交": ["指交", "扣穴", "触碰阴蒂"],
-            "乳交": ["乳交"],
-            "蹭穴": ["蹭穴", "擦过阴蒂"],
-            "接吻": ["接吻"],
-            "本番": ["内射"],
-            "群交": ["轮奸"], "隐奸": ["隐奸"],
-        }
-        for tag, kws in text_map.items():
-            if tag not in tags:
-                for kw in kws:
-                    if re.search(r'(?<!没有)(?<!不是)(?<!无)' + re.escape(kw), text_lower):
-                        tags.append(tag)
-                        break
-
-        # 性行为等级辅助：等级≥9 必为本番（插入/内射）
-        if "本番" not in tags and sex_level is not None and sex_level >= 9:
-            tags.append("本番")
     elif is_nsfw_explicit is False:
         tags.append("SFW")
     else:
-        # 无显式NSFW字段：关键词兜底
-        nsfw_kws = ["口交", "足交", "本番", "手交", "乳交", "腿交",
-                    "隐奸", "群交", "插入", "内射"]
-        if any(kw in text_lower for kw in nsfw_kws):
-            tags.append("NSFW")
-        else:
-            tags.append("SFW")
+        tags.append("SFW")
+    # 从手工索引读取类型标签
+    sex_index = load_sex_index()
+    for t in sex_index.get(event_id, []):
+        if t not in tags:
+            tags.append(t)
     return tags
 
 
 def get_nsfw_level(tags):
-    levels = ["本番", "口交", "乳交", "腿交", "足交", "手交", "指交", "蹭穴", "接吻", "隐奸", "群交", "NSFW"]
+    levels = ["肛交", "本番", "口交", "乳交", "腿交", "足交", "手交", "指交", "蹭穴", "接吻", "隐奸", "群交", "NSFW"]
     for lv in levels:
         if lv in tags:
             return lv
@@ -580,7 +560,7 @@ def generate_html(events):
     for e in events:
         for t in e["tags"]:
             all_tags.add(t)
-    tag_order = ["SFW", "NSFW", "本番", "口交", "乳交", "腿交", "足交", "手交", "指交", "蹭穴", "接吻", "隐奸", "群交"]
+    tag_order = ["SFW", "NSFW", "肛交", "本番", "口交", "乳交", "腿交", "足交", "手交", "指交", "蹭穴", "接吻", "隐奸", "群交"]
     tag_btns = ['<button class="filter-btn type-btn active" data-filter="tag" data-value="all">全部</button>']
     for t in tag_order:
         if t in all_tags:
