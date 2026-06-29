@@ -190,7 +190,7 @@ def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix="", sex_l
 
         # 核心字段兜底：标题未命中时，从核心/情境文本中匹配精准关键词
         text_map = {
-            "口交": ["口交"], "足交": ["足交"], "手交": ["手交"], "乳交": ["乳交"],
+            "口交": ["口交"], "足交": ["足交"], "手交": ["手交", "打飞机"], "乳交": ["乳交"],
             "群交": ["轮奸"], "隐奸": ["隐奸"],
         }
         for tag, kws in text_map.items():
