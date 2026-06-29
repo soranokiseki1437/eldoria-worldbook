@@ -200,7 +200,7 @@ def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix="", sex_l
             "乳交": ["乳交"],
             "蹭穴": ["蹭穴", "擦过阴蒂"],
             "接吻": ["接吻"],
-            "本番": ["内射", "小穴"],
+            "本番": ["内射"],
             "群交": ["轮奸"], "隐奸": ["隐奸"],
         }
         for tag, kws in text_map.items():
