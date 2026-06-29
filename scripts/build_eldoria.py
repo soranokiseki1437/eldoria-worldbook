@@ -887,6 +887,7 @@ def validate_existing():
     """仅验证当前版本号文件的合法性（不构建）
 
     检查项目根目录中的 Eldoria_V{VERSION}.json 是否合法。
+    支持V3格式（43字段）和旧格式（12字段）的验证。
     """
     if not os.path.exists(JSON_PATH):
         print(f"[error] {os.path.basename(JSON_PATH)} 不存在")
@@ -894,10 +895,21 @@ def validate_existing():
 
     with open(JSON_PATH, 'r', encoding='utf-8') as f:
         data = json.load(f)
-    entries = list(data.get("entries", {}).values())
+
+    raw_entries = data.get("entries", {})
+    if isinstance(raw_entries, list):
+        entries = raw_entries
+    else:
+        entries = list(raw_entries.values())
     if not entries:
         print(f"[error] 无法解析 {os.path.basename(JSON_PATH)}")
         return False
+
+    # 检测格式：V3有'uid'字段，旧格式有'id'字段
+    if entries and "uid" in entries[0] and "id" not in entries[0]:
+        # V3格式 → 转为内部格式再验证
+        print("[validate] 检测到V3格式（43字段），转换为内部格式验证...")
+        entries = [_from_v3_entry(e) for e in entries]
 
     errors = validate_entries(entries)
     if errors:
@@ -908,6 +920,28 @@ def validate_existing():
     else:
         print(f"验证通过: {len(entries)} 条条目全部合法")
         return True
+
+
+def _from_v3_entry(v3_entry):
+    """将V3 43字段条目转回内部12字段格式（用于validate_existing）"""
+    ext = v3_entry.get("extensions", {})
+    POS_FROM_INT = {0: "before_char", 1: "after_char", 4: "in_chat"}
+    pos_str = POS_FROM_INT.get(v3_entry.get("position", 1), "after_char")
+
+    return OrderedDict([
+        ("id", v3_entry.get("uid", 0)),
+        ("keys", v3_entry.get("key", [])),
+        ("secondary_keys", v3_entry.get("keysecondary", [])),
+        ("comment", v3_entry.get("comment", "")),
+        ("content", v3_entry.get("content", "")),
+        ("constant", v3_entry.get("constant", False)),
+        ("selective", v3_entry.get("selective", True)),
+        ("insertion_order", v3_entry.get("order", 100)),
+        ("enabled", not v3_entry.get("disable", False)),
+        ("position", pos_str),
+        ("use_regex", True),
+        ("extensions", ext),
+    ])
 
 
 # ─── 入口 ──────────────────────────────────────────────

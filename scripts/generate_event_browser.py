@@ -49,22 +49,19 @@ CHARACTER_NAMES = [
 
 # ─── 角色检测：第三者 + 好感影响 + 标题 ─────────────────
 def extract_main_characters(raw_yaml, event_name):
-    """三层提取主角角色名：
-    1) 第三者字段（NSFW第三方）
-    2) 好感影响字段（有数值变化=本章主角）
-    3) 标题中的角色名（兜底）
-    Seraphina + 黎恩 始终在内。
+    """三层提取主角角色名（OR叠加，满足任意一层即加入）。
+    仅当三层均无命中时才兜底为 Seraphina+黎恩。
     """
-    chars = ["Seraphina", "黎恩"]
+    chars = []
 
     if not raw_yaml:
-        return chars
+        return ["Seraphina", "黎恩"]
 
-    # 第一层：第三者字段
+    # 第一层：第三者字段（排除空值/解析artifact）
     m = re.search(r'^第三者:\s*(.+)', raw_yaml, re.MULTILINE)
     if m:
         tp_raw = m.group(1).strip()
-        if tp_raw and not tp_raw.startswith('黎恩知情') and not tp_raw.startswith('N/A'):
+        if tp_raw and not re.match(r'(黎恩知情|N/A|情境[:：]|核心[:：])', tp_raw):
             cleaned = re.sub(r'[（(][^)）]*[)）]', '', tp_raw)
             cleaned = cleaned.replace('×', '+')
             for name in re.split(r'[+、]', cleaned):
@@ -72,18 +69,23 @@ def extract_main_characters(raw_yaml, event_name):
                 if name in CHARACTER_NAMES:
                     chars.append(name)
 
-    # 第二层：好感影响字段（有数值变化=本章主角）
+    # 第二层：好感影响字段（排除解析artifact——空字段后接情境等）
     m2 = re.search(r'^好感影响:\s*(.+)', raw_yaml, re.MULTILINE)
     if m2:
-        aff_text = m2.group(1)
-        for cname in CHARACTER_NAMES:
-            if cname in aff_text and cname not in chars:
-                chars.append(cname)
+        aff_text = m2.group(1).strip()
+        if not re.match(r'(情境[:：]|核心[:：]|章节)', aff_text):
+            for cname in CHARACTER_NAMES:
+                if cname in aff_text and cname not in chars:
+                    chars.append(cname)
 
-    # 第三层：标题中的角色名（兜底）
+    # 第三层：标题中的角色名
     for cname in CHARACTER_NAMES:
         if cname in event_name and cname not in chars:
             chars.append(cname)
+
+    # 三层都没命中 → 兜底为 Seraphina+黎恩 章节
+    if not chars:
+        chars = ["Seraphina", "黎恩"]
 
     return chars
 
