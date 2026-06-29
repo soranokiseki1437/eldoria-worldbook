@@ -512,61 +512,26 @@ def make_entry(uid, keys, comment, content, order,
                constant=False, probability=100, use_probability=True,
                keysecondary=None, selective=True, position=1,
                group="", depth=4):
-    """创建一条 SillyTavern 原生格式的世界书条目（对齐俺妹ver1.41——12字段紧凑格式）。
+    """创建一条世界书条目 — V10.3精简11字段格式（entries为Object，keyed by string uid）。
 
-    俺妹每条仅12顶层字段，其余配置全部收敛进 extensions。
+    V10.2.0验证可行：uid/key/keysecondary/comment/content/constant/
+    selective/order/position(整数)/depth/group。无extensions/characterFilter/originalData膨胀。
+    probability/use_probability 保留签名兼容但不出现在输出中。
     """
     _ks = keysecondary if keysecondary is not None else []
 
-    # position 映射为SillyTavern字符串格式
-    POSITION_MAP = {0: "before_char", 1: "after_char", 4: "in_chat"}
-    pos_str = POSITION_MAP.get(position, "after_char")
-
     return OrderedDict([
-        ("id", uid),
-        ("keys", keys),
-        ("secondary_keys", _ks),
+        ("uid", uid),
+        ("key", keys),
+        ("keysecondary", _ks),
         ("comment", comment),
         ("content", content),
         ("constant", constant),
         ("selective", selective),
-        ("insertion_order", order),
-        ("enabled", True),
-        ("position", pos_str),
-        ("use_regex", True),
-        ("extensions", OrderedDict([
-            ("position", position),
-            ("exclude_recursion", False),
-            ("display_index", 0),
-            ("probability", probability),
-            ("useProbability", use_probability),
-            ("depth", depth),
-            ("selectiveLogic", 0),
-            ("group", group),
-            ("group_override", False),
-            ("group_weight", 100),
-            ("prevent_recursion", False),
-            ("delay_until_recursion", False),
-            ("scan_depth", None),
-            ("match_whole_words", None),
-            ("use_group_scoring", False),
-            ("case_sensitive", None),
-            ("automation_id", ""),
-            ("role", 0),
-            ("vectorized", False),
-            ("sticky", 0),
-            ("cooldown", 0),
-            ("delay", 0),
-            ("match_persona_description", False),
-            ("match_character_description", False),
-            ("match_character_personality", False),
-            ("match_character_depth_prompt", False),
-            ("match_scenario", False),
-            ("match_creator_notes", False),
-            ("triggers", []),
-            ("ignore_budget", False),
-            ("outlet_name", None),
-        ])),
+        ("order", order),
+        ("position", position),   # int: 0/1/4 (before_char/after_char/in_chat)
+        ("depth", depth),
+        ("group", group),
     ])
 
 
@@ -655,31 +620,31 @@ def build(dry_run=False):
     for label, entries in _REGISTRY.items():
         all_entries.extend(entries)
 
-    # 为 uid=None 的条目自动分配连续 id
-    next_uid = max((e.get("id", -1) for e in all_entries if e.get("id") is not None), default=-1) + 1
+    # 为 uid=None 的条目自动分配连续 uid
+    next_uid = max((e.get("uid", -1) for e in all_entries if e.get("uid") is not None), default=-1) + 1
     auto_assigned = 0
     for e in all_entries:
-        if e.get("id") is None:
-            e["id"] = next_uid
+        if e.get("uid") is None:
+            e["uid"] = next_uid
             next_uid += 1
             auto_assigned += 1
     if auto_assigned:
-        print(f"      [auto-uid] 自动分配 {auto_assigned} 个 id")
+        print(f"      [auto-uid] 自动分配 {auto_assigned} 个 uid")
 
     # 确保 uid 连续
-    all_entries.sort(key=lambda e: e.get("id", 0))
+    all_entries.sort(key=lambda e: e.get("uid", 0))
     for i, e in enumerate(all_entries):
-        e["id"] = i
-    all_entries.sort(key=lambda e: e.get("id", 0))
+        e["uid"] = i
+    all_entries.sort(key=lambda e: e.get("uid", 0))
     print(f"[step 3] 合并后总计: {len(all_entries)} 条")
 
-    # 3.5. 永久触发 — 基于 constant=True 字段（不再硬编码 uid）
-    constant_ids = [e["id"] for e in all_entries if e.get("constant")]
+    # 3.5. 永久触发 — 基于 constant=True 字段
+    constant_ids = [e["uid"] for e in all_entries if e.get("constant")]
     for e in all_entries:
         if e.get("constant"):
             e["constant"] = True
     if constant_ids:
-        print(f"[step 3.5] 永久触发: id {sorted(constant_ids)}")
+        print(f"[step 3.5] 永久触发: uid {sorted(constant_ids)}")
 
     # 4. 验证
     errors = validate_entries(all_entries)
@@ -738,147 +703,71 @@ def build(dry_run=False):
 
 
 def validate_entries(entries):
-    """验证条目列表的完整性和一致性（俺妹12字段紧凑格式）"""
+    """验证条目列表的完整性和一致性（V10.3精简11字段格式）"""
     errors = []
-    seen_ids = set()
+    seen_uids = set()
 
     required_fields = [
-        "id", "keys", "content", "comment", "constant",
-        "selective", "insertion_order", "position", "enabled",
+        "uid", "key", "content", "comment", "constant",
+        "selective", "order", "position", "depth", "group",
     ]
 
     for e in entries:
-        eid = e.get("id")
+        euid = e.get("uid")
 
-        if eid in seen_ids:
-            errors.append(f"id {eid} 重复")
-        seen_ids.add(eid)
+        if euid in seen_uids:
+            errors.append(f"uid {euid} 重复")
+        seen_uids.add(euid)
 
         for field in required_fields:
             if field not in e:
-                errors.append(f"id {eid} 缺少字段: {field}")
+                errors.append(f"uid {euid} 缺少字段: {field}")
 
         content = e.get("content", "")
         if not content or not content.strip():
-            errors.append(f"id {eid} content 为空")
+            errors.append(f"uid {euid} content 为空")
 
         # 始终触发条目不依赖key匹配，豁免key检查
-        keys = e.get("keys", [])
+        keys = e.get("key", [])
         if not e.get("constant"):
             if not keys:
-                errors.append(f"id {eid} keys 为空")
+                errors.append(f"uid {euid} key 为空")
             if len(keys) < 1:
-                errors.append(f"id {eid} keys 数量不足 (至少1个): {len(keys)}")
+                errors.append(f"uid {euid} key 数量不足 (至少1个): {len(keys)}")
 
-        # probability 在 extensions 内
-        ext = e.get("extensions", {})
-        prob = ext.get("probability", -1)
-        if not (0 <= prob <= 100):
-            errors.append(f"id {eid} probability 超出范围: {prob}")
-
-    sorted_ids = sorted(seen_ids)
-    expected = list(range(len(sorted_ids)))
-    if sorted_ids != expected:
-        missing = set(expected) - set(sorted_ids)
+    sorted_uids = sorted(seen_uids)
+    expected = list(range(len(sorted_uids)))
+    if sorted_uids != expected:
+        missing = set(expected) - set(sorted_uids)
         if missing:
-            errors.append(f"缺少 id: {sorted(missing)}")
+            errors.append(f"缺少 uid: {sorted(missing)}")
 
     return errors
 
 
-def _to_v3_entry(old_entry):
-    """将内部12字段条目转换为43字段V3格式（100%对齐俺妹ver1.41）。
-
-    V3格式：43个flat字段(camelCase) + characterFilter + extensions(snake_case)。
-    entries为OBJECT（非array），keyed by string uid。
-    """
-    ext = old_entry.get("extensions", {})
-
-    # position 映射: string → int
-    POS_TO_INT = {"before_char": 0, "after_char": 1, "in_chat": 4}
-    pos_int = POS_TO_INT.get(old_entry.get("position", "after_char"), 1)
-
-    is_constant = old_entry.get("constant", False)
-    uid = old_entry.get("id", 0)
-
-    # role: constant+position=0 的条目用 null，其余用 0
-    flat_role = None if (is_constant and pos_int == 0) else 0
-
-    return OrderedDict([
-        # ── 核心字段 ──
-        ("key", old_entry.get("keys", [])),
-        ("keysecondary", old_entry.get("secondary_keys", [])),
-        ("comment", old_entry.get("comment", "")),
-        ("content", old_entry.get("content", "")),
-        ("constant", is_constant),
-        ("vectorized", ext.get("vectorized", False)),
-        ("selective", old_entry.get("selective", True)),
-        ("selectiveLogic", ext.get("selectiveLogic", 0)),
-        ("addMemo", True),
-        ("order", old_entry.get("insertion_order", 100)),
-        ("position", pos_int),
-        ("disable", not old_entry.get("enabled", True)),
-        ("ignoreBudget", ext.get("ignore_budget", False)),
-        ("excludeRecursion", ext.get("exclude_recursion", False)),
-        ("preventRecursion", ext.get("prevent_recursion", False)),
-        ("matchPersonaDescription", ext.get("match_persona_description", False)),
-        ("matchCharacterDescription", ext.get("match_character_description", False)),
-        ("matchCharacterPersonality", ext.get("match_character_personality", False)),
-        ("matchCharacterDepthPrompt", ext.get("match_character_depth_prompt", False)),
-        ("matchScenario", ext.get("match_scenario", False)),
-        ("matchCreatorNotes", ext.get("match_creator_notes", False)),
-        ("delayUntilRecursion", ext.get("delay_until_recursion", False)),
-        ("probability", ext.get("probability", 100)),
-        ("useProbability", ext.get("useProbability", True)),
-        ("depth", ext.get("depth", 4)),
-        ("outletName", ext.get("outlet_name", "")),
-        ("group", ext.get("group", "")),
-        ("groupOverride", ext.get("group_override", False)),
-        ("groupWeight", ext.get("group_weight", 100)),
-        ("scanDepth", ext.get("scan_depth", None)),
-        ("caseSensitive", ext.get("case_sensitive", None)),
-        ("matchWholeWords", ext.get("match_whole_words", None)),
-        ("useGroupScoring", ext.get("use_group_scoring", False)),
-        ("automationId", ext.get("automation_id", "")),
-        ("role", flat_role),
-        ("sticky", ext.get("sticky", 0)),
-        ("cooldown", ext.get("cooldown", 0)),
-        ("delay", ext.get("delay", 0)),
-        ("triggers", ext.get("triggers", [])),
-        ("uid", uid),
-        ("displayIndex", uid),
-        # ── 嵌套对象（与flat字段双向冗余）──
-        ("extensions", ext),
-        ("characterFilter", OrderedDict([
-            ("isExclude", False),
-            ("names", []),
-            ("tags", []),
-        ])),
-    ])
-
-
 def assemble_json(entries):
-    """将条目列表组装为 SillyTavern 世界书 JSON（100%对齐俺妹ver1.41）。
+    """将条目列表组装为世界书 JSON（V10.3精简格式：entries Object + _meta）。
 
-    输出结构：
-    - entries: OBJECT keyed by string uid, 每项43字段V3格式
-    - originalData: { entries: OBJECT(12字段旧格式), name: str }
+    entries 为 OBJECT keyed by string uid（V10.2.0验证可行）。
+    无 extensions/characterFilter/originalData 膨胀。
     """
     entries_obj = OrderedDict()
-    original_entries_obj = OrderedDict()
-
     for e in entries:
-        uid_str = str(e.get("id", 0))
-        # V3格式（43字段 camelCase + characterFilter）
-        entries_obj[uid_str] = _to_v3_entry(e)
-        # 旧格式（12字段，用于 originalData.entries）
-        original_entries_obj[uid_str] = e
+        uid_str = str(e.get("uid", 0))
+        entries_obj[uid_str] = e
 
     return OrderedDict([
         ("entries", entries_obj),
-        ("originalData", OrderedDict([
-            ("entries", original_entries_obj),
-            ("name", "Eldoria - 艾尔多利亚守护者"),
+        ("_meta", OrderedDict([
+            ("version", VERSION_TAG),
+            ("version_short", VERSION),
+            ("spec", SPEC),
+            ("spec_version", SPEC_VERSION),
+            ("entry_count", len(entries)),
+            ("uid_range", f"0-{len(entries) - 1}"),
+            ("build_time", datetime.now().strftime("%Y-%m-%d %H:%M:%S")),
+            ("authority_source", "docs/子目录TXT文件 + build_eldoria.py (全TXT驱动)"),
+            ("note", "JSON是派生产物，请勿手动编辑。修改请通过TXT文件+构建脚本完成。"),
         ])),
     ])
 
@@ -886,8 +775,7 @@ def assemble_json(entries):
 def validate_existing():
     """仅验证当前版本号文件的合法性（不构建）
 
-    检查项目根目录中的 Eldoria_V{VERSION}.json 是否合法。
-    支持V3格式（43字段）和旧格式（12字段）的验证。
+    检查 output/ 中的 Eldoria_V{VERSION}.json 是否合法。
     """
     if not os.path.exists(JSON_PATH):
         print(f"[error] {os.path.basename(JSON_PATH)} 不存在")
@@ -905,12 +793,6 @@ def validate_existing():
         print(f"[error] 无法解析 {os.path.basename(JSON_PATH)}")
         return False
 
-    # 检测格式：V3有'uid'字段，旧格式有'id'字段
-    if entries and "uid" in entries[0] and "id" not in entries[0]:
-        # V3格式 → 转为内部格式再验证
-        print("[validate] 检测到V3格式（43字段），转换为内部格式验证...")
-        entries = [_from_v3_entry(e) for e in entries]
-
     errors = validate_entries(entries)
     if errors:
         print(f"\n发现 {len(errors)} 个问题:")
@@ -920,28 +802,6 @@ def validate_existing():
     else:
         print(f"验证通过: {len(entries)} 条条目全部合法")
         return True
-
-
-def _from_v3_entry(v3_entry):
-    """将V3 43字段条目转回内部12字段格式（用于validate_existing）"""
-    ext = v3_entry.get("extensions", {})
-    POS_FROM_INT = {0: "before_char", 1: "after_char", 4: "in_chat"}
-    pos_str = POS_FROM_INT.get(v3_entry.get("position", 1), "after_char")
-
-    return OrderedDict([
-        ("id", v3_entry.get("uid", 0)),
-        ("keys", v3_entry.get("key", [])),
-        ("secondary_keys", v3_entry.get("keysecondary", [])),
-        ("comment", v3_entry.get("comment", "")),
-        ("content", v3_entry.get("content", "")),
-        ("constant", v3_entry.get("constant", False)),
-        ("selective", v3_entry.get("selective", True)),
-        ("insertion_order", v3_entry.get("order", 100)),
-        ("enabled", not v3_entry.get("disable", False)),
-        ("position", pos_str),
-        ("use_regex", True),
-        ("extensions", ext),
-    ])
 
 
 # ─── 入口 ──────────────────────────────────────────────
