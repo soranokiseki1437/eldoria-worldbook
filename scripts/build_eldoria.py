@@ -500,8 +500,7 @@ def load_reference_entries():
                 # Non-constant entries → pos=1, depth=4, order=100
                 entry = _make_ref_entry(data, 100, position=1, depth=4)
 
-            # 对齐俺妹ver1.41：group仅在extensions内
-            entry['extensions']['group'] = ""
+            # group 已在 make_entry 中设为 ""，直接添加
             entries.append(entry)
 
     return entries
@@ -512,26 +511,61 @@ def make_entry(uid, keys, comment, content, order,
                constant=False, probability=100, use_probability=True,
                keysecondary=None, selective=True, position=1,
                group="", depth=4):
-    """创建一条世界书条目 — V10.3精简11字段格式（entries为Object，keyed by string uid）。
+    """创建一条 SillyTavern 原生格式的世界书条目（对齐俺妹ver1.41——12字段紧凑格式）。
 
-    V10.2.0验证可行：uid/key/keysecondary/comment/content/constant/
-    selective/order/position(整数)/depth/group。无extensions/characterFilter/originalData膨胀。
-    probability/use_probability 保留签名兼容但不出现在输出中。
+    俺妹每条仅12顶层字段，其余配置全部收敛进 extensions。
     """
     _ks = keysecondary if keysecondary is not None else []
 
+    # position 映射为SillyTavern字符串格式
+    POSITION_MAP = {0: "before_char", 1: "after_char", 4: "in_chat"}
+    pos_str = POSITION_MAP.get(position, "after_char")
+
     return OrderedDict([
-        ("uid", uid),
-        ("key", keys),
-        ("keysecondary", _ks),
+        ("id", uid),
+        ("keys", keys),
+        ("secondary_keys", _ks),
         ("comment", comment),
         ("content", content),
         ("constant", constant),
         ("selective", selective),
-        ("order", order),
-        ("position", position),   # int: 0/1/4 (before_char/after_char/in_chat)
-        ("depth", depth),
-        ("group", group),
+        ("insertion_order", order),
+        ("enabled", True),
+        ("position", pos_str),
+        ("use_regex", True),
+        ("extensions", OrderedDict([
+            ("position", position),
+            ("exclude_recursion", False),
+            ("display_index", 0),
+            ("probability", probability),
+            ("use_probability", use_probability),
+            ("depth", depth),
+            ("selective_logic", 0),
+            ("group", group),
+            ("group_override", False),
+            ("group_weight", 100),
+            ("prevent_recursion", False),
+            ("delay_until_recursion", False),
+            ("scan_depth", None),
+            ("match_whole_words", None),
+            ("use_group_scoring", False),
+            ("case_sensitive", None),
+            ("automation_id", ""),
+            ("role", 0),
+            ("vectorized", False),
+            ("sticky", 0),
+            ("cooldown", 0),
+            ("delay", 0),
+            ("match_persona_description", False),
+            ("match_character_description", False),
+            ("match_character_personality", False),
+            ("match_character_depth_prompt", False),
+            ("match_scenario", False),
+            ("match_creator_notes", False),
+            ("triggers", []),
+            ("ignore_budget", False),
+            ("outlet_name", None),
+        ])),
     ])
 
 
@@ -658,10 +692,13 @@ def build(dry_run=False):
     else:
         print(f"[step 4] 验证通过: {len(all_entries)} 条条目全部合法")
 
-    # 4.5 已移除 — V10.3修复：不再剥离"默认值"字段
-    # 参考文件(俺妹ver1.41)显式保留所有字段(extensions/selectiveLogic/characterFilter/triggers等)
-    # 剥离导致SillyTavern使用版本特定默认值 → 键词匹配行为不确定 → 事件注入失败
-    print(f"[step 4.5] 跳过默认值剥离 — 所有字段显式保留（对齐俺妹ver1.41）")
+    # 4.5 V10.3精简格式 — 11字段条目，无extensions/characterFilter/originalData膨胀
+    # 每条结构开销 ~80 bytes（vs 俺妹43字段 ~945 bytes/条 vs V10.2.0 ~95 bytes/条）
+    struct_overhead = len(json.dumps(OrderedDict([(k, None) for k in [
+        "uid","key","keysecondary","comment","content","constant",
+        "selective","order","position","depth","group"
+    ]]), ensure_ascii=False))
+    print(f"[step 4.5] 精简格式 — 11字段/条, 结构开销 ~{struct_overhead} bytes/条")
 
     # 5. 组装完整 JSON
     data = assemble_json(all_entries)
