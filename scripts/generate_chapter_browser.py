@@ -169,27 +169,29 @@ def load_sex_index():
     """读取 docs/story/_sex_index.txt → {章节ID: [标签列表]}"""
     index_path = os.path.join(BASE_DIR, 'docs', 'story', '_sex_index.txt')
     index = {}
-    current_tag = None
     if not os.path.exists(index_path):
         return index
-    with open(index_path, 'r', encoding='utf-8') as f:
-        for line in f:
-            line = line.rstrip('\r\n').strip()
-            if not line or line.startswith('#'):
-                continue
-            if line.startswith('## '):
-                current_tag = line[3:].split(' (')[0].strip()
-                continue
-            m = re.match(r'^(\d+):', line)
-            if m and current_tag:
-                ch_id = m.group(1)
-                if ch_id not in index:
-                    index[ch_id] = []
-                index[ch_id].append(current_tag)
+    with open(index_path, 'r', encoding='utf-8-sig') as f:
+        text = f.read()
+    current_tag = None
+    for raw in text.split('\n'):
+        line = raw.strip()
+        if not line:
+            continue
+        if line.startswith('##'):
+            # '## 本番 (65章)' → '本番'
+            parts = line.split()
+            current_tag = re.sub(r'[\s(（].*', '', parts[1]) if len(parts) > 1 else ''
+            continue
+        if line.startswith('#'):
+            continue
+        m = re.match(r'^(\d+):', line)
+        if m and current_tag:
+            index.setdefault(m.group(1), []).append(current_tag)
     return index
 
 
-def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix="", sex_level=None):
+def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix="", sex_level=None, sex_index=None):
     """从 _sex_index.txt 读取章节类型标签（手工维护，无自动推断）。"""
     tags = []
     if is_nsfw_explicit is True:
@@ -199,10 +201,10 @@ def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix="", sex_l
     else:
         tags.append("SFW")
     # 从手工索引读取类型标签
-    sex_index = load_sex_index()
-    for t in sex_index.get(event_id, []):
-        if t not in tags:
-            tags.append(t)
+    if sex_index:
+        for t in sex_index.get(event_id, []):
+            if t not in tags:
+                tags.append(t)
     return tags
 
 
@@ -217,6 +219,7 @@ def get_nsfw_level(tags):
 def build_events():
     event_chapters, event_names_from_table = load_chapter_mapping()
     events_raw = load_events_from_txt()
+    sex_index = load_sex_index()
     events = []
     seen_ids = set()
     for event_id, raw in events_raw.items():
@@ -239,7 +242,7 @@ def build_events():
                     scene_preview = m.group(1).strip()[:200]
                     break
         is_nsfw_flag = raw.get('is_nsfw', None)
-        tags = infer_tags(event_id, name, raw_yaml, is_nsfw_flag, prefix=prefix, sex_level=raw.get('sex_level'))
+        tags = infer_tags(event_id, name, raw_yaml, is_nsfw_flag, prefix=prefix, sex_level=raw.get('sex_level'), sex_index=sex_index)
         nsfw_level = get_nsfw_level(tags)
         has_branches = "纯爱" in raw_yaml and ("NTRS" in raw_yaml or "被动NTR" in raw_yaml)
         characters = extract_main_characters(raw_yaml, name)
