@@ -1,4 +1,4 @@
-// 自动生成于: 2026-06-29T00:51:32.221321
+// 自动生成于: 2026-06-29T12:25:16.059675
 // 数据源: docs/event/*.TXT
 // 生成器: scripts/generate_event_browser.py
 
@@ -1789,7 +1789,7 @@ const EVENTS = [
   },
   {
     "id": "224",
-    "title": "乔治的安慰——眼镜上的轻吻",
+    "title": "乔治的安慰——帽檐下的轻吻",
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",

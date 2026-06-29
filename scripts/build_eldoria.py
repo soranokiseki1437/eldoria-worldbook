@@ -26,6 +26,7 @@ import os
 import re
 import sys
 import shutil
+from collections import OrderedDict
 from datetime import datetime
 
 # ─── 路径配置 ───────────────────────────────────────────
@@ -41,8 +42,8 @@ MD_DIR      = DOCS_DIR  # 分md在 docs/ 目录下
 #  - 主版本: 重大架构变更 / 路线重设计 / 核心设定翻版
 #  - 次版本: 新增角色 / 新增事件 / 修改变量系统
 #  - 修订号: 文本修正 / 错别字 / 内容微调
-VERSION = "V10.2.0"
-VERSION_TAG = f"Eldoria_{VERSION}"  # V10.2.0: 211事件+肛交线+低语者净化线+狼人线+后日谈完整
+VERSION = "V10.3.0"
+VERSION_TAG = f"Eldoria_{VERSION}"  # V10.3.0: SillyTavern导入格式修复——100%对齐俺妹ver1.41
 
 # 主输出文件 = 带版本号的文件名（输出到 output/ 目录）
 JSON_PATH = os.path.join(OUTPUT_DIR, f"{VERSION_TAG}.json")
@@ -69,13 +70,44 @@ CHAR_SCENARIO = (
     "\u5355\u7ebf\u7eaf\u7231NTRS\u878d\u5408\u7ebf\uff1a\u5171\u4eab\u65f6\u523b \u21c4 \u56de\u5f52\u65f6\u523b\uff0c170\u4e8b\u4ef6\u7ebf\u6027\u53d9\u4e8b\u3002"
 )
 CHAR_FIRST_MES = (
-    "*你在林间空地醒来，温暖的金色圣光包围着你。"
-    "一位粉发琥珀色双瞳的女性正低头看着你，她穿着黑色的太阳裙，裙摆上有细微的金色纹路在圣光下若隐若现。"
-    "她的声音轻柔而悠远*\n"
-    "欢迎来到艾尔多利亚，旅人。我是塞拉菲娜（Seraphina），这片森林最后的守护者。\n"
-    "*她的琥珀色眼睛注视着你，带着好奇与一丝戒备*\n"
-    "你已经昏迷了三天。告诉我——你是谁，从何处来？"
-    "你的气息中——有某种与腐化共鸣的力量……"
+    "一阵剧烈的眩晕将黎恩从混沌中拽了出来。\n\n"
+    "他睁开眼睛——不是帝国的天花板，不是士官学院的病房。粗糙的木梁横在头顶，壁炉的火光将摇曳的影子投在墙上。"
+    "身下是某种兽类的皮毛，厚实而温暖，散发着草木和烟尘的气味。空气里有一缕草药的苦涩，和森林深处才有的湿润泥土的甜腥。\n\n"
+    "他试图坐起来，左臂传来一阵钝痛——鬼之力的残余还在血脉里嗡嗡作响。记忆断裂成碎片："
+    "时空裂隙撕裂天空的紫光……被某种力量拖拽着穿过……然后是黑暗。漫长的黑暗。\n\n"
+    "\"你醒了。\"\n\n"
+    "声音从火炉边传来——低沉、平稳，带着一种不属于人类日常语言节奏的古老韵脚。\n\n"
+    "粉发的女性从炉火前转过身来。她的发色不是帝国常见的任何一种粉色——更像是暮色将尽时天空最亮的那一层薄光。"
+    "琥珀色的眼睛在火光中微微闪烁，瞳孔深处沉淀着某种只属于活过太多年岁之人才有的沉静。"
+    "她的外貌与人类无异，没有童话里精灵的尖耳——但她站在那里，整个木屋的空气都像是被某种更古老的存在轻轻压着。\n\n"
+    "\"你在森林中昏迷不醒。你体内有一股力量——不属于圣光，也不像腐化……它在暴走，几乎撕裂了你周围的空气。\""
+    "她的目光扫过他的左臂——那是一种审视，但没有敌意。\"我把你带回了这里。你是……从哪里来的？\"\n\n"
+    "短暂的沉默。壁炉里一根木柴裂开，炸出一小簇火星。\n\n"
+    "窗外，一片被金色光芒环绕的古老森林正等待着黎恩的答案。\n\n"
+    "<overall>\n"
+    "<chapter_information>\n"
+    "当前章节|第1章 林间空地的苏醒——陌生的森林\n"
+    "下一章节|第2章\n"
+    "章节任务|   {{user}}必须在这片陌生的森林中苏醒，了解自己所在之地，并认识眼前这位自称\"森林守护者\"的女性。\n"
+    "章节终止条件|1.   {{user}}完全苏醒并恢复意识。\\n2.   Seraphina完成自我介绍——她是Eldoria最后的精灵守护者。\\n3.   {{user}}了解Eldoria的腐化与圣光的基本情况。\n"
+    "在场人物|{{user}}, Seraphina\n"
+    "</chapter_information>\n"
+    "<StatusBlock>\n"
+    "```\n"
+    "🕣圣光纪年3472年 6月15日（周三）14时30分 | 🌏林间空地·木屋 | ☁️午后薄雾\n"
+    "# Seraphina 年龄: 320岁\n"
+    "╒═════\n"
+    "💖对{{user}}的好感度:Lv.1|5/100|{礼貌的陌生人——又一个被裂隙拉入的外来者，但那股力量……也许他和别人不一样}\n"
+    "📅当前章节: 第1章 林间空地的苏醒——陌生的森林\n"
+    "👗 服装: 象牙白亚麻衬衣外罩深棕色皮质胸衣，深绿色长裤塞进及膝皮靴\n"
+    "💭 情绪: 审视中带着一丝难以察觉的期待——200年了，没有见过能与圣光产生这种共鸣的人\n"
+    "💑 行为: 从火炉边起身，木勺搁在陶罐边缘。琥珀色眼睛平静地注视着{{user}}，保持距离——给陌生人适应空间\n"
+    "🤔 对{{user}}的想法: 他体内的力量和圣光产生了共鸣。不属于腐化，也不完全像圣光……值得观察\n"
+    "🙀 Tips: 已独自守护森林200年——她的耐心和孤独一样深\n"
+    "╘═════\n"
+    "```\n"
+    "</StatusBlock>\n"
+    "</overall>"
 )
 
 
@@ -115,38 +147,51 @@ def _load_all_events():
             _sex_act = _data.get('性行为等级', '') or _data.get('性行为', '')
             _phase = _data.get('情感阶段', '') or _data.get('情感', '') or _data.get('阶段', '')
 
-            # 构建 content（保持与旧格式兼容）
-            from event_config import COMMENT_PREFIX
-            _comment_prefix = COMMENT_PREFIX.get(_prefix, _prefix)
-            _lines = [f'【{_comment_prefix}事件——{_eid}：{_title}】', '']
+            # 构建 content（对齐俺妹ver1.41 — 仅三个新字段：核心目标/任务/终止条件）
+            import re as _re_ch
+            _ch_num = _re_ch.search(r'\d+', _eid)
+            _ch_n = int(_ch_num.group()) if _ch_num else 0
+            _ch_label = f'第{_ch_n}章'
 
-            # 按标准顺序输出字段
-            _label_map = {
-                '触发': '触发条件', '触发条件': '触发条件',
-                'NSFW': 'NSFW',
-                '性行为等级': '性行为等级', '性行为': '性行为等级',
-                '情感阶段': '情感阶段', '情感': '情感阶段', '阶段': '情感阶段',
-                '黎恩知情': '黎恩知情', '第三者': '第三者',
-                '情境': '情境', '占有欲确认': '占有欲确认',
-                '玩家选择': '玩家选择', '变量': '变量', '核心': '核心',
-                '所属章节': '所属章节',
-            }
-            _field_order = ['触发', 'NSFW', '所属章节', '性行为等级', '情感阶段',
-                           '黎恩知情', '第三者', '占有欲确认',
-                           '情境', '玩家选择', '变量', '核心']
-            for _key in _field_order:
+            _core = _data.get('核心', '')
+            _situation = _data.get('情境', '')
+            _mission = _data.get('章节任务', '')
+            _end_cond = _data.get('章节终止条件', '')
+            # 章节任务 / 章节终止条件 由LLM逐章写入TXT，构建脚本只读取不推导
+            # 章节核心目标 由 _core 直接填充（见下方 _lines 组装）
+
+            _lines = [
+                '<章节剧情>',
+                f'[章节编号]: {_ch_label}',
+                f'[章节标题]: {_ch_label}：{_title}',
+                '',
+                '[章节核心目标]:',
+                _core if _core else '（待填写）',
+                '',
+                '[章节任务]:',
+                _mission if _mission else '（待填写）',
+                '',
+                '[章节终止条件]:',
+            ]
+            if _end_cond:
+                for _ec in _end_cond.split('\n'):
+                    _ec = _ec.strip()
+                    if _ec:
+                        _lines.append(_ec)
+            else:
+                _lines.append('（待填写）')
+
+            # Eldoria补充信息（NSFW/性行为等级等）
+            _eldoria_extra = []
+            for _key in ['NSFW', '性行为等级', '阶段', '第三者', '黎恩知情', '占有欲确认', '好感影响', '情境']:
                 if _key in _data and _data[_key]:
-                    _label = _label_map.get(_key, _key)
-                    _val = _data[_key]
-                    if '\n' in _val:
-                        # 多行值：第一行跟label，后续行保持缩进
-                        _val_lines = _val.split('\n')
-                        _lines.append(f'{_label}：{_val_lines[0]}')
-                        for _vl in _val_lines[1:]:
-                            _lines.append(f'  {_vl}')
-                    else:
-                        _lines.append(f'{_label}：{_val}')
+                    _eldoria_extra.append(f'[{_key}]: {_data[_key]}')
+            if _eldoria_extra:
+                _lines.append('')
+                _lines.append('[补充信息]:')
+                _lines.extend(_eldoria_extra)
 
+            _lines.append('</章节剧情>')
             _content = '\n'.join(_lines)
             # Strip leading "- " bullets from content (参照格式：纯文本换行)
             _content = _re.sub(r'^[ \t]*-[ \t]', '', _content, flags=_re.MULTILINE)
@@ -156,11 +201,12 @@ def _load_all_events():
             _ALL_EVENTS_CACHE[_eid] = {
                 'title': _title,
                 'content': _content,
-                'comment': f'【{_comment_prefix}事件】 {_eid} —— {_title}',
+                'comment': f'{_ch_label} {_title}',
                 'prefix': _prefix,
                 'third_party': _third_party,
                 'sex_act': _sex_act,
                 'phase': _phase,
+                'ch_label': _ch_label,
             }
 
     return _ALL_EVENTS_CACHE
@@ -252,12 +298,19 @@ _PHASE_KEYWORDS = {
 }
 
 
-def _auto_keys(event_id, data):
-    """事件条目关键词：仅"事件x"。"""
+def _auto_keys(chapter_id, data):
+    """章节条目关键词：照抄俺妹ver1.41——单key "第N章" 格式。
+
+    参考文件所有章节条目仅用1个key，selectiveLogic=0(OR)即命中即触发。
+    """
     import re as _re
-    _num = _re.search(r'\d+', event_id)
-    _n = _num.group() if _num else event_id
-    return [f'事件{_n}']
+    _num = _re.search(r'\d+', chapter_id)
+    _n = _num.group() if _num else chapter_id
+    try:
+        _n_int = int(_n)
+    except ValueError:
+        _n_int = int(_n) if _n.isdigit() else 0
+    return [f'第{_n_int}章']
 
 
 def _auto_order(event_id):
@@ -277,6 +330,7 @@ def _get_md_entries(prefix, tag, base_order=160):
 
     Returns:
         条目列表（uid=None），position=4, depth=2, order=600
+        （对齐俺妹ver1.41——事件与系统指令同处position=4，已验证可行）
     """
     _entries = []
     _all = _load_all_events()
@@ -384,7 +438,7 @@ def load_reference_entries():
 
     # System instructions: special depth/order at pos=4
     SYSTEM_INSTRUCTIONS = {
-        '事件追踪指令':  {'depth': 0, 'order': 999},
+        '章节追踪指令':  {'depth': 0, 'order': 999},
         '游戏状态界面':  {'depth': 0, 'order': 998},
         '叙述风格指令':  {'depth': 1, 'order': 100},
     }
@@ -445,7 +499,9 @@ def load_reference_entries():
                 # Non-constant entries → pos=1, depth=4, order=100
                 entry = _make_ref_entry(data, 100, position=1, depth=4)
 
-            entry['group'] = subdir_name
+            # 对齐俺妹ver1.41：所有条目group=""（参考文件无分组）
+            entry['group'] = ""
+            entry['extensions']['group'] = ""
             entries.append(entry)
 
     return entries
@@ -456,87 +512,92 @@ def make_entry(uid, keys, comment, content, order,
                constant=False, probability=100, use_probability=True,
                keysecondary=None, selective=True, position=1,
                group="", depth=4):
-    """创建一条 SillyTavern 原生格式的世界书条目（对齐俺妹ver1.41健康版格式）。"""
-    return {
-        "uid": uid,
-        "key": keys,
-        "keysecondary": keysecondary if keysecondary is not None else [],
-        "comment": comment,
-        "content": content,
-        "constant": constant,
-        "vectorized": False,
-        "selective": selective,
-        "selectiveLogic": 0,
-        "addMemo": True,
-        "order": order,
-        "position": position,
-        "disable": False,
-        "excludeRecursion": False,
-        "preventRecursion": False,
-        "matchPersonaDescription": False,
-        "matchCharacterDescription": False,
-        "matchCharacterPersonality": False,
-        "matchCharacterDepthPrompt": False,
-        "matchScenario": False,
-        "matchCreatorNotes": False,
-        "delayUntilRecursion": False,
-        "probability": probability,
-        "useProbability": use_probability,
-        "depth": depth,
-        "group": group,
-        "groupOverride": False,
-        "groupWeight": 100,
-        "scanDepth": None,
-        "caseSensitive": None,
-        "matchWholeWords": None,
-        "useGroupScoring": False,
-        "automationId": "",
-        "role": None,
-        "sticky": 0,
-        "cooldown": 0,
-        "delay": 0,
-        "displayIndex": 0,
-        "outletName": "",
-        "ignoreBudget": False,
-        "extensions": {
-            "position": position,
-            "exclude_recursion": False,
-            "display_index": 0,
-            "probability": probability,
-            "useProbability": use_probability,
-            "depth": depth,
-            "selectiveLogic": 0,
-            "group": group,
-            "group_override": False,
-            "group_weight": 100,
-            "prevent_recursion": False,
-            "delay_until_recursion": False,
-            "scan_depth": None,
-            "match_whole_words": None,
-            "use_group_scoring": False,
-            "case_sensitive": None,
-            "automation_id": "",
-            "role": 0,
-            "vectorized": False,
-            "sticky": 0,
-            "cooldown": 0,
-            "delay": 0,
-            "match_persona_description": False,
-            "match_character_description": False,
-            "match_character_personality": False,
-            "match_character_depth_prompt": False,
-            "match_scenario": False,
-            "match_creator_notes": False,
-            "triggers": [],
-            "ignore_budget": False,
-        },
-        "triggers": [],
-        "characterFilter": {
-            "isExclude": False,
-            "names": [],
-            "tags": [],
-        },
-    }
+    """创建一条 SillyTavern 原生格式的世界书条目（100%对齐俺妹ver1.41格式）。
+
+    字段顺序、命名、extensions包装、characterFilter——
+    全部照抄已验证可运行的参考文件，不做任何"优化"。
+    """
+    _ks = keysecondary if keysecondary is not None else []
+    return OrderedDict([
+        ("key", keys),
+        ("keysecondary", _ks),
+        ("comment", comment),
+        ("content", content),
+        ("constant", constant),
+        ("vectorized", False),
+        ("selective", selective),
+        ("selectiveLogic", 0),
+        ("addMemo", True),
+        ("order", order),
+        ("position", position),
+        ("disable", False),
+        ("ignoreBudget", False),
+        ("excludeRecursion", False),
+        ("preventRecursion", False),
+        ("matchPersonaDescription", False),
+        ("matchCharacterDescription", False),
+        ("matchCharacterPersonality", False),
+        ("matchCharacterDepthPrompt", False),
+        ("matchScenario", False),
+        ("matchCreatorNotes", False),
+        ("delayUntilRecursion", False),
+        ("probability", probability),
+        ("useProbability", use_probability),
+        ("depth", depth),
+        ("outletName", ""),
+        ("group", group),
+        ("groupOverride", False),
+        ("groupWeight", 100),
+        ("scanDepth", None),
+        ("caseSensitive", None),
+        ("matchWholeWords", None),
+        ("useGroupScoring", False),
+        ("automationId", ""),
+        ("role", None),
+        ("sticky", 0),
+        ("cooldown", 0),
+        ("delay", 0),
+        ("triggers", []),
+        ("uid", uid),
+        ("displayIndex", 0),
+        ("extensions", OrderedDict([
+            ("position", position),
+            ("exclude_recursion", False),
+            ("display_index", 0),
+            ("probability", probability),
+            ("useProbability", use_probability),
+            ("depth", depth),
+            ("selectiveLogic", 0),
+            ("group", group),
+            ("group_override", False),
+            ("group_weight", 100),
+            ("prevent_recursion", False),
+            ("delay_until_recursion", False),
+            ("scan_depth", None),
+            ("match_whole_words", None),
+            ("use_group_scoring", False),
+            ("case_sensitive", None),
+            ("automation_id", ""),
+            ("role", 0),
+            ("vectorized", False),
+            ("sticky", 0),
+            ("cooldown", 0),
+            ("delay", 0),
+            ("match_persona_description", False),
+            ("match_character_description", False),
+            ("match_character_personality", False),
+            ("match_character_depth_prompt", False),
+            ("match_scenario", False),
+            ("match_creator_notes", False),
+            ("triggers", []),
+            ("ignore_budget", False),
+        ])),
+        ("characterFilter", OrderedDict([
+            ("isExclude", False),
+            ("names", []),
+            ("tags", []),
+        ])),
+    ])
 
 
 
@@ -613,7 +674,7 @@ def build(dry_run=False):
                               ('6：放纵', '2ch6'), ('7：终局', '2ch7'),
                               ('8：后日谈', '2ch8')]:
         label = f'events_{ch_dir}'
-        collect(lambda d=ch_dir: _get_md_entries(d, 'event'), f"事件-{ch_dir}·TXT驱动", label)
+        collect(lambda d=ch_dir: _get_md_entries(d, 'chapter'), f"章节-{ch_dir}·TXT驱动", label)
         event_labels.append(label)
 
     # 3. V10.0: 所有条目均由TXT驱动，无需硬编码基础条目
@@ -661,6 +722,11 @@ def build(dry_run=False):
             return False
     else:
         print(f"[step 4] 验证通过: {len(all_entries)} 条条目全部合法")
+
+    # 4.5 已移除 — V10.3修复：不再剥离"默认值"字段
+    # 参考文件(俺妹ver1.41)显式保留所有字段(extensions/selectiveLogic/characterFilter/triggers等)
+    # 剥离导致SillyTavern使用版本特定默认值 → 键词匹配行为不确定 → 事件注入失败
+    print(f"[step 4.5] 跳过默认值剥离 — 所有字段显式保留（对齐俺妹ver1.41）")
 
     # 5. 组装完整 JSON
     data = assemble_json(all_entries)
@@ -750,28 +816,42 @@ def validate_entries(entries):
 
 
 def assemble_json(entries):
-    """将条目列表组装为 SillyTavern 原生世界书 JSON 格式（对齐俺妹ver1.41健康版）"""
-    entries_dict = {}
+    """将条目列表组装为 SillyTavern 原生世界书 JSON 格式。
+
+    100%对齐俺妹ver1.41：同时输出 entries（处理格式）和 originalData（导入格式）。
+    """
+    POSITION_MAP = {0: "before_char", 1: "after_char", 4: "in_chat"}
+
+    entries_dict = OrderedDict()
+    od_entries = []
     for e in entries:
-        entries_dict[str(e["uid"])] = e
-    return {
-        "entries": entries_dict,
-        "originalData": {
-            "entries": entries_dict,
-            "name": CHAR_NAME,
-        },
-        "_meta": {
-            "version": VERSION_TAG,
-            "version_short": VERSION,
-            "spec": SPEC,
-            "spec_version": SPEC_VERSION,
-            "entry_count": len(entries),
-            "uid_range": f"0-{max((e.get('uid', 0) for e in entries), default=0)}",
-            "build_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "authority_source": "docs/子目录TXT文件 + build_eldoria.py (全TXT驱动)",
-            "note": "JSON是派生产物，请勿手动编辑。修改请通过TXT文件+构建脚本完成。",
-        },
-    }
+        uid = e["uid"]
+        entries_dict[str(uid)] = e
+
+        # 构建 originalData 条目（字段名：snake_case + 不同命名约定）
+        od_entry = OrderedDict([
+            ("id", uid),
+            ("keys", e.get("key", [])),
+            ("secondary_keys", e.get("keysecondary", [])),
+            ("comment", e.get("comment", "")),
+            ("content", e.get("content", "")),
+            ("constant", e.get("constant", False)),
+            ("selective", e.get("selective", True)),
+            ("insertion_order", e.get("order", 100)),
+            ("enabled", not e.get("disable", False)),
+            ("position", POSITION_MAP.get(e.get("position", 1), "after_char")),
+            ("use_regex", True),
+            ("extensions", e.get("extensions", {})),
+        ])
+        od_entries.append(od_entry)
+
+    return OrderedDict([
+        ("entries", entries_dict),
+        ("originalData", OrderedDict([
+            ("name", "Eldoria - 艾尔多利亚守护者"),
+            ("entries", od_entries),
+        ])),
+    ])
 
 
 def validate_existing():
