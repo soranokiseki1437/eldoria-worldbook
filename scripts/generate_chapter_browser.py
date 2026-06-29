@@ -174,7 +174,7 @@ def load_sex_index():
         return index
     with open(index_path, 'r', encoding='utf-8') as f:
         for line in f:
-            line = line.strip()
+            line = line.rstrip('\r\n').strip()
             if not line or line.startswith('#'):
                 continue
             if line.startswith('## '):
