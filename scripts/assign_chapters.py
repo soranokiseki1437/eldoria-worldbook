@@ -33,7 +33,7 @@ def _ids(start, end):
 DEFAULT_CHAPTERS[0] = {
     'title': '序章：苏醒与相遇',
     'stage': '序章',
-    'events': _ids(1, 62),
+    'events': _ids(1, 63),
     'anchor': '苏醒→相遇→VII班集结→告白→契约→第三者登场→回归仪式→温泉→森林意志',
 }
 
@@ -41,7 +41,7 @@ DEFAULT_CHAPTERS[0] = {
 DEFAULT_CHAPTERS[1] = {
     'title': '试探和暧昧',
     'stage': '试探和暧昧',
-    'events': _ids(63, 102),
+    'events': _ids(64, 102),
     'anchor': '坦白→建框→注视→蹭触→第三者风格确立→第一次共享(低语者)→回归仪式',
 }
 
@@ -97,7 +97,7 @@ DEFAULT_CHAPTERS[7] = {
 DEFAULT_CHAPTERS[8] = {
     'title': '后日谈',
     'stage': '后日谈',
-    'events': _ids(352, 373),
+    'events': _ids(352, 380),
     'anchor': '（暂无事件）',
 }
 
