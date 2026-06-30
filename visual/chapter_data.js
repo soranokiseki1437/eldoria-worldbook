@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-01T01:18:31.332403
+// 自动生成于: 2026-07-01T01:19:51.811022
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -2861,7 +2861,7 @@ const EVENTS = [
   },
   {
     "id": "358",
-    "title": "月光百合的约定——亚莉莎与狼人法师Ⅰ",
+    "title": "山谷的物资——不是路过",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2869,6 +2869,14 @@ const EVENTS = [
   },
   {
     "id": "359",
+    "title": "月光百合的约定——亚莉莎与狼人法师Ⅰ",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "360",
     "title": "满月双人——狼首与灰骑",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -2876,7 +2884,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "360",
+    "id": "361",
     "title": "剑与鳞的黄昏——奥蕾莉亚与蜥蜴战士Ⅰ",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -2884,7 +2892,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "361",
+    "id": "362",
     "title": "不是因为满月——亚莉莎与狼人法师Ⅱ",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -2892,16 +2900,8 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "362",
-    "title": "主动的腰——蜜穴的慈悲",
-    "route": "epilogue",
-    "chapter": "后日谈",
-    "summary": "",
-    "type": "nsfw"
-  },
-  {
     "id": "363",
-    "title": "两个人的评价——亚莉莎也知道了",
+    "title": "主动的腰——不是因为满月",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2909,7 +2909,7 @@ const EVENTS = [
   },
   {
     "id": "364",
-    "title": "鳞甲的味道——奥蕾莉亚与蜥蜴战士Ⅱ",
+    "title": "主动的腰——蜜穴的慈悲",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2917,7 +2917,7 @@ const EVENTS = [
   },
   {
     "id": "365",
-    "title": "她的恶作剧——猜猜我在哪",
+    "title": "两个人的评价——亚莉莎也知道了",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2925,7 +2925,7 @@ const EVENTS = [
   },
   {
     "id": "366",
-    "title": "温柔的正面——亚莉莎与狼人法师Ⅲ",
+    "title": "鳞甲的味道——奥蕾莉亚与蜥蜴战士Ⅱ",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2933,7 +2933,7 @@ const EVENTS = [
   },
   {
     "id": "367",
-    "title": "甜蜜的确认——只有你一个人",
+    "title": "她的恶作剧——猜猜我在哪",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2941,7 +2941,7 @@ const EVENTS = [
   },
   {
     "id": "368",
-    "title": "轮奸净化——淫荡的救赎",
+    "title": "温柔的正面——亚莉莎与狼人法师Ⅲ",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2949,7 +2949,7 @@ const EVENTS = [
   },
   {
     "id": "369",
-    "title": "菲娜的散步——森林的新生",
+    "title": "甜蜜的确认——只有你一个人",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2957,7 +2957,7 @@ const EVENTS = [
   },
   {
     "id": "370",
-    "title": "工具间的轮——修东西的代价",
+    "title": "轮奸净化——淫荡的救赎",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2965,7 +2965,7 @@ const EVENTS = [
   },
   {
     "id": "371",
-    "title": "鳞与剑的夜晚——奥蕾莉亚与蜥蜴战士Ⅲ",
+    "title": "菲娜的散步——森林的新生",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2973,7 +2973,7 @@ const EVENTS = [
   },
   {
     "id": "372",
-    "title": "我也要——菲娜姐姐的秘密",
+    "title": "工具间的轮——修东西的代价",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2981,7 +2981,7 @@ const EVENTS = [
   },
   {
     "id": "373",
-    "title": "满月下的完整——亚莉莎与狼人法师Ⅳ",
+    "title": "鳞与剑的夜晚——奥蕾莉亚与蜥蜴战士Ⅲ",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2989,7 +2989,7 @@ const EVENTS = [
   },
   {
     "id": "374",
-    "title": "最后的酒——醉后的放肆",
+    "title": "我也要——菲娜姐姐的秘密",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2997,7 +2997,7 @@ const EVENTS = [
   },
   {
     "id": "375",
-    "title": "三个人——满足不了我",
+    "title": "满月下的完整——亚莉莎与狼人法师Ⅳ",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -3005,7 +3005,7 @@ const EVENTS = [
   },
   {
     "id": "376",
-    "title": "不算什么——干的是屁眼又不是小穴",
+    "title": "最后的酒——醉后的放肆",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -3013,7 +3013,7 @@ const EVENTS = [
   },
   {
     "id": "377",
-    "title": "只属于一个人的夜晚——黑丝的小脚",
+    "title": "三个人——满足不了我",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -3021,7 +3021,7 @@ const EVENTS = [
   },
   {
     "id": "378",
-    "title": "双人份的剑士——两张嘴",
+    "title": "不算什么——干的是屁眼又不是小穴",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -3029,7 +3029,7 @@ const EVENTS = [
   },
   {
     "id": "379",
-    "title": "拿你没办法的夜晚——亚莉莎与狼人法师Ⅴ",
+    "title": "只属于一个人的夜晚——黑丝的小脚",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -3037,6 +3037,22 @@ const EVENTS = [
   },
   {
     "id": "380",
+    "title": "双人份的剑士——两张嘴",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "381",
+    "title": "拿你没办法的夜晚——亚莉莎与狼人法师Ⅴ",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "382",
     "title": "五人的夜——轮流与共享",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -3092,7 +3108,7 @@ const CHAPTERS = [
     "num": 8,
     "name": "后日谈",
     "phase": "prologue",
-    "count": 29
+    "count": 31
   },
 ];
 
