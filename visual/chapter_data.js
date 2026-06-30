@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-01T01:48:09.212577
+// 自动生成于: 2026-07-01T01:49:37.004556
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -1969,7 +1969,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "247",
@@ -2145,7 +2145,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "269",
