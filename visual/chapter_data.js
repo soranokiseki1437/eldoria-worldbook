@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-01T01:23:29.233865
+// 自动生成于: 2026-07-01T01:29:13.341807
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -2885,7 +2885,7 @@ const EVENTS = [
   },
   {
     "id": "361",
-    "title": "温柔的净化——另一种安详",
+    "title": "山谷的物资——不是路过",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2893,7 +2893,7 @@ const EVENTS = [
   },
   {
     "id": "362",
-    "title": "山谷的物资——不是路过",
+    "title": "温柔的净化——另一种安详",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2909,7 +2909,7 @@ const EVENTS = [
   },
   {
     "id": "364",
-    "title": "满月双人——狼首与灰骑",
+    "title": "战后的第一场对决——沼泽的剑",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -2917,7 +2917,7 @@ const EVENTS = [
   },
   {
     "id": "365",
-    "title": "战后的第一场对决——沼泽的剑",
+    "title": "满月双人——狼首与灰骑",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -3021,7 +3021,7 @@ const EVENTS = [
   },
   {
     "id": "378",
-    "title": "甜蜜的确认——只有你一个人",
+    "title": "书房的惯例——两个人的早晨",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -3029,7 +3029,7 @@ const EVENTS = [
   },
   {
     "id": "379",
-    "title": "轮奸净化——淫荡的救赎",
+    "title": "甜蜜的确认——只有你一个人",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -3037,7 +3037,7 @@ const EVENTS = [
   },
   {
     "id": "380",
-    "title": "菲娜的散步——森林的新生",
+    "title": "轮奸净化——淫荡的救赎",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -3045,54 +3045,14 @@ const EVENTS = [
   },
   {
     "id": "381",
-    "title": "工具间的轮——修东西的代价",
-    "route": "epilogue",
-    "chapter": "后日谈",
-    "summary": "",
-    "type": "nsfw"
-  },
-  {
-    "id": "382",
-    "title": "鳞与剑的夜晚——奥蕾莉亚与蜥蜴战士Ⅲ",
-    "route": "epilogue",
-    "chapter": "后日谈",
-    "summary": "",
-    "type": "nsfw"
-  },
-  {
-    "id": "383",
-    "title": "我也要——菲娜姐姐的秘密",
-    "route": "epilogue",
-    "chapter": "后日谈",
-    "summary": "",
-    "type": "nsfw"
-  },
-  {
-    "id": "384",
-    "title": "满月下的完整——亚莉莎与狼人法师Ⅳ",
-    "route": "epilogue",
-    "chapter": "后日谈",
-    "summary": "",
-    "type": "nsfw"
-  },
-  {
-    "id": "385",
-    "title": "最后的酒——醉后的放肆",
-    "route": "epilogue",
-    "chapter": "后日谈",
-    "summary": "",
-    "type": "nsfw"
-  },
-  {
-    "id": "386",
-    "title": "书房的惯例——两个人的早晨",
+    "title": "菲娜的散步——森林的新生",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
     "type": "main"
   },
   {
-    "id": "387",
+    "id": "382",
     "title": "晚上的约定——日常的延续",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -3100,20 +3060,60 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "388",
-    "title": "两个男人——黄金罗刹的男人们",
+    "id": "383",
+    "title": "工具间的轮——修东西的代价",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "main"
+    "type": "nsfw"
   },
   {
-    "id": "389",
+    "id": "384",
+    "title": "鳞与剑的夜晚——奥蕾莉亚与蜥蜴战士Ⅲ",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "385",
+    "title": "我也要——菲娜姐姐的秘密",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "386",
+    "title": "满月下的完整——亚莉莎与狼人法师Ⅳ",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "387",
     "title": "两个人的挑战——黄金罗刹终于趴下",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
     "type": "nsfw"
+  },
+  {
+    "id": "388",
+    "title": "最后的酒——醉后的放肆",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "389",
+    "title": "两个男人——黄金罗刹的男人们",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "main"
   },
   {
     "id": "390",
