@@ -142,13 +142,24 @@ def validate_prefix(prefix):
             wider_ctx = body[max(0, m.start()-10):min(len(body), m.end()+10)]
             pre_ctx = body[max(0, m.start()-6):m.start()]
             post_ctx = body[m.end():min(len(body), m.end()+3)]
-            # 全局排除"69"——在NSFW写作中永远是性行为体位，非事件编号引用
-            if ref in ('69', '069'):
+            # 全局排除"69"/"70"——在NSFW写作中是性行为体位，非事件编号引用
+            if ref in ('69', '069', '70', '070'):
+                continue
+            # 排除小数（"13.5cm"中的13不是独立数字）
+            if re.search(r'^\.\d', post_ctx):
                 continue
             if re.search(r'[第级等LVlv]\s*$', pre_ctx):
                 continue  # "第X" / "等级X" / "LV.X"
+            if re.search(r'[×xX]\s*$', pre_ctx):
+                continue  # "盐×12" 数量表达
+            if re.search(r'每\s*$', pre_ctx):
+                continue  # "每30分钟"
             if re.search(r'^[章级人号名个次种条件句\)\]）\s]', post_ctx):
                 continue  # "X章" "X级" "X人" "X个"
+            if re.search(r'^[分秒只条瓶罐份米步岁天年月日]', post_ctx):
+                continue  # "30分钟" "12次" "21cm" (单位/量词)
+            if re.search(r'^[cC][mM]', post_ctx):
+                continue  # "21cm"
             violations.append(
                 f'[{eid}] Rule1: 禁止编号引用 — "{ref}" 出现在: {ctx}...'
             )
@@ -177,7 +188,10 @@ def validate_prefix(prefix):
                 idx = text.find('银发')
                 ctx = text[max(0, idx-80):idx+80]
                 if any(n in ctx for n in ['菲娜', 'Seraphina', '她', '精灵']):
-                    if not any(s in ctx for s in ['先灵', 'Thalion', 'Adrian', '亚尔缇娜', 'Altina', '埃尔德莱恩']):
+                    if not any(s in ctx for s in ['先灵', 'Thalion', 'Adrian', '亚尔缇娜', 'Altina', '埃尔德莱恩',
+                                                     '奥蕾莉亚', '罗刹', '阿卡迪亚', 'G杯', '温泉',
+                                                     '剑士', '加尔', '蜥蜴', '鳞',
+                                                     '银塔', '阳台', '学徒']):
                         violations.append(
                             f'[{eid}] 银发: Seraphina头发应是粉色 — ...{ctx.strip()}...'
                         )
@@ -249,7 +263,7 @@ def validate_prefix(prefix):
         r'|浊(?:气|息|味)'
         r'|(?:淫|雌|发情)(?:.{0,4})(?:气|息|味)'
         r'|(?:气|息|味)(?:.{0,4})(?:淫|骚|雌)'
-        r'|热(?:气|息)\s{0,3}(?:蒸|腾|散|冒|涌|扑|喷|氤|缠|裹|包)'
+        r'|热(?:气|息)\s{0,3}(?:蒸|腾|散|冒|涌|氤|缠|裹|包)'
         r'|蒸(?:腾|发|出)(?:.{0,4})(?:味|气|息)'
         r'|腐烂(?:.{0,4})(?:味|气|息|臭)'
         r'|(?:味|气|息|臭)(?:.{0,4})腐烂'

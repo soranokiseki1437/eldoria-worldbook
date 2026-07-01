@@ -10,7 +10,7 @@ build_eldoria.py — Eldoria 世界书 JSON 构建脚本 (V10.3)
 架构 (V10.3):
   - 全TXT驱动，零硬编码条目
   - 输出格式：entries Object(keyed by string uid) + _meta
-  - 每条目11字段：uid/key/keysecondary/comment/content/constant/selective/order/position/depth/group
+  - 每条目13字段：uid/key/keysecondary/comment/content/constant/selective/order/position/depth/group
   - 无 extensions/originalData/characterFilter 膨胀
   - JSON不可手动编辑，所有修改通过TXT + rebuild
 
@@ -42,8 +42,8 @@ MD_DIR      = DOCS_DIR  # 分md在 docs/ 目录下
 #  - 主版本: 重大架构变更 / 路线重设计 / 核心设定翻版
 #  - 次版本: 新增角色 / 新增事件 / 修改变量系统
 #  - 修订号: 文本修正 / 错别字 / 内容微调
-VERSION = "V10.4.0"
-VERSION_TAG = f"Eldoria_{VERSION}"  # V10.4.0: 艾玛×矮人兄弟5章NSFW新增 + 法林语言审计 + 推眼镜→辫子手势体系全局替换
+VERSION = "V10.5.0"
+VERSION_TAG = f"Eldoria_{VERSION}"  # V10.5.0: 新增excludeRecursion+preventRecursion字段——章节不可递归，概念条目不可递归+防止进一步递归
 
 # 主输出文件 = 带版本号的文件名（输出到 output/ 目录）
 JSON_PATH = os.path.join(OUTPUT_DIR, f"{VERSION_TAG}.json")
@@ -330,6 +330,7 @@ def _get_md_entries(prefix, tag, base_order=160):
 
     Returns:
         条目列表（uid=None），position=4, depth=2, order=600
+        章节递归属性：excludeRecursion=True(不可递归), preventRecursion=False(可触发下级条目)
         （对齐俺妹ver1.41——事件与系统指令同处position=4，已验证可行）
     """
     _entries = []
@@ -347,6 +348,8 @@ def _get_md_entries(prefix, tag, base_order=160):
             content=_data['content'],
             position=4,
             depth=2,
+            excludeRecursion=True,
+            preventRecursion=False,
         ))
     return _entries
 
@@ -408,6 +411,16 @@ def _make_ref_entry(data, order_start, uid=None, position=1, depth=None):
     else:
         keys = []
 
+    # 递归属性（参照俺妹ver1.41设计）：
+    # - constant条目：递归机制对其无意义，双false
+    # - 非constant概念条目（角色/地点/生物等）：不可递归+防止进一步递归
+    if always_on:
+        _exclude_rec = False
+        _prevent_rec = False
+    else:
+        _exclude_rec = True
+        _prevent_rec = True
+
     return make_entry(
         uid=uid,
         keys=keys,
@@ -420,6 +433,8 @@ def _make_ref_entry(data, order_start, uid=None, position=1, depth=None):
         selective=True,
         depth=depth,
         position=position,
+        excludeRecursion=_exclude_rec,
+        preventRecursion=_prevent_rec,
     )
 
 
@@ -510,12 +525,17 @@ def load_reference_entries():
 def make_entry(uid, keys, comment, content, order,
                constant=False, probability=100, use_probability=True,
                keysecondary=None, selective=True, position=1,
-               group="", depth=4):
-    """创建一条世界书条目 — V10.3精简11字段格式。
+               group="", depth=4,
+               excludeRecursion=True, preventRecursion=True):
+    """创建一条世界书条目 — V10.5精简13字段格式。
 
     输出字段：uid/key/keysecondary/comment/content/constant/
-    selective/order/position(整数0/1/4)/depth/group。
+    selective/order/position(整数0/1/4)/depth/group/
+    excludeRecursion/preventRecursion。
     probability/use_probability 保留签名兼容但不出现在输出中。
+
+    excludeRecursion (不可递归): true=不被其他条目递归激活
+    preventRecursion  (防止进一步递归): true=激活后不触发下级递归扫描
     """
     _ks = keysecondary if keysecondary is not None else []
 
@@ -531,6 +551,8 @@ def make_entry(uid, keys, comment, content, order,
         ("position", position),
         ("depth", depth),
         ("group", group),
+        ("excludeRecursion", excludeRecursion),
+        ("preventRecursion", preventRecursion),
     ])
 
 
@@ -657,13 +679,14 @@ def build(dry_run=False):
     else:
         print(f"[step 4] 验证通过: {len(all_entries)} 条条目全部合法")
 
-    # 4.5 V10.3精简格式 — 11字段条目，无extensions/characterFilter/originalData膨胀
-    # 每条结构开销 ~80 bytes（vs 俺妹43字段 ~945 bytes/条 vs V10.2.0 ~95 bytes/条）
+    # 4.5 V10.5精简格式 — 13字段条目，无extensions/characterFilter/originalData膨胀
+    # 每条结构开销 ~90 bytes（vs 俺妹43字段 ~945 bytes/条 vs V10.2.0 ~95 bytes/条）
     struct_overhead = len(json.dumps(OrderedDict([(k, None) for k in [
         "uid","key","keysecondary","comment","content","constant",
-        "selective","order","position","depth","group"
+        "selective","order","position","depth","group",
+        "excludeRecursion","preventRecursion",
     ]]), ensure_ascii=False))
-    print(f"[step 4.5] 精简格式 — 11字段/条, 结构开销 ~{struct_overhead} bytes/条")
+    print(f"[step 4.5] 精简格式 — 13字段/条, 结构开销 ~{struct_overhead} bytes/条")
 
     # 5. 组装完整 JSON
     data = assemble_json(all_entries)
@@ -705,13 +728,14 @@ def build(dry_run=False):
 
 
 def validate_entries(entries):
-    """验证条目列表的完整性和一致性（V10.3精简11字段格式）"""
+    """验证条目列表的完整性和一致性（V10.5精简13字段格式）"""
     errors = []
     seen_uids = set()
 
     required_fields = [
         "uid", "key", "content", "comment", "constant",
         "selective", "order", "position", "depth", "group",
+        "excludeRecursion", "preventRecursion",
     ]
 
     for e in entries:

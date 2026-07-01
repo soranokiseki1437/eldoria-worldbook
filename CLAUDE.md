@@ -1,7 +1,7 @@
 # CLAUDE.md — 世界书构建与章节增强专用Agent
 
 > **定位**：Eldoria世界书 · 100%对齐俺妹ver1.41格式
-> **版本**：v10.4 · 2026-06-30
+> **版本**：v10.5 · 2026-07-01
 
 ---
 
@@ -9,23 +9,33 @@
 
 ### 1.1 JSON输出格式
 
-**11字段精简Object**：entries为Object（keyed by string uid），无extensions/originalData/characterFilter膨胀。
+**13字段精简Object**：entries为Object（keyed by string uid），无extensions/originalData/characterFilter膨胀。
 
 ```
 条目字段：uid / key / keysecondary / comment / content / constant /
-         selective / order / position(0/1/4) / depth / group
+         selective / order / position(0/1/4) / depth / group /
+         excludeRecursion / preventRecursion
 ```
 
 > **致命陷阱**：entries必须是 `{"0":{...}}`（Object），绝不可用 `[{...}]`（Array）——酒馆拒绝导入。
 
-### 1.2 章节体系
+### 1.2 递归控制字段（V10.5新增）
+
+| 字段 | 含义 | 章节 | 概念条目(角色/地点/生物等) | constant系统条目 |
+|------|------|:--:|:--:|:--:|
+| `excludeRecursion` | 不可递归：不被其他条目递归激活 | `true` | `true` | `false` |
+| `preventRecursion` | 防止进一步递归：激活后不触发下级扫描 | `false` | `true` | `false` |
+
+> 设计来源：俺妹ver1.41 — 章节只被key直接触发但可触发角色/地点条目；概念条目是终端节点不触发任何下级递归。
+
+### 1.3 章节体系
 
 - 350章，纯数字编号，线性叙事，无分支
 - 9阶段：`docs/story/{0：序章/ ... 8：后日谈/}`
 - 章节key：`['第N章']`，`selectiveLogic: 0`
 - `{{user}}` = 黎恩·舒华泽（第三人称叙事）
 
-### 1.3 系统条目
+### 1.4 系统条目
 
 | 条目 | 位置 | 说明 |
 |:--|:--|:--|
@@ -34,7 +44,7 @@
 | `叙述风格指令` | pos=4 depth=1 order=100 | 去AI化铁律 |
 | `世界时间并行和隐奸` | pos=4 depth=1 order=100 | 时间/双视角/隐奸逻辑 |
 
-### 1.4 章节Sex类型索引
+### 1.5 章节Sex类型索引
 
 **手工维护**：`docs/story/_sex_index.txt` — 每个NSFW章节的性行为类型标签。
 
@@ -50,7 +60,7 @@
 
 当前标签：本番/肛交/口交/乳交/腿交/足交/手交/指交/蹭穴/接吻/暴露/触碰/隐奸/群交/未分类
 
-### 1.5 章节浏览器
+### 1.6 章节浏览器
 
 `visual/全章节浏览器.html` — 双维度筛选：
 
@@ -175,7 +185,7 @@ scripts/
 ├── renumber_events.py            ← 全局重编号
 └── rebuild_all.py                ← 一键重建
 
-output/Eldoria_V10.4.0.json       ← 派生产物，不可手动编辑
+output/Eldoria_V10.5.0.json       ← 派生产物，不可手动编辑
 visual/全章节浏览器.html           ← 章节浏览器
 ```
 
@@ -201,7 +211,19 @@ visual/全章节浏览器.html           ← 章节浏览器
 
 ---
 
-## 七、V10.3 变更记录（2026-06-29）
+## 七、V10.5 变更记录（2026-07-01）
+
+| # | 变更 | 说明 |
+|---|------|------|
+| 1 | **递归控制字段** | 11→13字段，新增`excludeRecursion`+`preventRecursion` |
+| 2 | **章节不可递归** | 395章：excludeRec=true, preventRec=false（可触发下级条目） |
+| 3 | **概念条目双true** | 120条角色/地点/生物等：excludeRec=true, preventRec=true（终端节点） |
+| 4 | **constant系统条目** | 14条始终激活：双false（递归机制不适用） |
+
+### 历史版本
+
+<details>
+<summary>V10.3 变更记录（2026-06-29）</summary>
 
 | # | 变更 | 说明 |
 |---|------|------|
@@ -214,7 +236,9 @@ visual/全章节浏览器.html           ← 章节浏览器
 | 7 | **章节浏览器** | 角色×类型双维度筛选 |
 | 8 | **sex类型索引** | 手工维护 `_sex_index.txt`，15标签+未分类 |
 
-**当前状态**：482条目·350章节·9阶段·构建通过·JSON 1.5MB·浏览器双维度筛选·sex索引全覆盖·劳拉×艾德里安隐奸线24事件
+</details>
+
+**当前状态**：529条目·395章节·9阶段·构建通过·JSON 0.8MB·浏览器双维度筛选·sex索引全覆盖·递归控制13字段
 
 ---
 
