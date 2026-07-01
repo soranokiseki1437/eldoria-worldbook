@@ -388,13 +388,14 @@ def _parse_reference_txt(filepath):
     return data
 
 
-def _make_ref_entry(data, order_start, uid=None, position=1, depth=None):
+def _make_ref_entry(data, order_start, uid=None, position=1, depth=None, header_prefix=None):
     """Create a world book entry from a parsed reference TXT.
     Maps TXT fields to JSON entry format (参照 我的妹妹...ver1.41).
 
     Args:
         position: 插入段位 (0=角色定义前, 1=角色定义后, 4=深度上下文)
         depth: 段位内优先级。None时从TXT '注入深度'字段读取
+        header_prefix: 非始终触发条目的自我标识头部（参照俺妹ver1.41 — 角色卡/地点资料等）
     """
     name = data.get('名称', 'Unknown')
     keywords_str = data.get('触发关键词', '')
@@ -404,6 +405,11 @@ def _make_ref_entry(data, order_start, uid=None, position=1, depth=None):
     content = data.get('内容', '')
     # Strip leading "- " bullets from content lines (参照格式：纯文本换行，不bullet)
     content = re.sub(r'^[ \t]*-[ \t]', '', content, flags=re.MULTILINE)
+
+    # Prepend self-identifying header (参照俺妹ver1.41)
+    # 所有条目都需要头部——无论始终触发还是选择性触发——让AI知道内容描述的是什么
+    if header_prefix:
+        content = f"# {header_prefix}：{name}\n\n{content}"
 
     # Parse keywords: comma-separated → list
     if keywords_str.strip():
@@ -464,6 +470,19 @@ def load_reference_entries():
         '好感度分级系统总览': {'position': 4, 'depth': 4, 'order': 100},
     }
 
+    # 非始终触发条目的自我标识头部（参照俺妹ver1.41）
+    # 始终激活条目（constant）不需要头部；选择性条目被递归激活时才需要
+    HEADER_PREFIX = {
+        'character':  '角色卡',
+        'npc':        '人物卡',
+        'location':   '地点资料',
+        'creature':   '生物资料',
+        'magic':      '魔法资料',
+        'world':      '世界资料',
+        'system':     '系统资料',
+        'affection':  '好感度资料',
+    }
+
     # Subdirectory order and metadata
     ref_dirs = [
         ('chapter',    True),    # (dir_name, all_constant)
@@ -500,20 +519,22 @@ def load_reference_entries():
             always_on = data.get('始终触发', '否').strip() == '是'
             name = data.get('名称', 'Unknown')
 
+            hpfx = HEADER_PREFIX.get(subdir_name)
+
             # Determine position, depth, order
             # 参照俺妹健康版：同position+depth的条目共享相同order
             if name in SYSTEM_INSTRUCTIONS:
                 si = SYSTEM_INSTRUCTIONS[name]
-                entry = _make_ref_entry(data, si['order'], position=4, depth=si['depth'])
+                entry = _make_ref_entry(data, si['order'], position=4, depth=si['depth'], header_prefix=hpfx)
             elif name in SUPPLEMENTARY_SYSTEMS:
                 ss = SUPPLEMENTARY_SYSTEMS[name]
-                entry = _make_ref_entry(data, ss['order'], position=ss['position'], depth=ss['depth'])
+                entry = _make_ref_entry(data, ss['order'], position=ss['position'], depth=ss['depth'], header_prefix=hpfx)
             elif always_on:
                 # All constant entries → pos=0, depth=4, order=100
-                entry = _make_ref_entry(data, 100, position=0, depth=4)
+                entry = _make_ref_entry(data, 100, position=0, depth=4, header_prefix=hpfx)
             else:
                 # Non-constant entries → pos=1, depth=4, order=100
-                entry = _make_ref_entry(data, 100, position=1, depth=4)
+                entry = _make_ref_entry(data, 100, position=1, depth=4, header_prefix=hpfx)
 
             # group 已在 make_entry 中设为 ""，直接添加
             entries.append(entry)
