@@ -183,7 +183,7 @@ def _load_all_events():
 
             # Eldoria补充信息（NSFW/性行为等级等）
             _eldoria_extra = []
-            for _key in ['NSFW', '性行为等级', '阶段', '第三者', '黎恩知情', '占有欲确认', '好感影响', '情境']:
+            for _key in ['NSFW', '性行为等级', '阶段', '第三者', '黎恩知情', '好感影响', '情境', '占有欲确认']:
                 if _key in _data and _data[_key]:
                     _eldoria_extra.append(f'[{_key}]: {_data[_key]}')
             if _eldoria_extra:
