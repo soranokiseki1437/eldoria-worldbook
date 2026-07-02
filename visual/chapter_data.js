@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-02T21:37:22.457121
+// 自动生成于: 2026-07-03T01:39:01.112688
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -1285,7 +1285,7 @@ const EVENTS = [
   },
   {
     "id": "161",
-    "title": "树后的秘密——第一次给别人打飞机",
+    "title": "树后的秘密——给凯尔打飞机",
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
@@ -2181,7 +2181,7 @@ const EVENTS = [
   },
   {
     "id": "273",
-    "title": "魔女的口——第一次的吞入",
+    "title": "魔女的口——吞入巨根",
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
