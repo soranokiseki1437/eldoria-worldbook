@@ -167,12 +167,26 @@ def _load_all_events():
                 '',
                 '[章节核心目标]:',
                 _core if _core else '（待填写）',
-                '',
-                '[章节任务]:',
-                _mission if _mission else '（待填写）',
-                '',
-                '[章节终止条件]:',
             ]
+
+            # 情境与其他信息——独立段落，不包在"补充信息"标签下
+            for _key in ['情境', 'NSFW', '性行为等级', '阶段', '第三者', '黎恩知情', '好感影响', '占有欲确认']:
+                if _key in _data and _data[_key]:
+                    _lines.append('')
+                    _lines.append(f'[{_key}]:')
+                    _val = _data[_key]
+                    for _vl in _val.split('\n'):
+                        _vl = _vl.strip()
+                        if _vl:
+                            _lines.append(_vl)
+
+            # 章节任务 + 终止条件 放在最后（对齐俺妹ver1.41）
+            _lines.append('')
+            _lines.append('[章节任务]:')
+            _lines.append(_mission if _mission else '（待填写）')
+
+            _lines.append('')
+            _lines.append('[章节终止条件]:')
             if _end_cond:
                 for _ec in _end_cond.split('\n'):
                     _ec = _ec.strip()
@@ -180,16 +194,6 @@ def _load_all_events():
                         _lines.append(_ec)
             else:
                 _lines.append('（待填写）')
-
-            # Eldoria补充信息（NSFW/性行为等级等）
-            _eldoria_extra = []
-            for _key in ['NSFW', '性行为等级', '阶段', '第三者', '黎恩知情', '好感影响', '情境', '占有欲确认']:
-                if _key in _data and _data[_key]:
-                    _eldoria_extra.append(f'[{_key}]: {_data[_key]}')
-            if _eldoria_extra:
-                _lines.append('')
-                _lines.append('[补充信息]:')
-                _lines.extend(_eldoria_extra)
 
             _lines.append('</章节剧情>')
             _content = '\n'.join(_lines)
