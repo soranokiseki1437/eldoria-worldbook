@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-03T16:57:23.554559
+// 自动生成于: 2026-07-03T17:04:33.392944
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -1109,14 +1109,6 @@ const EVENTS = [
   },
   {
     "id": "139",
-    "title": "回归之口——比任何人都懂",
-    "route": "ntrs",
-    "chapter": "挑逗和接受",
-    "summary": "",
-    "type": "nsfw"
-  },
-  {
-    "id": "140",
     "title": "凯尔的第一次——黑丝与滚烫的手心",
     "route": "ntrs",
     "chapter": "挑逗和接受",
@@ -1124,7 +1116,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "141",
+    "id": "140",
     "title": "剑与鳞——沼泽的第一场对决",
     "route": "ntrs",
     "chapter": "挑逗和接受",
@@ -1132,8 +1124,16 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "142",
+    "id": "141",
     "title": "圣光之泉——口交受け",
+    "route": "ntrs",
+    "chapter": "挑逗和接受",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "142",
+    "title": "回归之口——比任何人都懂",
     "route": "ntrs",
     "chapter": "挑逗和接受",
     "summary": "",
