@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-03T16:54:41.330783
+// 自动生成于: 2026-07-03T16:57:23.554559
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -1861,7 +1861,7 @@ const EVENTS = [
   },
   {
     "id": "233",
-    "title": "山洞的74——菲娜的远程指挥",
+    "title": "山洞的六九——菲娜的远程指挥",
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
