@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-03T17:04:33.392944
+// 自动生成于: 2026-07-03T17:07:45.443805
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -2085,7 +2085,7 @@ const EVENTS = [
   },
   {
     "id": "261",
-    "title": "紫丝与石殿——足下的恩赐",
+    "title": "重新填满——谁的更爽",
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
@@ -2093,7 +2093,7 @@ const EVENTS = [
   },
   {
     "id": "262",
-    "title": "重新填满——谁的更爽",
+    "title": "紫丝与石殿——足下的恩赐",
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
