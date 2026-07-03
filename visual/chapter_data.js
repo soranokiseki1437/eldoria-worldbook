@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-03T23:00:48.373718
+// 自动生成于: 2026-07-03T23:07:46.082008
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -1637,7 +1637,7 @@ const EVENTS = [
   },
   {
     "id": "205",
-    "title": "符文与魔法阵——艾玛与法林",
+    "title": "符文墨水的原料——法林与菲",
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
