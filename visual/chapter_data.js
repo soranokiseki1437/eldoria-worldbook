@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-03T22:55:27.851205
+// 自动生成于: 2026-07-03T23:00:48.373718
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -1509,7 +1509,7 @@ const EVENTS = [
   },
   {
     "id": "189",
-    "title": "密林里的两个影子——菲与玲",
+    "title": "花粉数据的交叉验证——亚莉莎与艾玛",
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
@@ -1573,7 +1573,7 @@ const EVENTS = [
   },
   {
     "id": "197",
-    "title": "银流河的清晨——菲娜与爱丽榭",
+    "title": "鬼之力的苔藓——黎恩与法林",
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
