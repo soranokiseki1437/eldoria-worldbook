@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-03T17:09:25.654095
+// 自动生成于: 2026-07-03T17:10:10.957726
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -2365,14 +2365,6 @@ const EVENTS = [
   },
   {
     "id": "296",
-    "title": "爱丽榭的厨房——四个人的灶台",
-    "route": "ntrs",
-    "chapter": "享受和掌控",
-    "summary": "",
-    "type": "nsfw"
-  },
-  {
-    "id": "297",
     "title": "温泉的游戏——菲娜的羞辱",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2380,15 +2372,15 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "298",
+    "id": "297",
     "title": "追踪月影鹿——菲娜与菲与玲",
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
-    "id": "299",
+    "id": "298",
     "title": "密林巡逻——树后内射",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2396,7 +2388,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "300",
+    "id": "299",
     "title": "魔女的口——吞入巨根",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2404,7 +2396,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "301",
+    "id": "300",
     "title": "菲的晨间——叫醒服务",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2412,7 +2404,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "302",
+    "id": "301",
     "title": "病中的猎兵——菲发烧的那个晚上",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2420,7 +2412,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "303",
+    "id": "302",
     "title": "会议桌下的黑丝——凯尔的惩罚",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2428,7 +2420,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "304",
+    "id": "303",
     "title": "太快了——凯尔的小鸡巴",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2436,7 +2428,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "305",
+    "id": "304",
     "title": "导力护盾的第二次测试——黎恩与乔治",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2444,7 +2436,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "306",
+    "id": "305",
     "title": "二哥的约定——足下的善意",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2452,7 +2444,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "307",
+    "id": "306",
     "title": "不是真的——脸边的温度",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2460,7 +2452,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "308",
+    "id": "307",
     "title": "被填满的魔女——巨根的第一次",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2468,7 +2460,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "309",
+    "id": "308",
     "title": "镜湖幻影——亡妻的倒影",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2476,7 +2468,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "310",
+    "id": "309",
     "title": "守夜的惯例——无声的交换",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2484,7 +2476,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "311",
+    "id": "310",
     "title": "胜利庆典——3P",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2492,7 +2484,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "312",
+    "id": "311",
     "title": "莉迪亚的名字——三个人的沉默",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2500,7 +2492,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "313",
+    "id": "312",
     "title": "镜湖内射——以亡妻之名的接纳",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2508,7 +2500,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "314",
+    "id": "313",
     "title": "乔治的安慰——帽檐下的轻吻",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2516,7 +2508,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "315",
+    "id": "314",
     "title": "月光下的乳交——劳拉与雷恩",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2524,7 +2516,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "316",
+    "id": "315",
     "title": "骑士剑的重磨——雷恩与多尔金",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2532,7 +2524,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "317",
+    "id": "316",
     "title": "会议开始前——桌下的缺席",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2540,7 +2532,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "318",
+    "id": "317",
     "title": "通讯那头——一张嘴两根",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2548,7 +2540,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "319",
+    "id": "318",
     "title": "太古的真相——三人解谜",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2556,7 +2548,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "320",
+    "id": "319",
     "title": "兄弟的争夺——左右开弓",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2564,7 +2556,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "321",
+    "id": "320",
     "title": "拼接的长桌——五族第一次联军会议",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2572,7 +2564,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "322",
+    "id": "321",
     "title": "温泉晕厥——事后告知",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2580,7 +2572,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "323",
+    "id": "322",
     "title": "艾玛的吊带袜——魔女的私授课程",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2588,7 +2580,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "324",
+    "id": "323",
     "title": "亚莉莎的换装——催情熏香中的傲娇本番",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2596,7 +2588,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "325",
+    "id": "324",
     "title": "野外失控——花田轮奸",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2604,7 +2596,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "326",
+    "id": "325",
     "title": "艾德里安的拍卖会——没落贵族的遗产",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2612,15 +2604,15 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "327",
+    "id": "326",
     "title": "那次之后——怪物的尺寸",
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "main"
+    "type": "nsfw"
   },
   {
-    "id": "328",
+    "id": "327",
     "title": "亚尔缇娜的黑丝——试试就知道啦",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2628,15 +2620,15 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "329",
+    "id": "328",
     "title": "影牙兽的活动规律——亚尔缇娜与玲",
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "main"
+    "type": "nsfw"
   },
   {
-    "id": "330",
+    "id": "329",
     "title": "黑丝的回报——多尔金的第一堂课",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2644,10 +2636,18 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "331",
+    "id": "330",
     "title": "欲望之镜——误入镜湖的凯尔",
     "route": "ntrs",
     "chapter": "享受和掌控",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "331",
+    "title": "爱丽榭的厨房——四个人的灶台",
+    "route": "ntrs",
+    "chapter": "放纵",
     "summary": "",
     "type": "nsfw"
   },
@@ -3690,13 +3690,13 @@ const CHAPTERS = [
     "num": 5,
     "name": "享受和掌控",
     "phase": "prologue",
-    "count": 82
+    "count": 81
   },
   {
     "num": 6,
     "name": "放纵",
     "phase": "prologue",
-    "count": 63
+    "count": 64
   },
   {
     "num": 7,
