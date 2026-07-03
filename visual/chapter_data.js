@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-04T00:08:34.376801
+// 自动生成于: 2026-07-04T00:46:33.350560
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -517,7 +517,7 @@ const EVENTS = [
   },
   {
     "id": "65",
-    "title": "温泉中的星夜——值得等待的430年",
+    "title": "温泉中的星夜——值得等待的200年",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -1957,7 +1957,7 @@ const EVENTS = [
   },
   {
     "id": "245",
-    "title": "山洞的六九——菲娜的远程指挥",
+    "title": "山洞的69式——菲娜的远程指挥",
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
@@ -3053,7 +3053,7 @@ const EVENTS = [
   },
   {
     "id": "382",
-    "title": "累了——六九的交换",
+    "title": "累了——69式的交换",
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",

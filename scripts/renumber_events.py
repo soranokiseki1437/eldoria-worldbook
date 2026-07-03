@@ -244,7 +244,20 @@ def _update_all_cross_references(old_to_new, temp_map):
     Scan all .TXT files (including temp files and files NOT being renumbered)
     and replace old IDs with new IDs using word-boundary protection.
     ID: line (first line) is NOT touched — it was already updated in Phase 2.
+
+    V9.1 修复: 数字后紧跟叙事量词/单位时不替换（防年份/身高/尺寸被误伤）
+    保护后缀: 年/岁/月/日/人/次/只/个/cm/mm/km/m/g 等
     """
+    # Narrative suffixes that indicate the number is NOT a cross-reference.
+    # Numbers followed by any of these are skipped during replacement.
+    _NARRATIVE_SUFFIX = (
+        r'年|岁|月|日|周|天|时|分|秒'
+        r'|人|次|回|只|头|条|把|支|件|个|匹|辆|朵|棵|根|粒|滴|层|圈|步|拳|剑|刀'
+        r'|倍|度|号|页|册|卷'
+        r'|cm|mm|km|kg|lb|oz|ml|cc'
+        r'|[ckmg]?(?!\w)'  # 单字母单位如 200m 200g（但必须在单词边界停止）
+    )
+
     # Build a set of all file paths to scan (temp files + other TXT files)
     all_txt_files = set(temp_map.keys())
 
@@ -263,33 +276,71 @@ def _update_all_cross_references(old_to_new, temp_map):
     # Build sorted old ID list (longest first to avoid partial matches)
     sorted_old = sorted(old_to_new.keys(), key=lambda x: (-len(x), x))
     pattern = '|'.join(re.escape(o) for o in sorted_old)
-    full_re = re.compile(rf'(?<![A-Za-z0-9])({pattern})(?!\d)')
+
+    # Negative lookahead: block digits AND narrative suffixes
+    # e.g. "200年" → "年" triggers exclusion → kept as-is
+    full_re = re.compile(
+        rf'(?<![A-Za-z0-9])({pattern})(?!\d|{_NARRATIVE_SUFFIX})'
+    )
+
+    # Additionally: protect numbers inside specific narrative-only fields.
+    # These fields describe story content, never contain cross-references.
+    NARRATIVE_FIELDS = {'名称', '情境', '核心', '章节任务', '第三者'}
+    # We split the body into field-blocks and only apply replacement
+    # to lines OUTSIDE narrative fields.
+
+    def _is_narrative_field_line(line):
+        """Check if a line starts a narrative-only field block."""
+        for nf in NARRATIVE_FIELDS:
+            if line.startswith(nf + ':'):
+                return True
+        return False
+
+    def _is_any_field_line(line):
+        """Check if a line starts any known field (ends with colon)."""
+        return bool(re.match(r'^[^\s:][^:]*:\s*', line))
 
     changed_count = 0
     for fp in all_txt_files:
         if not os.path.exists(fp):
             continue
         content = read_txt(fp)
-        # Split first line (ID:) from body
-        parts = content.split('\n', 1)
-        if len(parts) == 2:
-            id_line, body = parts
-            new_body = full_re.sub(
-                lambda m: str(old_to_new.get(m.group(0), m.group(0))),
-                body
-            )
-            if new_body != body:
-                write_txt(fp, id_line + '\n' + new_body)
-                changed_count += 1
-        else:
-            # No newline — single line file (shouldn't happen)
-            new_content = full_re.sub(
-                lambda m: str(old_to_new.get(m.group(0), m.group(0))),
-                content
-            )
-            if new_content != content:
-                write_txt(fp, new_content)
-                changed_count += 1
+
+        # Split into lines
+        lines = content.split('\n')
+        new_lines = []
+        skip_narrative = False  # True when inside a narrative-only field
+
+        for i, line in enumerate(lines):
+            if i == 0:
+                # ID line — always skip
+                new_lines.append(line)
+                continue
+
+            # Track field boundaries
+            if _is_narrative_field_line(line):
+                skip_narrative = True
+                new_lines.append(line)
+                continue
+            elif _is_any_field_line(line):
+                skip_narrative = False
+                # Fall through to normal processing
+
+            if skip_narrative:
+                # Inside narrative field — don't touch
+                new_lines.append(line)
+            else:
+                # Apply cross-reference replacement
+                new_line = full_re.sub(
+                    lambda m: str(old_to_new.get(m.group(0), m.group(0))),
+                    line
+                )
+                new_lines.append(new_line)
+
+        new_content = '\n'.join(new_lines)
+        if new_content != content:
+            write_txt(fp, new_content)
+            changed_count += 1
 
     return changed_count
 
