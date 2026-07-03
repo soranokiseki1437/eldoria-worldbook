@@ -10,7 +10,7 @@ import os
 import re
 
 STORY_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "docs", "story")
-OUTPUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "arabic_numerals_report.txt")
+OUTPUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "reports", "arabic_numerals_report.txt")
 
 # 完全排除的字段
 EXCLUDED_FIELDS = {"ID", "性行为等级", "好感影响", "黎恩知情", "占有欲确认"}
