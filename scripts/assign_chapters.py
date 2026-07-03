@@ -65,7 +65,7 @@ DEFAULT_CHAPTERS[3] = {
 DEFAULT_CHAPTERS[4] = {
     'title': '跨线',
     'stage': '跨线',
-    'events': _ids(206, 245),
+    'events': _ids(206, 249),
     'anchor': '低语者失败→疗愈→首次人类插入(凯尔)→雷恩插入→自主选择→回归仪式',
 }
 
@@ -73,7 +73,7 @@ DEFAULT_CHAPTERS[4] = {
 DEFAULT_CHAPTERS[5] = {
     'title': '享受和掌控',
     'stage': '享受和掌控',
-    'events': _ids(246, 317),
+    'events': _ids(250, 331),
     'anchor': '主动设计隐奸→多第三者本番→3P→轮奸→极限体验→日常缓冲',
 }
 
@@ -81,7 +81,7 @@ DEFAULT_CHAPTERS[5] = {
 DEFAULT_CHAPTERS[6] = {
     'title': '放纵',
     'stage': '放纵',
-    'events': _ids(318, 369),
+    'events': _ids(332, 394),
     'anchor': '主动服务→反向服务→极限→低语者轮奸→回归仪式',
 }
 
@@ -89,7 +89,7 @@ DEFAULT_CHAPTERS[6] = {
 DEFAULT_CHAPTERS[7] = {
     'title': '终局',
     'stage': '终局',
-    'events': _ids(370, 389),
+    'events': _ids(395, 414),
     'anchor': '决战前夜→净化回归→情书',
 }
 
@@ -97,7 +97,7 @@ DEFAULT_CHAPTERS[7] = {
 DEFAULT_CHAPTERS[8] = {
     'title': '后日谈',
     'stage': '后日谈',
-    'events': _ids(390, 432),
+    'events': _ids(415, 457),
     'anchor': '（暂无事件）',
 }
 
