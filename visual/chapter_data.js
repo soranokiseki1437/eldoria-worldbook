@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-03T17:07:45.443805
+// 自动生成于: 2026-07-03T17:09:25.654095
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -2261,7 +2261,7 @@ const EVENTS = [
   },
   {
     "id": "283",
-    "title": "商路的余货——新剑柄缠带",
+    "title": "磨损的护甲扣环——雷恩与哈根",
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
@@ -2269,14 +2269,6 @@ const EVENTS = [
   },
   {
     "id": "284",
-    "title": "磨损的护甲扣环——雷恩与哈根",
-    "route": "ntrs",
-    "chapter": "享受和掌控",
-    "summary": "",
-    "type": "main"
-  },
-  {
-    "id": "285",
     "title": "白袜的报酬——嫌弃的足交",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2284,15 +2276,15 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "286",
+    "id": "285",
     "title": "范德尔流的格挡——劳拉与奥蕾莉亚",
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
-    "id": "287",
+    "id": "286",
     "title": "沉甸甸的赞美——乳交初尝",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2300,7 +2292,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "288",
+    "id": "287",
     "title": "物资清单与下一季——亚莉莎与爱丽榭",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2308,7 +2300,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "289",
+    "id": "288",
     "title": "被玷污的剑，被接住的骑士",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2316,7 +2308,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "290",
+    "id": "289",
     "title": "锻造室的沉默——帮他释放的手",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2324,7 +2316,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "291",
+    "id": "290",
     "title": "狼人同盟——月光下的誓言",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2332,7 +2324,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "292",
+    "id": "291",
     "title": "晨间的梳子——菲娜与亚尔缇娜",
     "route": "ntrs",
     "chapter": "享受和掌控",
@@ -2340,8 +2332,16 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "293",
+    "id": "292",
     "title": "醉酒之后——扶她回屋",
+    "route": "ntrs",
+    "chapter": "享受和掌控",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "293",
+    "title": "商路的余货——新剑柄缠带",
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
