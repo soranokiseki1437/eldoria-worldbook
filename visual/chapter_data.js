@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-05T03:30:24.410362
+// 自动生成于: 2026-07-05T18:27:34.783971
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -269,14 +269,6 @@ const EVENTS = [
   },
   {
     "id": "34",
-    "title": "心木树的净化——光与影的共鸣",
-    "route": "prologue",
-    "chapter": "序章：苏醒与相遇",
-    "summary": "",
-    "type": "main"
-  },
-  {
-    "id": "35",
     "title": "净化仪式的准备——心木废墟",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
@@ -284,8 +276,16 @@ const EVENTS = [
     "type": "main"
   },
   {
+    "id": "35",
+    "title": "心木树的净化——光与影的共鸣",
+    "route": "prologue",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
+  },
+  {
     "id": "36",
-    "title": "艾玛的传送门实验——空间折叠的第一步",
+    "title": "杀戮之天使——玲登场",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -293,7 +293,7 @@ const EVENTS = [
   },
   {
     "id": "37",
-    "title": "腐化区域的扩张——Thalion的反击",
+    "title": "艾玛的传送门实验——空间折叠的第一步",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -301,7 +301,7 @@ const EVENTS = [
   },
   {
     "id": "38",
-    "title": "废墟中的矮人符文——精灵王国的盟友",
+    "title": "腐化区域的扩张——Thalion的反击",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -309,7 +309,7 @@ const EVENTS = [
   },
   {
     "id": "39",
-    "title": "前往岩丘的路上——菲的森林之眼",
+    "title": "废墟中的矮人符文——精灵王国的盟友",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -317,7 +317,7 @@ const EVENTS = [
   },
   {
     "id": "40",
-    "title": "岩丘之行——矮人三兄弟的祖地",
+    "title": "前往岩丘的路上——菲的森林之眼",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -325,7 +325,7 @@ const EVENTS = [
   },
   {
     "id": "41",
-    "title": "黑兔的观察——亚尔缇娜登场",
+    "title": "岩丘之行——矮人三兄弟的祖地",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -333,7 +333,7 @@ const EVENTS = [
   },
   {
     "id": "42",
-    "title": "人偶与矮人——第一次的误会",
+    "title": "黑兔的观察——亚尔缇娜登场",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -341,7 +341,7 @@ const EVENTS = [
   },
   {
     "id": "43",
-    "title": "没有命令的夜晚——黑兔与毛毯",
+    "title": "人偶与矮人——第一次的误会",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -349,7 +349,7 @@ const EVENTS = [
   },
   {
     "id": "44",
-    "title": "正面交锋——Thalion",
+    "title": "没有命令的夜晚——黑兔与毛毯",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -357,7 +357,7 @@ const EVENTS = [
   },
   {
     "id": "45",
-    "title": "雾帷中走出的剑——黄金罗刹登场",
+    "title": "正面交锋——Thalion",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -365,7 +365,7 @@ const EVENTS = [
   },
   {
     "id": "46",
-    "title": "古老先灵再现——第二次对话",
+    "title": "雾帷中走出的剑——黄金罗刹登场",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -373,7 +373,7 @@ const EVENTS = [
   },
   {
     "id": "47",
-    "title": "古老先灵的启示——森林意志与黎恩的作用",
+    "title": "古老先灵再现——第二次对话",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -381,7 +381,7 @@ const EVENTS = [
   },
   {
     "id": "48",
-    "title": "流浪商人——艾德里安登场",
+    "title": "古老先灵的启示——森林意志与黎恩的作用",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -389,7 +389,7 @@ const EVENTS = [
   },
   {
     "id": "49",
-    "title": "艾德里安的账本——商人眼中的营地",
+    "title": "流浪商人——艾德里安登场",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -397,7 +397,7 @@ const EVENTS = [
   },
   {
     "id": "50",
-    "title": "聊聊？——被剑气击飞的浪子",
+    "title": "艾德里安的账本——商人眼中的营地",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -405,7 +405,7 @@ const EVENTS = [
   },
   {
     "id": "51",
-    "title": "圣殿骑士——雷恩登场",
+    "title": "聊聊？——被剑气击飞的浪子",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -413,7 +413,7 @@ const EVENTS = [
   },
   {
     "id": "52",
-    "title": "年轻学者——凯尔登场",
+    "title": "圣殿骑士——雷恩登场",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -421,7 +421,7 @@ const EVENTS = [
   },
   {
     "id": "53",
-    "title": "爱丽榭到来——义妹的拥抱",
+    "title": "年轻学者——凯尔登场",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -429,7 +429,7 @@ const EVENTS = [
   },
   {
     "id": "54",
-    "title": "杀戮之天使——玲登场",
+    "title": "爱丽榭的料理——家的味道",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
