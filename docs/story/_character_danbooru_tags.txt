@@ -54,9 +54,9 @@
 #Elise_Schwarzer
 1girl, solo, purple_hair, dark_purple_hair, long_hair, low_ponytail, ponytail, purple_eyes, dark_purple_eyes, slim, slender, noble, ojou-sama, elegant, gentle, dress, ribbon, hair_ribbon, skirt, thighhighs, cute, refined, masterpiece, best_quality, highres, detailed
 
-# --- 玲·布莱特 (紫短发，红瞳，娇小小恶魔) ---
+# --- 玲·布莱特 (紫长发，金瞳，娇小小恶魔) ---
 #Rin_Bright
-1girl, solo, purple_hair, short_hair, bob_cut, red_eyes, petite, loli, small_breasts, flat_chest, mischievous, imp, devilish_smile, smug, playful, child, dress, frilled_dress, hairband, thighhighs, zettai_ryouiki, cute, masterpiece, best_quality, highres, detailed
+1girl, solo, purple_hair, long_hair, inward_curl, golden_eyes, petite, loli, small_breasts, flat_chest, mischievous, imp, devilish_smile, smug, playful, gothic_lolita, black_dress, frilled_dress, lace, thighhighs, garter, scythe, zettai_ryouiki, cute, masterpiece, best_quality, highres, detailed
 
 # --- 艾德里安 (银灰长发，琥珀瞳，男性，修长贵族) ---
 #Adrian
