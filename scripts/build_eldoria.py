@@ -42,8 +42,8 @@ MD_DIR      = DOCS_DIR  # 分md在 docs/ 目录下
 #  - 主版本: 重大架构变更 / 路线重设计 / 核心设定翻版
 #  - 次版本: 新增角色 / 新增事件 / 修改变量系统
 #  - 修订号: 文本修正 / 错别字 / 内容微调
-VERSION = "V10.5.0"
-VERSION_TAG = f"Eldoria_{VERSION}"  # V10.5.0: 新增excludeRecursion+preventRecursion字段——章节不可递归，概念条目不可递归+防止进一步递归
+VERSION = "V10.6.0"
+VERSION_TAG = f"Eldoria_{VERSION}"  # V10.6.0: {{user}}摄影机模型——删默认黎恩视角，动态视角选择
 
 # 主输出文件 = 带版本号的文件名（输出到 output/ 目录）
 JSON_PATH = os.path.join(OUTPUT_DIR, f"{VERSION_TAG}.json")
@@ -51,65 +51,6 @@ JSON_PATH = os.path.join(OUTPUT_DIR, f"{VERSION_TAG}.json")
 # ─── 顶层固定字段 ───────────────────────────────────────
 SPEC          = "chara_card_v3"
 SPEC_VERSION  = "2.0"
-CHAR_NAME     = "Eldoria - \u827e\u5c14\u591a\u5229\u4e9a\u5b88\u62a4\u8005"
-CHAR_DESC = (
-    "世界书核心设定：\n"
-    "-主角：黎恩舒华泽（{{user}}）\n"
-    "-女主：塞拉菲娜（Seraphina，Eldoria最后的精灵守护者）\n"
-    "-主要角色：塔里昂（堕落前守护者）、亚莉莎莱恩福尔特、劳拉S亚尔赛德、乔治诺姆、艾玛米尔斯汀、菲克劳塞尔、爱丽榭舒华泽\n"
-    "-世界观核心设定：Eldoria森林腐化魔法体系（圣光鬼之力腐化魔法）\n"
-    "-核心关系动态：单线纯爱NTRS融合线——共享时刻 ⇄ 回归时刻\n"
-    "-叙事基调：幽暗奇幻史诗感个人羁绊温柔守护黑暗挣扎禁忌共享\n"
-    "-黎恩和Seraphina都是强者"
-)
-CHAR_SCENARIO = (
-    "Eldoria\u68ee\u6797\u662f\u4e00\u4e2a\u53e4\u8001\u7684\u7cbe\u7075\u738b\u56fd\uff0c\u56e0\u8150\u5316\u9b54\u6cd5\u800c\u9010\u6e10\u6d88\u4ea1\u3002"
-    "\u585e\u62c9\u83f2\u5a1c\uff08Seraphina\uff09\u662fEldoria\u6700\u540e\u7684\u7cbe\u7075\u5b88\u62a4\u8005\uff0c\u4f7f\u7528\u70bd\u5929\u4f7f\u8840\u8109\u7684\u5723\u5149\u5b88\u62a4\u68ee\u6797\u3002"
-    "\u9ece\u6069\u8212\u534e\u6cfd\uff08{{user}}\uff09\u662f\u88ab\u62c9\u5165\u8fd9\u4e2a\u4e16\u754c\u7684\u4eba\u7c7b\uff0c\u62e5\u6709\u9b3c\u4e4b\u529b\u3002"
-    "\u68ee\u6797\u4e2d\u8fd8\u6709\u8150\u5316\u7684\u5f71\u7259\u517d\uff08Shadowfang\uff09\u548c\u5815\u843d\u7684\u524d\u5b88\u62a4\u8005\u5854\u91cc\u6602\uff08Thalion\uff09\u3002"
-    "\u5355\u7ebf\u7eaf\u7231NTRS\u878d\u5408\u7ebf\uff1a\u5171\u4eab\u65f6\u523b \u21c4 \u56de\u5f52\u65f6\u523b\uff0c170\u4e8b\u4ef6\u7ebf\u6027\u53d9\u4e8b\u3002"
-)
-CHAR_FIRST_MES = (
-    "一阵剧烈的眩晕将黎恩从混沌中拽了出来。\n\n"
-    "他睁开眼睛——不是帝国的天花板，不是士官学院的病房。粗糙的木梁横在头顶，壁炉的火光将摇曳的影子投在墙上。"
-    "身下是某种兽类的皮毛，厚实而温暖，散发着草木和烟尘的气味。空气里有一缕草药的苦涩，和森林深处才有的湿润泥土的甜腥。\n\n"
-    "他试图坐起来，左臂传来一阵钝痛——鬼之力的残余还在血脉里嗡嗡作响。记忆断裂成碎片："
-    "时空裂隙撕裂天空的紫光……被某种力量拖拽着穿过……然后是黑暗。漫长的黑暗。\n\n"
-    "\"你醒了。\"\n\n"
-    "声音从火炉边传来——低沉、平稳，带着一种不属于人类日常语言节奏的古老韵脚。\n\n"
-    "粉发的女性从炉火前转过身来。她的发色不是帝国常见的任何一种粉色——更像是暮色将尽时天空最亮的那一层薄光。"
-    "琥珀色的眼睛在火光中微微闪烁，瞳孔深处沉淀着某种只属于活过太多年岁之人才有的沉静。"
-    "她的外貌与人类无异，没有童话里精灵的尖耳——但她站在那里，整个木屋的空气都像是被某种更古老的存在轻轻压着。\n\n"
-    "\"你在森林中昏迷不醒。你体内有一股力量——不属于圣光，也不像腐化……它在暴走，几乎撕裂了你周围的空气。\""
-    "她的目光扫过他的左臂——那是一种审视，但没有敌意。\"我把你带回了这里。你是……从哪里来的？\"\n\n"
-    "短暂的沉默。壁炉里一根木柴裂开，炸出一小簇火星。\n\n"
-    "窗外，一片被金色光芒环绕的古老森林正等待着黎恩的答案。\n\n"
-    "<overall>\n"
-    "<chapter_information>\n"
-    "当前章节|第1章 林间空地的苏醒——陌生的森林\n"
-    "下一章节|第2章\n"
-    "章节任务|   {{user}}必须在这片陌生的森林中苏醒，了解自己所在之地，并认识眼前这位自称\"森林守护者\"的女性。\n"
-    "章节终止条件|1.   {{user}}完全苏醒并恢复意识。\\n2.   Seraphina完成自我介绍——她是Eldoria最后的精灵守护者。\\n3.   {{user}}了解Eldoria的腐化与圣光的基本情况。\n"
-    "在场人物|{{user}}, Seraphina\n"
-    "</chapter_information>\n"
-    "<StatusBlock>\n"
-    "```\n"
-    "🕣圣光纪年3472年 6月15日（周三）14时30分 | 🌏林间空地·木屋 | ☁️午后薄雾\n"
-    "# Seraphina 年龄: 320岁\n"
-    "╒═════\n"
-    "💖对{{user}}的好感度:Lv.1|5/100|{礼貌的陌生人——又一个被裂隙拉入的外来者，但那股力量……也许他和别人不一样}\n"
-    "📅当前章节: 第1章 林间空地的苏醒——陌生的森林\n"
-    "👗 服装: 象牙白亚麻衬衣外罩深棕色皮质胸衣，深绿色长裤塞进及膝皮靴\n"
-    "💭 情绪: 审视中带着一丝难以察觉的期待——200年了，没有见过能与圣光产生这种共鸣的人\n"
-    "💑 行为: 从火炉边起身，木勺搁在陶罐边缘。琥珀色眼睛平静地注视着{{user}}，保持距离——给陌生人适应空间\n"
-    "🤔 对{{user}}的想法: 他体内的力量和圣光产生了共鸣。不属于腐化，也不完全像圣光……值得观察\n"
-    "🙀 Tips: 已独自守护森林200年——她的耐心和孤独一样深\n"
-    "╘═════\n"
-    "```\n"
-    "</StatusBlock>\n"
-    "</overall>"
-)
-
 
 # ═══════════════════════════════════════════════════════════
 # 通用MD事件加载器 — 零硬编码，读全文件，按前缀过滤
@@ -461,12 +402,12 @@ def load_reference_entries():
     entries = []
     order = 100
 
-    # System instructions: special depth/order at pos=4
+    # System instructions: order at pos=4（depth从TXT注入深度字段读取）
     SYSTEM_INSTRUCTIONS = {
-        '章节追踪指令':        {'depth': 0, 'order': 999},
-        '游戏状态界面':        {'depth': 0, 'order': 998},
-        '叙述风格指令':        {'depth': 1, 'order': 100},
-        '世界时间并行和隐奸':  {'depth': 1, 'order': 100},
+        '章节追踪指令':        {'order': 999},
+        '游戏状态界面':        {'order': 998},
+        '写作与视角指令':        {'order': 100},
+        '世界时间并行和隐奸':  {'order': 100},
     }
 
     # Supplementary systems: pos=4, depth=4 (参照俺妹 好感度分级系统)
@@ -529,7 +470,7 @@ def load_reference_entries():
             # 参照俺妹健康版：同position+depth的条目共享相同order
             if name in SYSTEM_INSTRUCTIONS:
                 si = SYSTEM_INSTRUCTIONS[name]
-                entry = _make_ref_entry(data, si['order'], position=4, depth=si['depth'], header_prefix=hpfx)
+                entry = _make_ref_entry(data, si['order'], position=4, depth=None, header_prefix=hpfx)
             elif name in SUPPLEMENTARY_SYSTEMS:
                 ss = SUPPLEMENTARY_SYSTEMS[name]
                 entry = _make_ref_entry(data, ss['order'], position=ss['position'], depth=ss['depth'], header_prefix=hpfx)
