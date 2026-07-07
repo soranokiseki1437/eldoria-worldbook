@@ -318,7 +318,7 @@ def _parse_reference_txt(filepath):
         if line.strip().startswith('#'):
             continue
         m = re.match(r'^([^：:\s][^：:]*?)[：:]\s*(.*)', line)
-        if m and not line.lstrip().startswith(('-', '•', '>', '·')):
+        if m and not line.lstrip().startswith(('-', '•', '>', '·')) and current_key != '内容':
             if current_key:
                 data[current_key] = '\n'.join(current_value).strip()
             current_key = m.group(1).strip()
