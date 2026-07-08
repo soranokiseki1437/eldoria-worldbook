@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-08T20:13:41.751280
+// 自动生成于: 2026-07-08T20:19:07.504007
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -3965,30 +3965,6 @@ const EVENTS = [
   },
   {
     "id": "496",
-    "title": "地下的视角——裂隙的另一面",
-    "route": "epilogue",
-    "chapter": "后日谈",
-    "summary": "",
-    "type": "main"
-  },
-  {
-    "id": "497",
-    "title": "封印语的钥匙——门需要两种语言",
-    "route": "epilogue",
-    "chapter": "后日谈",
-    "summary": "",
-    "type": "main"
-  },
-  {
-    "id": "498",
-    "title": "门开了——第一条回家的路",
-    "route": "epilogue",
-    "chapter": "后日谈",
-    "summary": "",
-    "type": "main"
-  },
-  {
-    "id": "499",
     "title": "晚上的约定——日常的延续",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -3996,7 +3972,15 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "500",
+    "id": "497",
+    "title": "地下的视角——裂隙的另一面",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "498",
     "title": "家人的晚餐——她的女儿们",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4004,7 +3988,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "501",
+    "id": "499",
     "title": "工具间的轮——修东西的代价",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4012,7 +3996,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "502",
+    "id": "500",
     "title": "鳞与剑的夜晚——奥蕾莉亚与蜥蜴战士Ⅲ",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4020,7 +4004,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "503",
+    "id": "501",
     "title": "我也要——菲娜姐姐的秘密",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4028,7 +4012,15 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "504",
+    "id": "502",
+    "title": "封印语的钥匙——门需要两种语言",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "503",
     "title": "满月下的完整——亚莉莎与狼人法师Ⅳ",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4036,7 +4028,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "505",
+    "id": "504",
     "title": "两个人的挑战——黄金罗刹终于趴下",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4044,7 +4036,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "506",
+    "id": "505",
     "title": "最后的酒——醉后的放肆",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4052,12 +4044,20 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "507",
+    "id": "506",
     "title": "三个人——满足不了我",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
     "type": "nsfw"
+  },
+  {
+    "id": "507",
+    "title": "门开了——第一条回家的路",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "main"
   },
   {
     "id": "508",
