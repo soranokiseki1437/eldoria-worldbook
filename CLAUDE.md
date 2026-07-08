@@ -1,7 +1,7 @@
 # CLAUDE.md — 世界书构建与章节增强专用Agent
 
 > **定位**：Eldoria世界书 · 100%对齐俺妹ver1.41格式
-> **版本**：v10.6 · 2026-07-06
+> **版本**：v10.9 · 2026-07-08 · 522章·658条目·9阶段·JSON 1.0MB
 
 ---
 
@@ -175,22 +175,10 @@ Seraphina永远是强者——共享是双方同意的体验，回归是情感�
 ## 五、文档依赖链
 
 ```
-docs/story/{章节}/*.TXT        ← ★ 章节唯一权威源
-├── _TEMPLATE.TXT                ← 新章节模板
-├── _sex_index.txt               ← 手工维护的sex类型索引
-├── chapter/                     ← 系统指令
-│   ├── _章节追踪指令 / _游戏状态界面 / _写作与视角指令 / _世界时间并行和隐奸
-├── character/ world/ magic/ creature/ location/ npc/ affection/
-
-scripts/
-├── build_eldoria.py              ← TXT→JSON
-├── generate_chapter_browser.py   ← 章节浏览器（读索引+角色提取）
-├── story_tool.py                 ← 验证/引用扫描
-├── renumber_events.py            ← 全局重编号
-└── rebuild_all.py                ← 一键重建
-
+docs/story/{章节}/*.TXT        ← ★ 唯一权威源
+docs/{chapter,character,world,magic,creature,location,npc}/  ← 设定
+scripts/{build_eldoria,renumber_events,story_tool,generate_chapter_browser}.py
 output/Eldoria_V10.6.0.json       ← 派生产物，不可手动编辑
-visual/全章节浏览器.html           ← 章节浏览器
 ```
 
 ---
@@ -215,65 +203,6 @@ visual/全章节浏览器.html           ← 章节浏览器
 
 ---
 
-## 七、V10.6 变更记录（2026-07-06）
-
-| # | 变更 | 说明 |
-|---|------|------|
-| 1 | **{{user}}摄影机模型** | {{user}}从"=黎恩"重定义为"叙事摄影机"——玩家操控的镜头，可指向任何角色 |
-| 2 | **删默认黎恩视角** | 不再有硬默认视角；视角选择由玩家指令+LLM自主判断 |
-| 3 | **动态视角选择** | 玩家指令优先→无指令时LLM根据章节情节和上下文选最佳视角 |
-| 4 | **{{user}}→黎恩** | 游戏状态界面/build_eldoria.py/CLAUDE.md中{{user}}全部替换为黎恩 |
-
-### 历史版本
-
-<details>
-<summary>V10.5 变更记录（2026-07-01）</summary>
-
-| # | 变更 | 说明 |
-|---|------|------|
-| 1 | **递归控制字段** | 11→13字段，新增`excludeRecursion`+`preventRecursion` |
-| 2 | **章节不可递归** | 395章：excludeRec=true, preventRec=false（可触发下级条目） |
-| 3 | **概念条目双true** | 120条角色/地点/生物等：excludeRec=true, preventRec=true（终端节点） |
-| 4 | **constant系统条目** | 14条始终激活：双false（递归机制不适用） |
-
-</details>
-
-<details>
-<summary>V10.3 变更记录（2026-06-29）</summary>
-
-| # | 变更 | 说明 |
-|---|------|------|
-| 1 | **JSON瘦身** | 43字段→11字段，去extensions/originalData/characterFilter |
-| 2 | **event→story改名** | 目录/脚本/浏览器全面重命名 |
-| 3 | **章节任务+终止条件** | 全部350章补写 |
-| 4 | **乔治不戴眼镜** | 23章"推眼镜"→"摸后脑勺" |
-| 5 | **Rule8全局修复** | 杀26处"没有X只是Y"否定句式 |
-| 6 | **世界时间并行** | pos=0→pos=4 depth=1 |
-| 7 | **章节浏览器** | 角色×类型双维度筛选 |
-| 8 | **sex类型索引** | 手工维护 `_sex_index.txt`，15标签+未分类 |
-
-</details>
-
-### 历史版本
-
-<details>
-<summary>V10.3 变更记录（2026-06-29）</summary>
-
-| # | 变更 | 说明 |
-|---|------|------|
-| 1 | **JSON瘦身** | 43字段→11字段，去extensions/originalData/characterFilter |
-| 2 | **event→story改名** | 目录/脚本/浏览器全面重命名 |
-| 3 | **章节任务+终止条件** | 全部350章补写 |
-| 4 | **乔治不戴眼镜** | 23章"推眼镜"→"摸后脑勺" |
-| 5 | **Rule8全局修复** | 杀26处"没有X只是Y"否定句式 |
-| 6 | **世界时间并行** | pos=0→pos=4 depth=1 |
-| 7 | **章节浏览器** | 角色×类型双维度筛选 |
-| 8 | **sex类型索引** | 手工维护 `_sex_index.txt`，15标签+未分类 |
-
-</details>
-
-**当前状态**：657条目·521章节·9阶段·构建通过·JSON 1.0MB·浏览器双维度筛选·sex索引全覆盖·摄影机模型·动态视角选择
-
 ---
 
-*Eldoria的森林在等待真正敢于深入的讲述者。开始工作。*
+*版本历史见 git log。开始工作。*
