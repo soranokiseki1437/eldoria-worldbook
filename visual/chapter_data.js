@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-08T21:13:06.948136
+// 自动生成于: 2026-07-08T21:27:52.353107
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -4013,7 +4013,7 @@ const EVENTS = [
   },
   {
     "id": "502",
-    "title": "封印语的钥匙——门需要两种语言",
+    "title": "裂隙的频率——导力通讯跨过门",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
@@ -4021,6 +4021,14 @@ const EVENTS = [
   },
   {
     "id": "503",
+    "title": "封印语的钥匙——门需要两种语言",
+    "route": "epilogue",
+    "chapter": "后日谈",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "504",
     "title": "满月下的完整——亚莉莎与狼人法师Ⅳ",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4028,7 +4036,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "504",
+    "id": "505",
     "title": "两个人的挑战——黄金罗刹终于趴下",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4036,7 +4044,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "505",
+    "id": "506",
     "title": "最后的酒——醉后的放肆",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4044,7 +4052,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "506",
+    "id": "507",
     "title": "三个人——满足不了我",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4052,7 +4060,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "507",
+    "id": "508",
     "title": "门开了——第一条回家的路",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4060,7 +4068,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "508",
+    "id": "509",
     "title": "镰刀上的第三个符文——玲的改良",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4068,7 +4076,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "509",
+    "id": "510",
     "title": "满月夜的狼尾巴——菲娜的好奇心",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4076,7 +4084,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "510",
+    "id": "511",
     "title": "导力护盾的矮人骨架——乔治与哈根",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4084,7 +4092,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "511",
+    "id": "512",
     "title": "深夜的矮人小屋——沉默与嘴碎的二重奏",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4092,7 +4100,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "512",
+    "id": "513",
     "title": "出发",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4100,7 +4108,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "513",
+    "id": "514",
     "title": "不算什么——干的是屁眼又不是小穴",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4108,7 +4116,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "514",
+    "id": "515",
     "title": "只属于一个人的夜晚——黑丝的小脚",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4116,7 +4124,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "515",
+    "id": "516",
     "title": "跳蛋购物——月光石",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4124,7 +4132,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "516",
+    "id": "517",
     "title": "双人份的剑士——两张嘴",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4132,7 +4140,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "517",
+    "id": "518",
     "title": "拿你没办法的夜晚——亚莉莎与狼人法师Ⅴ",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4140,7 +4148,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "518",
+    "id": "519",
     "title": "剑士的失算——反正也和他做过了",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4148,7 +4156,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "519",
+    "id": "520",
     "title": "不需要说话的人——安静的午后",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4156,7 +4164,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "520",
+    "id": "521",
     "title": "五人的夜——轮流与共享",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4164,7 +4172,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "521",
+    "id": "522",
     "title": "自由探索——艾尔多利亚的日常",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -4220,7 +4228,7 @@ const CHAPTERS = [
     "num": 8,
     "name": "后日谈",
     "phase": "prologue",
-    "count": 64
+    "count": 65
   },
 ];
 
