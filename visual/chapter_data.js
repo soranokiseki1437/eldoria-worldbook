@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-11T02:49:39.122811
+// 自动生成于: 2026-07-12T12:00:09.196104
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -2725,7 +2725,7 @@ const EVENTS = [
   },
   {
     "id": "341",
-    "title": "莉迪亚的名字——三个人的沉默",
+    "title": "莉兹的名字——三个人的沉默",
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
