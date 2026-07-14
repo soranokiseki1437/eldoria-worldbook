@@ -1,7 +1,7 @@
 # CLAUDE.md — 世界书构建与章节增强专用Agent
 
 > **定位**：Eldoria世界书 · 100%对齐俺妹ver1.41格式
-> **版本**：v10.9 · 2026-07-08 · 522章·658条目·9阶段·JSON 1.0MB
+> **版本**：v10.12.6 · 2026-07-15 · 624章·761条目·9阶段·JSON 1.14MB
 
 ---
 
@@ -30,7 +30,7 @@
 
 ### 1.3 章节体系
 
-- 521章，纯数字编号，线性叙事，无分支
+- 624章，纯数字编号，线性叙事，无分支
 - 9阶段：`docs/story/{0：序章/ ... 8：后日谈/}`
 - 章节key：`['第N章']`，`selectiveLogic: 0`
 - `{{user}}` = 叙事摄影机（玩家操控的叙事镜头，非任何角色）
@@ -177,7 +177,7 @@ Seraphina永远是强者——共享是双方同意的体验，回归是情感�
 ```
 docs/story/{章节}/*.TXT        ← ★ 唯一权威源
 docs/{chapter,character,world,magic,creature,location,npc}/  ← 设定
-scripts/{build_eldoria,renumber_events,story_tool,generate_chapter_browser}.py
+scripts/{build_eldoria,rebuild_all,renumber_events,story_tool,generate_chapter_browser,update_chapter_map}.py
 output/Eldoria_V10.6.0.json       ← 派生产物，不可手动编辑
 ```
 
