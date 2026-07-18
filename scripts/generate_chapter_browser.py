@@ -328,12 +328,12 @@ def generate_event_data_js(events, event_chapters):
     # CHAPTERS — from chapter mapping (deduplicated)
     lines.append("const CHAPTERS = [")
     seen_chapters = set()
-    for ch_num in sorted(set(e.get("chapter", 0) for e in events if e.get("chapter", 0) > 0)):
+    for ch_num in sorted(set(e.get("chapter", 0) for e in events if e.get("chapter", 0) >= 0)):
         ch_name = CHAPTER_NAMES.get(ch_num, "")
         if not ch_name:
             continue
         count = sum(1 for e in events if e["chapter"] == ch_num)
-        phase = "prologue" if ch_num <= 8 else "pure" if ch_num <= 11 else "ntrs" if ch_num <= 15 else "passive" if ch_num <= 21 else "finale"
+        phase = "intro" if ch_num == 0 else "ntrs" if ch_num <= 7 else "finale"
         lines.append("  {")
         lines.append(f'    "num": {ch_num},')
         lines.append(f'    "name": {json.dumps(ch_name, ensure_ascii=False)},')
@@ -350,13 +350,21 @@ def generate_event_data_js(events, event_chapters):
     debut_chars = [
         ("黎恩", "E01", "#4facfe", "黎"),
         ("Seraphina", "E01", "#f093fb", "S"),
-        ("Thalion", "PN2", "#a18cd1", "T"),
-        ("乔治", "PN3", "#43e97b", "乔"),
-        ("亚莉莎", "PN4", "#fa709a", "亚"),
-        ("劳拉", "N32", "#89f7fe", "劳"),
-        ("菲", "G4", "#30cfd0", "菲"),
-        ("艾玛", "G4", "#f5576c", "艾"),
-        ("爱丽榭", "N33", "#ff9a9e", "爱"),
+        ("亚莉莎", "5", "#fa709a", "亚"),
+        ("爱丽榭", "5", "#ff9a9e", "爱"),
+        ("劳拉", "6", "#89f7fe", "劳"),
+        ("乔治", "6", "#43e97b", "乔"),
+        ("艾玛", "7", "#f5576c", "艾"),
+        ("菲", "7", "#30cfd0", "菲"),
+        ("玲", "36", "#c4a0ff", "玲"),
+        ("Thalion", "38", "#a18cd1", "T"),
+        ("矮人三兄弟", "41", "#fecf6f", "矮"),
+        ("亚尔缇娜", "42", "#f093fb", "缇"),
+        ("奥蕾莉亚", "46", "#fa709a", "奥"),
+        ("古老先灵", "47", "#a18cd1", "灵"),
+        ("艾德里安", "49", "#f5576c", "德"),
+        ("雷恩", "52", "#89f7fe", "雷"),
+        ("凯尔", "53", "#30cfd0", "凯"),
     ]
     for name, event_id, color, avatar in debut_chars:
         lines.append("  {")

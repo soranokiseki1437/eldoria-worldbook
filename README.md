@@ -14,7 +14,7 @@
 | **主角** | 黎恩·舒华泽 — 灰色骑士，鬼之力持有者 |
 | **女主** | Seraphina — 最后的精灵守护者，炽天使血脉，320岁 |
 | **反派** | Thalion — 堕落的前守护者，腐化影牙首领 |
-| **路线** | 单线纯爱NTRS融合线 — 共享时刻 ⇄ 回归时刻，170事件线性叙事 |
+| **路线** | 单线纯爱NTRS融合线 — 共享时刻 ⇄ 回归时刻，623章线性叙事 |
 | **驱动** | 好感值系统 — 12角色，0-100，影响对话温度与亲密意愿 |
 
 ---
@@ -27,40 +27,39 @@
 ├── CLAUDE.md                       # Agent 执行手册
 │
 ├── docs/                           # 权威数据源
-│   ├── event/                      # ★ 事件TXT文件（170个，唯一权威）
-│   │   ├── 0：序章/       (39)    苏醒→告白→第三者登场
-│   │   ├── 1：试探和暧昧/ (24)    坦白→注视→第一次共享
-│   │   ├── 2：挑逗和接受/ (12)    主动展示→初次口交
-│   │   ├── 3：渐进接触/   (27)    足交→手交→乳交→口交→隐奸
-│   │   ├── 4：跨线/       (13)    首次插入→自主选择
-│   │   ├── 5：享受和掌控/ (33)    主动设计→多P→轮奸→极限
-│   │   ├── 6：放纵/       (19)    主动服务→极限→低语者
-│   │   ├── 7：终局/       ( 3)    决战前夜→净化→情书
-│   │   └── 8：后日谈/     ( 0)    暂无事件
+│   ├── story/                      # ★ 章节TXT文件（623个，唯一权威）
+│   │   ├── 0：序章/       (70)    苏醒→告白→第三者登场
+│   │   ├── 1：试探和暧昧/ (44)    坦白→注视→第一次共享
+│   │   ├── 2：挑逗和接受/ (35)    主动展示→初次口交
+│   │   ├── 3：渐进接触/   (96)    足交→手交→乳交→口交→隐奸
+│   │   ├── 4：跨线/       (68)    首次插入→自主选择
+│   │   ├── 5：享受和掌控/ (118)   主动设计→多P→轮奸→极限
+│   │   ├── 6：放纵/       (93)    主动服务→极限→低语者
+│   │   ├── 7：终局/       (20)    决战前夜→净化→情书
+│   │   └── 8：后日谈/     (79)    自由探索阶段
 │   ├── chapter/                     # 始终触发条目+概念文件（6个）
 │   ├── character/                   # 角色档案（14角色）
-│   ├── creature/                    # 生物设定（11种）
-│   ├── location/                    # 地点设定（20处）
+│   ├── creature/                    # 生物设定（17种）
+│   ├── location/                    # 地点设定（26处）
 │   ├── npc/                         # NPC档案（7人+总览）
-│   └── world/                       # 世界观概念
+│   ├── world/                       # 世界观概念
+│   └── magic/                       # 魔法体系
 │
 ├── scripts/                        # 构建与工具
-│   ├── event_config.py             # 共享chapter元数据
-│   ├── story_tool.py               # 验证 · 列表 · 引用扫描（Rule1-9）
-│   ├── renumber_events.py          # 全局重编号引擎（核心）
 │   ├── build_eldoria.py            # TXT → 世界书JSON
-│   ├── assign_chapters.py          # DEFAULT_CHAPTERS权威数据源
-│   ├── update_chapter_map.py       # 章节映射报告
+│   ├── generate_chapter_browser.py # 直接读TXT → 可视化HTML浏览器
 │   ├── rebuild_all.py              # 一键全流程（build→browser）
-│   ├── backup_restore.py           # 版本备份管理
-│   └── generate_chapter_browser.py   # 直接读TXT → 可视化HTML浏览器
+│   ├── renumber_events.py          # 全局重编号引擎（核心）
+│   ├── story_tool.py               # 验证 · 列表 · 引用扫描
+│   ├── update_chapter_map.py       # 章节映射报告
+│   └── backup_restore.py           # 版本备份管理
 │
 ├── output/                         # 构建产物（不可手动编辑）
 │   └── Eldoria_V*.json
 │
 ├── visual/                         # 可视化
-│   ├── 全事件浏览器.html
-│   └── event_data.js
+│   ├── 全章节浏览器.html
+│   └── chapter_data.js
 │
 └── backup/                         # 自动备份
 ```
@@ -70,7 +69,7 @@
 ## 工作流
 
 ```
-docs/story/{章节}/*.TXT   ← ★ 章节唯一权威源（302个独立文件）
+docs/story/{章节}/*.TXT   ← ★ 章节唯一权威源（623个独立文件）
     │
     ├── build_eldoria.py 直接读TXT ──→ output/Eldoria_V*.json
     └── story_tool.py 读TXT ──→ 验证 / 列表 / 引用扫描
@@ -133,8 +132,8 @@ python scripts/backup_restore.py backup "说明"
 | 理解写作标准与工作流 | `CLAUDE.md` |
 | 查看角色详情 | `docs/character/` |
 | 了解世界观概念 | `docs/world/` |
-| 浏览事件 | `visual/全事件浏览器.html` |
-| 浏览事件详情 | `visual/全事件浏览器.html` |
+| 浏览章节 | `visual/全章节浏览器.html` |
+| 浏览章节详情 | `visual/全章节浏览器.html` |
 | 新增/修改章节 | `docs/story/_TEMPLATE_RULES.md` |
 
 ---
