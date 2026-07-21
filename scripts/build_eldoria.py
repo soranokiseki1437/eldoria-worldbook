@@ -408,6 +408,7 @@ def load_reference_entries():
         '游戏状态界面':        {'order': 998},
         '写作与视角指令':        {'order': 100},
         '世界时间并行和隐奸':  {'order': 100},
+        '自由探索':            {'order': 100},
     }
 
     # Supplementary systems: pos=4, depth=4 (参照俺妹 好感度分级系统)
