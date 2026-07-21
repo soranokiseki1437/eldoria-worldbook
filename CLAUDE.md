@@ -1,7 +1,7 @@
 # CLAUDE.md — 世界书构建与章节增强专用Agent
 
 > **定位**：Eldoria世界书 · 100%对齐俺妹ver1.41格式
-> **版本**：v10.12.6 · 2026-07-15 · 624章·761条目·9阶段·JSON 1.14MB
+> **版本**：v10.12.8 · 2026-07-22 · 624章·762条目·9阶段·JSON 1.16MB
 
 ---
 
@@ -43,6 +43,7 @@
 | `游戏状态界面` | pos=4 depth=0 order=998 | `<overall>` 模板 |
 | `写作与视角指令` | pos=4 depth=1 order=100 | 摄影机模型·视角选择·写作风格·去AI化铁律 |
 | `世界时间并行和隐奸` | pos=4 depth=1 order=100 | 世界时间并行·隐奸逻辑 |
+| `自由探索` | pos=4 depth=1 order=100 | 自由探索状态指令 |
 
 ### 1.5 章节Sex类型索引
 
@@ -178,7 +179,7 @@ Seraphina永远是强者——共享是双方同意的体验，回归是情感�
 docs/story/{章节}/*.TXT        ← ★ 唯一权威源
 docs/{chapter,character,world,magic,creature,location,npc}/  ← 设定
 scripts/{build_eldoria,rebuild_all,renumber_events,story_tool,generate_chapter_browser,update_chapter_map}.py
-output/Eldoria_V10.6.0.json       ← 派生产物，不可手动编辑
+output/Eldoria_V10.12.7.json       ← 派生产物，不可手动编辑
 ```
 
 ---
