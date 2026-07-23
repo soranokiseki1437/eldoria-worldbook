@@ -187,7 +187,8 @@ def load_sex_index():
             continue
         m = re.match(r'^(\d+):', line)
         if m and current_tag:
-            index.setdefault(m.group(1), []).append(current_tag)
+            sid = str(int(m.group(1)))  # strip leading zeros (020→20) to match TXT ID format
+            index.setdefault(sid, []).append(current_tag)
     return index
 
 
