@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-24T08:16:05.515367
+// 自动生成于: 2026-07-24T08:32:06.600624
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -2233,7 +2233,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "280",
