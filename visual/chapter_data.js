@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-23T22:40:27.236718
+// 自动生成于: 2026-07-24T08:16:05.515367
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -1009,7 +1009,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "挑逗和接受",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "127",
@@ -1057,7 +1057,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "挑逗和接受",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "133",
@@ -1073,7 +1073,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "挑逗和接受",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "135",
@@ -1089,7 +1089,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "挑逗和接受",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "137",
@@ -1121,7 +1121,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "挑逗和接受",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "141",
@@ -1137,7 +1137,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "挑逗和接受",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "143",
@@ -1177,7 +1177,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "挑逗和接受",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "148",
@@ -1209,7 +1209,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "152",
@@ -1233,7 +1233,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "155",
@@ -1257,7 +1257,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "158",
@@ -1281,7 +1281,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "161",
@@ -1305,7 +1305,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "164",
@@ -1353,7 +1353,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "170",
@@ -1361,7 +1361,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "171",
@@ -1393,7 +1393,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "175",
@@ -1417,7 +1417,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "178",
@@ -1545,7 +1545,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "194",
@@ -1561,7 +1561,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "196",
@@ -1601,7 +1601,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "201",
@@ -1641,7 +1641,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "206",
@@ -1705,7 +1705,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "214",
@@ -1721,7 +1721,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "216",
@@ -1761,7 +1761,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "221",
@@ -1777,7 +1777,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "223",
@@ -1809,7 +1809,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "227",
@@ -1825,7 +1825,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "229",
@@ -1849,7 +1849,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "232",
@@ -1873,7 +1873,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "235",
@@ -1889,7 +1889,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "237",
@@ -1913,7 +1913,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "240",
@@ -1937,7 +1937,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "243",
@@ -1953,7 +1953,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "245",
@@ -1985,7 +1985,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "249",
@@ -2017,7 +2017,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "253",
@@ -2041,7 +2041,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "256",
@@ -2129,7 +2129,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "267",
@@ -2257,7 +2257,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "283",
@@ -2281,7 +2281,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "286",
@@ -2297,7 +2297,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "288",
@@ -2313,7 +2313,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "290",
@@ -2321,7 +2321,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "291",
@@ -2361,7 +2361,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "296",
@@ -2369,7 +2369,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "297",
@@ -2401,7 +2401,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "301",
@@ -2433,7 +2433,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "305",
@@ -2449,7 +2449,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "307",
@@ -2465,7 +2465,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "309",
@@ -2481,7 +2481,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "311",
@@ -2497,7 +2497,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "313",
@@ -2537,7 +2537,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "318",
@@ -2561,7 +2561,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "321",
@@ -2569,7 +2569,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "322",
@@ -2625,7 +2625,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "329",
@@ -2633,7 +2633,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "330",
@@ -2657,7 +2657,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "333",
@@ -2705,7 +2705,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "339",
@@ -2761,7 +2761,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "346",
@@ -2785,7 +2785,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "349",
@@ -2833,7 +2833,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "355",
@@ -2857,7 +2857,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "358",
@@ -2865,7 +2865,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "359",
@@ -2889,7 +2889,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "362",
@@ -2937,7 +2937,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "368",
@@ -2961,7 +2961,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "371",
@@ -3017,7 +3017,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "378",
@@ -3065,7 +3065,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "384",
@@ -3097,7 +3097,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "388",
@@ -3129,7 +3129,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "392",
@@ -3161,7 +3161,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "396",
@@ -3193,7 +3193,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "400",
@@ -3225,7 +3225,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "404",
@@ -3249,7 +3249,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "407",
@@ -3297,7 +3297,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "413",
@@ -3321,7 +3321,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "416",
@@ -3369,7 +3369,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "422",
@@ -3409,7 +3409,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "427",
@@ -3433,7 +3433,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "430",
@@ -3473,7 +3473,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "435",
@@ -3489,7 +3489,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "437",
@@ -3513,7 +3513,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "440",
@@ -3537,7 +3537,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "443",
@@ -3553,7 +3553,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "445",
@@ -3585,7 +3585,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "449",
@@ -3601,7 +3601,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "451",
@@ -3617,7 +3617,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "453",
@@ -3681,7 +3681,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "461",
@@ -3689,7 +3689,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "462",
@@ -3721,7 +3721,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "466",
@@ -3753,7 +3753,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "470",
@@ -3785,7 +3785,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "474",
@@ -3849,7 +3849,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "482",
@@ -3865,7 +3865,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "484",
@@ -3881,7 +3881,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "486",
@@ -3905,7 +3905,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "489",
@@ -4033,7 +4033,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "505",
@@ -4057,7 +4057,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "508",
@@ -4081,7 +4081,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "511",
@@ -4097,7 +4097,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "513",
@@ -4113,7 +4113,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "515",
@@ -4153,7 +4153,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "520",
@@ -4201,7 +4201,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "526",
@@ -4233,7 +4233,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "530",
@@ -4281,7 +4281,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "536",
@@ -4321,7 +4321,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "541",
@@ -4353,7 +4353,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "545",
@@ -4425,7 +4425,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "554",
@@ -4465,7 +4465,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "559",
@@ -4505,7 +4505,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "564",
@@ -4529,7 +4529,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "567",
@@ -4569,7 +4569,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "572",
@@ -4593,7 +4593,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "575",
@@ -4617,7 +4617,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "578",
@@ -4665,7 +4665,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "584",
@@ -4673,7 +4673,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "放纵",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "585",
@@ -4697,7 +4697,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "终局",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "588",
@@ -4777,7 +4777,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "终局",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "598",
@@ -4849,7 +4849,7 @@ const EVENTS = [
     "route": "ntrs",
     "chapter": "终局",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "607",
@@ -4889,7 +4889,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "612",
@@ -4897,7 +4897,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "613",
@@ -4929,7 +4929,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "617",
@@ -4937,7 +4937,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "618",
@@ -5001,7 +5001,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "626",
@@ -5025,7 +5025,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "629",
@@ -5049,7 +5049,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "632",
@@ -5089,7 +5089,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "637",
@@ -5129,7 +5129,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "642",
@@ -5225,7 +5225,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "654",
@@ -5265,7 +5265,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "659",
@@ -5305,7 +5305,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "664",
@@ -5313,7 +5313,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "665",
@@ -5321,7 +5321,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "666",
@@ -5361,7 +5361,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "671",
@@ -5401,7 +5401,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "676",
@@ -5425,7 +5425,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "679",
@@ -5449,7 +5449,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "682",
@@ -5473,7 +5473,7 @@ const EVENTS = [
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "685",
