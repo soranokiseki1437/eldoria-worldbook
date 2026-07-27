@@ -1,7 +1,7 @@
 # CLAUDE.md — 世界书构建与章节增强专用Agent
 
 > **定位**：Eldoria世界书 · 100%对齐俺妹ver1.41格式
-> **版本**：v10.15.0 · 2026-07-23 · 669章·807条目·9阶段·JSON 1.23MB
+> **版本**：v10.23.0 · 2026-07-27 · 704章·844条目·9阶段·JSON 1.35MB
 > **权威规则**：`docs/story/_TEMPLATE_RULES.md`（写作规则全集）· `docs/story/_短对话修复方案.md`（对话修复）· `docs/story/_条件修复方案.md`（终止条件/章节任务修复）
 
 ---
@@ -31,7 +31,7 @@
 
 ### 1.3 章节体系
 
-- 624章，纯数字编号，线性叙事，无分支
+- 704章，纯数字编号，线性叙事，无分支
 - 9阶段：`docs/story/{0：序章/ ... 8：后日谈/}`
 - 章节key：`['第N章']`，`selectiveLogic: 0`
 - `{{user}}` = 叙事摄影机（玩家操控的叙事镜头，非任何角色）
@@ -221,11 +221,22 @@ docs/story/_TEMPLATE.TXT       ← 章节模板
 docs/story/_TEMPLATE_RULES.md  ← 写作规则全集（情境/NSFW/起因/去AI化/黎恩血肉感）
 docs/story/_短对话修复方案.md   ← 对话修复方案（Forms A-G·情感填充五层·对话嵌入动作）
 docs/story/_条件修复方案.md     ← 终止条件/章节任务修复规则
+docs/story/_连续叙事弧线章节总览.md ← 连续叙事弧线索引（17弧·52章·判定标准）
 docs/{chapter,character,world,magic,creature,location,npc}/  ← 设定
 方案/*菲娜*微调指南*.md         ← 菲娜阶段特征指南（早期/中期/阶段五/阶段六）
 方案/去机械感和碎片化叙述重要经验.txt  ← 对话碎片修复·情感填充·标点规范（Ch491+494精修提炼）
 scripts/{build_eldoria,rebuild_all,renumber_events,story_tool,generate_chapter_browser,update_chapter_map}.py
 output/Eldoria_V10.12.7.json       ← 派生产物，不可手动编辑
+```
+
+### 2.4 弧线总览维护
+
+```
+修改 _连续叙事弧线章节总览.md 后:
+  1. 编辑 markdown（弧总览表/弧详情/统计/非弧判定）
+  2. 验证：52(弧章) + 独立章 = 总章数（须闭合）
+  3. python scripts/build_eldoria.py 重建JSON
+  4. git commit
 ```
 
 ---
