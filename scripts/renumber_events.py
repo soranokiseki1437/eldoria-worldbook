@@ -76,16 +76,20 @@ def scan_all_events():
             if id_val is None:
                 print(f'  ⚠ 跳过（无有效ID行）: {ch_dir}/{fname}')
                 continue
+            # Natural sort key: parse "435.10" → (435, 10), not float 435.1
+            m = re.match(r'^ID:\s*([\d.]+)', read_txt(fp))
+            id_str = m.group(1) if m else str(id_val)
             events.append({
                 'filepath': fp,
                 'chapter_idx': ch_idx,
                 'chapter_dir': ch_dir,
                 'old_id_float': id_val,
                 'old_filename': fname,
+                '_sort_key': tuple(int(p) for p in id_str.split('.')),
             })
 
-    # Sort by (chapter_idx, old_id_float)
-    events.sort(key=lambda e: (e['chapter_idx'], e['old_id_float']))
+    # Sort by (chapter_idx, natural sort key) — avoids float("435.1") == float("435.10")
+    events.sort(key=lambda e: (e['chapter_idx'], e['_sort_key']))
     return events
 
 

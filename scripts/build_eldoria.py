@@ -265,6 +265,13 @@ def _auto_order(event_id):
     return 160 + _num * 2
 
 
+def _natural_sort_key(eid):
+    """自然排序键：将章节ID拆分为数字元组，确保 435.10 排在 435.9 之后而非 435.1 和 435.2 之间。
+    '435.1' → (435, 1), '435.10' → (435, 10), '435' → (435,)
+    """
+    return tuple(int(p) for p in str(eid).split('.'))
+
+
 def _get_md_entries(prefix, tag, base_order=160):
     """★ 通用TXT驱动条目生成器——零硬编码。
 
@@ -281,7 +288,7 @@ def _get_md_entries(prefix, tag, base_order=160):
     _entries = []
     _all = _load_all_events()
     _events = {k: v for k, v in _all.items() if v['prefix'] == prefix}
-    for _eid in sorted(_events.keys()):
+    for _eid in sorted(_events.keys(), key=_natural_sort_key):
         _data = _events[_eid]
         _keys = _auto_keys(_eid, _data)
         _entries.append(make_entry(
