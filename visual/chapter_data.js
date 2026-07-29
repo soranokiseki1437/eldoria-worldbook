@@ -1,4 +1,4 @@
-// 自动生成于: 2026-07-29T01:15:26.851312
+// 自动生成于: 2026-07-30T02:18:54.843449
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -1508,10 +1508,34 @@ const EVENTS = [
     "type": "main"
   },
   {
+    "id": "189.5",
+    "title": "毒雾窄缝——被迫的体温",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
+  },
+  {
     "id": "189",
     "title": "矿道的圆洞——她卡住了（上）",
     "route": "ntrs",
     "chapter": "渐进接触",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "190.3",
+    "title": "沼泽灯笼虫——他让她碰了尾巴",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "190.7",
+    "title": "雷雨中的尾巴——她不知道自己在握什么",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
     "summary": "",
     "type": "nsfw"
   },
@@ -1524,10 +1548,26 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
+    "id": "191.3",
+    "title": "晨雾同行——他的沼泽，她的脚步声",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
+  },
+  {
     "id": "191",
     "title": "发丝与余光——多停了一拍",
     "route": "ntrs",
     "chapter": "渐进接触",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "192.5",
+    "title": "猎人的图画——她走后他在笔记本上画了什么",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
     "summary": "",
     "type": "main"
   },
@@ -1538,6 +1578,14 @@ const EVENTS = [
     "chapter": "渐进接触",
     "summary": "",
     "type": "main"
+  },
+  {
+    "id": "193.5",
+    "title": "沼泽迷瘴——那天的雾里发生过什么",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "nsfw"
   },
   {
     "id": "193",
@@ -2236,6 +2284,14 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
+    "id": "280.5",
+    "title": "暖岩石上——他以为她在等他",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
+  },
+  {
     "id": "280",
     "title": "自由探索——艾尔多利亚的夜晚",
     "route": "ntrs",
@@ -2274,6 +2330,14 @@ const EVENTS = [
     "chapter": "跨线",
     "summary": "",
     "type": "main"
+  },
+  {
+    "id": "285.5",
+    "title": "荆棘疗伤——她的血他的草药",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "nsfw"
   },
   {
     "id": "285",
@@ -2316,6 +2380,14 @@ const EVENTS = [
     "type": "main"
   },
   {
+    "id": "290.5",
+    "title": "寒潭体温——意外掉进冰水之后",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
     "id": "290",
     "title": "通讯中的嘴——报平安与奖励（上）",
     "route": "ntrs",
@@ -2354,6 +2426,14 @@ const EVENTS = [
     "chapter": "跨线",
     "summary": "",
     "type": "nsfw"
+  },
+  {
+    "id": "295.5",
+    "title": "夜光苔孢子——她说\"我们不能再这样了\"",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
   },
   {
     "id": "295",
@@ -2396,12 +2476,28 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
+    "id": "300.5",
+    "title": "鳞甲的颜色——她问了一句话",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
     "id": "300",
     "title": "清晨的教学——黑丝与主动权",
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
     "type": "nsfw"
+  },
+  {
+    "id": "301.5",
+    "title": "告诉法林——她说了",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
   },
   {
     "id": "301",
@@ -3036,6 +3132,14 @@ const EVENTS = [
     "type": "main"
   },
   {
+    "id": "380.5",
+    "title": "再访暖岩——她回来了，他们谈了一次",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
+  },
+  {
     "id": "380",
     "title": "电容与脉搏——她停在门口",
     "route": "ntrs",
@@ -3072,6 +3176,14 @@ const EVENTS = [
     "title": "导力枪的改装——乔治与哈根",
     "route": "ntrs",
     "chapter": "享受和掌控",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "385.5",
+    "title": "鳞片与符文——她学会了那些信号的名字",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
     "summary": "",
     "type": "main"
   },
@@ -3836,6 +3948,14 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
+    "id": "480.5",
+    "title": "月光下的古老契约——月语者的馈赠",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
+  },
+  {
     "id": "480",
     "title": "地下日记·第三页——偷来的书",
     "route": "ntrs",
@@ -4020,6 +4140,14 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
+    "id": "503.5",
+    "title": "胶质包裹——腐化史莱姆",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
     "id": "503",
     "title": "亚莉莎的换装——催情熏香中的傲娇本番",
     "route": "ntrs",
@@ -4090,6 +4218,14 @@ const EVENTS = [
     "chapter": "享受和掌控",
     "summary": "",
     "type": "main"
+  },
+  {
+    "id": "512.5",
+    "title": "暗紫残影的包围——低语者遇袭",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "nsfw"
   },
   {
     "id": "512",
@@ -4194,6 +4330,14 @@ const EVENTS = [
     "chapter": "放纵",
     "summary": "",
     "type": "main"
+  },
+  {
+    "id": "525.5",
+    "title": "月光下的鳞甲——她说他的语言",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "nsfw"
   },
   {
     "id": "525",
@@ -4394,6 +4538,14 @@ const EVENTS = [
     "chapter": "放纵",
     "summary": "",
     "type": "main"
+  },
+  {
+    "id": "550.5",
+    "title": "触手拘束——腐化藤的麻痹与释放",
+    "route": "ntrs",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "nsfw"
   },
   {
     "id": "550",
@@ -5236,6 +5388,14 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
+    "id": "655.5",
+    "title": "夜光苔的季节——下雪了",
+    "route": "epilogue",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
+  },
+  {
     "id": "655",
     "title": "门外的声音——腿交隐奸（下）",
     "route": "epilogue",
@@ -5970,7 +6130,7 @@ const CHAPTERS = [
     "num": 0,
     "name": "序章：苏醒与相遇",
     "phase": "intro",
-    "count": 70
+    "count": 90
   },
   {
     "num": 1,
