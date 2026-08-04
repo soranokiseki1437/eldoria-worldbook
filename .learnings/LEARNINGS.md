@@ -156,7 +156,7 @@ CLAUDE.md 及索引文档不要写死章节数目/章节 ID，引用章节一律
 - Tags: 版本脚注, git log, 文档约定
 
 ---
-## [LRN-20260804-008] best_practice
+## [LRN-20260804-011] best_practice
 
 **Logged**: 2026-08-04T11:21:00Z
 **Priority**: medium
@@ -177,7 +177,7 @@ Agent 启动报 `temporarily unavailable` 时：最多重试 1-2 次即回退；
 - Tags: agent, 分类器, 回退策略
 
 ---
-## [LRN-20260804-009] best_practice
+## [LRN-20260804-012] best_practice
 
 **Logged**: 2026-08-04T11:21:00Z
 **Priority**: high
@@ -200,7 +200,7 @@ Agent 启动报 `temporarily unavailable` 时：最多重试 1-2 次即回退；
 - See Also: LRN-20260804-002
 
 ---
-## [LRN-20260804-010] best_practice
+## [LRN-20260804-013] best_practice
 
 **Logged**: 2026-08-04T11:21:00Z
 **Priority**: medium
