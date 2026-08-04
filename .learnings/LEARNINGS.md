@@ -68,3 +68,91 @@ CLAUDE.md 及索引文档不要写死章节数目/章节 ID，引用章节一律
 - Tags: CLAUDE.md, 章节引用, 文档约定
 
 ---
+## [LRN-20260804-004] correction
+
+**Logged**: 2026-08-04T13:30:00Z
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+写规则文档本身要遵守文档自己的规则——我用了"写菲娜不是填空格…而是代入她"，恰是文档§4.16禁止的pivot否定结构；用户纠正"既然不是就不用说，只写有用的部分"。
+
+### Details
+重写 _TEMPLATE_RULES.md"人物指纹清单"引言时，我写了"写菲娜不是填空格。要写对她，不是把条目一个个勾上，而是代入她"——这正是该文档§4.16"禁'不是A，是B'pivot结构"要消灭的句式。用户指出：否定掉的"不是…"部分没用就直接删，只留正面指令（"代入菲娜再落笔——结合人物形象、当时心理、情境"）。规则文档的范例措辞必须通过自身禁令。
+
+### Suggested Action
+编辑 _TEMPLATE_RULES.md 时先自检新措辞是否踩了该文档自己的禁令：§4.16 否定pivot、句号堆砌、破折号滥用、cliché、碎片句。写肯定句，不写"不是X而是Y"。
+
+### Metadata
+- Source: user_feedback
+- Related Files: docs/story/_TEMPLATE_RULES.md
+- Tags: 否定pivot, 规则文档, 措辞自检
+
+---
+## [LRN-20260804-005] correction
+
+**Logged**: 2026-08-04T13:40:00Z
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+角色声音/教学示例必须温暖、正面、取自原章节；删禁忌列与负面示例；不用"话少/冷漠"概括角色；清单化自问改代入角色。
+
+### Details
+用户对 _TEMPLATE_RULES.md §4.0.3 的连续纠正：① 删除禁忌列与负面示例，只留正面示例；② 卡兹尔示例"还冷漠了一点"要换温暖批；③ 艾玛示例不能只有和卡兹尔的（需覆盖多角色）；④ 黎恩人设从"话少"改为"温柔，幽默，沉稳可靠"，示例配温暖长对话/吐槽/调侃/与菲娜对话（"当然陪，我不会让你一个人面对这种事。""安排是我安排的，吃醋是它自己来的。""我只是没提醒你。""这种事你去问本人啊。"等），删"句号收尾"约束；⑤ 人物指纹清单/在方案应用清单去掉逐项自问，改代入角色（人物形象+当时心理+情境）；⑥ 零容忍缺项仅指菲娜任何阶段都脸红/可爱/甜美，不是每次逐项填满。
+
+### Suggested Action
+写角色声音/行为教学示例：从原章节挑温暖完整台词；用正面示例教学，不写"禁止/错误形态"；不用"话少/冷漠"当角色标签；教学清单避免"逐项自问"，教"代入角色推断行为"。
+
+### Metadata
+- Source: user_feedback
+- Related Files: docs/story/_TEMPLATE_RULES.md
+- Tags: 角色声音, 对白温度, 正面示例, 代入角色
+
+---
+## [LRN-20260804-006] best_practice
+
+**Logged**: 2026-08-04T13:50:00Z
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+规则文档里的示例台词改动，要同步改原章节 TXT 并重建 JSON + validate——否则规则与正文（唯一权威源）脱节。
+
+### Details
+改 §4.0.3 速查表台词时，用户要求原章节同步：480"他就把你操了。"→"他就没忍住把我的小宝贝吃干抹净了。"（并把"替她把话说完、语气自然"改成"没好气地说"）；118"安排是我安排的。吃醋是它自己来的。"→逗号版（去句号堆砌）。改完跑 build_eldoria.py + story_tool.py validate。速查表示例是章节台词的引用，措辞/标点必须与原文一致。
+
+### Suggested Action
+改 _TEMPLATE_RULES.md 的示例台词后，grep 原章节核对并同步；改过章节 TXT 就执行 build_eldoria.py + story_tool.py validate；commit + push。
+
+### Metadata
+- Source: user_feedback
+- Related Files: docs/story/5：享受和掌控/480：腐化藤的拘束——和上次一样的姿势.TXT, docs/story/2：挑逗和接受/118：挑逗的萌芽——确认吃醋的表情.TXT
+- Tags: 示例同步, 章节TXT, 构建验证
+
+---
+## [LRN-20260804-007] correction
+
+**Logged**: 2026-08-04T14:00:00Z
+**Priority**: medium
+**Status**: pending
+**Area**: docs
+
+### Summary
+规则文档不留版本更新记录痕迹——删除"版本：V10.30.x"和"本次更新"脚注，版本历史以 git log 为准。
+
+### Details
+用户要求去掉 _TEMPLATE_RULES.md 底部的版本号+本次更新脚注（"不要保留版本更新记录痕迹"）。该文件现只留"模板和规则维护：新增字段类型或写作规则变更时同步更新本文件。"一行。commit message 里带版本号（如 V10.30.5）即可。
+
+### Suggested Action
+以后改规则文档不加版本/更新记录脚注；版本号写在 commit message，历史看 git log。
+
+### Metadata
+- Source: user_feedback
+- Related Files: docs/story/_TEMPLATE_RULES.md
+- Tags: 版本脚注, git log, 文档约定
+
+---
