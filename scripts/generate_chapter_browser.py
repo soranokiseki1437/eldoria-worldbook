@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-generate_chapter_browser.py — 全章节浏览器生成器 (V5.0 角色分类)
+generate_chapter_browser.py — 全章节浏览器生成器
 ==========================================================
 直接读取 docs/story/*.TXT 生成自包含的交互式HTML页面。
-V5.0: 网格卡片布局，角色×阶段分类，第三者字段精准匹配。
+网格卡片布局，角色×阶段分类，第三者字段精准匹配。
 
 用法：
     python scripts/generate_chapter_browser.py
@@ -167,7 +167,7 @@ def load_events_from_txt():
 
 def load_sex_index():
     """读取 docs/story/_sex_index.txt → {章节ID: [标签列表]}
-    非整数编号（如 615.5）无法匹配任何章节，打印警告（V5.1 漂移检测）。"""
+    非整数编号（如 615.5）无法匹配任何章节，打印警告。"""
     index_path = os.path.join(BASE_DIR, 'docs', 'story', '_sex_index.txt')
     index = {}
     non_int = []
@@ -231,7 +231,7 @@ def build_events():
     seen_ids = set()
     for event_id, raw in events_raw.items():
         seen_ids.add(event_id)
-        prefix = raw.get('prefix', '')  # V7.0: 从文件来源目录获取
+        prefix = raw.get('prefix', '')  # 从文件来源目录获取
         meta = PREFIX_META.get(prefix, {"name": prefix, "color": "#888", "order": 99})
         chapter = event_chapters.get(event_id, 0)
         raw_yaml = raw["raw_yaml"]
@@ -262,7 +262,7 @@ def build_events():
             "prefix_name": meta["name"], "prefix_color": meta["color"],
             "characters": characters,
         })
-    # V5.1: sex索引漂移检测 — 索引中的编号找不到对应章节时打印警告
+    # sex索引漂移检测 — 索引中的编号找不到对应章节时打印警告
     if non_int:
         print(f"  ⚠ sex索引含 {len(non_int)} 条非整数编号（无法匹配章节，浏览器将忽略）:")
         for num, title in non_int:
@@ -629,13 +629,13 @@ def generate_html(events):
     html = '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n'
     html += '<meta charset="UTF-8">\n'
     html += '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
-    html += '<title>Eldoria 全章节浏览器 - V5.0</title>\n'
+    html += '<title>Eldoria 全章节浏览器</title>\n'
     html += '<style>\n' + CSS + '\n</style>\n</head>\n<body>\n'
 
     # 顶部栏
     html += '<div class="topbar">\n'
     html += '<h1>Eldoria 全章节浏览器</h1>\n'
-    html += '<span class="stats-inline">共 <em>{}</em> 章节 &middot; 已完善 <em>{}</em> &middot; NSFW <em>{}</em> &middot; SFW <em>{}</em> &middot; <em>V5.0</em></span>\n'.format(
+    html += '<span class="stats-inline">共 <em>{}</em> 章节 &middot; 已完善 <em>{}</em> &middot; NSFW <em>{}</em> &middot; SFW <em>{}</em></span>\n'.format(
         total, has_yaml_count, nsfw_count, sfw_count)
     html += '<div class="topbar-row">\n'
     html += '<input type="text" class="search-input" id="searchInput" placeholder="🔍 搜索章节 (Ctrl+K) - ID / 名称 / 关键词">\n'

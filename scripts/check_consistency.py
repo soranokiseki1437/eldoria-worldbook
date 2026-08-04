@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""check_consistency.py — 全库一致性检查（V10.28 新增）
+"""check_consistency.py — 全库一致性检查
 
 把所有索引/文档与章节文件（唯一权威源）对照，一次性发现脱节。
 检查项:

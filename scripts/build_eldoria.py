@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-build_eldoria.py — Eldoria 世界书 JSON 构建脚本 (V10.3)
+build_eldoria.py — Eldoria 世界书 JSON 构建脚本
 ===========================================================
 权威数据源：docs/ 子目录全部TXT文件（chapter/ character/ world/ creature/ location/ npc/ story/）
-派生产物：output/Eldoria_V10.3.0.json（本脚本输出，不可手动编辑）
+派生产物：output/Eldoria_V*.json（本脚本输出，不可手动编辑）
 
 工作流：编辑 docs/ 下的 TXT 文件（权威数据源）→ 运行本脚本 → 产出 JSON
 
-架构 (V10.3):
+架构:
   - 全TXT驱动，零硬编码条目
   - 输出格式：entries Object(keyed by string uid) + _meta
   - 每条目13字段：uid/key/keysecondary/comment/content/constant/selective/order/position/depth/group
@@ -37,10 +37,9 @@ OUTPUT_DIR  = os.path.join(PROJECT_DIR, "output")
 DOCS_DIR    = os.path.join(PROJECT_DIR, "docs")
 MD_DIR      = DOCS_DIR  # 分md在 docs/ 目录下
 
-# ─── 版本号（与 git 版本号对齐，内容变更时同步递增） ──────
-# 格式: "V{主版本}.{次版本}.{修订号}"（跟随 git 提交版本，V10.28.1 起双轨合并）
+# ─── 版本号（与 git 版本号对齐） ────────────────────────
 VERSION = "V10.28.1"
-VERSION_TAG = f"Eldoria_{VERSION}"  # 2026-08-04 与 git 版本对齐（原构建双轨 V10.12.x 废弃）
+VERSION_TAG = f"Eldoria_{VERSION}"
 
 # 主输出文件 = 带版本号的文件名（输出到 output/ 目录）
 JSON_PATH = os.path.join(OUTPUT_DIR, f"{VERSION_TAG}.json")
@@ -304,7 +303,7 @@ def _get_md_entries(prefix, tag, base_order=160):
 
 
 # ═══════════════════════════════════════════════════════════
-# V10.0: 通用TXT条目加载器 — 读写docs/全部子目录
+# 通用TXT条目加载器 — 读写docs/全部子目录
 # ═══════════════════════════════════════════════════════════
 
 def _parse_reference_txt(filepath):
@@ -498,7 +497,7 @@ def make_entry(uid, keys, comment, content, order,
                keysecondary=None, selective=True, position=1,
                group="", depth=4,
                excludeRecursion=True, preventRecursion=True):
-    """创建一条世界书条目 — V10.5精简13字段格式。
+    """创建一条世界书条目 — 精简13字段格式。
 
     输出字段：uid/key/keysecondary/comment/content/constant/
     selective/order/position(整数0/1/4)/depth/group/
@@ -585,7 +584,7 @@ def build(dry_run=False):
         _REGISTRY[label] = result
         return result
 
-    # ─── 条目收集（V10.0: 全TXT驱动） ──────────────────────
+    # ─── 条目收集（全TXT驱动） ───────────────────────────
 
     # 1. Reference entries: docs/chapter/ + character/ + world/ + creature/ + location/ + npc/
     ref_entries = load_reference_entries()
@@ -604,7 +603,7 @@ def build(dry_run=False):
         collect(lambda d=ch_dir: _get_md_entries(d, 'chapter'), f"章节-{ch_dir}·TXT驱动", label)
         event_labels.append(label)
 
-    # 3. V10.0: 所有条目均由TXT驱动，无需硬编码基础条目
+    # 3. 所有条目均由TXT驱动，无需硬编码基础条目
     # first_mes 是JSON顶层字段，非条目
 
     # ─── 合并 + 分配 id ──────────────────────────────────
@@ -650,8 +649,8 @@ def build(dry_run=False):
     else:
         print(f"[step 4] 验证通过: {len(all_entries)} 条条目全部合法")
 
-    # 4.5 V10.5精简格式 — 13字段条目，无extensions/characterFilter/originalData膨胀
-    # 每条结构开销 ~90 bytes（vs 俺妹43字段 ~945 bytes/条 vs V10.2.0 ~95 bytes/条）
+    # 4.5 精简格式 — 13字段条目，无extensions/characterFilter/originalData膨胀
+    # 每条结构开销 ~90 bytes（vs 俺妹43字段 ~945 bytes/条）
     struct_overhead = len(json.dumps(OrderedDict([(k, None) for k in [
         "uid","key","keysecondary","comment","content","constant",
         "selective","order","position","depth","group",
@@ -699,7 +698,7 @@ def build(dry_run=False):
 
 
 def validate_entries(entries):
-    """验证条目列表的完整性和一致性（V10.5精简13字段格式）"""
+    """验证条目列表的完整性和一致性（精简13字段格式）"""
     errors = []
     seen_uids = set()
 
@@ -743,9 +742,9 @@ def validate_entries(entries):
 
 
 def assemble_json(entries):
-    """将条目列表组装为世界书 JSON（V10.3精简格式：entries Object + _meta）。
+    """将条目列表组装为世界书 JSON（精简格式：entries Object + _meta）。
 
-    entries 为 OBJECT keyed by string uid（V10.2.0验证可行）。
+    entries 为 OBJECT keyed by string uid。
     无 extensions/characterFilter/originalData 膨胀。
     """
     entries_obj = OrderedDict()

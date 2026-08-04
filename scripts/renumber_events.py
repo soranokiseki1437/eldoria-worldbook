@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-renumber_events.py — 全局事件重编号引擎 (V9.0)
+renumber_events.py — 全局事件重编号引擎
 
 扫描全部章节目录的TXT文件，按ID行float值排序后分配全局连续整数编号。
 两阶段重命名防碰撞，更新交叉引用和DEFAULT_CHAPTERS。
@@ -249,7 +249,7 @@ def _update_all_cross_references(old_to_new, temp_map):
     and replace old IDs with new IDs using word-boundary protection.
     ID: line (first line) is NOT touched — it was already updated in Phase 2.
 
-    V9.1 修复: 数字后紧跟叙事量词/单位时不替换（防年份/身高/尺寸被误伤）
+    数字后紧跟叙事量词/单位时不替换（防年份/身高/尺寸被误伤）
     保护后缀: 年/岁/月/日/人/次/只/个/cm/mm/km/m/g 等
     """
     # Narrative suffixes that indicate the number is NOT a cross-reference.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-story_tool.py — 章节验证与查看工具 (V10.3 — TXT文件驱动)
+story_tool.py — 章节验证与查看工具
 
 用法:
   python story_tool.py validate              # 验证全部TXT章节
@@ -112,7 +112,7 @@ def validate_prefix(prefix):
 
     # Rule 1 (铁律): 事件内容中禁止引用任何事件编号
     # 编号引用会导致未来重编号时连锁失效——描述叙事状态，不偷懒用编号。
-    # V9.0: 事件编号为纯数字01-170。匹配2-3位数字（排除明显非事件引用的上下文）。
+    # 章节编号为纯数字。匹配数字（排除明显非章节引用的上下文）。
     _EVENT_ID_RE = re.compile(
         r'(?<![A-Za-z0-9])'
         r'(?:'
@@ -199,7 +199,7 @@ def validate_prefix(prefix):
                 violations.append(f'[{eid}] 粉银: 应为"粉色"')
 
     # Rule 5: 必填字段检查（所有事件）
-    # V9.0必填: ID, 名称, NSFW, 情境, 核心
+    # 必填: ID, 名称, NSFW, 情境, 核心
     # 条件字段: 性行为等级(NSFW=是时), 阶段, 第三者, 黎恩知情, 占有欲确认, 好感影响
     REQUIRED_FIELDS = ['ID', '名称', 'NSFW', '情境', '核心']
     for eid, name, fp, data in events:

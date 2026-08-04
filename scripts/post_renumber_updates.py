@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 """
-post_renumber_updates.py — 重编号后更新弧线总览和sex索引 (V2.0)
+post_renumber_updates.py — 重编号后更新弧线总览和sex索引
 
-V2.0 修复（2026-08-04）:
-  - 拆分弧线表已存在时改为替换，不再重复插入第二张表
-  - （上/中/下）标签从文件系统文件名推导，不再按小数位猜（615.5 是"上"而非"下"）
-  - 支持"上"分部来自小数（如 615.5→644 暮色里的通讯），自动生成缺失的拆分弧行
-  - sex索引分部条目用文件系统权威标题生成
+拆分弧线表已存在时替换而非重复插入；（上/中/下）标签从文件系统
+文件名推导；支持"上"分部来自小数（如 615.5→644）；
+sex索引分部条目用文件系统权威标题生成。
 """
 
 import os, re, sys
@@ -150,7 +148,7 @@ def update_arc_document(simple_map, split_old, old_to_new):
         title_line = ' → '.join(titles)
         new_arcs.append(f'| {base} | {ch_refs} | {title_line} | 拆分形成连续弧（{len(new_ids)}章） |')
 
-    # Insert or REPLACE the split-arc table (V2.0: 已存在则替换，不再重复插入)
+    # 拆分弧线表已存在则替换，不再重复插入
     if new_arcs:
         arc_header = '### 拆分新增弧线（V10.28 章节拆分）\n\n'
         arc_text = (arc_header + '| 原章 | 新编号 | 标题链 | 说明 |\n'
@@ -192,7 +190,7 @@ def update_sex_index(simple_map, split_old, old_to_new, split_info):
     print(f'  {changed_lines} 行编号已替换')
 
     # For split chapters: 以"上"分部在索引中的条目为锚点，为（中/下）分部补条目
-    # V2.0: 分部条目标题一律取文件系统权威标题
+    # 分部条目标题一律取文件系统权威标题
     added = 0
     for base, seq in sorted(split_info.items()):
         new_ids = [nid for nid, _ in seq]

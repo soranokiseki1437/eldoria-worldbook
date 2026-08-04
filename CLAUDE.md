@@ -115,7 +115,7 @@ python scripts/story_tool.py refs <ID>       # 查引用
 python scripts/renumber_events.py            # 全局重编号
 python scripts/check_consistency.py          # 全库一致性检查（编号/文件名/名称格式/sex索引/弧总览）
 python scripts/fix_index_numbering.py        # sex索引编号按标题自动同步（生成 _numbered.txt 待审）
-python scripts/post_renumber_updates.py      # 重编号后更新弧总览+sex索引（V2.0 可安全重复执行）
+python scripts/post_renumber_updates.py      # 重编号后更新弧总览+sex索引（可安全重复执行）
 ```
 
 ---

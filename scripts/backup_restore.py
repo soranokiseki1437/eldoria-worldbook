@@ -30,7 +30,8 @@ SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.dirname(SCRIPT_DIR)   # 脚本在 scripts/ 下，上级为项目根
 OUTPUT_DIR  = os.path.join(PROJECT_DIR, "output")
 BACKUP_DIR  = os.path.join(PROJECT_DIR, "backup")
-JSON_PATH   = os.path.join(OUTPUT_DIR, "Eldoria_V4.3.json")
+sys.path.insert(0, SCRIPT_DIR)
+from build_eldoria import JSON_PATH  # 动态取当前版本输出文件
 
 # 备份文件名格式: Eldoria_YYYYMMDD_HHMMSS.json
 BACKUP_PATTERN = re.compile(r'^Eldoria_(\d{8})_(\d{6})\.json$')
