@@ -1,4 +1,4 @@
-// 自动生成于: 2026-08-05T03:57:03.220975
+// 自动生成于: 2026-08-05T04:19:18.318419
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -1869,7 +1869,7 @@ const EVENTS = [
   },
   {
     "id": "234",
-    "title": "茶的温暖——第一个拥抱",
+    "title": "月光下的古老契约——月语者的馈赠",
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
@@ -2069,11 +2069,11 @@ const EVENTS = [
   },
   {
     "id": "259",
-    "title": "被允许的触碰——她的手心",
+    "title": "茶的温暖——第一个拥抱",
     "route": "ntrs",
     "chapter": "渐进接触",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
   },
   {
     "id": "260",
@@ -2669,7 +2669,7 @@ const EVENTS = [
   },
   {
     "id": "334",
-    "title": "满月下的双手——赏月与抚摸",
+    "title": "被允许的触碰——她的手心",
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
@@ -2917,7 +2917,7 @@ const EVENTS = [
   },
   {
     "id": "365",
-    "title": "两颗心的重量——乳交与泉眼",
+    "title": "满月下的双手——赏月与抚摸",
     "route": "ntrs",
     "chapter": "跨线",
     "summary": "",
@@ -3645,7 +3645,7 @@ const EVENTS = [
   },
   {
     "id": "456",
-    "title": "他的名字——口交与声音的归还",
+    "title": "两颗心的重量——乳交与泉眼",
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
@@ -4165,11 +4165,11 @@ const EVENTS = [
   },
   {
     "id": "521",
-    "title": "月光下的古老契约——月语者的馈赠",
+    "title": "他的名字——口交与声音的归还",
     "route": "ntrs",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "main"
+    "type": "nsfw"
   },
   {
     "id": "522",
