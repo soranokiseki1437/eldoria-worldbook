@@ -156,3 +156,92 @@ CLAUDE.md 及索引文档不要写死章节数目/章节 ID，引用章节一律
 - Tags: 版本脚注, git log, 文档约定
 
 ---
+## [LRN-20260804-008] best_practice
+
+**Logged**: 2026-08-04T11:21:00Z
+**Priority**: medium
+**Status**: pending
+**Area**: infra
+
+### Summary
+Agent 启动器安全分类模型持续不可用时反复重试无效，应尽快回退为在主线自己执行机械性任务。
+
+### Details
+本次派两个 agent 做大修：sex_index agent 正常启动并交付；弧总览 agent 因分类器"temporarily unavailable"连续失败 5 次（约 3 分钟）。继续重试浪费约 3 分钟，最终回退为主线自己用 Python 脚本完成（弧总览是机械性结构交换，脚本处理比 Edit 精确匹配更稳，结果与预期一致）。该故障是 harness 侧暂时性故障，与任务内容无关；只读操作不受影响。
+
+### Suggested Action
+Agent 启动报 `temporarily unavailable` 时：最多重试 1-2 次即回退；机械性/结构化任务直接在主线做（Python 脚本交换块，避免引号/空白不匹配）；等待期间可先做只读调查。
+
+### Metadata
+- Source: conversation
+- Tags: agent, 分类器, 回退策略
+
+---
+## [LRN-20260804-009] best_practice
+
+**Logged**: 2026-08-04T11:21:00Z
+**Priority**: high
+**Status**: pending
+**Area**: config
+
+### Summary
+本仓库存在并发会话时，其 `git add -A` + commit 会把我的未提交改动扫进无关提交；每完成一项独立改动就应按文件单独提交，避免成果被 sweep 进 message 不符的提交。
+
+### Details
+本次会话期间另一进程在并发提交：`384b9a37`(V10.30.5) 把 agent 已完成但未提交的 `_sex_index.txt` 去重结果、`_连续叙事弧线章节总览.md` 的既有改动、`_TEMPLATE_RULES.md` 一并提交，commit message 只描述 RULES 改动，与实际内容不符；随后又提交 `bfa47ec4`(learnings)。另外 `git push` 可能超时（本次 2 分钟 timeout 后需重试确认）。
+
+### Suggested Action
+在本仓库：每完成一个文件就 `git add <具体文件>` + commit + push，不用 `git add -A`；push 超时后用 `git status -sb` 确认是否真正到达 origin，未到则重试。
+
+### Metadata
+- Source: conversation
+- Related Files: docs/story/_sex_index.txt, docs/story/_连续叙事弧线章节总览.md
+- Tags: git, 并发会话, 提交策略
+- See Also: LRN-20260804-002
+
+---
+## [LRN-20260804-010] best_practice
+
+**Logged**: 2026-08-04T11:21:00Z
+**Priority**: medium
+**Status**: pending
+**Area**: docs
+
+### Summary
+`_连续叙事弧线章节总览.md` 的弧总览表与弧详情小节必须严格按起始章节号升序（标题自述"按章节顺序排列"）；本次发现 421→425 排在 441→443 之后属乱序，已重排并同步重编弧N号。
+
+### Details
+弧8(421→425 艾玛×卡兹尔)被排在弧7(441→443 劳拉)之后，违反文件自身声明。修正：交换两段并重编"弧N"（总览表+详情标题），其余章节引用经 check_consistency 验证 0 错误。弧N 号全仓库无外部引用，重编安全。注意 check_consistency.py 只校验引用是否匹配文件系统，并不校验弧序。
+
+### Suggested Action
+新增/调整弧时保持起始章升序；建议给 check_consistency.py 增加弧序校验（见 FEAT-20260804-001）。
+
+### Metadata
+- Source: conversation
+- Related Files: docs/story/_连续叙事弧线章节总览.md
+- Tags: 弧总览, 弧序, 章节顺序
+- See Also: LRN-20260804-002
+
+---
+## [LRN-20260804-008] correction
+
+**Logged**: 2026-08-04T15:00:00Z
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+事后余韵/回归时刻：黎恩关切先于分析，菲娜忐忑+坚定、对白有来有回——我优化672时把黎恩写成冷静蹲下分析（"你流出来的蜜液，可能带着圣光净化的气息"）、菲娜平淡回应，被用户判定"没改好"并重写。
+
+### Details
+用户重写示范：黎恩紧张地跑到菲娜面前、抱着她说"菲娜！你还好吗？不用怕了，有我在"，圣光分析用"说起来"轻轻带出；菲娜回到他怀里松了口气、反过来安抚他"我好好的黎恩，有你在我不怕哦"；她提出决意时是忐忑+坚定的复合情绪（"如果那里可以让他们解脱...那我...那下次可以试试"），声音轻、带犹豫，说完接甜美落点"嗯呐~"；占有欲确认删掉重复情境的场景描述（"事后黎恩蹲在她面前，她低头看蜜液"），直接进决意对话。
+
+### Suggested Action
+写事后/回归时刻：① 黎恩先关切后分析，身体接触在前，不是观察者；② 菲娜提出决意是忐忑+坚定的混合，带犹豫和甜美落点；③ 回归对白有来有回（黎恩怕她受伤→菲娜安抚他）；④ 占有欲确认直接写决意/占有对话，不重述情境。已将①②③并入 _TEMPLATE_RULES.md §8.5.2 关切先于分析 / §4.6 事后余韵铁律5-6，④并入§3.1占有欲确认字段说明。
+
+### Metadata
+- Source: user_feedback
+- Related Files: docs/story/6：放纵/672：腿间的净化——低语者的解脱.TXT, docs/story/_TEMPLATE_RULES.md
+- Tags: 事后余韵, 回归时刻, 黎恩关切, 忐忑坚定, 占有欲确认
+
+---
