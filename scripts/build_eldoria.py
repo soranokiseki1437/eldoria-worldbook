@@ -37,13 +37,10 @@ OUTPUT_DIR  = os.path.join(PROJECT_DIR, "output")
 DOCS_DIR    = os.path.join(PROJECT_DIR, "docs")
 MD_DIR      = DOCS_DIR  # 分md在 docs/ 目录下
 
-# ─── 版本号（每次内容变更请按规则递增） ────────────────────
-# 格式: "V{主版本}.{次版本}.{修订号}"
-#  - 主版本: 重大架构变更 / 路线重设计 / 核心设定翻版
-#  - 次版本: 新增角色 / 新增事件 / 修改变量系统
-#  - 修订号: 文本修正 / 错别字 / 内容微调
-VERSION = "V10.12.7"
-VERSION_TAG = f"Eldoria_{VERSION}"  # V10.12.7: 全局重编号→整数章节，799章·938条目（2026-08-04 全量同步后）
+# ─── 版本号（与 git 版本号对齐，内容变更时同步递增） ──────
+# 格式: "V{主版本}.{次版本}.{修订号}"（跟随 git 提交版本，V10.28.1 起双轨合并）
+VERSION = "V10.28.1"
+VERSION_TAG = f"Eldoria_{VERSION}"  # 2026-08-04 与 git 版本对齐（原构建双轨 V10.12.x 废弃）
 
 # 主输出文件 = 带版本号的文件名（输出到 output/ 目录）
 JSON_PATH = os.path.join(OUTPUT_DIR, f"{VERSION_TAG}.json")

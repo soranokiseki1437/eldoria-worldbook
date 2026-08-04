@@ -16130,13 +16130,13 @@
     }
   },
   "_meta": {
-    "version": "Eldoria_V10.12.7",
-    "version_short": "V10.12.7",
+    "version": "Eldoria_V10.28.1",
+    "version_short": "V10.28.1",
     "spec": "chara_card_v3",
     "spec_version": "2.0",
     "entry_count": 938,
     "uid_range": "0-937",
-    "build_time": "2026-08-04 13:08:49",
+    "build_time": "2026-08-04 13:12:22",
     "authority_source": "docs/子目录TXT文件 + build_eldoria.py (全TXT驱动)",
     "note": "JSON是派生产物，请勿手动编辑。修改请通过TXT文件+构建脚本完成。"
   }

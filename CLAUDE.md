@@ -230,7 +230,7 @@ docs/{chapter,character,world,magic,creature,location,npc}/  ← 设定
 方案/*菲娜*微调指南*.md         ← 菲娜阶段特征指南（早期/中期/阶段五/阶段六）
 方案/去机械感和碎片化叙述重要经验.txt  ← 对话碎片修复·情感填充·标点规范（《散场时分——各自的归处》《甜蜜的勒索——吻我我就起来》精修提炼）
 scripts/{build_eldoria,rebuild_all,renumber_events,story_tool,generate_chapter_browser,update_chapter_map,check_consistency,fix_index_numbering,post_renumber_updates}.py
-output/Eldoria_V10.12.7.json       ← 派生产物，不可手动编辑
+output/Eldoria_V10.28.1.json       ← 派生产物，不可手动编辑（版本号与git对齐）
 ```
 
 ### 2.4 弧线总览维护
