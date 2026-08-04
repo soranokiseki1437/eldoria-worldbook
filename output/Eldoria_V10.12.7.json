@@ -16136,7 +16136,7 @@
     "spec_version": "2.0",
     "entry_count": 938,
     "uid_range": "0-937",
-    "build_time": "2026-08-04 12:54:24",
+    "build_time": "2026-08-04 13:08:49",
     "authority_source": "docs/子目录TXT文件 + build_eldoria.py (全TXT驱动)",
     "note": "JSON是派生产物，请勿手动编辑。修改请通过TXT文件+构建脚本完成。"
   }

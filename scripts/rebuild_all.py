@@ -14,6 +14,8 @@ rebuild_all.py — 一键全流程重建
 import sys, os, subprocess
 
 SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, SCRIPTS_DIR)
+from build_eldoria import JSON_PATH  # 真实输出路径，避免硬编码过时版本号
 
 
 def run(script, *args):
@@ -46,7 +48,7 @@ def main():
 
     print(f'\n{"="*60}')
     print('  ✅ 全流程重建完成')
-    print(f'     输出: output/Eldoria_V10.12.0.json')
+    print(f'     输出: {JSON_PATH}')
     print(f'     浏览器: visual/全章节浏览器.html')
     print(f'{"="*60}')
 

@@ -1,7 +1,7 @@
 # CLAUDE.md — 世界书构建与章节增强专用Agent
 
 > **定位**：Eldoria世界书 · 100%对齐俺妹ver1.41格式
-> **版本**：v10.25.0 · 2026-07-29 · 745章·884条目·9阶段·JSON 1.40MB
+> **版本**：v10.28.0 · 2026-08-04 · 9阶段
 > **权威规则**：`docs/story/_TEMPLATE_RULES.md`（写作规则全集）· `docs/story/_短对话修复方案.md`（对话修复）· `docs/story/_条件修复方案.md`（终止条件/章节任务修复）
 
 ---
@@ -31,7 +31,7 @@
 
 ### 1.3 章节体系
 
-- 744章，纯数字编号，线性叙事，无分支
+- 纯数字编号，线性叙事，无分支
 - 9阶段：`docs/story/{0：序章/ ... 8：后日谈/}`
 - 章节key：`['第N章']`，`selectiveLogic: 0`
 - `{{user}}` = 叙事摄影机（玩家操控的叙事镜头，非任何角色）
@@ -58,9 +58,10 @@
 - **唯一权威源**，浏览器脚本只读不写
 - 同一章节可出现在多个分类下
 - 修改后运行 `python scripts/generate_chapter_browser.py` 更新浏览器
+- 修改后建议运行 `python scripts/check_consistency.py` 校验编号同步
 - 新增章节未分类时自动归入"未分类"标签
 
-当前标签：本番/肛交/口交/乳交/腿交/足交/手交/指交/蹭穴/接吻/暴露/触碰/隐奸/群交/未分类
+当前标签：本番/肛交/口交/被口交/乳交/腿交/足交/手交/指交/蹭穴/接吻/暴露/触碰/隐奸/群交/未分类
 
 ### 1.6 章节浏览器
 
@@ -108,10 +109,13 @@ Step 4  git commit
 ```bash
 python scripts/build_eldoria.py              # 构建JSON
 python scripts/rebuild_all.py                # JSON + 浏览器一键重建
-python scripts/generate_chapter_browser.py   # 仅重建浏览器
+python scripts/generate_chapter_browser.py   # 仅重建浏览器（含sex索引漂移警告）
 python scripts/story_tool.py validate        # 验证TXT
 python scripts/story_tool.py refs <ID>       # 查引用
 python scripts/renumber_events.py            # 全局重编号
+python scripts/check_consistency.py          # 全库一致性检查（编号/文件名/名称格式/sex索引/弧总览）
+python scripts/fix_index_numbering.py        # sex索引编号按标题自动同步（生成 _numbered.txt 待审）
+python scripts/post_renumber_updates.py      # 重编号后更新弧总览+sex索引（V2.0 可安全重复执行）
 ```
 
 ---
@@ -140,7 +144,7 @@ Seraphina永远是强者——共享是双方同意的体验，回归是情感�
 
 ### 3.3 去AI化写作铁律
 
-> **优秀章节范例**：Ch160/167/336-338/494 — `方案/去机械感和碎片化叙述重要经验.txt`（对话填充五层·标点规范·反碎片化）
+> **优秀章节范例**：《厨房里的面团——爱丽榭与玲》《玲的挑战——口交对决》《商道的巨石——精油与指交（下）》《暖岩石上——他以为她在等》《密林深处的追踪——菲与玲》《甜蜜的勒索——吻我我就起来（上）》 — `方案/去机械感和碎片化叙述重要经验.txt`（对话填充五层·标点规范·反碎片化）
 
 | # | 禁令 | 说明 |
 |---|------|------|
@@ -221,11 +225,11 @@ docs/story/_TEMPLATE.TXT       ← 章节模板
 docs/story/_TEMPLATE_RULES.md  ← 写作规则全集（情境/NSFW/起因/去AI化/黎恩血肉感）
 docs/story/_短对话修复方案.md   ← 对话修复方案（Forms A-G·情感填充五层·对话嵌入动作）
 docs/story/_条件修复方案.md     ← 终止条件/章节任务修复规则
-docs/story/_连续叙事弧线章节总览.md ← 连续叙事弧线索引（17弧·63章·判定标准）
+docs/story/_连续叙事弧线章节总览.md ← 连续叙事弧线索引（弧总览/弧详情/拆分表/判定标准）
 docs/{chapter,character,world,magic,creature,location,npc}/  ← 设定
 方案/*菲娜*微调指南*.md         ← 菲娜阶段特征指南（早期/中期/阶段五/阶段六）
-方案/去机械感和碎片化叙述重要经验.txt  ← 对话碎片修复·情感填充·标点规范（Ch491+494精修提炼）
-scripts/{build_eldoria,rebuild_all,renumber_events,story_tool,generate_chapter_browser,update_chapter_map}.py
+方案/去机械感和碎片化叙述重要经验.txt  ← 对话碎片修复·情感填充·标点规范（《散场时分——各自的归处》《甜蜜的勒索——吻我我就起来》精修提炼）
+scripts/{build_eldoria,rebuild_all,renumber_events,story_tool,generate_chapter_browser,update_chapter_map,check_consistency,fix_index_numbering,post_renumber_updates}.py
 output/Eldoria_V10.12.7.json       ← 派生产物，不可手动编辑
 ```
 
@@ -234,10 +238,12 @@ output/Eldoria_V10.12.7.json       ← 派生产物，不可手动编辑
 ```
 修改 _连续叙事弧线章节总览.md 后:
   1. 编辑 markdown（弧总览表/弧详情/统计/非弧判定）
-  2. 验证：弧章 + 独立章 = 总章数（须闭合）
+  2. 验证：python scripts/check_consistency.py（含弧章+独立章=总章数闭合检查）
   3. python scripts/build_eldoria.py 重建JSON
   4. git commit
 ```
+
+> **约定**：CLAUDE.md 及索引文档避免写死章节数目/章节ID（会随重编号过时）；需引用章节时用章节名称（如《暮色里的通讯——暖岩石上的意外》）。
 
 ---
 

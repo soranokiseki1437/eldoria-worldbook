@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 """
-post_renumber_updates.py — 重编号后更新弧线总览和sex索引
+post_renumber_updates.py — 重编号后更新弧线总览和sex索引 (V2.0)
+
+V2.0 修复（2026-08-04）:
+  - 拆分弧线表已存在时改为替换，不再重复插入第二张表
+  - （上/中/下）标签从文件系统文件名推导，不再按小数位猜（615.5 是"上"而非"下"）
+  - 支持"上"分部来自小数（如 615.5→644 暮色里的通讯），自动生成缺失的拆分弧行
+  - sex索引分部条目用文件系统权威标题生成
 """
 
 import os, re, sys
@@ -73,6 +79,50 @@ def replace_chapter_numbers(text, simple_map):
     return text
 
 
+def fs_title(nid):
+    """按编号查找章节文件，返回标题（含（上/中/下）后缀），未找到返回''"""
+    for root, dirs, files in os.walk(STORY_DIR):
+        for f in files:
+            for prefix in [f'{nid:03d}：', f'{nid}：']:
+                if f.startswith(prefix):
+                    return f.split('：', 1)[1].replace('.TXT', '')
+    return ''
+
+
+def fs_suffix(nid):
+    """返回该章节标题中的（上/中/下）后缀，无则返回''"""
+    t = fs_title(nid)
+    if not t:
+        return ''
+    m = re.search(r'（(上|中|下)）', t)
+    return m.group(1) if m else ''
+
+
+def build_split_info(simple_map, split_old):
+    """构建拆分章节信息: {base: [(nid, 标签), ...]}，标签取自文件系统。
+
+    - base 分部文件带（上）→ 拆分 = base + 小数分部（如 616 暴雨古树 → 647/648）
+    - base 无后缀但首个小数分部带（上）→ 拆分的"上"来自小数（如 615.5→644 暮色里的通讯）
+    - 否则视为无关章节，跳过
+    """
+    split_info = {}
+    for base, parts in sorted(split_old.items()):
+        parts_sorted = sorted(parts, key=lambda x: x[0])
+        base_new = simple_map.get(base, base)
+        part_ids = [nid for _, nid in parts_sorted]
+        base_sfx = fs_suffix(base_new)
+        if base_sfx == '上':
+            seq = [(base_new, base_sfx)] + [(nid, fs_suffix(nid)) for nid in part_ids]
+        elif part_ids and fs_suffix(part_ids[0]) == '上':
+            seq = [(nid, fs_suffix(nid)) for nid in part_ids]
+        else:
+            continue
+        seq = [s for s in seq if s[1]]
+        if len(seq) >= 2:
+            split_info[base] = seq
+    return split_info
+
+
 def update_arc_document(simple_map, split_old, old_to_new):
     """Update _连续叙事弧线章节总览.md"""
     print('\n=== 更新连续叙事弧线总览 ===')
@@ -88,75 +138,39 @@ def update_arc_document(simple_map, split_old, old_to_new):
     changes = sum(1 for o, n in zip(old_nums, new_nums) if o != n)
     print(f'  {changes} 处编号已替换')
 
-    # Build split chapter info for arc additions
-    split_info = {}
-    for base, parts in sorted(split_old.items()):
-        parts_sorted = sorted(parts, key=lambda x: x[0])
-        new_ids = [simple_map.get(base, base)]
-        labels = ['上']
-        for dec, nid in parts_sorted:
-            new_ids.append(nid)
-            labels.append('中' if dec in ('3', '8') else '下')
-        split_info[base] = (new_ids, labels)
+    split_info = build_split_info(simple_map, split_old)
 
     # Generate arc entries for split chapters
-    # Filter: only include bases that actually correspond to split (上) files
     new_arcs = []
-    for base, (new_ids, labels) in sorted(split_info.items()):
-        if len(new_ids) < 2:
-            continue
-        # Skip if this base's (上) file is NOT from a split
-        # (e.g., Ch615 is original, Ch615.5 is a separate decimal chapter)
-        up_id = new_ids[0]
-        up_has_marker = False
-        for root, dirs, files in os.walk(STORY_DIR):
-            for f in files:
-                for prefix in [f'{up_id:03d}：', f'{up_id}：']:
-                    if f.startswith(prefix) and '（上）' in f:
-                        up_has_marker = True
-                        break
-                if up_has_marker:
-                    break
-            if up_has_marker:
-                break
-        if not up_has_marker:
-            continue
-
-        # Get titles
-        titles = []
-        for nid in new_ids:
-            found = ''
-            for root, dirs, files in os.walk(STORY_DIR):
-                for f in files:
-                    for prefix in [f'{nid:03d}：', f'{nid}：']:
-                        if f.startswith(prefix):
-                            found = f.split('：', 1)[1].replace('.TXT', '')
-                            break
-                    if found:
-                        break
-                if found:
-                    break
-            titles.append(found or f'Ch{nid}')
-
-        ch_refs = ' · '.join(f'Ch{nid}（{lbl}）' for nid, lbl in zip(new_ids, labels))
+    for base, seq in sorted(split_info.items()):
+        new_ids = [nid for nid, _ in seq]
+        labels = [lbl for _, lbl in seq]
+        titles = [fs_title(nid) for nid in new_ids]
+        ch_refs = ' · '.join(f'Ch{nid}（{lbl}）' for nid, lbl in seq)
         title_line = ' → '.join(titles)
         new_arcs.append(f'| {base} | {ch_refs} | {title_line} | 拆分形成连续弧（{len(new_ids)}章） |')
 
-    # Insert new arcs into the document (before the "统计" section or at end)
+    # Insert or REPLACE the split-arc table (V2.0: 已存在则替换，不再重复插入)
     if new_arcs:
-        arc_header = '\n### 拆分新增弧线（V10.28 章节拆分）\n\n'
-        arc_header += '| 原章 | 新编号 | 标题链 | 说明 |\n'
-        arc_header += '|:--|:--|:--|:--|\n'
-        arc_text = arc_header + '\n'.join(new_arcs) + '\n'
+        arc_header = '### 拆分新增弧线（V10.28 章节拆分）\n\n'
+        arc_text = (arc_header + '| 原章 | 新编号 | 标题链 | 说明 |\n'
+                    + '|:--|:--|:--|:--|\n' + '\n'.join(new_arcs) + '\n')
 
-        # Insert before "---" separator or at end
-        last_sep = new_content.rfind('\n---\n')
-        if last_sep > 0:
-            new_content = new_content[:last_sep] + arc_text + new_content[last_sep:]
+        if '拆分新增弧线' in new_content:
+            start = new_content.index('### 拆分新增弧线')
+            end = new_content.find('\n---\n', start)
+            if end == -1:
+                new_content = new_content[:start] + arc_text + '\n'
+            else:
+                new_content = new_content[:start] + arc_text + '\n---\n' + new_content[end + len('\n---\n'):]
+            print(f'  替换已有拆分弧线表: {len(new_arcs)} 条')
         else:
-            new_content += '\n' + arc_text
-
-        print(f'  新增 {len(new_arcs)} 条拆分弧线已写入文档')
+            last_sep = new_content.rfind('\n---\n')
+            if last_sep > 0:
+                new_content = new_content[:last_sep] + '\n' + arc_text + new_content[last_sep:]
+            else:
+                new_content += '\n' + arc_text
+            print(f'  新增 {len(new_arcs)} 条拆分弧线已写入文档')
 
     with open(ARC_FILE, 'w', encoding='utf-8') as f:
         f.write(new_content)
@@ -177,31 +191,25 @@ def update_sex_index(simple_map, split_old, old_to_new, split_info):
     changed_lines = sum(1 for ol, nl in zip(content.split('\n'), new_content.split('\n')) if ol != nl)
     print(f'  {changed_lines} 行编号已替换')
 
-    # For split chapters, add entries for (下) and (中) parts
+    # For split chapters: 以"上"分部在索引中的条目为锚点，为（中/下）分部补条目
+    # V2.0: 分部条目标题一律取文件系统权威标题
     added = 0
-    for base, (new_ids, labels) in sorted(split_info.items()):
-        if len(new_ids) < 2:
-            continue
-
-        # Find (上) entry in sex index
+    for base, seq in sorted(split_info.items()):
+        new_ids = [nid for nid, _ in seq]
         up_id = new_ids[0]
         up_pattern = re.compile(rf'^({up_id}):\s*(.+)', re.MULTILINE)
 
         for m in up_pattern.finditer(new_content):
-            up_title = m.group(2)
             line_end = new_content.find('\n', m.end())
             if line_end < 0:
                 line_end = len(new_content)
-
             insert_pos = line_end + 1
 
-            # Add (中) and (下) entries
-            for i, lbl in enumerate(labels[1:], 1):
-                nid = new_ids[i]
-                new_title = up_title.replace('（上）', f'（{lbl}）')
-                new_line = f'{nid}: {new_title}'
+            for nid in new_ids[1:]:
+                new_line = f'{nid}: {fs_title(nid)}'
                 if new_line not in new_content:
-                    new_content = (new_content[:insert_pos] + new_line + '\n' + new_content[insert_pos:])
+                    new_content = (new_content[:insert_pos] + new_line + '\n'
+                                   + new_content[insert_pos:])
                     insert_pos += len(new_line) + 1
                     added += 1
 
@@ -235,7 +243,7 @@ def main():
     update_sex_index(simple_map, split_old, old_to_new, split_info)
 
     print('\n✅ 文档更新完成')
-    print('  下一步: python scripts/rebuild_all.py')
+    print('  下一步: python scripts/rebuild_all.py 然后 python scripts/check_consistency.py')
 
 
 if __name__ == '__main__':

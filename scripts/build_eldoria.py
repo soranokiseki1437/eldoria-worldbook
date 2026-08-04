@@ -43,7 +43,7 @@ MD_DIR      = DOCS_DIR  # 分md在 docs/ 目录下
 #  - 次版本: 新增角色 / 新增事件 / 修改变量系统
 #  - 修订号: 文本修正 / 错别字 / 内容微调
 VERSION = "V10.12.7"
-VERSION_TAG = f"Eldoria_{VERSION}"  # V10.12.7: 全局重编号→整数章节，624章·761条目
+VERSION_TAG = f"Eldoria_{VERSION}"  # V10.12.7: 全局重编号→整数章节，799章·938条目（2026-08-04 全量同步后）
 
 # 主输出文件 = 带版本号的文件名（输出到 output/ 目录）
 JSON_PATH = os.path.join(OUTPUT_DIR, f"{VERSION_TAG}.json")

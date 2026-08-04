@@ -166,11 +166,13 @@ def load_events_from_txt():
 
 
 def load_sex_index():
-    """读取 docs/story/_sex_index.txt → {章节ID: [标签列表]}"""
+    """读取 docs/story/_sex_index.txt → {章节ID: [标签列表]}
+    非整数编号（如 615.5）无法匹配任何章节，打印警告（V5.1 漂移检测）。"""
     index_path = os.path.join(BASE_DIR, 'docs', 'story', '_sex_index.txt')
     index = {}
+    non_int = []
     if not os.path.exists(index_path):
-        return index
+        return index, non_int
     with open(index_path, 'r', encoding='utf-8-sig') as f:
         text = f.read()
     current_tag = None
@@ -185,11 +187,15 @@ def load_sex_index():
             continue
         if line.startswith('#'):
             continue
-        m = re.match(r'^(\d+):', line)
+        m = re.match(r'^([\d.]+):', line)
         if m and current_tag:
-            sid = str(int(m.group(1)))  # strip leading zeros (020→20) to match TXT ID format
+            num = m.group(1)
+            if '.' in num:
+                non_int.append((num, line.split(':', 1)[1].strip()))
+                continue
+            sid = str(int(num))  # strip leading zeros (020→20) to match TXT ID format
             index.setdefault(sid, []).append(current_tag)
-    return index
+    return index, non_int
 
 
 def infer_tags(event_id, name, raw_yaml, is_nsfw_explicit=None, prefix="", sex_level=None, sex_index=None):
@@ -220,7 +226,7 @@ def get_nsfw_level(tags):
 def build_events():
     event_chapters, event_names_from_table = load_chapter_mapping()
     events_raw = load_events_from_txt()
-    sex_index = load_sex_index()
+    sex_index, non_int = load_sex_index()
     events = []
     seen_ids = set()
     for event_id, raw in events_raw.items():
@@ -256,6 +262,19 @@ def build_events():
             "prefix_name": meta["name"], "prefix_color": meta["color"],
             "characters": characters,
         })
+    # V5.1: sex索引漂移检测 — 索引中的编号找不到对应章节时打印警告
+    if non_int:
+        print(f"  ⚠ sex索引含 {len(non_int)} 条非整数编号（无法匹配章节，浏览器将忽略）:")
+        for num, title in non_int:
+            print(f"    {num}: {title}")
+    unknown = [sid for sid in sex_index if sid not in seen_ids]
+    if unknown:
+        print(f"  ⚠ sex索引 {len(unknown)} 条编号在章节文件中不存在（索引脱节，需同步）:")
+        for sid in sorted(unknown, key=int)[:20]:
+            print(f"    {sid}: {sex_index[sid]}")
+        if len(unknown) > 20:
+            print(f"    ... 还有 {len(unknown)-20} 条")
+
     for event_id, default_name in KNOWN_EVENTS.items():
         if event_id not in seen_ids:
             prefix = re.match(r'^([A-Z]+)', event_id)
@@ -907,7 +926,7 @@ if __name__ == "__main__":
     prefixes = {}
     for e in events:
         prefixes[e["prefix"]] = prefixes.get(e["prefix"], 0) + 1
-    print(f"  解析完成: {len(events)} 个事件")
+    print(f"  解析完成: {len(events)} 个章节")
     print(f"  前缀分布: {prefixes}")
     print(f"  含YAML: {sum(1 for e in events if e['has_yaml'])}")
     print(f"  摘要: {sum(1 for e in events if e['is_summary'])}")
