@@ -1,15 +1,29 @@
 #!/usr/bin/env python3
 """
-短对话扫描 — 引号内句号断句(F) + 短对话(D) + 叙事短句三连(T)
-只扫描 ≥Ch187。
+短对话扫描 v2 — 全面对白/描写质量扫描
+
+对白检查（引号内）:
+  D1 二字崩     ≤2字独立对话（嗯。/好。/哦。等）
+  D2 短对白     3-6字以。结尾（简短回应/冷漠感）
+  D3 疑似问句。 含疑问词(什么/吗/呢/怎么/谁/哪/几/啥)却以。结尾
+  D4 引号内多句 引号内≥2个。
+  D5 短句接龙   连续≥3个对话turn且每个≤12字（碎片化报告感）
+  D6 零间隔对话 两个引号紧邻或仅隔标点（无动作/无归属的报告式对白）
+
+描写检查（非引号叙事）:
+  N1 短句三连   连续3句≤20字且无逗号（≤12字标记为严）
+  N2 电报超短句 非对话句≤4字
+  N3 电报连发   连续3句每句≤10字（无逗号）
 
 用法:
-  python scripts/scan_short_dialogue.py --stage 4              # stdout
-  python scripts/scan_short_dialogue.py --stage 4 --output     # → 方案/
-  python scripts/scan_short_dialogue.py --all --output         # 全阶段
+  python scripts/scan_short_dialogue.py --stage 4
+  python scripts/scan_short_dialogue.py --all
+  python scripts/scan_short_dialogue.py --chapters 120,152,155
+  python scripts/scan_short_dialogue.py --chapters 120-160,500-510
+  python scripts/scan_short_dialogue.py --all --diff          # 只报与git HEAD不同（新产生）的发现
+  python scripts/scan_short_dialogue.py --all --output        # 输出到 方案/短对话扫描_*.txt
 """
-
-import os, re, argparse
+import os, re, sys, subprocess, argparse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -22,22 +36,15 @@ STAGE_DIRS = {
     "6": "6：放纵", "7": "7：终局", "8": "8：后日谈",
 }
 
-MIN_CHAPTER = 187
-F_MIN_PERIODS = 2    # 引号内≥此数量。
-D_MAX_CHARS = 10     # 对话≤此字数
-T_MAX_CHARS = 20     # T型单句≤此字数
-T_MIN_COUNT = 3      # T型连续N句
-
+FIELDS = ["情境", "核心", "章节任务", "章节终止条件"]
 
 def count_chinese(s: str) -> int:
     n = 0
     for ch in s:
-        if ('一' <= ch <= '鿿' or
-            ch in '，。！？…—、：；'
-                   '“”‘’（）【】《》'):
+        if ('一' <= ch <= '鿿' or ch in '，。！？…—、：；'
+                '“”‘’（）【】《》'):
             n += 1
     return n
-
 
 def split_by_period(text: str) -> list[str]:
     """按。分割（跳过引号内的。）"""
@@ -45,11 +52,11 @@ def split_by_period(text: str) -> list[str]:
     in_quote = False
     seg_start = 0
     for i, ch in enumerate(text):
-        if ch in '"“':       # " 或 "
+        if ch in '"“':
             in_quote = True
-        elif ch in '"”':     # " 或 "
+        elif ch in '"”':
             in_quote = False
-        elif ch == '。' and not in_quote:  # 。
+        elif ch == '。' and not in_quote:
             seg = text[seg_start:i].strip()
             if seg:
                 sentences.append(seg)
@@ -60,193 +67,227 @@ def split_by_period(text: str) -> list[str]:
             sentences.append(seg)
     return sentences
 
+QUESTION_RE = re.compile(r'[什么吗呢怎么谁哪几啥][呀呢么]*[。.]$|[？?]')
 
-def scan_file(filepath: Path) -> dict:
-    try:
-        with open(filepath, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
-    except Exception as e:
-        return {"id": None, "name": "", "findings": [], "error": str(e)}
-
-    chapter_id = None
-    chapter_name = ""
-    for line in lines:
-        s = line.strip()
-        if s.startswith("ID:"):
-            try:    chapter_id = int(s.split(":")[1].strip())
-            except: chapter_id = s.split(":")[1].strip()
-        elif s.startswith("名称:"):  # 名称:
-            chapter_name = s.split(":", 1)[1].strip() if ":" in s else ""
-        if chapter_id is not None and chapter_name:
-            break
-
-    if chapter_id is None:
-        return {"id": None, "name": "", "findings": [], "error": "No ID"}
-    if isinstance(chapter_id, int) and chapter_id < MIN_CHAPTER:
-        return {"id": chapter_id, "name": chapter_name, "findings": [], "skipped": True}
-
-    # 定位字段边界
-    markers = {}
+def scan_text(text: str, ch_id) -> list[dict]:
+    """扫描单章全文，返回 findings: {type, field, quote, context, sev}"""
+    findings = []
+    lines = text.split('\n')
+    cur_field = None
+    bullets = []  # (field, line_no, text)
     for i, line in enumerate(lines):
         s = line.strip()
-        for key in ["情境", "核心"]:  # 情境, 核心
-            if s == f"{key}:" or s.startswith(f"{key}:"):
-                markers[key] = i
-                break
-
-    findings = []
-
-    for field in ["情境", "核心"]:
-        if field not in markers:
+        if s.startswith('情境:') or s.startswith('核心:') or s.startswith('章节任务:') or s.startswith('章节终止条件:'):
+            cur_field = s.split(':')[0]
+            if len(s) > len(cur_field) + 1 and s[len(cur_field)+1:].strip():
+                bullets.append((cur_field, i, s[len(cur_field)+1:].strip()))
             continue
-        end_key = "核心" if field == "情境" else "章节任务"
-        end = markers.get(end_key, markers.get("章节终止条件", len(lines)))
-        for i in range(markers[field] + 1, end):
-            txt = lines[i].strip()
-            if not txt:
+        if cur_field and s:
+            bullets.append((cur_field, i, s))
+
+    for field, lineno, txt in bullets:
+        # ── 对白检查 ──
+        quotes = [(m.group(1), m.start(), m.end()) for m in re.finditer(r'["“]([^"”]*)["”]', txt)]
+        for content, qs, qe in quotes:
+            cc = count_chinese(content)
+            if cc > 50:
                 continue
+            ctx = txt[max(0, qs-20):min(len(txt), qe+20)]
+            # D1 二字崩
+            if cc <= 2:
+                findings.append({"type": "D1", "field": field, "line": lineno+1,
+                                 "quote": content, "context": ctx, "sev": "严",
+                                 "note": f"二字崩({cc}字)"})
+                continue
+            # D4 引号内多句
+            pc = content.count('。')
+            if pc >= 2:
+                findings.append({"type": "D4", "field": field, "line": lineno+1,
+                                 "quote": content, "context": ctx, "sev": "中",
+                                 "note": f"引号内{pc}个。"})
+            # D3 疑似问句句号
+            q_end = content[-1] if content else ''
+            if q_end == '。' and re.search(r'什么|吗|呢|怎么|谁|哪|几|啥|多久|为什么|多少|是不是|有没有', content) \
+               and not re.search(r'没什么|没事|没关系|不知道|没怎么|^[一二三四五六七八九十两半\d]+几?个', content):
+                findings.append({"type": "D3", "field": field, "line": lineno+1,
+                                 "quote": content, "context": ctx, "sev": "中",
+                                 "note": "疑似问句用句号"})
+            # D2 短对白
+            if q_end == '。' and 3 <= cc <= 6:
+                findings.append({"type": "D2", "field": field, "line": lineno+1,
+                                 "quote": content, "context": ctx, "sev": "中",
+                                 "note": f"短对白({cc}字)"})
+        # D6 零间隔对话
+        for j in range(len(quotes) - 1):
+            prev_content = quotes[j][0]
+            if prev_content.endswith('——') or prev_content.endswith('…') or prev_content.endswith('...'):
+                continue  # 对话被打断（合法）
+            gap = txt[quotes[j][2]:quotes[j+1][1]]
+            if not gap.strip() or gap.strip() in '，。、':
+                findings.append({"type": "D6", "field": field, "line": lineno+1,
+                                 "quote": quotes[j][0] + "|" + quotes[j+1][0],
+                                 "context": txt[max(0, quotes[j][1]-15):min(len(txt), quotes[j+1][2]+15)],
+                                 "sev": "中", "note": "零间隔对话"})
+        # D5 短句接龙：连续≥3个引号turn 每个≤12字
+        chain = []
+        for content, qs, qe in quotes:
+            cc = count_chinese(content)
+            if cc <= 12:
+                chain.append(content)
+            else:
+                if len(chain) >= 3:
+                    findings.append({"type": "D5", "field": field, "line": lineno+1,
+                                     "quote": "｜".join(chain), "context": txt,
+                                     "sev": "中", "note": f"{len(chain)}连短对白"})
+                chain = []
+        if len(chain) >= 3:
+            findings.append({"type": "D5", "field": field, "line": lineno+1,
+                             "quote": "｜".join(chain), "context": txt,
+                             "sev": "中", "note": f"{len(chain)}连短对白"})
 
-            # --- F & D: 引号内对话（兼容 "" 和 "" 两种引号）---
-            for m in re.finditer(r'["“]([^"”]*)["”]', txt):
-                content = m.group(1)
-                qs, qe = m.start(), m.end()
-                cc = count_chinese(content)
-                if cc > 50:
-                    continue
-                pc = content.count('。')
-
-                if pc >= F_MIN_PERIODS:
-                    ctx = txt[max(0,qs-25):min(len(txt),qe+25)]
-                    findings.append({
-                        "type": "F", "chapter": chapter_id, "line": i + 1,
-                        "field": field, "quote": content, "context": ctx,
-                        "note": f"引号内{pc}个。"
-                    })
-                elif content.endswith('。') and cc <= D_MAX_CHARS:
-                    ctx = txt[max(0,qs-25):min(len(txt),qe+25)]
-                    findings.append({
-                        "type": "D", "chapter": chapter_id, "line": i + 1,
-                        "field": field, "quote": content, "context": ctx,
-                        "note": f"≤{D_MAX_CHARS}字以。结尾"
-                    })
-
-            # --- T: 叙事短句三连 ---
-            sentences = split_by_period(txt)
-            j = 0
-            while j <= len(sentences) - T_MIN_COUNT:
-                w = sentences[j:j + T_MIN_COUNT]
-                no_comma = all('，' not in s and '；' not in s for s in w)
-                all_short = all(count_chinese(s) <= T_MAX_CHARS for s in w)
-                if no_comma and all_short:
-                    ctx_start = max(0, len(txt) - sum(len(s)+1 for s in sentences[j:]) - 25)
-                    # 重建上下文
-                    merged = '。'.join(w) + '。'
-                    findings.append({
-                        "type": "T", "chapter": chapter_id, "line": i + 1,
-                        "field": field, "quote": merged, "context": merged,
-                        "note": f"短句{T_MIN_COUNT}连: 无逗号单从句×{T_MIN_COUNT}"
-                    })
-                    j += T_MIN_COUNT
-                else:
-                    j += 1
-
-    return {"id": chapter_id, "name": chapter_name, "findings": findings}
+        # ── 描写检查 ──
+        # 去掉引号内容后按句号分段
+        no_quotes = re.sub(r'["“\'\u2018][^"“\'\u2019]*["”\'\u2019]', '', txt)
+        segs = split_by_period(no_quotes)
+        # N1 短句三连
+        j = 0
+        while j <= len(segs) - 3:
+            w = segs[j:j+3]
+            if all('，' not in x and '；' not in x for x in w) and all(count_chinese(x) <= 20 for x in w):
+                sev = "严" if all(count_chinese(x) <= 12 for x in w) else "中"
+                findings.append({"type": "N1", "field": field, "line": lineno+1,
+                                 "quote": '。'.join(w), "context": '。'.join(w),
+                                 "sev": sev, "note": f"短句三连(最长{max(count_chinese(x) for x in w)}字)"})
+                j += 3
+            else:
+                j += 1
+        # N2 电报超短句
+        COMPLETE_START = re.compile(r'^[他她它你我你们她们它们黎恩菲娜劳拉乔治艾玛凯尔玲菲雷恩]')
+        ONO = re.compile(r'^[啪嗒咚咔咔噗轰嗡]')
+        for x in segs:
+            cc = count_chinese(x)
+            if cc <= 4 and not re.match(r'^第?[\d一二三四五六七八九十]+', x) \
+               and not COMPLETE_START.match(x) and not ONO.match(x):
+                findings.append({"type": "N2", "field": field, "line": lineno+1,
+                                 "quote": x, "context": x, "sev": "严",
+                                 "note": f"电报超短句({cc}字)"})
+        # N3 电报连发：连续3句每句≤10字
+        j = 0
+        while j <= len(segs) - 3:
+            w = segs[j:j+3]
+            if all('，' not in x and '；' not in x for x in w) and all(count_chinese(x) <= 10 for x in w):
+                findings.append({"type": "N3", "field": field, "line": lineno+1,
+                                 "quote": '。'.join(w), "context": '。'.join(w),
+                                 "sev": "中", "note": "电报连发(≤10字×3)"})
+                j += 3
+            else:
+                j += 1
+    return findings
 
 
-def format_report(all_results: list[dict], stage_label: str) -> str:
-    out = []
-    out.append(f"# 短对话扫描 — {stage_label}  (≥Ch{MIN_CHAPTER})")
-    out.append(f"# F=引号内≥{F_MIN_PERIODS}个。 / D=≤{D_MAX_CHARS}字以。结尾 / T=无逗号单从句{T_MIN_COUNT}连(≤{T_MAX_CHARS}字)")
-    out.append("")
+def load_file(path) -> tuple:
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            text = f.read()
+    except OSError:
+        return None, None, f"读取失败"
+    m = re.search(r'^ID:\s*(\d+)', text, re.M)
+    name_m = re.search(r'^名称:\s*(.+)', text, re.M)
+    ch_id = m.group(1) if m else None
+    name = name_m.group(1).strip() if name_m else ''
+    return ch_id, name, text
 
-    total = {"F": 0, "D": 0, "T": 0}
-    has_issue = 0
-    skipped = 0
 
-    for r in all_results:
-        if r.get("skipped"):
-            skipped += 1
-            continue
-        if r.get("error"):
-            out.append(f"## !! {r.get('file','?')} — {r['error']}")
-            out.append("")
-            continue
-        if not r.get("findings"):
-            continue
-
-        has_issue += 1
-        ch_id = r["id"]
-        ch_name = r["name"]
-        out.append(f"## Ch{ch_id}: {ch_name}")
-        out.append("")
-
-        for f in r["findings"]:
-            t = f["type"]
-            total[t] = total.get(t, 0) + 1
-            out.append(f"  章节{ch_id}, L{f['line']} [{t}] {f['note']}")
-            out.append(f"    ...{f['context']}...")
-            out.append("")
-        out.append("")
-
-    scanned = sum(1 for r in all_results if not r.get("skipped") and not r.get("error"))
-    summary = (f"# 章节: {has_issue}个有问题 / 扫描{scanned}章(跳过{skipped}) | "
-               f"F型{total['F']} / D型{total['D']} / T型{total['T']}")
-    out.insert(2, summary)
-    out.insert(3, "")
-    return "\n".join(out)
+def parse_chapters(spec: str) -> set | None:
+    """'120,152,155' / '120-160,500-510' → set of ints; None=全部"""
+    result = set()
+    for part in spec.split(','):
+        part = part.strip()
+        if '-' in part:
+            a, b = part.split('-')
+            result.update(range(int(a), int(b) + 1))
+        elif part:
+            result.add(int(part))
+    return result
 
 
 def main():
-    parser = argparse.ArgumentParser(description="扫描章节TXT短对话(≥Ch187)")
-    parser.add_argument("--stage", type=str, help="阶段编号 0-8")
-    parser.add_argument("--all", action="store_true")
-    parser.add_argument("--output", action="store_true")
-    args = parser.parse_args()
+    ap = argparse.ArgumentParser(description="短对话扫描 v2 — 全面对白/描写质量扫描")
+    ap.add_argument('--stage', help='仅扫某阶段 (0-8)')
+    ap.add_argument('--all', action='store_true', help='扫全部章节')
+    ap.add_argument('--chapters', help='指定章节: 120,152 或 120-160')
+    ap.add_argument('--diff', action='store_true', help='与git HEAD对比，只报新产生发现')
+    ap.add_argument('--output', action='store_true', help='输出报告到 方案/')
+    args = ap.parse_args()
 
-    if args.all:
-        stages = list(STAGE_DIRS.keys())
-    elif args.stage and args.stage in STAGE_DIRS:
-        stages = [args.stage]
-    else:
-        parser.print_help()
-        return
+    if args.stage is None and not args.all and not args.chapters:
+        ap.error('需要 --stage N / --all / --chapters')
 
-    for sn in stages:
-        sdir = STAGE_DIRS[sn]
-        spath = STORY_DIR / sdir
-        if not spath.exists():
-            print(f"!! 目录不存在: {spath}")
+    chapter_filter = parse_chapters(args.chapters) if args.chapters else None
+    stage_filter = args.stage if args.stage is not None else None
+
+    results = []
+    for stage_key, stage_dir in STAGE_DIRS.items():
+        if stage_filter is not None and stage_key != stage_filter:
             continue
-
-        print(f"\n{'='*50}")
-        print(f"阶段{sn}: {sdir}")
-        print(f"{'='*50}")
-
-        txts = sorted(spath.glob("*.TXT"), key=lambda f: f.name)
-        all_r = []
-        for tf in txts:
-            r = scan_file(tf)
-            all_r.append(r)
-            if r.get("skipped"):
+        sp = STORY_DIR / stage_dir
+        if not sp.is_dir():
+            continue
+        for f in sorted(sp.glob('*.TXT')):
+            if f.name.startswith('_'):
                 continue
-            fs = r.get("findings", [])
-            if fs:
-                fc = sum(1 for x in fs if x["type"] == "F")
-                dc = sum(1 for x in fs if x["type"] == "D")
-                tc = sum(1 for x in fs if x["type"] == "T")
-                print(f"  Ch{r['id']:>4}: F={fc} D={dc} T={tc}  {r.get('name','')[:35]}")
+            ch_id, name, text = load_file(f)
+            if ch_id is None or not name:
+                continue
+            if chapter_filter is not None and int(ch_id) not in chapter_filter:
+                continue
+            findings = scan_text(text, ch_id)
+            if args.diff:
+                old = subprocess.run(['git', 'show', f'HEAD:{f.relative_to(ROOT)}'],
+                                     capture_output=True, text=True)
+                if old.returncode != 0:
+                    continue
+                old_findings = scan_text(old.stdout, ch_id)
+                old_keys = {(x['type'], x['quote']) for x in old_findings}
+                findings = [x for x in findings if (x['type'], x['quote']) not in old_keys]
+            results.append({"id": ch_id, "name": name, "stage": stage_dir, "findings": findings})
 
-        report = format_report(all_r, sdir)
+    # 输出
+    total = {"D1": 0, "D2": 0, "D3": 0, "D4": 0, "D5": 0, "D6": 0, "N1": 0, "N2": 0, "N3": 0}
+    chapter_count = 0
+    for r in results:
+        if r["findings"]:
+            chapter_count += 1
+        for x in r["findings"]:
+            total[x["type"]] += 1
 
-        if args.output:
-            os.makedirs(PLAN_DIR, exist_ok=True)
-            opath = PLAN_DIR / f"短对话扫描_{sdir}.txt"
-            with open(opath, 'w', encoding='utf-8') as f:
-                f.write(report)
-            print(f"  → {opath}")
-        else:
-            print(report)
+    if args.output:
+        stage_label = STAGE_DIRS.get(stage_filter, "全阶段") if stage_filter else "全阶段"
+        fname = f"短对话扫描v2_{stage_label}.txt"
+        out_path = PLAN_DIR / fname
+        with open(out_path, 'w', encoding='utf-8') as fh:
+            fh.write(f"# 短对话扫描v2 — {stage_label}  (diff={'开' if args.diff else '关'})\n")
+            fh.write(f"# D1二字崩 D2短对白 D3问句句号 D4引号内多句 D5短句接龙 D6零间隔对话 N1短句三连 N2电报超短句 N3电报连发\n")
+            fh.write(f"# 汇总: {total}  |  有发现章节 {chapter_count}\n\n")
+            for r in results:
+                if not r["findings"]:
+                    continue
+                fh.write(f"## Ch{r['id']}: {r['name']} [{r['stage']}]\n")
+                for x in sorted(r["findings"], key=lambda z: z["line"]):
+                    fh.write(f"  [{x['type']}/{x['sev']}] {x['field']}L{x['line']} {x['note']}: {x['quote']}\n")
+                fh.write("\n")
+        print(f"✅ 报告已写入: {out_path}")
+
+    print(f"=== 汇总: {total} | 有发现章节 {chapter_count} ===")
+    for r in results:
+        if not r["findings"]:
+            continue
+        print(f"\n## Ch{r['id']}: {r['name']} [{r['stage']}]")
+        for x in sorted(r["findings"], key=lambda z: z["line"]):
+            print(f"  [{x['type']}/{x['sev']}] {x['field']}L{x['line']} {x['note']}: {x['quote']}")
+    if not results:
+        print("（无章节被扫描）")
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
