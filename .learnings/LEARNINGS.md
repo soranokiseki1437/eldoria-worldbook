@@ -363,7 +363,8 @@ Agent 启动报 `temporarily unavailable` 时：最多重试 1-2 次即回退；
 
 **Logged**: 2026-08-06T13:25:00Z
 **Priority**: high
-**Status**: pending
+**Status**: promoted
+**Promoted**: CLAUDE.md（§2.1.1 最小干预）
 **Area**: docs
 
 ### Summary
@@ -386,7 +387,8 @@ Ch330（次日清晨——夫妻双打）用户批注"这次有很多改动是�
 
 **Logged**: 2026-08-06T14:30:00Z
 **Priority**: high
-**Status**: pending
+**Status**: promoted
+**Promoted**: CLAUDE.md（§2.1.1 批注格式解码）
 **Area**: docs
 
 ### Summary
@@ -415,7 +417,8 @@ Ch330（次日清晨——夫妻双打）用户批注"这次有很多改动是�
 
 **Logged**: 2026-08-06T14:35:00Z
 **Priority**: high
-**Status**: pending
+**Status**: promoted
+**Promoted**: _TEMPLATE_RULES.md + _条件修复方案.md §1.3⑥⑦⑧
 **Area**: docs
 
 ### Summary
@@ -471,7 +474,8 @@ Ch306/307 用户批注示范的碎片化修复手法（"本章是碎片化文字
 
 **Logged**: 2026-08-06T15:10:00Z
 **Priority**: high
-**Status**: pending
+**Status**: promoted
+**Promoted**: CLAUDE.md（§2.1.1 定稿vs铁律）
 **Area**: docs
 
 ### Summary
@@ -495,7 +499,8 @@ LRN-20260806-002 曾记录"用户保留的句子即使疑似违规也不得改"�
 
 **Logged**: 2026-08-06T16:00:00Z
 **Priority**: high
-**Status**: pending
+**Status**: promoted
+**Promoted**: CLAUDE.md（§3.3 铁律#20）
 **Area**: docs
 
 ### Summary
