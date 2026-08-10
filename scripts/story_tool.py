@@ -92,12 +92,13 @@ def list_txt_files(prefix=None):
 # ═══════════════════════════════════════════════════════════
 
 def validate_prefix(prefix):
-    """验证指定前缀的所有TXT文件，返回违规列表"""
+    """验证指定前缀的所有TXT文件，返回 (违规列表, Rule6c提示列表)"""
     violations = []
+    rule6c_hits = []
     events = list_txt_files(prefix)
 
     if not events:
-        return violations
+        return violations, rule6c_hits
 
     # Rule 3: 重复ID (filename-based — impossible with file system, but check ID field)
     seen_ids = {}
@@ -227,17 +228,37 @@ def validate_prefix(prefix):
     # 6a. "不是/不再/并非…是/而是…" — 用否定衬托肯定的迂回写法
     #     例："不是因为脏——是因为他舍不得放开" → "他舍不得放开"
     #         "不再对抗，而是融合" → "交融在一起"
-    # 6b. "没有…只是…" — 先否定再轻微转折，同样是迂回
-    #     例："她没有问为什么。只是微微低下头" → "她微微低下头"
-    # 6c. "没有…没有…" — 成对否定（建议审视，可能为AI修辞惯性）
+    # 6b. "没有…只是…" — 同句内先否定再转折，同样是迂回
+    # 6c. "没有…没有…" — 无连接词成对否定排比（AI修辞惯性）
     #     例："没有声音，没有动作" → "寂静。静止。"
+    # 只匹配同一句内的紧凑pivot（句号/叹号/问号/分号即阻断），避免跨句误诊：
+    #   "我不是人偶。我是…"（对话否定+肯定）不再误报
+    #   "不再在临界点停下来。他射出来…到底是…"（优秀章节）不再误报
+    # 排除正常句式：选择结构"不是A就是B"、条件句"没有X就没有Y"、
+    #   递进并列"没有X也没有Y"、固定词"没有人"（LRN-20260810-009）
     _NEG_AFFIRM_PATS = [
-        re.compile(r'不是.{1,150}是'),                  # 不是X是Y / 不是X而是Y
-        re.compile(r'不再.{1,150}是'),                  # 不再是X(而)是Y
-        re.compile(r'并非.{1,150}是'),                  # 并非X(而)是Y
-        re.compile(r'没有.{1,80}只是'),                 # 没有X只是Y
+        re.compile(r'不是[^。！？；\n]{1,25}(?:而是|是)'),   # 同句紧凑 pivot
+        re.compile(r'不再[^。！？；\n]{1,25}(?:而是|是)'),
+        re.compile(r'并非[^。！？；\n]{1,25}(?:而是|是)'),
+        re.compile(r'没有[^。！？；\n]{1,25}只是'),          # 同句"没有X只是Y"
     ]
-    _DOUBLE_NEG_RE = re.compile(r'没有.{1,30}没有')      # 没有X没有Y（紧密成对）
+    _DOUBLE_NEG_RE = re.compile(r'没有[^。！？；\n]{1,30}没有')
+    def _in_quote(body, m):
+        """匹配起点前双引号计数为奇数 → 命中处于引号对话内，豁免（对话口语"不是X是Y"为活人说话，用户裁决2026-08-10）"""
+        return body[:m.start()].count('"') % 2 == 1
+
+    _NEG_EXCLUDE_PATS = [
+        re.compile(r'不是[^。！？；\n]{0,20}就是'),    # "不是A就是B" 选择结构
+        re.compile(r'不是[^。！？；\n]{0,15}就不是'),  # "不是就不是" 口语固定
+        re.compile(r'不是[^。！？；\n]{0,15}也不是'),  # "不是A也不是B" 列举否定
+        re.compile(r'没有[^。！？；\n]{0,20}就没有'),  # "没有X就没有Y" 条件句
+        re.compile(r'没有[^。！？；\n]{0,20}也没有'),  # "没有X也没有Y" 递进并列
+        re.compile(r'没有(?:回答|否认|解释|说推|夹腿|缩手|告别|预告|接过吻)'),  # "没有V"动词短语（完成时否定，非排比；group(0)内找）
+        re.compile(r'^没有[^。！？；\n]{1,8}的'),      # "没有心跳的手指" 定语修饰（锚定起点，防误捕seg内第二个"没有"）
+        re.compile(r'没有人'),                        # 固定词"没有人"
+        re.compile(r'从来没有'),                      # 固定词"从来没有"
+        re.compile(r'都没有'),                        # 固定词"都没有"
+    ]
 
     for eid, name, fp, data in events:
         with open(fp, 'r', encoding='utf-8') as f:
@@ -248,16 +269,25 @@ def validate_prefix(prefix):
         # 6a/6b: 迂回肯定 + 否定后转折
         for pat in _NEG_AFFIRM_PATS:
             for m in pat.finditer(body):
+                if _in_quote(body, m):
+                    continue  # 引号对话内豁免
+                if any(ex.search(m.group(0)) for ex in _NEG_EXCLUDE_PATS):
+                    continue  # 正常句式豁免
                 ctx = m.group(0)[:100]
                 violations.append(
                     f'[{eid}] Rule6: 禁止否定迂回句式 — {ctx}'
                 )
 
-        # 6c: 成对否定（警告级别）
+        # 6c: 成对否定（提示级，不计违规——"没有X没有Y"名词排比为合理用法，用户裁决2026-08-10）
         for m in _DOUBLE_NEG_RE.finditer(body):
+            if _in_quote(body, m):
+                continue  # 引号对话内豁免
+            seg = body[m.start():m.end() + 12]  # 扩展窗口覆盖第二个"没有"后的动词（如"没有回答"）
+            if any(ex.search(seg) for ex in _NEG_EXCLUDE_PATS):
+                continue  # 条件句/递进并列/动词短语/固定词豁免
             ctx = m.group(0)[:100]
-            violations.append(
-                f'[{eid}] Rule6c: 成对否定（建议审视是否可改为肯定描写） — {ctx}'
+            rule6c_hits.append(
+                f'[{eid}] Rule6c: 成对否定（提示） — {ctx}'
             )
     # Rule 7 (NSFW写作): 禁止不良气味描写
     # 禁止体臭/骚味/体味/汗味/热气等不洁气味。
@@ -321,7 +351,7 @@ def validate_prefix(prefix):
                 f'[{eid}] Rule9: 非法阶段值 — "{stage}" (合法: {", ".join(sorted(VALID_STAGES))}) — {name}'
             )
 
-    return violations
+    return violations, rule6c_hits
 
 
 # ═══════════════════════════════════════════════════════════
@@ -344,16 +374,23 @@ def main():
         prefixes = [prefix] if prefix else list(SECTION_CONFIG.keys())
 
         all_violations = []
+        all_rule6c = []
         total = 0
         for pfx in prefixes:
-            violations = validate_prefix(pfx)
+            violations, rule6c = validate_prefix(pfx)
             all_violations.extend(violations)
+            all_rule6c.extend(rule6c)
             pfx_events = list_txt_files(pfx)
             total += len(pfx_events)
             if violations:
                 print(f'  {pfx}: {len(pfx_events)} chapters, {len(violations)} violations')
             else:
                 print(f'  {pfx}: {len(pfx_events)} chapters OK')
+
+        if all_rule6c:
+            print(f'\n💡 Rule6c 提示 {len(all_rule6c)} 处（"没有X没有Y"名词排比，合理用法，不计违规）')
+            for v in all_rule6c:
+                print(f'  {v}')
 
         if all_violations:
             print(f'\n❌ 发现 {len(all_violations)} 个问题:\n')
