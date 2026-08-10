@@ -160,6 +160,14 @@ def validate_prefix(prefix):
                 continue  # "30分钟" "12次" "21cm" (单位/量词)
             if re.search(r'^[cC][mM]', post_ctx):
                 continue  # "21cm"
+            if re.search(r'^[%:：]', post_ctx) or re.search(r'[%:：]\s*$', pre_ctx):
+                continue  # "15%" 百分比 / "17:23" 时间
+            if re.search(r'[-–—]\s*$', pre_ctx) or re.search(r'^[-–—]', post_ctx):
+                continue  # "M-22-两次" 连字符编号
+            if re.search(r'[从到]\s*$', pre_ctx) or re.search(r'^[从到]', post_ctx):
+                continue  # "从10骤降" / "18到22" 范围
+            if re.search(r'^["\'「『]', post_ctx):
+                continue  # 引号内铭刻编号（吊坠刻"01"）
             violations.append(
                 f'[{eid}] Rule1: 禁止编号引用 — "{ref}" 出现在: {ctx}...'
             )
