@@ -599,3 +599,104 @@ Ch270/271 的"答字"批注最初被误读为章节级，实为全库标准。�
 - See Also: LRN-20260810-001, LRN-20260810-002
 
 ---
+## [LRN-20260810-004] best_practice
+
+**Logged**: 2026-08-10T22:00:00Z
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+renumber_events.py 全局重编号后的完整同步流程确立：dry-run→执行→fix_index_numbering.py→审_numbered.txt→check_consistency.py→build_eldoria.py→generate_chapter_browser.py→story_tool.py validate。弧总览（_连续叙事弧线章节总览.md）按标题重新映射编号。
+
+### Details
+本次 808→844 重编号（36个.5插入章落地）后的完整执行链：
+1. `renumber_events.py --dry-run` 预览 → `renumber_events.py` 执行（844事件599变更）
+2. `fix_index_numbering.py` 直接运行（无需参数）即扫描文件系统并按标题同步 _sex_index.txt 编号，生成 `_sex_index_numbered.txt` 待审——必须先用脚本验证 numbered 文件每条"编号: 标题"与文件系统精确一致（本次820条0漂移）再替换 _sex_index.txt
+3. `check_consistency.py` 7项全过（编号连续/文件名ID一致/名称格式/阶段目录一致/sex索引/弧总览/统计闭合）
+4. `build_eldoria.py` 重建JSON（983条目）
+5. `generate_chapter_browser.py` 更新浏览器
+6. `story_tool.py validate` 确认新增章节0违规（既有命中为历史问题）
+
+### Suggested Action
+今后任何重编号后按此链执行；弧总览更新用"标题→新编号"映射脚本（见 LRN-20260810-006 的坑）。
+
+### Metadata
+- Source: conversation
+- Related Files: docs/story/_sex_index.txt, docs/story/_连续叙事弧线章节总览.md, scripts/*.py
+- Tags: 重编号, 同步流程, sex索引, 弧总览
+- See Also: LRN-20260810-005, LRN-20260810-006, LRN-20260810-007
+
+---
+
+## [LRN-20260810-005] best_practice
+
+**Logged**: 2026-08-10T22:00:00Z
+**Priority**: medium
+**Status**: pending
+**Area**: infra
+
+### Summary
+git 中文文件名扫描的两个坑：`git ls-tree -r HEAD --name-only` 中文路径带引号转义（需 `git -c core.quotepath=false`），且 HEAD 内含 `_archive/old_backups/` 历史备份会污染旧文件名映射（必须过滤 `docs/story/` 路径前缀）。
+
+### Details
+构建旧→新编号映射时：`git -c core.quotepath=false ls-tree -r HEAD --name-only` 输出中 `_archive/old_backups/v8_pre_simplify_.../0：序章/01：xxx.TXT` 等旧备份文件混入，导致标题集合混乱、映射0匹配。修复：只取 `docs/story/` 前缀路径 + 正则用 `/(\d+)[：:]([^/]+)\.TXT$`（锚定路径最后一段，避免目录名的"0：序章"冒号吞并标题段）。
+
+### Suggested Action
+凡用 git 取中文文件名：加 `-c core.quotepath=false`；涉及历史映射先过滤仓库内非当前目录的前缀。
+
+### Metadata
+- Source: error
+- Related Files: （本次 /tmp/renumber_map.json 生成脚本）
+- Tags: git, 中文路径, quotepath, 旧备份
+- See Also: LRN-20260810-006
+
+---
+
+## [LRN-20260810-006] best_practice
+
+**Logged**: 2026-08-10T22:00:00Z
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+重编号后**文件名编号补零3位（001）但TXT内`ID:`行不补零（1）**——check_consistency.py 的 fs 键取自 ID 行，凡同步 md/索引的编号一律用 ID 行编号（int 去补零），否则 fs 查不到。
+
+### Details
+renumber_events.py 重命名文件为 `001：xxx.TXT`（3位补零），但 TXT 内 `ID: 1`（不补零）。check_consistency.py `scan_fs()` 键 = `ID:` 行原样（'1'），md 若写 '001' 则 `fs.get('001')` 失败（弧总览阶段首尾章表报 "Ch001 ... fs=?"）。修复：md/索引中的编号一律 `str(int(编号))` 去补零。弧详情/拆分表/范围引用因编号≥100不受影响，只有阶段1-2（1/70/71/114/115/149）受影响。
+
+### Suggested Action
+写任何"编号+标题"同步脚本时，编号源取 TXT 的 `ID:` 行而非文件名。
+
+### Metadata
+- Source: error
+- Related Files: scripts/check_consistency.py, docs/story/_连续叙事弧线章节总览.md
+- Tags: 补零, ID行, 编号映射
+- See Also: LRN-20260810-005, LRN-20260810-007
+
+---
+
+## [LRN-20260810-007] best_practice
+
+**Logged**: 2026-08-10T22:00:00Z
+**Priority**: high
+**Status**: pending
+**Area**: docs
+
+### Summary
+"编号+标题"批量替换的两个正则坑：(1) 链式数字范围 `273→274→275` 用两次独立 re.sub（先 `(\d+)(?=→)` 再 `(?<=→)(\d+)`）会二次替换新数字导致乱序（278→284→280→286…），必须合并为**单次**交替正则 `(\d+)(?=→)|(?<=→)(\d+)`；(2) 标题模式 `(\d+)(\*\*)?` 捕获组拼接时勿重复加 `group(2)`——应 `新编号 + m.group(0)[len(旧编号):]`（保留数字后全部原文），否则 `**437**` 变成 `**437****` 破坏 markdown。
+
+### Details
+替换顺序：先标题模式（长标题优先防短标题误匹配）→ Ch 模式 → 范围模式（单次pass）。脚本幂等（重复跑不破坏）：从 git 恢复原文再跑修正脚本最干净。本次修正两轮：先修双重替换，再修格式破坏，最终 104 处引用 0 不一致。
+
+### Suggested Action
+写编号替换脚本时：单次 re.sub 完成一个模式；替换串保留原 match 的 rest；从 git checkout 恢复原文后重跑避免污染累积。
+
+### Metadata
+- Source: error
+- Related Files: docs/story/_连续叙事弧线章节总览.md
+- Tags: 正则, 链式替换, 单次pass, 标题匹配
+- See Also: LRN-20260810-006
+
+---

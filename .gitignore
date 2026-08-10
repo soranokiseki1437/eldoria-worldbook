@@ -25,6 +25,9 @@ docs/05_事件系统.md
 # Backup directory
 backup/
 
+# Archived history (kept on disk, out of git)
+_archive/
+
 # Reference files
 reference/
 三线版本封存20260626/
