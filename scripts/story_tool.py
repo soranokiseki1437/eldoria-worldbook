@@ -248,6 +248,7 @@ def validate_prefix(prefix):
         return body[:m.start()].count('"') % 2 == 1
 
     _NEG_EXCLUDE_PATS = [
+        re.compile(r'是不是'),                        # "是不是"疑问词（"她问是不是吃醋了，他承认是"）
         re.compile(r'不是[^。！？；\n]{0,20}就是'),    # "不是A就是B" 选择结构
         re.compile(r'不是[^。！？；\n]{0,15}就不是'),  # "不是就不是" 口语固定
         re.compile(r'不是[^。！？；\n]{0,15}也不是'),  # "不是A也不是B" 列举否定
@@ -271,7 +272,8 @@ def validate_prefix(prefix):
             for m in pat.finditer(body):
                 if _in_quote(body, m):
                     continue  # 引号对话内豁免
-                if any(ex.search(m.group(0)) for ex in _NEG_EXCLUDE_PATS):
+                seg = body[max(0, m.start() - 2):m.end()]  # 前伸窗口（覆盖"是不是"疑问词）
+                if any(ex.search(seg) for ex in _NEG_EXCLUDE_PATS):
                     continue  # 正常句式豁免
                 ctx = m.group(0)[:100]
                 violations.append(
