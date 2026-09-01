@@ -347,7 +347,7 @@ def validate_prefix(prefix):
     for eid, name, fp, data in events:
         stage = data.get('阶段', '').strip()
         if not stage:
-            continue  # 阶段可留空（非NTRS事件）
+            continue  # 阶段可留空（非共享事件）
         if stage not in VALID_STAGES:
             violations.append(
                 f'[{eid}] Rule9: 非法阶段值 — "{stage}" (合法: {", ".join(sorted(VALID_STAGES))}) — {name}'

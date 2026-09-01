@@ -187,19 +187,9 @@ def _parse_event_txt(filepath):
     return _data
 
 
-def _load_ntrs_events():
-    """从缓存中过滤NTRS事件（向后兼容）"""
-    return {k: v for k, v in _load_all_events().items() if v['prefix'] == 'N'}
-
-
 def _load_pure_events():
     """从缓存中过滤纯爱事件"""
     return {k: v for k, v in _load_all_events().items() if v['prefix'] == 'P'}
-
-def ntrs(event_id):
-    """返回NTRS事件的{title, content, comment, third_party, sex_act, phase}字典"""
-    return _load_ntrs_events()[event_id]
-
 
 # ═══════════════════════════════════════════════════════════
 # 自动键词生成 — 从YAML元数据提取关键词，零硬编码

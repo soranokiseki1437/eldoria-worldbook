@@ -61,7 +61,7 @@
   .route-tab.all.active { background: linear-gradient(135deg, #667eea, #764ba2); }
   .route-tab.prologue.active { background: linear-gradient(135deg, #4facfe, #00f2fe); color: #000; }
   .route-tab.pure.active { background: linear-gradient(135deg, #f093fb, #f5576c); }
-  .route-tab.ntrs.active { background: linear-gradient(135deg, #fa709a, #fee140); color: #000; }
+  .route-tab.shared.active { background: linear-gradient(135deg, #fa709a, #fee140); color: #000; }
   .route-tab.passive.active { background: linear-gradient(135deg, #30cfd0, #330867); }
   .route-tab.world.active { background: linear-gradient(135deg, #43e97b, #38f9d7); color: #000; }
   .route-tab.hidden.active { background: linear-gradient(135deg, #a8edea, #fed6e3); color: #000; }
@@ -192,7 +192,7 @@
   .chapter-btn.phase-ch1 { border-left: 3px solid #43e97b; }
   .chapter-btn.phase-ch2 { border-left: 3px solid #f093fb; }
   .chapter-btn.phase-pure { border-left: 3px solid #f5576c; }
-  .chapter-btn.phase-ntrs { border-left: 3px solid #fa709a; }
+  .chapter-btn.phase-shared { border-left: 3px solid #fa709a; }
   .chapter-btn.phase-passive { border-left: 3px solid #30cfd0; }
   .chapter-btn.phase-end { border-left: 3px solid #ffd700; }
   .view-tabs {
@@ -285,7 +285,7 @@
   .phase-section.ch1::before { background: #43e97b; }
   .phase-section.ch2::before { background: #f093fb; }
   .phase-section.pure::before { background: #f5576c; }
-  .phase-section.ntrs::before { background: #fa709a; }
+  .phase-section.shared::before { background: #fa709a; }
   .phase-section.passive::before { background: #30cfd0; }
   .phase-section.end::before { background: #ffd700; }
   .phase-header {
@@ -312,7 +312,7 @@
   .phase-dot.ch1 { background: #43e97b; box-shadow: 0 0 10px #43e97b; }
   .phase-dot.ch2 { background: #f093fb; box-shadow: 0 0 10px #f093fb; }
   .phase-dot.pure { background: #f5576c; box-shadow: 0 0 10px #f5576c; }
-  .phase-dot.ntrs { background: #fa709a; box-shadow: 0 0 10px #fa709a; }
+  .phase-dot.shared { background: #fa709a; box-shadow: 0 0 10px #fa709a; }
   .phase-dot.passive { background: #30cfd0; box-shadow: 0 0 10px #30cfd0; }
   .phase-dot.end { background: #ffd700; box-shadow: 0 0 10px #ffd700; }
   .phase-title {
@@ -356,7 +356,7 @@
   }
   .timeline-item.prologue::before { border-color: #4facfe; }
   .timeline-item.pure::before { border-color: #f093fb; }
-  .timeline-item.ntrs::before { border-color: #fa709a; }
+  .timeline-item.shared::before { border-color: #fa709a; }
   .timeline-item.passive::before { border-color: #30cfd0; }
   .timeline-item.world::before { border-color: #43e97b; }
   .timeline-item.hidden::before { border-color: #a8edea; }
@@ -403,7 +403,7 @@
   }
   .prologue .event-id { color: #4facfe; }
   .pure .event-id { color: #f093fb; }
-  .ntrs .event-id { color: #fa709a; }
+  .shared .event-id { color: #fa709a; }
   .passive .event-id { color: #30cfd0; }
   .world .event-id { color: #43e97b; }
   .hidden .event-id { color: #a8edea; }
@@ -493,7 +493,7 @@
   }
   .detail-route.prologue { background: rgba(79, 172, 254, 0.2); color: #4facfe; }
   .detail-route.pure { background: rgba(240, 147, 251, 0.2); color: #f093fb; }
-  .detail-route.ntrs { background: rgba(250, 112, 154, 0.2); color: #fa709a; }
+  .detail-route.shared { background: rgba(250, 112, 154, 0.2); color: #fa709a; }
   .detail-route.passive { background: rgba(48, 207, 208, 0.2); color: #30cfd0; }
   .detail-route.world { background: rgba(67, 233, 123, 0.2); color: #43e97b; }
   .detail-route.hidden { background: rgba(168, 237, 234, 0.2); color: #a8edea; }
@@ -754,7 +754,7 @@
   }
   .comp-header-empty { color: #555; }
   .comp-header-pure { color: #f093fb; border-bottom: 2px solid #f093fb; }
-  .comp-header-ntrs { color: #fa709a; border-bottom: 2px solid #fa709a; }
+  .comp-header-shared { color: #fa709a; border-bottom: 2px solid #fa709a; }
   .comp-header-passive { color: #30cfd0; border-bottom: 2px solid #30cfd0; }
   .comparison-row {
     display: contents;
@@ -789,7 +789,7 @@
     min-height: 50px;
   }
   .comp-event-cell.pure { background: rgba(240, 147, 251, 0.05); }
-  .comp-event-cell.ntrs { background: rgba(250, 112, 154, 0.05); }
+  .comp-event-cell.shared { background: rgba(250, 112, 154, 0.05); }
   .comp-event-cell.passive { background: rgba(48, 207, 208, 0.05); }
   .comp-event-cell.branch-point {
     background: rgba(255, 215, 0, 0.1);
@@ -810,7 +810,7 @@
     border-left-color: #f093fb;
     color: #f0c0fb;
   }
-  .comp-event-item.ntrs {
+  .comp-event-item.shared {
     background: rgba(250, 112, 154, 0.1);
     border-left-color: #fa709a;
     color: #fcb0c0;
@@ -859,7 +859,7 @@
   }
   .legend-dot.branch { background: #ffd700; }
   .legend-dot.pure { background: #f093fb; }
-  .legend-dot.ntrs { background: #fa709a; }
+  .legend-dot.shared { background: #fa709a; }
   .legend-dot.passive { background: #30cfd0; }
   .route-map {
     padding: 24px 32px;
@@ -888,7 +888,7 @@
   }
   .route-node.start { background: rgba(79, 172, 254, 0.15); border-color: #4facfe; }
   .route-node.pure { background: rgba(240, 147, 251, 0.15); border-color: #f093fb; }
-  .route-node.ntrs { background: rgba(250, 112, 154, 0.15); border-color: #fa709a; }
+  .route-node.shared { background: rgba(250, 112, 154, 0.15); border-color: #fa709a; }
   .route-node.passive { background: rgba(48, 207, 208, 0.15); border-color: #30cfd0; }
   .route-node h4 {
     font-size: 12px;
@@ -943,7 +943,7 @@
         <div class="route-tab all active" onclick="filterRoute('all')">全部路线</div>
         <div class="route-tab prologue" onclick="filterRoute('prologue')">阶段零·共通</div>
         <div class="route-tab pure" onclick="filterRoute('pure')">纯爱路线</div>
-        <div class="route-tab ntrs" onclick="filterRoute('ntrs')">NTRS路线</div>
+        <div class="route-tab shared" onclick="filterRoute('shared')">共享路线</div>
         <div class="route-tab passive" onclick="filterRoute('passive')">被动NTR</div>
         <div class="route-tab world" onclick="filterRoute('world')">世界事件</div>
         <div class="route-tab hidden" onclick="filterRoute('hidden')">隐藏事件</div>
@@ -1036,13 +1036,13 @@
   <div class="comparison-view" id="comparisonView">
     <div class="comparison-header">
       <h2>三路线并行对比</h2>
-      <p>从路线分化开始，纯爱、NTRS、被动NTR三条路线的并行时间线</p>
+      <p>从路线分化开始，纯爱、共享、被动NTR三条路线的并行时间线</p>
     </div>
     <div class="comparison-grid" id="comparisonGrid"></div>
     <div class="comparison-legend">
       <div class="legend-item"><div class="legend-dot branch"></div>关键分支点</div>
       <div class="legend-item"><div class="legend-dot pure"></div>纯爱路线</div>
-      <div class="legend-item"><div class="legend-dot ntrs"></div>NTRS路线</div>
+      <div class="legend-item"><div class="legend-dot shared"></div>共享路线</div>
       <div class="legend-item"><div class="legend-dot passive"></div>被动NTR路线</div>
     </div>
   </div>
@@ -1068,8 +1068,8 @@
       <p>信任 → 告白 → 契约</p>
     </div>
     <div class="route-arrow bi">⇄</div>
-    <div class="route-node ntrs">
-      <h4>NTRS路线</h4>
+    <div class="route-node shared">
+      <h4>共享路线</h4>
       <p>坦白 → 共享 → 确认</p>
     </div>
     <div class="route-arrow bi">⇄</div>

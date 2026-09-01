@@ -25,7 +25,7 @@ print(f"{'章':<6} {'标题':<22} {'阶段':<10} {'事件数':<8} {'路线'}")
 print("-" * 75)
 
 for ch_num, ch in chapters.items():
-    route = ('NTRS' if 12 <= ch_num <= 20 else
+    route = ('共享' if 12 <= ch_num <= 20 else
              '被动NTR' if 22 <= ch_num <= 30 else
              '断章' if ch_num == 99 else '主线')
     print(f"第{ch_num:<3}章 {ch['title']:<22} {ch.get('stage',''):<10} {len(ch['events']):<8} {route}")

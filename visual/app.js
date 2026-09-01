@@ -51,7 +51,7 @@ function renderTimeline() {
     { key: 'ch1', title: '第一至三章 · 信任建立', subtitle: '情感基础阶段', chapters: '第1-3章', phaseClass: 'ch1' },
     { key: 'ch2', title: '第四至八章 · 关系深化', subtitle: '三路线分化开始', chapters: '第4-8章', phaseClass: 'ch2' },
     { key: 'pure', title: '第九至十二章 · 纯爱路线', subtitle: '信任→告白→契约', chapters: '第9-12章', phaseClass: 'pure' },
-    { key: 'ntrs', title: '第十三至二十四章 · NTRS路线', subtitle: '坦白→共享→确认', chapters: '第13-24章', phaseClass: 'ntrs' },
+    { key: 'shared', title: '第十三至二十四章 · 共享路线', subtitle: '坦白→共享→确认', chapters: '第13-24章', phaseClass: 'shared' },
     { key: 'passive', title: '被动NTR路线', subtitle: '缺席→堕落→争取', chapters: '穿插第1-24章', phaseClass: 'passive' },
     { key: 'end', title: '终章', subtitle: '三条路线的最终结局', chapters: '第24章', phaseClass: 'end' }
   ];
@@ -77,7 +77,7 @@ function renderTimeline() {
       if (phase.key === 'ch1') return e.chapter === '第一章' || e.chapter === '第二章' || e.chapter === '第三章';
       if (phase.key === 'ch2') return e.chapter === '第四章' || e.chapter === '第五章' || e.chapter === '第六章' || e.chapter === '第七章' || e.chapter === '第八章';
       if (phase.key === 'pure') return e.route === 'pure' && (e.chapter === '第九章' || e.chapter === '第十章' || e.chapter === '第十一章' || e.chapter === '第十二章');
-      if (phase.key === 'ntrs') return e.route === 'ntrs' && (e.chapter === '第十三章' || e.chapter === '第十四章' || e.chapter === '第十五章' || e.chapter === '第十六章' || e.chapter === '第十七章' || e.chapter === '第十八章' || e.chapter === '第十九章' || e.chapter === '第二十章' || e.chapter === '第二十一章' || e.chapter === '第二十二章' || e.chapter === '第二十三章' || e.chapter === '第二十四章');
+      if (phase.key === 'shared') return e.route === 'shared' && (e.chapter === '第十三章' || e.chapter === '第十四章' || e.chapter === '第十五章' || e.chapter === '第十六章' || e.chapter === '第十七章' || e.chapter === '第十八章' || e.chapter === '第十九章' || e.chapter === '第二十章' || e.chapter === '第二十一章' || e.chapter === '第二十二章' || e.chapter === '第二十三章' || e.chapter === '第二十四章');
       if (phase.key === 'passive') return e.route === 'passive';
       if (phase.key === 'end') return e.chapter === '第二十四章';
       return false;
@@ -135,7 +135,7 @@ function renderComparison() {
   header.innerHTML = `
     <div class="comp-header-empty">章节</div>
     <div class="comp-header-pure">纯爱路线</div>
-    <div class="comp-header-ntrs">NTRS路线</div>
+    <div class="comp-header-shared">共享路线</div>
     <div class="comp-header-passive">被动NTR</div>
   `;
   grid.appendChild(header);
@@ -148,7 +148,7 @@ function renderComparison() {
     row.className = 'comparison-row';
 
     const pureEvents = EVENTS.filter(e => e.route === 'pure' && e.chapter === chName);
-    const ntrsEvents = EVENTS.filter(e => e.route === 'ntrs' && e.chapter === chName);
+    const sharedEvents = EVENTS.filter(e => e.route === 'shared' && e.chapter === chName);
     const passiveEvents = EVENTS.filter(e => e.route === 'passive' && e.chapter === chName);
 
     const chNum = chName.replace('第','').replace('章','');
@@ -162,8 +162,8 @@ function renderComparison() {
       <div class="comp-event-cell pure ${isBranch ? 'branch-point' : ''}">
         ${pureEvents.map(e => `<div class="comp-event-item pure" onclick="showEventDetailById('${e.id}')"><span class="eid">${e.id}</span>${e.title}</div>`).join('') || '<div style="color:#555;font-size:11px;">无事件</div>'}
       </div>
-      <div class="comp-event-cell ntrs ${isBranch ? 'branch-point' : ''}">
-        ${ntrsEvents.map(e => `<div class="comp-event-item ntrs" onclick="showEventDetailById('${e.id}')"><span class="eid">${e.id}</span>${e.title}</div>`).join('') || '<div style="color:#555;font-size:11px;">无事件</div>'}
+      <div class="comp-event-cell shared ${isBranch ? 'branch-point' : ''}">
+        ${sharedEvents.map(e => `<div class="comp-event-item shared" onclick="showEventDetailById('${e.id}')"><span class="eid">${e.id}</span>${e.title}</div>`).join('') || '<div style="color:#555;font-size:11px;">无事件</div>'}
       </div>
       <div class="comp-event-cell passive ${isBranch ? 'branch-point' : ''}">
         ${passiveEvents.map(e => `<div class="comp-event-item passive" onclick="showEventDetailById('${e.id}')"><span class="eid">${e.id}</span>${e.title}</div>`).join('') || '<div style="color:#555;font-size:11px;">无事件</div>'}
@@ -179,7 +179,7 @@ function showEventDetail(evt) {
   const panel = document.getElementById('detailPanel');
 
   const routeLabels = {
-    prologue: '阶段零·共通', pure: '纯爱路线', ntrs: 'NTRS路线',
+    prologue: '阶段零·共通', pure: '纯爱路线', shared: '共享路线',
     passive: '被动NTR', world: '世界事件', hidden: '隐藏事件',
     rich: '丰富性事件', rean: '黎恩专属'
   };
@@ -292,7 +292,7 @@ function switchView(view) {
 }
 
 function scrollToChapter(chNum) {
-  const phaseMap = { 0: 'prologue', 1: 'ch1', 2: 'ch1', 3: 'ch1', 4: 'ch2', 5: 'ch2', 6: 'ch2', 7: 'ch2', 8: 'ch2', 9: 'pure', 10: 'pure', 11: 'pure', 12: 'pure', 13: 'ntrs', 14: 'ntrs', 15: 'ntrs', 16: 'ntrs', 17: 'ntrs', 18: 'ntrs', 19: 'ntrs', 20: 'ntrs', 21: 'ntrs', 22: 'ntrs', 23: 'ntrs', 24: 'end' };
+  const phaseMap = { 0: 'prologue', 1: 'ch1', 2: 'ch1', 3: 'ch1', 4: 'ch2', 5: 'ch2', 6: 'ch2', 7: 'ch2', 8: 'ch2', 9: 'pure', 10: 'pure', 11: 'pure', 12: 'pure', 13: 'shared', 14: 'shared', 15: 'shared', 16: 'shared', 17: 'shared', 18: 'shared', 19: 'shared', 20: 'shared', 21: 'shared', 22: 'shared', 23: 'shared', 24: 'end' };
   const phaseKey = phaseMap[chNum];
   if (phaseKey) {
     const el = document.getElementById(`phase-${phaseKey}`);

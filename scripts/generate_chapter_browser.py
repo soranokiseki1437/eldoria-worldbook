@@ -251,7 +251,7 @@ def build_events():
         is_nsfw_flag = raw.get('is_nsfw', None)
         tags = infer_tags(event_id, name, raw_yaml, is_nsfw_flag, prefix=prefix, sex_level=raw.get('sex_level'), sex_index=sex_index)
         nsfw_level = get_nsfw_level(tags)
-        has_branches = "纯爱" in raw_yaml and ("NTRS" in raw_yaml or "被动NTR" in raw_yaml)
+        has_branches = "纯爱" in raw_yaml and "被动NTR" in raw_yaml
         characters = extract_main_characters(raw_yaml, name)
         events.append({
             "id": event_id, "prefix": prefix, "name": name,
@@ -311,9 +311,9 @@ def build_events():
 # ══════════════════════════════════════════════════════════
 
 ROUTE_MAP = {
-    '0：序章': 'prologue', '1：试探和暧昧': 'ntrs', '2：挑逗和接受': 'ntrs',
-    '3：渐进接触': 'ntrs', '4：跨线': 'ntrs', '5：享受和掌控': 'ntrs',
-    '6：放纵': 'ntrs', '7：终局': 'ntrs', '8：后日谈': 'epilogue',
+    '0：序章': 'prologue', '1：试探和暧昧': 'shared', '2：挑逗和接受': 'shared',
+    '3：渐进接触': 'shared', '4：跨线': 'shared', '5：享受和掌控': 'shared',
+    '6：放纵': 'shared', '7：终局': 'shared', '8：后日谈': 'epilogue',
 }
 
 def generate_event_data_js(events, event_chapters):
@@ -353,7 +353,7 @@ def generate_event_data_js(events, event_chapters):
         if not ch_name:
             continue
         count = sum(1 for e in events if e["chapter"] == ch_num)
-        phase = "intro" if ch_num == 0 else "ntrs" if ch_num <= 7 else "finale"
+        phase = "intro" if ch_num == 0 else "shared" if ch_num <= 7 else "finale"
         lines.append("  {")
         lines.append(f'    "num": {ch_num},')
         lines.append(f'    "name": {json.dumps(ch_name, ensure_ascii=False)},')

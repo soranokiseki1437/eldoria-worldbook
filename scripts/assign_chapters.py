@@ -19,7 +19,7 @@ EVENT_DIR = os.path.join(PROJECT_DIR, 'docs', 'story')
 
 # ============================================================
 # 权威章节定义
-# 单线纯爱NTRS融合线：170事件纯数字编号(01-170)
+# 单线纯爱共享融合线：170事件纯数字编号(01-170)
 # 修改事件列表后运行 renumber_events.py 自动更新范围。
 # ============================================================
 DEFAULT_CHAPTERS = OrderedDict()
@@ -173,8 +173,8 @@ def generate_summary():
              '  事件系统:']
     lines.append(f'    总章节: {len(DEFAULT_CHAPTERS)}章 (第0章~第{max(DEFAULT_CHAPTERS.keys())}章)')
     lines.append(f'    总事件: {total}个 (编号01-{total})')
-    lines.append(f'    架构: 单线纯爱NTRS融合线 — 共享时刻 ⇄ 回归时刻')
-    lines.append(f'    路线: 唯一一条NTRS融合线')
+    lines.append(f'    架构: 单线纯爱共享融合线 — 共享时刻 ⇄ 回归时刻')
+    lines.append(f'    路线: 唯一一条共享融合线')
     lines.append('```')
     return '\n'.join(lines)
 
