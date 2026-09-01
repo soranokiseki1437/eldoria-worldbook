@@ -1,4 +1,4 @@
-// 自动生成于: 2026-09-01T12:33:28.375100
+// 自动生成于: 2026-09-01T13:03:03.112268
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -701,7 +701,7 @@ const EVENTS = [
   },
   {
     "id": "88",
-    "title": "爱丽榭的厨房——家的味道",
+    "title": "爱丽榭的厨房——哥哥的童年",
     "route": "shared",
     "chapter": "试探和暧昧",
     "summary": "",
