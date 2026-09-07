@@ -1,4 +1,4 @@
-// 自动生成于: 2026-09-01T13:03:03.112268
+// 自动生成于: 2026-09-08T03:32:27.232188
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -1877,7 +1877,7 @@ const EVENTS = [
   },
   {
     "id": "235",
-    "title": "工坊里的午后——两个腼腆的人",
+    "title": "工坊里的午后——共同语言",
     "route": "shared",
     "chapter": "渐进接触",
     "summary": "",
