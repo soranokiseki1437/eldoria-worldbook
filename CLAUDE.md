@@ -1,7 +1,7 @@
 # CLAUDE.md — 世界书构建与章节增强专用Agent
 
 > **定位**：Eldoria世界书 · 100%对齐俺妹ver1.41格式
-> **版本**：v10.28.1 · 2026-08-10 · 9阶段
+> **版本**：v10.29.0 · 2026-09-08 · 9阶段
 > **权威规则**：`docs/story/_TEMPLATE_RULES.md`（写作规则全集）· `docs/story/_短对话修复方案.md`（对话修复）· `docs/story/_条件修复方案.md`（终止条件/章节任务修复）
 
 ---
@@ -253,7 +253,7 @@ docs/{chapter,character,world,magic,creature,location,npc}/  ← 设定
 方案/去机械感和碎片化叙述重要经验.txt  ← 对话碎片修复·情感填充·标点规范（《散场时分——各自的归处》《甜蜜的勒索——吻我我就起来》精修提炼）
 scripts/{build_eldoria,rebuild_all,renumber_events,story_tool,generate_chapter_browser,update_chapter_map,assign_chapters,story_config,check_consistency,fix_index_numbering,post_renumber_updates}.py
 docs2/{story,character,world,magic,npc}/  ← 第二部方案（线代号体系，引-X/帝-X/维-X；`docs2/story/_第二部章节增加方案.md` 为章节方案权威源）
-output/Eldoria_V10.28.1.json       ← 派生产物，不可手动编辑（版本号与git对齐）
+output/Eldoria_V10.29.0.json       ← 派生产物，不可手动编辑（版本号与git对齐）
 ```
 
 ### 2.4 弧线总览维护

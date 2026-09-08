@@ -38,7 +38,7 @@ DOCS_DIR    = os.path.join(PROJECT_DIR, "docs")
 MD_DIR      = DOCS_DIR  # 分md在 docs/ 目录下
 
 # ─── 版本号（与 git 版本号对齐） ────────────────────────
-VERSION = "V10.28.1"
+VERSION = "V10.29.0"
 VERSION_TAG = f"Eldoria_{VERSION}"
 
 # 主输出文件 = 带版本号的文件名（输出到 output/ 目录）
