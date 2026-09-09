@@ -63,10 +63,12 @@
 
 1. **工程自动化校验与构建结果**：
    - `python scripts/story_tool.py validate` → **845 个章节 100% 通过**（Rule1~9 零违规）。
-   - `python scripts/check_consistency.py` → 章节编号 1-845 连续无缺口、文件名/阶段完全一致、**820 条 sex 索引精确匹配**、弧总览引用闭合。
+   - `python scripts/check_consistency.py` → 章节编号 1-845 连续无缺口、文件名/阶段完全一致、**821 条 sex 索引精确匹配（已收录新章 Ch538 本番）**、弧总览引用闭合。
    - `python scripts/build_eldoria.py` → **983 条条目全量合规装配**输出至 `output/Eldoria_V10.29.0.json` (1,537,270 字符)。
-   - `python scripts/generate_chapter_browser.py` → 全量生成 `visual/全章节浏览器.html` (1,452,218 字符)。
+   - `python scripts/generate_chapter_browser.py` → 全量生成 `visual/全章节浏览器.html` (1,452,228 字符)。
 2. **本轮完整 Git 提交记录**：
+   - `57282d21`：docs: 将新章Ch538收录至sex索引本番分类并完成全量对齐
+   - `58ce64c0`：docs: 更新检查点，记录单元二落地与845章全量一致性指标
    - `9eeeb497`：feat(story): 落地艾玛单元二新增章节并实装全库排期三大刚性红线规范（断弧规避+首尾章保护+前后非艾玛角色隔离；Ch538《风雪避难所——睡袋里的体温》落地实装；全库844→845平移）
    - `90a9bb35`：docs: 更新检查点，折叠全轮会话成果（系统词条+资产归档+艾玛大纲重塑）
    - `3d98689b`：docs(plan): 重塑艾玛新增章节方案为6大精炼故事大纲，去AI化并精确标定插入排期
