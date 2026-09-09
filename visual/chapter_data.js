@@ -1,4 +1,4 @@
-// 自动生成于: 2026-09-08T04:06:53.783854
+// 自动生成于: 2026-09-10T02:35:18.962480
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -4301,7 +4301,7 @@ const EVENTS = [
   },
   {
     "id": "538",
-    "title": "地板下的管道——蹭蹭就进去了（上）",
+    "title": "风雪避难所——睡袋里的体温",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",
@@ -4309,7 +4309,7 @@ const EVENTS = [
   },
   {
     "id": "539",
-    "title": "地板下的管道——蹭蹭就进去了（下）",
+    "title": "地板下的管道——蹭蹭就进去了（上）",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",
@@ -4317,6 +4317,14 @@ const EVENTS = [
   },
   {
     "id": "540",
+    "title": "地板下的管道——蹭蹭就进去了（下）",
+    "route": "shared",
+    "chapter": "享受和掌控",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "541",
     "title": "地下日记·第三页——偷来的书",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4324,7 +4332,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "541",
+    "id": "542",
     "title": "他的名字——口交与声音的归还",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4332,7 +4340,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "542",
+    "id": "543",
     "title": "被填满的魔女——巨根的第一次",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4340,7 +4348,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "543",
+    "id": "544",
     "title": "镜湖幻影——亡妻的倒影",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4348,7 +4356,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "544",
+    "id": "545",
     "title": "守夜的惯例——无声的交换",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4356,7 +4364,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "545",
+    "id": "546",
     "title": "自由探索——艾尔多利亚的深夜",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4364,7 +4372,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "546",
+    "id": "547",
     "title": "胜利庆典——3P",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4372,7 +4380,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "547",
+    "id": "548",
     "title": "莉兹的名字——三个人的沉默",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4380,7 +4388,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "548",
+    "id": "549",
     "title": "镜湖内射——以亡妻之名的接纳",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4388,16 +4396,8 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "549",
-    "title": "自由探索——林间空地的午后",
-    "route": "shared",
-    "chapter": "享受和掌控",
-    "summary": "",
-    "type": "main"
-  },
-  {
     "id": "550",
-    "title": "乔治的安慰——帽檐下的轻吻",
+    "title": "自由探索——林间空地的午后",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",
@@ -4405,6 +4405,14 @@ const EVENTS = [
   },
   {
     "id": "551",
+    "title": "乔治的安慰——帽檐下的轻吻",
+    "route": "shared",
+    "chapter": "享受和掌控",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "552",
     "title": "月光下的乳交——劳拉与雷恩",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4412,7 +4420,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "552",
+    "id": "553",
     "title": "骑士剑的重磨——雷恩与多尔金",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4420,7 +4428,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "553",
+    "id": "554",
     "title": "自由探索——艾尔多利亚的傍晚",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4428,7 +4436,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "554",
+    "id": "555",
     "title": "紫色丝袜的月光——腿交与触感",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4436,7 +4444,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "555",
+    "id": "556",
     "title": "会议开始前——桌下的缺席",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4444,7 +4452,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "556",
+    "id": "557",
     "title": "通讯那头——一张嘴两根",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4452,7 +4460,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "557",
+    "id": "558",
     "title": "太古的真相——三人解谜",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4460,7 +4468,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "558",
+    "id": "559",
     "title": "牛头人的确认——回忆的声调",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4468,7 +4476,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "559",
+    "id": "560",
     "title": "自由探索——图书室里的安静",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4476,7 +4484,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "560",
+    "id": "561",
     "title": "兄弟的争夺——左右开弓（上）",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4484,7 +4492,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "561",
+    "id": "562",
     "title": "兄弟的争夺——左右开弓（下）",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4492,7 +4500,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "562",
+    "id": "563",
     "title": "拼接的长桌——五族第一次联军会议",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4500,7 +4508,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "563",
+    "id": "564",
     "title": "北方的黑潮——影牙兽围营之夜",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4508,7 +4516,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "564",
+    "id": "565",
     "title": "温泉晕厥——事后告知",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4516,7 +4524,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "565",
+    "id": "566",
     "title": "自由探索——雨歇后的晨间",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4524,7 +4532,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "566",
+    "id": "567",
     "title": "艾玛的吊带袜——魔女的私授课程",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4532,7 +4540,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "567",
+    "id": "568",
     "title": "亚莉莎的换装——催情熏香中的傲娇本番",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4540,7 +4548,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "568",
+    "id": "569",
     "title": "胶质包裹——腐化史莱姆（上）",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4548,7 +4556,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "569",
+    "id": "570",
     "title": "胶质包裹——腐化史莱姆（下）",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4556,16 +4564,8 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "570",
-    "title": "自由探索——厨房热气里的傍晚",
-    "route": "shared",
-    "chapter": "享受和掌控",
-    "summary": "",
-    "type": "main"
-  },
-  {
     "id": "571",
-    "title": "温泉里的剑压——劳拉与奥蕾莉亚",
+    "title": "自由探索——厨房热气里的傍晚",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",
@@ -4573,7 +4573,7 @@ const EVENTS = [
   },
   {
     "id": "572",
-    "title": "苔藓光——图书馆的门",
+    "title": "温泉里的剑压——劳拉与奥蕾莉亚",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",
@@ -4581,6 +4581,14 @@ const EVENTS = [
   },
   {
     "id": "573",
+    "title": "苔藓光——图书馆的门",
+    "route": "shared",
+    "chapter": "享受和掌控",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "574",
     "title": "野外失控——花田轮奸",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4588,7 +4596,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "574",
+    "id": "575",
     "title": "艾德里安的拍卖会——没落贵族的遗产",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4596,7 +4604,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "575",
+    "id": "576",
     "title": "封猎令——带斑的岩羊",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4604,16 +4612,8 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "576",
-    "title": "自由探索——林间空地的余韵",
-    "route": "shared",
-    "chapter": "享受和掌控",
-    "summary": "",
-    "type": "main"
-  },
-  {
     "id": "577",
-    "title": "那次之后——怪物的尺寸",
+    "title": "自由探索——林间空地的余韵",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",
@@ -4621,6 +4621,14 @@ const EVENTS = [
   },
   {
     "id": "578",
+    "title": "那次之后——怪物的尺寸",
+    "route": "shared",
+    "chapter": "享受和掌控",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "579",
     "title": "亚尔缇娜的黑丝——试试就知道啦",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4628,7 +4636,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "579",
+    "id": "580",
     "title": "自由探索——哨塔上的黎明",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4636,7 +4644,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "580",
+    "id": "581",
     "title": "导力墨水的配方——凯尔与乔治",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4644,7 +4652,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "581",
+    "id": "582",
     "title": "暗紫残影的包围——低语者遇袭（上）",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4652,7 +4660,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "582",
+    "id": "583",
     "title": "暗紫残影的包围——低语者遇袭（下）",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4660,7 +4668,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "583",
+    "id": "584",
     "title": "北塔的火光——腐化夜袭哨塔",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4668,7 +4676,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "584",
+    "id": "585",
     "title": "黑丝的回报——多尔金的第一堂课",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4676,7 +4684,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "585",
+    "id": "586",
     "title": "欲望之镜——误入镜湖的凯尔",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4684,7 +4692,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "586",
+    "id": "587",
     "title": "塔基下的光——银塔的圣光碎片",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4692,7 +4700,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "587",
+    "id": "588",
     "title": "矿道的轮奸——两个大色狼（上）",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4700,7 +4708,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "588",
+    "id": "589",
     "title": "矿道的轮奸——两个大色狼（下）",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4708,7 +4716,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "589",
+    "id": "590",
     "title": "矿道的深处——牛头人来了（上）",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4716,7 +4724,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "590",
+    "id": "591",
     "title": "矿道的深处——牛头人来了（下）",
     "route": "shared",
     "chapter": "享受和掌控",
@@ -4724,7 +4732,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "591",
+    "id": "592",
     "title": "爱丽榭的厨房——四个人的灶台",
     "route": "shared",
     "chapter": "放纵",
@@ -4732,7 +4740,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "592",
+    "id": "593",
     "title": "锻造声下——熔炉旁的秘密",
     "route": "shared",
     "chapter": "放纵",
@@ -4740,7 +4748,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "593",
+    "id": "594",
     "title": "符文共鸣的田野调查——艾玛与法林",
     "route": "shared",
     "chapter": "放纵",
@@ -4748,7 +4756,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "594",
+    "id": "595",
     "title": "白丝的赠礼——哈根的温柔",
     "route": "shared",
     "chapter": "放纵",
@@ -4756,16 +4764,8 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "595",
-    "title": "自由探索——营地的午后",
-    "route": "shared",
-    "chapter": "放纵",
-    "summary": "",
-    "type": "main"
-  },
-  {
     "id": "596",
-    "title": "骑士道的理由——劳拉与玲",
+    "title": "自由探索——营地的午后",
     "route": "shared",
     "chapter": "放纵",
     "summary": "",
@@ -4773,6 +4773,14 @@ const EVENTS = [
   },
   {
     "id": "597",
+    "title": "骑士道的理由——劳拉与玲",
+    "route": "shared",
+    "chapter": "放纵",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "598",
     "title": "魔女的温暖——白兔的包裹",
     "route": "shared",
     "chapter": "放纵",
@@ -4780,7 +4788,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "598",
+    "id": "599",
     "title": "祖厅的修复——矮人三兄弟",
     "route": "shared",
     "chapter": "放纵",
@@ -4788,7 +4796,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "599",
+    "id": "600",
     "title": "自由探索——营地的傍晚",
     "route": "shared",
     "chapter": "放纵",
@@ -4796,7 +4804,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "600",
+    "id": "601",
     "title": "哈根的床——他翻身压上来了（上）",
     "route": "shared",
     "chapter": "放纵",
@@ -4804,7 +4812,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "601",
+    "id": "602",
     "title": "哈根的床——他翻身压上来了（下）",
     "route": "shared",
     "chapter": "放纵",
@@ -4812,7 +4820,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "602",
+    "id": "603",
     "title": "她的密码——石殿的告别",
     "route": "shared",
     "chapter": "放纵",
@@ -4820,7 +4828,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "603",
+    "id": "604",
     "title": "主动的回报——手交服务",
     "route": "shared",
     "chapter": "放纵",
@@ -4828,7 +4836,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "604",
+    "id": "605",
     "title": "月光下的散步——劳拉与菲娜",
     "route": "shared",
     "chapter": "放纵",
@@ -4836,7 +4844,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "605",
+    "id": "606",
     "title": "艾德里安的舌——反向服务",
     "route": "shared",
     "chapter": "放纵",
@@ -4844,7 +4852,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "606",
+    "id": "607",
     "title": "自由探索——营地的深夜",
     "route": "shared",
     "chapter": "放纵",
@@ -4852,7 +4860,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "607",
+    "id": "608",
     "title": "装置测试——脉搏一百一",
     "route": "shared",
     "chapter": "放纵",
@@ -4860,7 +4868,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "608",
+    "id": "609",
     "title": "晨光里的问答——奥蕾莉亚与菲",
     "route": "shared",
     "chapter": "放纵",
@@ -4868,7 +4876,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "609",
+    "id": "610",
     "title": "菲娜的白丝——月光下的足交",
     "route": "shared",
     "chapter": "放纵",
@@ -4876,7 +4884,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "610",
+    "id": "611",
     "title": "自由探索——图书室里的深夜",
     "route": "shared",
     "chapter": "放纵",
@@ -4884,7 +4892,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "611",
+    "id": "612",
     "title": "银流河上游的水质勘察——黎恩与菲",
     "route": "shared",
     "chapter": "放纵",
@@ -4892,7 +4900,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "612",
+    "id": "613",
     "title": "锻炉的烟——她设计的隐奸",
     "route": "shared",
     "chapter": "放纵",
@@ -4900,7 +4908,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "613",
+    "id": "614",
     "title": "篝火后的手——微醺的感谢",
     "route": "shared",
     "chapter": "放纵",
@@ -4908,7 +4916,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "614",
+    "id": "615",
     "title": "再访暖岩——我们俩（上）",
     "route": "shared",
     "chapter": "放纵",
@@ -4916,7 +4924,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "615",
+    "id": "616",
     "title": "再访暖岩——我们俩（下）",
     "route": "shared",
     "chapter": "放纵",
@@ -4924,7 +4932,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "616",
+    "id": "617",
     "title": "门口的冰袋——不需要署名",
     "route": "shared",
     "chapter": "放纵",
@@ -4932,7 +4940,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "617",
+    "id": "618",
     "title": "自由探索——营地的晨间",
     "route": "shared",
     "chapter": "放纵",
@@ -4940,7 +4948,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "618",
+    "id": "619",
     "title": "她的改变——不再往后缩",
     "route": "shared",
     "chapter": "放纵",
@@ -4948,7 +4956,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "619",
+    "id": "620",
     "title": "劳拉的战场——骑士本番（上）",
     "route": "shared",
     "chapter": "放纵",
@@ -4956,7 +4964,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "620",
+    "id": "621",
     "title": "劳拉的战场——骑士本番（下）",
     "route": "shared",
     "chapter": "放纵",
@@ -4964,7 +4972,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "621",
+    "id": "622",
     "title": "魔导杖的校准——艾玛与亚尔缇娜",
     "route": "shared",
     "chapter": "放纵",
@@ -4972,7 +4980,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "622",
+    "id": "623",
     "title": "满月下的拯救——狼人与改观",
     "route": "shared",
     "chapter": "放纵",
@@ -4980,7 +4988,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "623",
+    "id": "624",
     "title": "自由探索——密林边的傍晚",
     "route": "shared",
     "chapter": "放纵",
@@ -4988,7 +4996,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "624",
+    "id": "625",
     "title": "河上游的矿石——多尔金与菲",
     "route": "shared",
     "chapter": "放纵",
@@ -4996,7 +5004,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "625",
+    "id": "626",
     "title": "阴影里的手——再一次帮他",
     "route": "shared",
     "chapter": "放纵",
@@ -5004,7 +5012,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "626",
+    "id": "627",
     "title": "触手拘束——腐化藤的麻痹与释放",
     "route": "shared",
     "chapter": "放纵",
@@ -5012,7 +5020,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "627",
+    "id": "628",
     "title": "骑士的礼仪课——劳拉与菲娜",
     "route": "shared",
     "chapter": "放纵",
@@ -5020,7 +5028,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "628",
+    "id": "629",
     "title": "好茶的代价——不需要借口了",
     "route": "shared",
     "chapter": "放纵",
@@ -5028,7 +5036,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "629",
+    "id": "630",
     "title": "结界点亮之夜——营地的墙",
     "route": "shared",
     "chapter": "放纵",
@@ -5036,7 +5044,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "630",
+    "id": "631",
     "title": "自由探索——林间空地的午后",
     "route": "shared",
     "chapter": "放纵",
@@ -5044,7 +5052,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "631",
+    "id": "632",
     "title": "没锁的门——他知道有人会路过",
     "route": "shared",
     "chapter": "放纵",
@@ -5052,7 +5060,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "632",
+    "id": "633",
     "title": "雷恩被诱惑——蜜壶之口",
     "route": "shared",
     "chapter": "放纵",
@@ -5060,7 +5068,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "633",
+    "id": "634",
     "title": "清晨的意外——嘴里那次",
     "route": "shared",
     "chapter": "放纵",
@@ -5068,7 +5076,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "634",
+    "id": "635",
     "title": "商路古文字的翻译——艾德里安与凯尔",
     "route": "shared",
     "chapter": "放纵",
@@ -5076,7 +5084,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "635",
+    "id": "636",
     "title": "自由探索——营地的午后",
     "route": "shared",
     "chapter": "放纵",
@@ -5084,7 +5092,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "636",
+    "id": "637",
     "title": "深夜的访客——怕被听到",
     "route": "shared",
     "chapter": "放纵",
@@ -5092,7 +5100,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "637",
+    "id": "638",
     "title": "书房的恶作剧——白丝踩在手背上",
     "route": "shared",
     "chapter": "放纵",
@@ -5100,7 +5108,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "638",
+    "id": "639",
     "title": "祖厅的晚餐——她留在桌下",
     "route": "shared",
     "chapter": "放纵",
@@ -5108,7 +5116,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "639",
+    "id": "640",
     "title": "地下日记·第四页——上面的声音",
     "route": "shared",
     "chapter": "放纵",
@@ -5116,7 +5124,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "640",
+    "id": "641",
     "title": "累了——69式的交换",
     "route": "shared",
     "chapter": "放纵",
@@ -5124,7 +5132,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "641",
+    "id": "642",
     "title": "自由探索——营地的深夜",
     "route": "shared",
     "chapter": "放纵",
@@ -5132,7 +5140,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "642",
+    "id": "643",
     "title": "古商道的行程——雾中的埋伏",
     "route": "shared",
     "chapter": "放纵",
@@ -5140,7 +5148,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "643",
+    "id": "644",
     "title": "假传讯——从背后到指交",
     "route": "shared",
     "chapter": "放纵",
@@ -5148,7 +5156,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "644",
+    "id": "645",
     "title": "旧沙发——从口交到内射",
     "route": "shared",
     "chapter": "放纵",
@@ -5156,7 +5164,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "645",
+    "id": "646",
     "title": "清晨的唤醒——两个人的早晨",
     "route": "shared",
     "chapter": "放纵",
@@ -5164,7 +5172,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "646",
+    "id": "647",
     "title": "自由探索——训练场旁的晨间",
     "route": "shared",
     "chapter": "放纵",
@@ -5172,7 +5180,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "647",
+    "id": "648",
     "title": "夜里的岗——狼人入营",
     "route": "shared",
     "chapter": "放纵",
@@ -5180,7 +5188,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "648",
+    "id": "649",
     "title": "接吻即湿——雷恩的嘴唇（上）",
     "route": "shared",
     "chapter": "放纵",
@@ -5188,7 +5196,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "649",
+    "id": "650",
     "title": "接吻即湿——雷恩的嘴唇（下）",
     "route": "shared",
     "chapter": "放纵",
@@ -5196,7 +5204,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "650",
+    "id": "651",
     "title": "猎兵的方式——教我",
     "route": "shared",
     "chapter": "放纵",
@@ -5204,7 +5212,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "651",
+    "id": "652",
     "title": "自由探索——菜地旁的晨间",
     "route": "shared",
     "chapter": "放纵",
@@ -5212,7 +5220,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "652",
+    "id": "653",
     "title": "符文魔法的启蒙课——艾玛与玲",
     "route": "shared",
     "chapter": "放纵",
@@ -5220,7 +5228,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "653",
+    "id": "654",
     "title": "月语者的记忆——另一个帝国人",
     "route": "shared",
     "chapter": "放纵",
@@ -5228,7 +5236,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "654",
+    "id": "655",
     "title": "玲的实战——会爆炸的符文",
     "route": "shared",
     "chapter": "放纵",
@@ -5236,7 +5244,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "655",
+    "id": "656",
     "title": "自由探索——温泉边的傍晚",
     "route": "shared",
     "chapter": "放纵",
@@ -5244,7 +5252,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "656",
+    "id": "657",
     "title": "熔炉前的试刀——太刀的隐奸",
     "route": "shared",
     "chapter": "放纵",
@@ -5252,7 +5260,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "657",
+    "id": "658",
     "title": "晨光中的木屋——菲娜与黎恩的早晨",
     "route": "shared",
     "chapter": "放纵",
@@ -5260,7 +5268,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "658",
+    "id": "659",
     "title": "紫丝掰穴——闻舔脚心的观淫（上）",
     "route": "shared",
     "chapter": "放纵",
@@ -5268,7 +5276,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "659",
+    "id": "660",
     "title": "紫丝掰穴——闻舔脚心的观淫（下）",
     "route": "shared",
     "chapter": "放纵",
@@ -5276,7 +5284,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "660",
+    "id": "661",
     "title": "自由探索——工坊外的安静",
     "route": "shared",
     "chapter": "放纵",
@@ -5284,7 +5292,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "661",
+    "id": "662",
     "title": "凯尔的窗——从清晨到黎恩归来",
     "route": "shared",
     "chapter": "放纵",
@@ -5292,7 +5300,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "662",
+    "id": "663",
     "title": "紫色丝袜的轮番——蹭蹭就进去（上）",
     "route": "shared",
     "chapter": "放纵",
@@ -5300,7 +5308,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "663",
+    "id": "664",
     "title": "紫色丝袜的轮番——蹭蹭就进去（下）",
     "route": "shared",
     "chapter": "放纵",
@@ -5308,7 +5316,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "664",
+    "id": "665",
     "title": "老手的从容——主动口交",
     "route": "shared",
     "chapter": "放纵",
@@ -5316,7 +5324,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "665",
+    "id": "666",
     "title": "林缘的伏击——预警装置的熄灭",
     "route": "shared",
     "chapter": "放纵",
@@ -5324,16 +5332,8 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "666",
-    "title": "自由探索——营地的傍晚",
-    "route": "shared",
-    "chapter": "放纵",
-    "summary": "",
-    "type": "main"
-  },
-  {
     "id": "667",
-    "title": "温泉夜话——菲娜与奥蕾莉亚",
+    "title": "自由探索——营地的傍晚",
     "route": "shared",
     "chapter": "放纵",
     "summary": "",
@@ -5341,6 +5341,14 @@ const EVENTS = [
   },
   {
     "id": "668",
+    "title": "温泉夜话——菲娜与奥蕾莉亚",
+    "route": "shared",
+    "chapter": "放纵",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "669",
     "title": "桌下之手再现——从容的隐奸",
     "route": "shared",
     "chapter": "放纵",
@@ -5348,7 +5356,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "669",
+    "id": "670",
     "title": "矮人棋与笑声——休息日的游戏",
     "route": "shared",
     "chapter": "放纵",
@@ -5356,7 +5364,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "670",
+    "id": "671",
     "title": "全裸观淫——菊穴的善意应允（上）",
     "route": "shared",
     "chapter": "放纵",
@@ -5364,7 +5372,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "671",
+    "id": "672",
     "title": "全裸观淫——菊穴的善意应允（下）",
     "route": "shared",
     "chapter": "放纵",
@@ -5372,7 +5380,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "672",
+    "id": "673",
     "title": "自由探索——篝火边的夜晚",
     "route": "shared",
     "chapter": "放纵",
@@ -5380,7 +5388,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "673",
+    "id": "674",
     "title": "桌下之口再现——老手的隐奸",
     "route": "shared",
     "chapter": "放纵",
@@ -5388,7 +5396,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "674",
+    "id": "675",
     "title": "护甲的例行检查——雷恩与乔治",
     "route": "shared",
     "chapter": "放纵",
@@ -5396,7 +5404,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "675",
+    "id": "676",
     "title": "最后的边界——肛交与最深处的暖",
     "route": "shared",
     "chapter": "放纵",
@@ -5404,7 +5412,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "676",
+    "id": "677",
     "title": "凯尔的邀请——河边的先斩后奏",
     "route": "shared",
     "chapter": "放纵",
@@ -5412,7 +5420,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "677",
+    "id": "678",
     "title": "自由探索——林间空地的午后",
     "route": "shared",
     "chapter": "放纵",
@@ -5420,7 +5428,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "678",
+    "id": "679",
     "title": "轮流肛交——不干小穴的约定",
     "route": "shared",
     "chapter": "放纵",
@@ -5428,7 +5436,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "679",
+    "id": "680",
     "title": "一次不够——凯尔的极限",
     "route": "shared",
     "chapter": "放纵",
@@ -5436,7 +5444,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "680",
+    "id": "681",
     "title": "森林边缘的野莓——爱丽榭与亚尔缇娜",
     "route": "shared",
     "chapter": "放纵",
@@ -5444,7 +5452,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "681",
+    "id": "682",
     "title": "暮色里的通讯——暖岩石上的意外（上）",
     "route": "shared",
     "chapter": "放纵",
@@ -5452,7 +5460,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "682",
+    "id": "683",
     "title": "暮色里的通讯——暖岩石上的意外（中）",
     "route": "shared",
     "chapter": "放纵",
@@ -5460,7 +5468,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "683",
+    "id": "684",
     "title": "暮色里的通讯——暖岩石上的意外（下）",
     "route": "shared",
     "chapter": "放纵",
@@ -5468,7 +5476,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "684",
+    "id": "685",
     "title": "雾里的手——银流河边的失踪",
     "route": "shared",
     "chapter": "放纵",
@@ -5476,7 +5484,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "685",
+    "id": "686",
     "title": "暴雨里的古树——雨声盖过了拒绝（上）",
     "route": "shared",
     "chapter": "放纵",
@@ -5484,7 +5492,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "686",
+    "id": "687",
     "title": "暴雨里的古树——雨声盖过了拒绝（下）",
     "route": "shared",
     "chapter": "放纵",
@@ -5492,7 +5500,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "687",
+    "id": "688",
     "title": "自由探索——雨后的营地",
     "route": "shared",
     "chapter": "放纵",
@@ -5500,7 +5508,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "688",
+    "id": "689",
     "title": "兽群压境——银流河畔的夜袭",
     "route": "shared",
     "chapter": "放纵",
@@ -5508,7 +5516,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "689",
+    "id": "690",
     "title": "心木废墟的狼王——影牙兽首领",
     "route": "shared",
     "chapter": "放纵",
@@ -5516,7 +5524,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "690",
+    "id": "691",
     "title": "矮人的回礼——她被舔的第一次（上）",
     "route": "shared",
     "chapter": "放纵",
@@ -5524,7 +5532,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "691",
+    "id": "692",
     "title": "矮人的回礼——她被舔的第一次（下）",
     "route": "shared",
     "chapter": "放纵",
@@ -5532,7 +5540,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "692",
+    "id": "693",
     "title": "深夜书房——亚尔缇娜与菲",
     "route": "shared",
     "chapter": "放纵",
@@ -5540,7 +5548,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "693",
+    "id": "694",
     "title": "双管齐下——双重内射的巅峰",
     "route": "shared",
     "chapter": "放纵",
@@ -5548,7 +5556,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "694",
+    "id": "695",
     "title": "自由探索——溪水边的午后",
     "route": "shared",
     "chapter": "放纵",
@@ -5556,7 +5564,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "695",
+    "id": "696",
     "title": "多尔金的最后一批——兵器与誓言",
     "route": "shared",
     "chapter": "放纵",
@@ -5564,7 +5572,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "696",
+    "id": "697",
     "title": "前哨的灯——失守与夺回",
     "route": "shared",
     "chapter": "放纵",
@@ -5572,7 +5580,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "697",
+    "id": "698",
     "title": "两个人的夜晚——劳拉与雷恩",
     "route": "shared",
     "chapter": "放纵",
@@ -5580,7 +5588,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "698",
+    "id": "699",
     "title": "全部告诉你——法林温柔的原谅与告白",
     "route": "shared",
     "chapter": "放纵",
@@ -5588,7 +5596,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "699",
+    "id": "700",
     "title": "石壁上的字——Thalion的留言",
     "route": "shared",
     "chapter": "放纵",
@@ -5596,7 +5604,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "700",
+    "id": "701",
     "title": "自由探索——营地的傍晚",
     "route": "shared",
     "chapter": "放纵",
@@ -5604,7 +5612,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "701",
+    "id": "702",
     "title": "归还——心跳的证明",
     "route": "shared",
     "chapter": "放纵",
@@ -5612,7 +5620,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "702",
+    "id": "703",
     "title": "两个人的沉默——雷恩背后",
     "route": "shared",
     "chapter": "放纵",
@@ -5620,7 +5628,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "703",
+    "id": "704",
     "title": "晨光中的醒酒汤——劳拉与雷恩",
     "route": "shared",
     "chapter": "放纵",
@@ -5628,7 +5636,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "704",
+    "id": "705",
     "title": "通话中的忍耐——压住娇喘的隐奸",
     "route": "shared",
     "chapter": "放纵",
@@ -5636,7 +5644,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "705",
+    "id": "706",
     "title": "晨光里的两次挥剑——奥蕾莉亚与菲",
     "route": "shared",
     "chapter": "放纵",
@@ -5644,7 +5652,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "706",
+    "id": "707",
     "title": "石殿的灯——决战前的整备",
     "route": "shared",
     "chapter": "放纵",
@@ -5652,7 +5660,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "707",
+    "id": "708",
     "title": "自由探索——石殿外的午后",
     "route": "shared",
     "chapter": "放纵",
@@ -5660,7 +5668,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "708",
+    "id": "709",
     "title": "书房的加时赛——黑丝与两个人的夜晚（上）",
     "route": "shared",
     "chapter": "放纵",
@@ -5668,7 +5676,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "709",
+    "id": "710",
     "title": "书房的加时赛——黑丝与两个人的夜晚（下）",
     "route": "shared",
     "chapter": "放纵",
@@ -5676,7 +5684,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "710",
+    "id": "711",
     "title": "导力器的保养课——亚莉莎与玲",
     "route": "shared",
     "chapter": "放纵",
@@ -5684,7 +5692,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "711",
+    "id": "712",
     "title": "三兄弟的盛宴——群交轮奸的顶点（上）",
     "route": "shared",
     "chapter": "放纵",
@@ -5692,7 +5700,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "712",
+    "id": "713",
     "title": "三兄弟的盛宴——群交轮奸的顶点（下）",
     "route": "shared",
     "chapter": "放纵",
@@ -5700,7 +5708,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "713",
+    "id": "714",
     "title": "温泉——他在那边",
     "route": "shared",
     "chapter": "放纵",
@@ -5708,7 +5716,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "714",
+    "id": "715",
     "title": "自由探索——花田边缘的午后",
     "route": "shared",
     "chapter": "放纵",
@@ -5716,7 +5724,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "715",
+    "id": "716",
     "title": "腿间的净化——低语者的解脱",
     "route": "shared",
     "chapter": "放纵",
@@ -5724,7 +5732,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "716",
+    "id": "717",
     "title": "腐化迷雾——半梦半醒的交叉",
     "route": "shared",
     "chapter": "放纵",
@@ -5732,7 +5740,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "717",
+    "id": "718",
     "title": "黑暗中的她——乳交",
     "route": "shared",
     "chapter": "放纵",
@@ -5740,7 +5748,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "718",
+    "id": "719",
     "title": "茶会之后——第二次失控",
     "route": "shared",
     "chapter": "放纵",
@@ -5748,7 +5756,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "719",
+    "id": "720",
     "title": "自由探索——银流河畔的深夜",
     "route": "shared",
     "chapter": "放纵",
@@ -5756,7 +5764,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "720",
+    "id": "721",
     "title": "塔楼上的银发——最后一瞥",
     "route": "shared",
     "chapter": "放纵",
@@ -5764,7 +5772,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "721",
+    "id": "722",
     "title": "VII班的秘密——同伴的对话",
     "route": "shared",
     "chapter": "放纵",
@@ -5772,7 +5780,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "722",
+    "id": "723",
     "title": "低语者的极限——轮奸",
     "route": "shared",
     "chapter": "放纵",
@@ -5780,7 +5788,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "723",
+    "id": "724",
     "title": "圣光之谷——乳交",
     "route": "shared",
     "chapter": "放纵",
@@ -5788,7 +5796,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "724",
+    "id": "725",
     "title": "洗干净的回归——终局之前",
     "route": "shared",
     "chapter": "终局",
@@ -5796,7 +5804,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "725",
+    "id": "726",
     "title": "终局之前的夜晚——四个人的篝火",
     "route": "shared",
     "chapter": "终局",
@@ -5804,7 +5812,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "726",
+    "id": "727",
     "title": "她的情书——独属于两人的完整性爱",
     "route": "shared",
     "chapter": "终局",
@@ -5812,7 +5820,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "727",
+    "id": "728",
     "title": "终极战斗准备——与Thalion的最终对质前夕",
     "route": "shared",
     "chapter": "终局",
@@ -5820,7 +5828,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "728",
+    "id": "729",
     "title": "最后的戒指——艾斯特雷亚的鸢尾花",
     "route": "shared",
     "chapter": "终局",
@@ -5828,7 +5836,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "729",
+    "id": "730",
     "title": "劳拉的守夜——亚尔赛德的仪式",
     "route": "shared",
     "chapter": "终局",
@@ -5836,7 +5844,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "730",
+    "id": "731",
     "title": "玲与\"天使\"——过去的对峙",
     "route": "shared",
     "chapter": "终局",
@@ -5844,7 +5852,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "731",
+    "id": "732",
     "title": "爱丽榭的最后晚餐——所有人的菜",
     "route": "shared",
     "chapter": "终局",
@@ -5852,7 +5860,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "732",
+    "id": "733",
     "title": "凯尔的笔记本——给\"之后\"",
     "route": "shared",
     "chapter": "终局",
@@ -5860,7 +5868,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "733",
+    "id": "734",
     "title": "黎明的集结——五族的誓师",
     "route": "shared",
     "chapter": "终局",
@@ -5868,7 +5876,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "734",
+    "id": "735",
     "title": "三路并进——五族的战场",
     "route": "shared",
     "chapter": "终局",
@@ -5876,7 +5884,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "735",
+    "id": "736",
     "title": "三岔路口——菲娜独自走向墓室",
     "route": "shared",
     "chapter": "终局",
@@ -5884,7 +5892,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "736",
+    "id": "737",
     "title": "守护者的安息——以身为渡",
     "route": "shared",
     "chapter": "终局",
@@ -5892,7 +5900,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "737",
+    "id": "738",
     "title": "菲娜的眼泪——守护者的安息之后",
     "route": "shared",
     "chapter": "终局",
@@ -5900,7 +5908,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "738",
+    "id": "739",
     "title": "同一件正装——断誓厅的对峙",
     "route": "shared",
     "chapter": "终局",
@@ -5908,7 +5916,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "739",
+    "id": "740",
     "title": "劳拉立于Thalion殿前——另一把剑",
     "route": "shared",
     "chapter": "终局",
@@ -5916,7 +5924,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "740",
+    "id": "741",
     "title": "你决定保护——Thalion的真相",
     "route": "shared",
     "chapter": "终局",
@@ -5924,7 +5932,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "741",
+    "id": "742",
     "title": "握把之外——Thalion的最后选择",
     "route": "shared",
     "chapter": "终局",
@@ -5932,7 +5940,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "742",
+    "id": "743",
     "title": "腐化退去——五族的黎明",
     "route": "shared",
     "chapter": "终局",
@@ -5940,7 +5948,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "743",
+    "id": "744",
     "title": "辛苦了——她告诉了他",
     "route": "shared",
     "chapter": "终局",
@@ -5948,7 +5956,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "744",
+    "id": "745",
     "title": "雾帷散后——看不见的路",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -5956,7 +5964,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "745",
+    "id": "746",
     "title": "不方便的视频——踩到蘑菇了",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -5964,7 +5972,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "746",
+    "id": "747",
     "title": "晨光里的森林——两个人的安静",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -5972,7 +5980,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "747",
+    "id": "748",
     "title": "门外的声音——腿交隐奸（上）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -5980,7 +5988,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "748",
+    "id": "749",
     "title": "门外的声音——腿交隐奸（下）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -5988,7 +5996,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "749",
+    "id": "750",
     "title": "自由探索——艾尔多利亚的晨间",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -5996,7 +6004,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "750",
+    "id": "751",
     "title": "数字与花瓣——两种语言",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6004,7 +6012,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "751",
+    "id": "752",
     "title": "篝火燃尽时——口交隐奸",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6012,7 +6020,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "752",
+    "id": "753",
     "title": "足下的发现——满月之秘",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6020,7 +6028,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "753",
+    "id": "754",
     "title": "满月之夜——狼人的后门（上）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6028,7 +6036,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "754",
+    "id": "755",
     "title": "满月之夜——狼人的后门（下）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6036,7 +6044,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "755",
+    "id": "756",
     "title": "自由探索——艾尔多利亚的午后",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6044,7 +6052,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "756",
+    "id": "757",
     "title": "两个男人——黄金罗刹的男人们",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6052,7 +6060,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "757",
+    "id": "758",
     "title": "腿间的缝隙——第一次进入",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6060,7 +6068,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "758",
+    "id": "759",
     "title": "告发——夫妻双打",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6068,7 +6076,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "759",
+    "id": "760",
     "title": "山谷的物资——不是路过",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6076,7 +6084,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "760",
+    "id": "761",
     "title": "自由探索——温泉石阶的傍晚",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6084,7 +6092,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "761",
+    "id": "762",
     "title": "温柔的净化——另一种安详",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6092,7 +6100,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "762",
+    "id": "763",
     "title": "月光百合的约定——亚莉莎与狼人法师Ⅰ",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6100,7 +6108,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "763",
+    "id": "764",
     "title": "战后的第一场对决——沼泽的剑",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6108,7 +6116,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "764",
+    "id": "765",
     "title": "决定——从纸面到地面",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6116,7 +6124,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "765",
+    "id": "766",
     "title": "自由探索——艾尔多利亚的深夜",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6124,7 +6132,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "766",
+    "id": "767",
     "title": "满月双人——狼首与灰骑",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6132,7 +6140,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "767",
+    "id": "768",
     "title": "剑与鳞的黄昏——奥蕾莉亚与蜥蜴战士Ⅰ",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6140,7 +6148,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "768",
+    "id": "769",
     "title": "不是因为满月——亚莉莎与狼人法师Ⅱ",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6148,7 +6156,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "769",
+    "id": "770",
     "title": "鳞片下的温度——倒木上的探索",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6156,7 +6164,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "770",
+    "id": "771",
     "title": "自由探索——木屋门廊的午后",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6164,7 +6172,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "771",
+    "id": "772",
     "title": "主动的腰——不是因为满月",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6172,7 +6180,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "772",
+    "id": "773",
     "title": "温泉的全部位——黄金罗刹的骄傲",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6180,7 +6188,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "773",
+    "id": "774",
     "title": "主动的腰——蜜穴的慈悲",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6188,7 +6196,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "774",
+    "id": "775",
     "title": "两个人的评价——亚莉莎也知道了",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6196,7 +6204,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "775",
+    "id": "776",
     "title": "自由探索——艾尔多利亚的黎明",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6204,7 +6212,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "776",
+    "id": "777",
     "title": "鳞甲的味道——奥蕾莉亚与蜥蜴战士Ⅱ",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6212,7 +6220,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "777",
+    "id": "778",
     "title": "她的恶作剧——猜猜我在哪",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6220,7 +6228,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "778",
+    "id": "779",
     "title": "玲的坦白——天使的碎片",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6228,7 +6236,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "779",
+    "id": "780",
     "title": "玲的终局——游戏本番",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6236,7 +6244,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "780",
+    "id": "781",
     "title": "自由探索——林间空地的余韵",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6244,7 +6252,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "781",
+    "id": "782",
     "title": "暖岩石上的回访——营地来客",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6252,7 +6260,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "782",
+    "id": "783",
     "title": "温柔的正面——亚莉莎与狼人法师Ⅲ",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6260,7 +6268,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "783",
+    "id": "784",
     "title": "书房的惯例——两个人的早晨",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6268,7 +6276,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "784",
+    "id": "785",
     "title": "甜蜜的确认——只有你一个人",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6276,7 +6284,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "785",
+    "id": "786",
     "title": "自由探索——密林小径的晨间",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6284,7 +6292,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "786",
+    "id": "787",
     "title": "河上游的矿石——两个人的野外",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6292,7 +6300,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "787",
+    "id": "788",
     "title": "轮奸净化——淫荡的救赎",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6300,7 +6308,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "788",
+    "id": "789",
     "title": "菲娜的散步——森林的新生",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6308,7 +6316,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "789",
+    "id": "790",
     "title": "自由探索——木屋门廊的深夜",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6316,7 +6324,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "790",
+    "id": "791",
     "title": "活着——十四年后的第一句话（上）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6324,7 +6332,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "791",
+    "id": "792",
     "title": "活着——十四年后的第一句话（下）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6332,7 +6340,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "792",
+    "id": "793",
     "title": "一百二十次心跳——十四年的账本",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6340,7 +6348,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "793",
+    "id": "794",
     "title": "营地的门——上来的人",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6348,7 +6356,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "794",
+    "id": "795",
     "title": "篝火边的两个人——玲的自我介绍",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6356,7 +6364,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "795",
+    "id": "796",
     "title": "自由探索——菜地藤架旁的傍晚",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6364,7 +6372,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "796",
+    "id": "797",
     "title": "晚上的约定——日常的延续",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6372,7 +6380,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "797",
+    "id": "798",
     "title": "地下的视角——裂隙的另一面",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6380,7 +6388,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "798",
+    "id": "799",
     "title": "家人的晚餐——她的女儿们",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6388,7 +6396,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "799",
+    "id": "800",
     "title": "工具间的轮——修东西的代价",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6396,7 +6404,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "800",
+    "id": "801",
     "title": "自由探索——图书室窗边的午后",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6404,7 +6412,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "801",
+    "id": "802",
     "title": "鳞与剑的夜晚——奥蕾莉亚与蜥蜴战士Ⅲ",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6412,7 +6420,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "802",
+    "id": "803",
     "title": "我也要——菲娜姐姐的秘密",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6420,7 +6428,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "803",
+    "id": "804",
     "title": "裂隙的频率——导力通讯跨过门",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6428,7 +6436,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "804",
+    "id": "805",
     "title": "鳞片与符文——破译",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6436,7 +6444,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "805",
+    "id": "806",
     "title": "封印语的钥匙——门需要两种语言",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6444,7 +6452,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "806",
+    "id": "807",
     "title": "自由探索——训练场边的余波",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6452,7 +6460,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "807",
+    "id": "808",
     "title": "满月下的完整——亚莉莎与狼人法师Ⅳ",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6460,7 +6468,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "808",
+    "id": "809",
     "title": "两个人的挑战——黄金罗刹终于趴下",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6468,7 +6476,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "809",
+    "id": "810",
     "title": "最后的酒——醉后的放肆",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6476,7 +6484,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "810",
+    "id": "811",
     "title": "三个人——满足不了我",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6484,7 +6492,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "811",
+    "id": "812",
     "title": "大鸡巴崇拜——主动的羞耻",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6492,7 +6500,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "812",
+    "id": "813",
     "title": "自由探索——厨房热气里的傍晚",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6500,7 +6508,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "813",
+    "id": "814",
     "title": "门开了——第一条回家的路",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6508,7 +6516,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "814",
+    "id": "815",
     "title": "镰刀上的第三个符文——玲的改良",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6516,7 +6524,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "815",
+    "id": "816",
     "title": "满月夜的狼尾巴——菲娜的好奇心（上）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6524,7 +6532,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "816",
+    "id": "817",
     "title": "满月夜的狼尾巴——菲娜的好奇心（下）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6532,7 +6540,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "817",
+    "id": "818",
     "title": "月光下的鳞甲——他的语言",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6540,7 +6548,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "818",
+    "id": "819",
     "title": "导力护盾的矮人骨架——乔治与哈根",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6548,7 +6556,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "819",
+    "id": "820",
     "title": "自由探索——银塔广场的余韵",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6556,7 +6564,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "820",
+    "id": "821",
     "title": "深夜的矮人小屋——沉默与嘴碎的二重奏（上）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6564,7 +6572,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "821",
+    "id": "822",
     "title": "深夜的矮人小屋——沉默与嘴碎的二重奏（下）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6572,7 +6580,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "822",
+    "id": "823",
     "title": "导力器那边——多尔金的手没停",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6580,7 +6588,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "823",
+    "id": "824",
     "title": "出发——对面也是家（上）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6588,7 +6596,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "824",
+    "id": "825",
     "title": "出发——裂隙开着（下）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6596,7 +6604,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "825",
+    "id": "826",
     "title": "不算什么——干的是屁眼又不是小穴",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6604,7 +6612,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "826",
+    "id": "827",
     "title": "只属于一个人的夜晚——黑丝的小脚",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6612,7 +6620,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "827",
+    "id": "828",
     "title": "自由探索——溪流石阶旁的午后",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6620,7 +6628,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "828",
+    "id": "829",
     "title": "夜光苔的季节——下雪了",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6628,7 +6636,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "829",
+    "id": "830",
     "title": "工坊的灯——她没走",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6636,7 +6644,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "830",
+    "id": "831",
     "title": "乔治的房间——关了灯之后",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6644,7 +6652,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "831",
+    "id": "832",
     "title": "工程师的早晨——她留下吃了早餐",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6652,7 +6660,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "832",
+    "id": "833",
     "title": "跳蛋购物——月光石（上）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6660,7 +6668,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "833",
+    "id": "834",
     "title": "跳蛋购物——月光石（下）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6668,7 +6676,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "834",
+    "id": "835",
     "title": "宴会的余温——大胆侵犯",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6676,7 +6684,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "835",
+    "id": "836",
     "title": "自由探索——训练场边的晨间",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6684,7 +6692,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "836",
+    "id": "837",
     "title": "双人份的剑士——两张嘴",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6692,7 +6700,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "837",
+    "id": "838",
     "title": "拿你没办法的夜晚——亚莉莎与狼人法师Ⅴ",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6700,7 +6708,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "838",
+    "id": "839",
     "title": "剑士的失算——反正也和他做过了（上）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6708,7 +6716,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "839",
+    "id": "840",
     "title": "剑士的失算——反正也和他做过了（下）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6716,7 +6724,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "840",
+    "id": "841",
     "title": "自由探索——艾尔多利亚的深夜",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6724,7 +6732,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "841",
+    "id": "842",
     "title": "不需要说话的人——安静的午后",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6732,7 +6740,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "842",
+    "id": "843",
     "title": "五人的夜——轮流与共享（上）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6740,7 +6748,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "843",
+    "id": "844",
     "title": "五人的夜——轮流与共享（下）",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6748,7 +6756,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "844",
+    "id": "845",
     "title": "自由探索——艾尔多利亚的日常",
     "route": "epilogue",
     "chapter": "后日谈",
@@ -6792,7 +6800,7 @@ const CHAPTERS = [
     "num": 5,
     "name": "享受和掌控",
     "phase": "shared",
-    "count": 183
+    "count": 184
   },
   {
     "num": 6,
