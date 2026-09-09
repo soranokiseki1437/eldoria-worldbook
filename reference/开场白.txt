@@ -43,6 +43,6 @@
 ```
 </StatusBlock>
 <WorldState>
-镜头外动态|屋外森林深处传来一声悠长的鸣叫，随即归于沉寂
+📡 镜头外动态|屋外森林深处传来一声悠长的鸣叫，随即归于沉寂
 </WorldState>
 </overall>
