@@ -1,4 +1,4 @@
-// 自动生成于: 2026-09-10T03:35:52.107431
+// 自动生成于: 2026-09-10T03:58:56.526330
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -1829,14 +1829,6 @@ const EVENTS = [
   },
   {
     "id": "229",
-    "title": "晨雾远巡——系紧的领巾与背影",
-    "route": "shared",
-    "chapter": "渐进接触",
-    "summary": "",
-    "type": "main"
-  },
-  {
-    "id": "230",
     "title": "自由探索——工坊中的午后",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1844,7 +1836,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "231",
+    "id": "230",
     "title": "艾德里安的扑克——乳的初次",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1852,7 +1844,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "232",
+    "id": "231",
     "title": "晚餐时分——爱丽榭的全员篝火",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1860,7 +1852,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "233",
+    "id": "232",
     "title": "酒后扑克——第一次给别人口交",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1868,7 +1860,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "234",
+    "id": "233",
     "title": "月光下的古老契约——月语者的馈赠",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1876,7 +1868,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "235",
+    "id": "234",
     "title": "自由探索——营地的深夜",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1884,7 +1876,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "236",
+    "id": "235",
     "title": "工坊里的午后——共同语言",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1892,7 +1884,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "237",
+    "id": "236",
     "title": "凯尔的学术——乳交实践",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1900,7 +1892,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "238",
+    "id": "237",
     "title": "墓室门前的暗金眼——再等我一下",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1908,7 +1900,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "239",
+    "id": "238",
     "title": "自由探索——营地的深夜",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1916,7 +1908,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "240",
+    "id": "239",
     "title": "酒后之夜——黎恩的指使",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1924,7 +1916,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "241",
+    "id": "240",
     "title": "鬼之力的苔藓——黎恩与法林",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1932,7 +1924,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "242",
+    "id": "241",
     "title": "凯尔的再战——从乳到口",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1940,7 +1932,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "243",
+    "id": "242",
     "title": "自由探索——营地的黎明",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1948,7 +1940,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "244",
+    "id": "243",
     "title": "镰刀对阿卡迪亚——玲与奥蕾莉亚",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1956,7 +1948,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "245",
+    "id": "244",
     "title": "黎恩的安排——让她和乔治独处",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1964,7 +1956,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "246",
+    "id": "245",
     "title": "圣光花田的样本采集——艾玛与菲",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1972,7 +1964,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "247",
+    "id": "246",
     "title": "北线的测绘——猎兵与鬼之力",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1980,7 +1972,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "248",
+    "id": "247",
     "title": "自由探索——林间空地的午后",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1988,7 +1980,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "249",
+    "id": "248",
     "title": "凯尔的山洞——采样与被困",
     "route": "shared",
     "chapter": "渐进接触",
@@ -1996,7 +1988,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "250",
+    "id": "249",
     "title": "旧货的成分——艾德里安与乔治",
     "route": "shared",
     "chapter": "渐进接触",
@@ -2004,7 +1996,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "251",
+    "id": "250",
     "title": "雷雨中的尾巴——她握错了（上）",
     "route": "shared",
     "chapter": "渐进接触",
@@ -2012,7 +2004,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "252",
+    "id": "251",
     "title": "雷雨中的尾巴——她握错了（中）",
     "route": "shared",
     "chapter": "渐进接触",
@@ -2020,7 +2012,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "253",
+    "id": "252",
     "title": "雷雨中的尾巴——她握错了（下）",
     "route": "shared",
     "chapter": "渐进接触",
@@ -2028,7 +2020,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "254",
+    "id": "253",
     "title": "装睡的代价——黎恩的恶作剧",
     "route": "shared",
     "chapter": "渐进接触",
@@ -2036,7 +2028,7 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "255",
+    "id": "254",
     "title": "自由探索——菜地旁的午后",
     "route": "shared",
     "chapter": "渐进接触",
@@ -2044,7 +2036,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "256",
+    "id": "255",
     "title": "水车下的暗影——腐化史莱姆",
     "route": "shared",
     "chapter": "渐进接触",
@@ -2052,7 +2044,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "257",
+    "id": "256",
     "title": "符文墨水的原料——法林与菲",
     "route": "shared",
     "chapter": "渐进接触",
@@ -2060,7 +2052,7 @@ const EVENTS = [
     "type": "main"
   },
   {
-    "id": "258",
+    "id": "257",
     "title": "温泉的白雾——足尖的罗刹",
     "route": "shared",
     "chapter": "渐进接触",
@@ -2068,8 +2060,16 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
-    "id": "259",
+    "id": "258",
     "title": "东线的暗火——预警石板报警",
+    "route": "shared",
+    "chapter": "渐进接触",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "259",
+    "title": "晨雾远巡——系紧的领巾与背影",
     "route": "shared",
     "chapter": "渐进接触",
     "summary": "",
