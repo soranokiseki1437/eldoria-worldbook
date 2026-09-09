@@ -35,13 +35,21 @@ python scripts/story_tool.py refs <章节ID>
 # 步骤 2：对 TXT 执行全局自动重编号引擎
 python scripts/renumber_events.py
 
-# 步骤 3：执行重编号后的级联更新（弧总览 + sex 索引同步）
+# 步骤 3：执行重编号后的级联更新与索引增补（铁律）
+# ① 更新 docs/story/_连续叙事弧线章节总览.md（平移全部受影响的弧线引用、更新各阶段章数、首尾章及总章数统计）
+# ② 更新 docs/story/_sex_index.txt（平移已有编号，且必须将新增章节的性行为标签收录进对应分类、更新分类计数，删除章节相应剔除）
 python scripts/post_renumber_updates.py
 
-# 步骤 4：重新构建浏览器并检查索引漂移警告
+# 步骤 4：方案文档闭环同步（铁律）
+# 方案中已写成 TXT 落地的章节直接彻底删除，更新剩余方案的排期锚点，严禁记录修改痕迹，完成即删干净。
+
+# 步骤 5：重新构建浏览器并检查索引漂移警告
 python scripts/generate_chapter_browser.py
 
-# 步骤 5：运行最终全流程验证
+# 步骤 6：运行全量一致性审计（必须 100% 绿灯）
+python scripts/check_consistency.py
+
+# 步骤 7：运行最终全流程构建
 python scripts/rebuild_all.py
 ```
 
