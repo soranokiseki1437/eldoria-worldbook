@@ -353,6 +353,20 @@ def validate_prefix(prefix):
                 f'[{eid}] Rule9: 非法阶段值 — "{stage}" (合法: {", ".join(sorted(VALID_STAGES))}) — {name}'
             )
 
+    # Rule 10: 设定白名单合规检查 — 严禁出现未建档的非原著/虚构角色（如莎拉）
+    _FORBIDDEN_CHARS = [
+        re.compile(r'莎拉'),
+    ]
+    for eid, name, fp, data in events:
+        for field in ['情境', '核心', '第三者', '章节任务', '名称']:
+            text = data.get(field, '')
+            for pat in _FORBIDDEN_CHARS:
+                m = pat.search(text)
+                if m:
+                    violations.append(
+                        f'[{eid}] Rule10: 出现未建档的不存在角色「{m.group(0)}」 in {field} — {name}'
+                    )
+
     # 终止条件 3 纯物象定格顺带提示（建议人物主动动作收纳至条件2，条件3保持静止物象）
     tc3_hits = []
     _TC3_ACTION_PATS = [

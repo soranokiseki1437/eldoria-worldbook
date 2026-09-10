@@ -15,15 +15,18 @@ description: 世界书工程运维、自动化构建与全库一致性检查技�
 无论进行了章节新增、内容精修还是状态栏更新，完成修改后必须依次执行：
 
 ```bash
-# 步骤 1：验证所有 TXT 文件语法与必填字段
+# 步骤 1：验证所有 TXT 文件语法与必填字段（包含情境规范、TC3纯物象提示等）
 python scripts/story_tool.py validate
 
-# 步骤 2：执行全库一致性审计（编号匹配/命名/sex索引/弧总览）
+# 步骤 2：若涉及新增地点或生物/怪物，核实 docs/location/_地点总览.TXT 或 docs/creature/_怪物与生物总览.TXT 是否已同步更新对应档案
+
+# 步骤 3：执行全库一致性审计（编号匹配/命名/sex索引/弧总览）
 python scripts/check_consistency.py
 
-# 步骤 3：一键全流程生成（构建 JSON + 编译 HTML 章节浏览器）
+# 步骤 4：一键全流程生成（构建 JSON + 编译 HTML 章节浏览器）
 python scripts/rebuild_all.py
 ```
+
 
 ### 2. 章节增删移与重编号流水线 (Pipeline B)
 涉及调整章节顺序、插入章节或删除章节时，严格遵循以下顺序：
