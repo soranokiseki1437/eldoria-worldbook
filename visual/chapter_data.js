@@ -1,4 +1,4 @@
-// 自动生成于: 2026-09-10T10:27:20.644448
+// 自动生成于: 2026-09-10T14:00:48.523827
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -2821,19 +2821,19 @@ const EVENTS = [
   },
   {
     "id": "353",
-    "title": "会议厅·营地防线推演——通宵的图纸与府邸清单",
-    "route": "shared",
-    "chapter": "跨线",
-    "summary": "",
-    "type": "main"
-  },
-  {
-    "id": "354",
     "title": "商道的巨石——精油与指交（下）",
     "route": "shared",
     "chapter": "跨线",
     "summary": "",
     "type": "nsfw"
+  },
+  {
+    "id": "354",
+    "title": "会议厅·营地防线推演——通宵的图纸与府邸清单",
+    "route": "shared",
+    "chapter": "跨线",
+    "summary": "",
+    "type": "main"
   },
   {
     "id": "355",
@@ -2917,7 +2917,7 @@ const EVENTS = [
   },
   {
     "id": "365",
-    "title": "自由探索——密林小径的午后",
+    "title": "暴风雨的营地——木屋窗前的守候",
     "route": "shared",
     "chapter": "跨线",
     "summary": "",
@@ -3381,7 +3381,7 @@ const EVENTS = [
   },
   {
     "id": "423",
-    "title": "自由探索——艾尔多利亚的日常",
+    "title": "门外的长廊——训练场的剑声与目光",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",

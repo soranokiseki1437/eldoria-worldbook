@@ -211,6 +211,39 @@ def main():
     if arc_bad == 0:
         ok("弧总览全部引用/统计闭合")
 
+    print("\n[7] 拆分章节与连续叙事弧连续相邻强校验")
+    arc_split_bad = 0
+    # 7a. 拆分表必须连续相邻: [ChX, ChX+1, ...]
+    if os.path.exists(ARC_FILE):
+        for line in lines:
+            if '拆分形成连续弧' not in line:
+                continue
+            fields = line.split('|')
+            cids = [int(x) for x in re.findall(r'Ch(\d+)', fields[2])]
+            if cids:
+                expected = list(range(cids[0], cids[0] + len(cids)))
+                if cids != expected:
+                    arc_split_bad += 1
+                    fail(f"拆分弧编号不连续打断: {fields[2].strip()} 实际={cids} 预期={expected}")
+
+    # 7b. 文件系统所有（上）篇必须紧邻（中）或（下）篇，（中）篇必须紧邻（下）篇
+    for cid_int in sorted(int(k) for k in fs):
+        title = fs[str(cid_int)]['title']
+        if title.endswith('（上）'):
+            next_cid = str(cid_int + 1)
+            next_title = fs.get(next_cid, {}).get('title', '')
+            if not (next_title.endswith('（下）') or next_title.endswith('（中）')):
+                arc_split_bad += 1
+                fail(f"拆分上篇被打断: Ch{cid_int}【{title}】与下一章 Ch{next_cid}【{next_title}】不连续相邻")
+        elif title.endswith('（中）'):
+            next_cid = str(cid_int + 1)
+            next_title = fs.get(next_cid, {}).get('title', '')
+            if not next_title.endswith('（下）'):
+                arc_split_bad += 1
+                fail(f"拆分中篇被打断: Ch{cid_int}【{title}】与下一章 Ch{next_cid}【{next_title}】不连续相邻")
+    if arc_split_bad == 0:
+        ok("全部拆分双章/三章 100% 严格连续相邻，无插队打断")
+
     print("\n" + "=" * 60)
     if FAILED:
         print(f"  ❌ 发现 {len(FAILED)} 处不一致（含重复计数）")

@@ -700,3 +700,37 @@ renumber_events.py 重命名文件为 `001：xxx.TXT`（3位补零），但 TXT 
 - See Also: LRN-20260810-006
 
 ---
+
+## [LRN-20260910-001] best_practice
+
+**Logged**: 2026-09-10T12:50:00Z
+**Priority**: high
+**Status**: pending
+**Area**: writing
+
+### Summary
+第一批试音三章（Ch353/Ch715/Ch291）标定经验固化：用户亲自修改 Ch353 第12行为最高基准，提炼去机械感与去AI化写作规律十诫，全库精修与撰写严格依此执行。
+
+### Details
+用户修改示范表明：
+1. 主语显化：多人与重点动作首动词指代清晰，不用模糊连续“他/她”。
+2. 禁“是真的XX”：如“这次是真的心虚”直接改为“艾德里安心虚了”。
+3. 禁“先…然后…”流水账步骤：转为连贯动作。
+4. 禁“即使…依然…”假对仗：直接落地描写真实语气与反应。
+5. 禁“她在想”认知前缀：摄影机镜头直接呈现内心与感官。
+6. 压缩碎片单动词短句，合并为连贯长句。
+7. 反应落地简洁化：高潮与呻吟直接写（如“没忍住发出了一声娇喘”），剔除文学化长篇虚浮修辞。
+8. 消除同段重复词（同段不可两次出现同一特征如“双腿发软”）。
+9. 遵循自然物理时序与汉语前因后果语序。
+
+### Suggested Action
+精修章节时对照 `.agents/rules/writing-guards.md` 第五节及 `story-polisher` 技能 Checklist；实操案例参考 `.agents/skills/story-polisher/references/标定案例与精修参照.md`。
+
+### Metadata
+- Source: user_feedback
+- Related Files: .agents/rules/writing-guards.md, .agents/skills/story-polisher/references/标定案例与精修参照.md, docs/story/4：跨线/353：商道的巨石——精油与指交（下）.TXT
+- Tags: 试音标定, 去AI味, 写作规律, 精修十诫
+- See Also: LRN-20260806-005
+
+---
+
