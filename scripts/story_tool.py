@@ -353,7 +353,29 @@ def validate_prefix(prefix):
                 f'[{eid}] Rule9: 非法阶段值 — "{stage}" (合法: {", ".join(sorted(VALID_STAGES))}) — {name}'
             )
 
-    return violations, rule6c_hits
+    # 终止条件 3 纯物象定格顺带提示（建议人物主动动作收纳至条件2，条件3保持静止物象）
+    tc3_hits = []
+    _TC3_ACTION_PATS = [
+        re.compile(r'(?:推开|拉开|关上|合上)门'),
+        re.compile(r'(?:穿上|穿好|穿戴|系紧|系好|扣好)'),
+        re.compile(r'(?:跑出|跑掉|离去|离开|撤离|逃跑)'),
+        re.compile(r'(?:踹翻|蹬翻|扑倒|抱起|抱住)'),
+        re.compile(r'(?:站起身|站起|转身离|快步走|步入夜色)'),
+    ]
+    for eid, name, fp, data in events:
+        tc = data.get('章节终止条件', '')
+        m_tc3 = re.search(r'3\s*[\.、：:]\s*(.*)', tc)
+        if m_tc3:
+            tc3_text = m_tc3.group(1).strip()
+            for pat in _TC3_ACTION_PATS:
+                m_act = pat.search(tc3_text)
+                if m_act:
+                    tc3_hits.append(
+                        f'[{eid}] TC3提示: 终止条件3建议纯化为物象定格，发现动作叙事「{m_act.group(0)}」 — {name}'
+                    )
+                    break
+
+    return violations, rule6c_hits, tc3_hits
 
 
 # ═══════════════════════════════════════════════════════════
@@ -377,11 +399,13 @@ def main():
 
         all_violations = []
         all_rule6c = []
+        all_tc3 = []
         total = 0
         for pfx in prefixes:
-            violations, rule6c = validate_prefix(pfx)
+            violations, rule6c, tc3 = validate_prefix(pfx)
             all_violations.extend(violations)
             all_rule6c.extend(rule6c)
+            all_tc3.extend(tc3)
             pfx_events = list_txt_files(pfx)
             total += len(pfx_events)
             if violations:
@@ -393,6 +417,9 @@ def main():
             print(f'\n💡 Rule6c 提示 {len(all_rule6c)} 处（"没有X没有Y"名词排比，合理用法，不计违规）')
             for v in all_rule6c:
                 print(f'  {v}')
+
+        if all_tc3:
+            print(f'\n💡 终止条件3 提示 {len(all_tc3)} 处（建议动作收纳至条件2，条件3保持纯物象/环境定格）')
 
         if all_violations:
             print(f'\n❌ 发现 {len(all_violations)} 个问题:\n')
