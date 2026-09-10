@@ -1,4 +1,4 @@
-// 自动生成于: 2026-09-10T15:51:33.944932
+// 自动生成于: 2026-09-10T22:59:03.800225
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -4997,7 +4997,7 @@ const EVENTS = [
   },
   {
     "id": "625",
-    "title": "她的密码——石殿的告别",
+    "title": "艾玛的密码——石殿的告别",
     "route": "shared",
     "chapter": "放纵",
     "summary": "",
