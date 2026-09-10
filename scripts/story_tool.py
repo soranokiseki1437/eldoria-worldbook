@@ -7,6 +7,7 @@ story_tool.py — 章节验证与查看工具
   python story_tool.py list                  # 列出所有章节ID+标题
   python story_tool.py show <chapter_id>     # 显示单个章节TXT内容
   python story_tool.py refs <chapter_id>     # 查找所有引用了该章节ID的TXT文件
+  python story_tool.py wc <chapter_id>...    # 检查单章或多章字数与等级合规（LRN-20260910-003）
 
 验证规则:
   Rule1: 禁止事件编号引用（叙事文本中不得出现纯数字事件ID）
@@ -92,13 +93,14 @@ def list_txt_files(prefix=None):
 # ═══════════════════════════════════════════════════════════
 
 def validate_prefix(prefix):
-    """验证指定前缀的所有TXT文件，返回 (违规列表, Rule6c提示列表)"""
+    """验证指定前缀的所有TXT文件，返回 (违规列表, Rule6c提示列表, TC3提示列表)"""
     violations = []
     rule6c_hits = []
+    tc3_hits = []
     events = list_txt_files(prefix)
 
     if not events:
-        return violations, rule6c_hits
+        return violations, rule6c_hits, tc3_hits
 
     # Rule 3: 重复ID (filename-based — impossible with file system, but check ID field)
     seen_ids = {}
@@ -514,6 +516,61 @@ def main():
         print()
         with open(fp, 'r', encoding='utf-8') as f:
             print(f.read())
+
+    elif cmd == 'wc':
+        if len(sys.argv) < 3:
+            print('用法: story_tool.py wc <chapter_id> [chapter_id2 ...]')
+            sys.exit(1)
+        target_ids = sys.argv[2:]
+        events = list_txt_files()
+        events_dict = {eid: (name, fp, data) for eid, name, fp, data in events}
+
+        for tid in target_ids:
+            found_key = None
+            if tid in events_dict:
+                found_key = tid
+            else:
+                for k in events_dict:
+                    if k.isdigit() and tid.isdigit() and int(k) == int(tid):
+                        found_key = k
+                        break
+                    elif k == tid:
+                        found_key = k
+                        break
+
+            if not found_key:
+                print(f'❌ 章节 {tid} 未找到')
+                continue
+
+            name, fp, data = events_dict[found_key]
+            sc = data.get('情境', '')
+            sc_lines = [re.sub(r'^\s*-\s*', '', l).strip() for l in sc.split('\n') if re.sub(r'^\s*-\s*', '', l).strip()]
+            sc_clean = ''.join(sc_lines)
+            sc_len = len(sc_clean)
+            p_cnt = len(sc_lines)
+
+            if sc_len < 300:
+                level_str = '⚠️ 骨架偏短 (<300字，待充实)'
+            elif sc_len <= 500:
+                level_str = 'Level 1: 轻量微交互 (300~500字)'
+            elif sc_len <= 699:
+                level_str = '常规推进/过渡章节 (501~699字)'
+            elif sc_len <= 850:
+                level_str = 'Level 2: 标准推进/单阶段 (700~850字)'
+            elif sc_len <= 1000:
+                level_str = 'Level 3: 重头大章/多阶段 (851~1000字)'
+            elif sc_len <= 1050:
+                level_str = 'Level 3 (临界): 接近上限 (1001~1050字)'
+            elif sc_len <= 1200:
+                level_str = '⚠️ 黄色预警: 超出1050字警戒线，偏小说化需审视水分'
+            else:
+                level_str = '❌ 红色超标: 超出1200字红线，强制精简'
+
+            phase_name = os.path.basename(os.path.dirname(fp))
+            print(f'【Ch{found_key} 《{name}》】({phase_name})')
+            print(f'  • 情境字数: {sc_len} 字符 | 段落数: {p_cnt} 段')
+            print(f'  • 等级评定: {level_str}')
+            print(f'  • 文件路径: {fp}\n')
 
     else:
         print(f'未知命令: {cmd}')
