@@ -340,6 +340,8 @@ def _make_ref_entry(data, order_start, uid=None, position=1, depth=None, header_
     always_on = data.get('始终触发', '否').strip() == '是'
     if depth is None:
         depth = int(data.get('注入深度', '3'))
+    if '顺序' in data:
+        order_start = int(data['顺序'])
     content = data.get('内容', '')
     # Strip leading "- " bullets from content lines (参照格式：纯文本换行，不bullet)
     content = re.sub(r'^[ \t]*-[ \t]', '', content, flags=re.MULTILINE)
@@ -400,7 +402,7 @@ def load_reference_entries():
         '章节追踪指令':        {'order': 999},
         '游戏状态界面':        {'order': 998},
         '写作与视角指令':        {'order': 100},
-        '世界时间并行和隐奸':  {'order': 100},
+        '世界时间并行和隐奸':  {'order': 1000},
         '自由探索':            {'order': 100},
     }
 

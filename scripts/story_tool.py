@@ -247,7 +247,10 @@ def validate_prefix(prefix):
     _DOUBLE_NEG_RE = re.compile(r'没有[^。！？；\n]{1,30}没有')
     def _in_quote(body, m):
         """匹配起点前双引号计数为奇数 → 命中处于引号对话内，豁免（对话口语"不是X是Y"为活人说话，用户裁决2026-08-10）"""
-        return body[:m.start()].count('"') % 2 == 1
+        prefix = body[:m.start()]
+        in_ascii_quote = prefix.count('"') % 2 == 1
+        in_cjk_quote = prefix.count('“') > prefix.count('”')
+        return in_ascii_quote or in_cjk_quote
 
     _NEG_EXCLUDE_PATS = [
         re.compile(r'是不是'),                        # "是不是"疑问词（"她问是不是吃醋了，他承认是"）
