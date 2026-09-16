@@ -1,4 +1,4 @@
-// 自动生成于: 2026-09-16T14:29:45.484803
+// 自动生成于: 2026-09-16T14:42:07.777412
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -2973,7 +2973,7 @@ const EVENTS = [
   },
   {
     "id": "372",
-    "title": "书架的窄缝——屏息之间的急就章",
+    "title": "书架的窄缝——屏息之间的紧急平息",
     "route": "shared",
     "chapter": "跨线",
     "summary": "",
