@@ -1,4 +1,4 @@
-// 自动生成于: 2026-09-16T19:55:13.666460
+// 自动生成于: 2026-09-16T20:03:07.908563
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -3957,7 +3957,7 @@ const EVENTS = [
   },
   {
     "id": "495",
-    "title": "菲的沉默——晨间的唇",
+    "title": "高梯的晃动——古籍架后的初次破戒",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",
@@ -3965,23 +3965,23 @@ const EVENTS = [
   },
   {
     "id": "496",
-    "title": "雨季的暴雨——混浊的银流河",
+    "title": "雨幕的测绘棚——正经图纸与失望的眼神",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "main"
+    "type": "nsfw"
   },
   {
     "id": "497",
-    "title": "自由探索——艾尔多利亚的晨间",
+    "title": "壁画的盲区——屏息之间的温热吞咽",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "main"
+    "type": "nsfw"
   },
   {
     "id": "498",
-    "title": "桌下之口——祖厅的晚餐",
+    "title": "微热的共鸣石——抬腿侧入与魔力潮热",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",
@@ -3989,7 +3989,7 @@ const EVENTS = [
   },
   {
     "id": "499",
-    "title": "狩猎后的独处——猎兵的方式",
+    "title": "厚重的兽皮毯——大姐姐的主动骑乘",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",
@@ -3997,7 +3997,7 @@ const EVENTS = [
   },
   {
     "id": "500",
-    "title": "雷恩的回礼——劳拉与雷恩",
+    "title": "作战沙盘的阴影——逆光剪影与站立顶撞",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",
@@ -4005,7 +4005,7 @@ const EVENTS = [
   },
   {
     "id": "501",
-    "title": "两颗心的重量——乳交与泉眼",
+    "title": "摇曳的烛光——精油手交与未知的口交",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",
@@ -4013,11 +4013,11 @@ const EVENTS = [
   },
   {
     "id": "502",
-    "title": "自由探索——艾尔多利亚的深夜",
+    "title": "晨曦的微光——全面覆盖与身心归巢",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",
-    "type": "main"
+    "type": "nsfw"
   },
   {
     "id": "503",
