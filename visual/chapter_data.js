@@ -1,4 +1,4 @@
-// 自动生成于: 2026-09-16T15:34:18.328183
+// 自动生成于: 2026-09-16T15:41:39.299221
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -2477,7 +2477,7 @@ const EVENTS = [
   },
   {
     "id": "310",
-    "title": "功臣的报偿——黑丝下的踩碾与销毁的图纸",
+    "title": "退敌的奖励——黑丝足弓与烧焦图纸",
     "route": "shared",
     "chapter": "跨线",
     "summary": "",
@@ -2493,7 +2493,7 @@ const EVENTS = [
   },
   {
     "id": "312",
-    "title": "窗棂下的雪乳——黏腻的声响与烈酒的幌子",
+    "title": "暴雨的工坊——解衣乳交与矮人烈酒",
     "route": "shared",
     "chapter": "跨线",
     "summary": "",
@@ -2509,7 +2509,7 @@ const EVENTS = [
   },
   {
     "id": "314",
-    "title": "摇曳的夜光——指尖套弄与前三事的供认",
+    "title": "摇曳的夜光——指尖套弄与秘密坦白",
     "route": "shared",
     "chapter": "跨线",
     "summary": "",
@@ -2965,7 +2965,7 @@ const EVENTS = [
   },
   {
     "id": "371",
-    "title": "微凉的茶盏——大腿内侧的包裹",
+    "title": "微凉的茶杯——大腿内侧的包裹",
     "route": "shared",
     "chapter": "跨线",
     "summary": "",
@@ -2981,7 +2981,7 @@ const EVENTS = [
   },
   {
     "id": "373",
-    "title": "隔帘的长案——厚重桌布下的咽吞",
+    "title": "暮色的长桌——厚重桌布下的咽吞",
     "route": "shared",
     "chapter": "跨线",
     "summary": "",
@@ -2989,7 +2989,7 @@ const EVENTS = [
   },
   {
     "id": "374",
-    "title": "紫杉的暗香——卧房烛光下的供词",
+    "title": "紫杉的墨香——卧房烛光下的坦白",
     "route": "shared",
     "chapter": "跨线",
     "summary": "",
