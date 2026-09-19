@@ -210,9 +210,9 @@ def validate_prefix(prefix):
                 violations.append(f'[{eid}] 粉银: 应为"粉色"')
 
     # Rule 5: 必填字段检查（所有事件）
-    # 必填: ID, 名称, NSFW, 情境, 核心
+    # 必填: ID, 名称, NSFW, 总情境数, 情境, 核心
     # 条件字段: 性行为等级(NSFW=是时), 阶段, 第三者, 黎恩知情, 占有欲确认, 好感影响
-    REQUIRED_FIELDS = ['ID', '名称', 'NSFW', '情境', '核心']
+    REQUIRED_FIELDS = ['ID', '名称', 'NSFW', '总情境数', '情境', '核心']
     for eid, name, fp, data in events:
         for field in REQUIRED_FIELDS:
             if field not in data or not data[field].strip():
