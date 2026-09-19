@@ -38,7 +38,7 @@ DOCS_DIR    = os.path.join(PROJECT_DIR, "docs")
 MD_DIR      = DOCS_DIR  # 分md在 docs/ 目录下
 
 # ─── 版本号（与 git 版本号对齐） ────────────────────────
-VERSION = "V10.29.0"
+VERSION = "V10.30.0"
 VERSION_TAG = f"Eldoria_{VERSION}"
 
 # 主输出文件 = 带版本号的文件名（输出到 output/ 目录）
@@ -84,7 +84,7 @@ def _load_all_events():
             _sex_act = _data.get('性行为等级', '') or _data.get('性行为', '')
             _phase = _data.get('情感阶段', '') or _data.get('情感', '') or _data.get('阶段', '')
 
-            # 构建 content（对齐俺妹ver1.41 — 仅三个新字段：核心目标/任务/终止条件）
+            # 构建 content
             import re as _re_ch
             _ch_num = _re_ch.search(r'\d+', _eid)
             _ch_n = int(_ch_num.group()) if _ch_num else 0
@@ -215,9 +215,9 @@ _PHASE_KEYWORDS = {
 
 
 def _auto_keys(chapter_id, data):
-    """章节条目关键词：照抄俺妹ver1.41——单key "第N章" 格式。
+    """章节条目关键词：单key "第N章" 格式。
 
-    参考文件所有章节条目仅用1个key，selectiveLogic=0(OR)即命中即触发。
+    所有章节条目仅用1个key，selectiveLogic=0(OR)即命中即触发。
     """
     import re as _re
     _num = _re.search(r'\d+', chapter_id)
@@ -254,7 +254,6 @@ def _get_md_entries(prefix, tag, base_order=160):
     Returns:
         条目列表（uid=None），position=4, depth=2, order=600
         章节递归属性：excludeRecursion=True(不可递归), preventRecursion=False(可触发下级条目)
-        （对齐俺妹ver1.41——事件与系统指令同处position=4，已验证可行）
     """
     _entries = []
     _all = _load_all_events()
@@ -313,12 +312,12 @@ def _parse_reference_txt(filepath):
 
 def _make_ref_entry(data, order_start, uid=None, position=1, depth=None, header_prefix=None):
     """Create a world book entry from a parsed reference TXT.
-    Maps TXT fields to JSON entry format (参照 我的妹妹...ver1.41).
+    Maps TXT fields to JSON entry format.
 
     Args:
         position: 插入段位 (0=角色定义前, 1=角色定义后, 4=深度上下文)
         depth: 段位内优先级。None时从TXT '注入深度'字段读取
-        header_prefix: 非始终触发条目的自我标识头部（参照俺妹ver1.41 — 角色卡/地点资料等）
+        header_prefix: 非始终触发条目的自我标识头部（角色卡/地点资料等）
     """
     name = data.get('名称', 'Unknown')
     keywords_str = data.get('触发关键词', '')
@@ -331,7 +330,7 @@ def _make_ref_entry(data, order_start, uid=None, position=1, depth=None, header_
     # Strip leading "- " bullets from content lines (参照格式：纯文本换行，不bullet)
     content = re.sub(r'^[ \t]*-[ \t]', '', content, flags=re.MULTILINE)
 
-    # Prepend self-identifying header (参照俺妹ver1.41)
+    # Prepend self-identifying header
     # 所有条目都需要头部——无论始终触发还是选择性触发——让AI知道内容描述的是什么
     if header_prefix:
         content = f"# {header_prefix}：{name}\n\n{content}"
@@ -342,7 +341,7 @@ def _make_ref_entry(data, order_start, uid=None, position=1, depth=None, header_
     else:
         keys = []
 
-    # 递归属性（参照俺妹ver1.41设计）：
+    # 递归属性：
     # - constant条目：递归机制对其无意义，双false
     # - 非constant概念条目（角色/地点/生物等）：不可递归+防止进一步递归
     if always_on:
@@ -373,7 +372,7 @@ def load_reference_entries():
     """Scan all docs/ subdirectories for TXT files and generate entries.
     Returns list of entries in display order.
 
-    Position assignment (参照 俺妹 ver1.41 健康版):
+    Position assignment:
     - System instructions (事件追踪/游戏状态/叙述风格) → pos=4
     - chapter/ constant=true → pos=0 (world-building constants)
     - Other dirs constant=true → pos=0 (overview tables)
@@ -388,16 +387,16 @@ def load_reference_entries():
         '游戏状态界面':        {'order': 998},
         '写作与视角指令':        {'order': 100},
         '背德与越界心理':        {'order': 200},
-        '世界时间并行和隐奸':  {'order': 1000},
+        '世界时间并行和隐奸':  {'order': 997},
         '自由探索':            {'order': 100},
     }
 
-    # Supplementary systems: pos=4, depth=4 (参照俺妹 好感度分级系统)
+    # Supplementary systems: pos=4, depth=4 (好感度分级系统)
     SUPPLEMENTARY_SYSTEMS = {
         '好感度分级系统总览': {'position': 4, 'depth': 4, 'order': 100},
     }
 
-    # 非始终触发条目的自我标识头部（参照俺妹ver1.41）
+    # 非始终触发条目的自我标识头部
     # 始终激活条目（constant）不需要头部；选择性条目被递归激活时才需要
     HEADER_PREFIX = {
         'character':  '角色卡',
@@ -449,7 +448,7 @@ def load_reference_entries():
             hpfx = HEADER_PREFIX.get(subdir_name)
 
             # Determine position, depth, order
-            # 参照俺妹健康版：同position+depth的条目共享相同order
+            # 同position+depth的条目共享相同order
             if name in SYSTEM_INSTRUCTIONS:
                 si = SYSTEM_INSTRUCTIONS[name]
                 entry = _make_ref_entry(data, si['order'], position=4, depth=None, header_prefix=hpfx)
@@ -628,7 +627,7 @@ def build(dry_run=False):
         print(f"[step 4] 验证通过: {len(all_entries)} 条条目全部合法")
 
     # 4.5 精简格式 — 13字段条目，无extensions/characterFilter/originalData膨胀
-    # 每条结构开销 ~90 bytes（vs 俺妹43字段 ~945 bytes/条）
+    # 每条结构开销 ~90 bytes（vs 完整43字段 ~945 bytes/条）
     struct_overhead = len(json.dumps(OrderedDict([(k, None) for k in [
         "uid","key","keysecondary","comment","content","constant",
         "selective","order","position","depth","group",

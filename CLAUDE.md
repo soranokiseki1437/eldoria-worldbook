@@ -1,7 +1,7 @@
 # CLAUDE.md — 世界书构建与章节增强专用Agent
 
-> **定位**：Eldoria世界书 · 100%对齐俺妹ver1.41格式
-> **版本**：v10.29.0 · 2026-09-08 · 9阶段
+> **定位**：Eldoria世界书 · 精简13字段标准格式
+> **版本**：v10.30.0 · 2026-09-20 · 9阶段
 > **权威规则**：`docs/story/_TEMPLATE_RULES.md`（写作规则全集）· `docs/story/_短对话修复方案.md`（对话修复）· `方案/全库转向标号情境慢推体系重构方案.md`（标号情境慢推体系）
 
 ---
@@ -27,7 +27,7 @@
 | `excludeRecursion` | 不可递归：不被其他条目递归激活 | `true` | `true` | `false` |
 | `preventRecursion` | 防止进一步递归：激活后不触发下级扫描 | `false` | `true` | `false` |
 
-> 设计来源：俺妹ver1.41 — 章节只被key直接触发但可触发角色/地点条目；概念条目是终端节点不触发任何下级递归。
+> 递归设计：章节只被key直接触发但可触发角色/地点条目；概念条目是终端节点不触发任何下级递归。
 
 ### 1.3 章节体系
 
@@ -253,7 +253,7 @@ docs/{chapter,character,world,magic,creature,location,npc}/  ← 设定
 方案/去机械感和碎片化叙述重要经验.txt  ← 对话碎片修复·情感填充·标点规范（《散场时分——各自的归处》《甜蜜的勒索——吻我我就起来》精修提炼）
 scripts/{build_eldoria,rebuild_all,renumber_events,story_tool,generate_chapter_browser,update_chapter_map,assign_chapters,story_config,check_consistency,fix_index_numbering,post_renumber_updates}.py
 docs2/{story,character,world,magic,npc}/  ← 第二部方案（线代号体系，引-X/帝-X/维-X；`docs2/story/_第二部章节增加方案.md` 为章节方案权威源）
-output/Eldoria_V10.29.0.json       ← 派生产物，不可手动编辑（版本号与git对齐）
+output/Eldoria_V10.30.0.json       ← 派生产物，不可手动编辑（版本号与git对齐）
 ```
 
 ### 2.4 弧线总览维护
