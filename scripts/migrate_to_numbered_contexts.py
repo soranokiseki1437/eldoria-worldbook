@@ -204,15 +204,23 @@ def build_migrated_txt(fields: Dict[str, any], context_items: List[str], cond3: 
         out.append("好感影响:")
         out.append("")
 
+    is_free = '自由探索' in fields.get('名称', '') or fields.get('总情境数', '') == '自由探索章节'
+
     # 10. 总情境数
-    out.append(f"总情境数: {total_n}")
+    if is_free:
+        out.append("总情境数: 自由探索章节")
+    else:
+        out.append(f"总情境数: {total_n}")
     out.append("")
 
-    # 11. 情境（带标号）
+    # 11. 情境（带标号或自由探索纯列表）
     out.append("情境:")
     for idx, item in enumerate(final_items, 1):
         # 100% 保真 item 文本，不修改任何字词
-        out.append(f"  - {idx}. {item}")
+        if is_free:
+            out.append(f"  - {item}")
+        else:
+            out.append(f"  - {idx}. {item}")
     out.append("")
 
     # 12. 核心
