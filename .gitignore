@@ -31,3 +31,7 @@ _archive/
 # Reference files
 reference/
 三线版本封存20260626/
+
+# Scratch temporary dumps
+scratch/*.json
+scratch/*.txt

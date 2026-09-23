@@ -1,4 +1,4 @@
-// 自动生成于: 2026-09-20T13:05:00.729936
+// 自动生成于: 2026-09-23T12:21:31.702682
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -2445,7 +2445,7 @@ const EVENTS = [
   },
   {
     "id": "306",
-    "title": "矿道推车的盲区——避光石后的隔裤搓抚",
+    "title": "矿道推车的盲区——避光石后的隐秘搓抚",
     "route": "shared",
     "chapter": "跨线",
     "summary": "",
@@ -3373,7 +3373,7 @@ const EVENTS = [
   },
   {
     "id": "422",
-    "title": "训练场·八叶剑道特训——七型心眼与暮色复盘",
+    "title": "训练场·八叶剑道特训——七型剑技与暮色复盘",
     "route": "shared",
     "chapter": "跨线",
     "summary": "",
@@ -4893,7 +4893,7 @@ const EVENTS = [
   },
   {
     "id": "612",
-    "title": "精金巨盾的试重——盾墙死角下的隔裤抚慰",
+    "title": "精金巨盾的试重——盾墙死角下的暗处抚慰",
     "route": "shared",
     "chapter": "享受和掌控",
     "summary": "",
