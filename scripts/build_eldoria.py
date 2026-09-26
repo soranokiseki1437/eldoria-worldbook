@@ -342,13 +342,22 @@ def _make_ref_entry(data, order_start, uid=None, position=1, depth=None, header_
         keys = []
 
     # 递归属性：
-    # - constant条目：递归机制对其无意义，双false
-    # - 非constant概念条目（角色/地点/生物等）：不可递归+防止进一步递归
-    if always_on:
+    # 允许在 TXT 中显式声明 '不可递归' 或 '防止进一步递归'（是/否），未声明时按架构规则自动判定：
+    # - '章节引信与状态锚点': 作为唯一引信发射源，preventRecursion = False（允许唤醒章节）
+    # - 其余常驻条目（总览、指令、系统）：开启“不可进一步递归”（preventRecursion = True，彻底杜绝总览内章节号误触）
+    # - 非constant概念条目（角色/地点/生物等）：excludeRecursion = True, preventRecursion = True
+    if '不可递归' in data:
+        _exclude_rec = data['不可递归'].strip() == '是'
+    elif always_on:
         _exclude_rec = False
-        _prevent_rec = False
     else:
         _exclude_rec = True
+
+    if '防止进一步递归' in data:
+        _prevent_rec = data['防止进一步递归'].strip() == '是'
+    elif name == '章节引信与状态锚点':
+        _prevent_rec = False
+    else:
         _prevent_rec = True
 
     return make_entry(
@@ -383,6 +392,7 @@ def load_reference_entries():
 
     # System instructions: order at pos=4（depth从TXT注入深度字段读取）
     SYSTEM_INSTRUCTIONS = {
+        '章节引信与状态锚点':    {'order': 10},
         '章节追踪指令':        {'order': 999},
         '游戏状态界面':        {'order': 998},
         '写作与视角指令':        {'order': 100},
