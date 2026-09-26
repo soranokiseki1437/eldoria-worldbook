@@ -82,9 +82,27 @@
 
 ---
 
-## 四、 核心方案文档索引
+## 四、 TavernHelper 变量状态机 v1.3.0 与故事章节递归解封实装（Commit 0eb5e7ea）
+
+1. **故事章节递归解封（解除历史 Non-recursable 硬锁）**：
+   - 深入官方文档与构建脚本定位根因：全库 923 章原先被硬编码配置为 `excludeRecursion=True`，导致世界上没有任何世界书条目能通过递归扫描激活故事章节；
+   - 在 [`scripts/build_eldoria.py`](file:///home/nanhu2/comfyui/世界书/scripts/build_eldoria.py) 中将所有章节统一修正为 `excludeRecursion=False`，彻底解开“不可递归”硬锁；
+   - 酒馆开启递归扫描（`Recursive Scan: on`, `Max Steps: 2`）后，常驻条目 `_游戏状态界面.TXT` (UI01) 展开的 `第{{getvar::chapter}}章` 即可直接、原生、全自动递归激活故事章节大纲！
+2. **TavernHelper 状态机升级至 v1.3.0 静默纯净版**：
+   - **切章步进绝对归零**：余韵冷却切章流转时，坚决将 `step` 与 `max_step` 初始化归零（`0/0`），根除跨章继承上一章步数变成 `6/0` 的脏数据 Bug；
+   - **防重触发节流守卫**：增加基于消息指纹（`msgIdx + swipe_id + mes.length`）的防重机制，彻底杜绝酒馆单楼层多事件导致的瞬时余韵+切章连跳；
+   - **彻底剔除系统消息流**：移除所有 `/sys` 与 `sendSystemMessage` 逻辑，聊天流 100% 纯净无系统气泡。
+3. **全流程构建与一致性校验**：
+   - 全库 1065 条条目全量重新构建输出为 [`output/Eldoria_V10.31.0.json`](file:///home/nanhu2/comfyui/世界书/output/Eldoria_V10.31.0.json)；
+   - 全库 7 大项一致性校验 100% 满分通过。
+
+---
+
+## 五、 核心方案文档索引
+- 📄 [方案/第一部/Eldoria变量卡改造与TavernHelper状态机实施方案.md](file:///home/nanhu2/comfyui/世界书/方案/第一部/Eldoria变量卡改造与TavernHelper状态机实施方案.md)（状态机与变量卡实施权威规范 · v1.2.0）
+- 📄 [output/酒馆助手脚本-Eldoria_StateMachine_v1.2.json](file:///home/nanhu2/comfyui/世界书/output/酒馆助手脚本-Eldoria_StateMachine_v1.2.json)（前端状态机脚本导出产物 · v1.3.0）
+- 📄 [output/regex-eldoria_mvu_stripper.json](file:///home/nanhu2/comfyui/世界书/output/regex-eldoria_mvu_stripper.json)（Regex MVU 无痕气泡隐藏规则导出）
 - 📄 [docs/chapter/_背德与越界心理.TXT](file:///home/nanhu2/comfyui/世界书/docs/chapter/_背德与越界心理.TXT)（独立机制条目源码）
 - 📄 [方案/背德与越界心理机制方案.md](file:///home/nanhu2/comfyui/世界书/方案/背德与越界心理机制方案.md)（第二步专项机制方案 · 最新定稿）
-- 📄 [方案/酒馆慢推节奏与出格行为心理深度机制优化方案.md](file:///home/nanhu2/comfyui/世界书/方案/酒馆慢推节奏与出格行为心理深度机制优化方案.md)（两步走总纲）
-- 📄 [方案/全库转向标号情境慢推体系重构方案.md](file:///home/nanhu2/comfyui/世界书/方案/全库转向标号情境慢推体系重构方案.md)（第一步执行全貌）
 - 📄 [CLAUDE.md](file:///home/nanhu2/comfyui/世界书/CLAUDE.md)（项目规范基准）
+
