@@ -270,7 +270,7 @@ def _get_md_entries(prefix, tag, base_order=160):
             content=_data['content'],
             position=4,
             depth=2,
-            excludeRecursion=True,
+            excludeRecursion=False,
             preventRecursion=False,
         ))
     return _entries

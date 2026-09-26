@@ -1,0 +1,17 @@
+{
+    "id": "f5f349ff-6e55-4ece-8fa0-2302a1bb4115",
+    "scriptName": "Eldoria_MVU_Stripper",
+    "findRegex": "/(?:\\r?\\n)?(?:```\\s*(?:json)?(?::)?mvu[\\s\\S]*?```|(?::mvu|json:mvu)\\s*\\{[\\s\\S]*?\\})(?:\\r?\\n)?/gi",
+    "replaceString": "",
+    "trimStrings": [],
+    "placement": [
+        2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+}
