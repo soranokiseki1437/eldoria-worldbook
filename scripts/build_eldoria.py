@@ -392,7 +392,7 @@ def load_reference_entries():
 
     # System instructions: order at pos=4（depth从TXT注入深度字段读取）
     SYSTEM_INSTRUCTIONS = {
-        '章节引信与状态锚点':    {'order': 10},
+        '章节引信与状态锚点':    {'order': 1000},
         '章节追踪指令':        {'order': 999},
         '游戏状态界面':        {'order': 998},
         '写作与视角指令':        {'order': 100},

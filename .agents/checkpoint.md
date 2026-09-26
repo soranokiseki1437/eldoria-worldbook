@@ -86,7 +86,7 @@
 
 1. **故事章节递归解封与前置引信母条目（Order: 10 专职点火）**：
    - 全库 923 章配置为 `excludeRecursion=False`，彻底解开“不可递归”硬锁，允许被母条目唤醒；
-   - 恢复并固化第一母条目 [`docs/chapter/_章节引信与状态锚点.TXT`](file:///home/nanhu2/comfyui/世界书/docs/chapter/_章节引信与状态锚点.TXT)（ID: `CH00`, `Order: 10`, `Pos: 4`, `Depth: 0`），其正文包含 `第{{getvar::chapter}}章`，作为全库**唯一**允许向外发射递归唤醒的专职引信（`preventRecursion=False`）；
+   - 恢复并固化第一母条目 [`docs/chapter/_章节引信与状态锚点.TXT`](file:///home/nanhu2/comfyui/世界书/docs/chapter/_章节引信与状态锚点.TXT)（ID: `CH00`, `Order: 1000`, `Pos: 4`, `Depth: 0`），其正文包含 `第{{getvar::chapter}}章`，作为全库**唯一**允许向外发射递归唤醒的专职引信（`preventRecursion=False`）；
    - **全库总览与常驻条目物理静音**：所有总览条目（人物总览、次要人物总览、怪物生物总览、地点总览、魔法体系、阶段系统等）及各类指令条目，统一开启“不可进一步递归”（`preventRecursion=True`），彻底根除总览中登场章节编号引发的递归群爆；
 2. **TavernHelper 状态机升级至 v1.3.0 静默纯净版**：
    - **切章步进绝对归零**：余韵冷却切章流转时，坚决将 `step` 与 `max_step` 初始化归零（`0/0`），根除跨章继承上一章步数变成 `6/0` 的脏数据 Bug；
