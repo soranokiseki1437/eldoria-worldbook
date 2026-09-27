@@ -28,7 +28,7 @@ description: 第二部（维里迪亚王国篇）宏篇主线演进、章节创�
 3. **经典日轻与JRPG西幻精选语料**：[corpus_classic_jrpg_lightnovel.md](file:///home/nanhu2/comfyui/世界书/.agents/skills/viridia-writer/references/corpus_classic_jrpg_lightnovel.md)
    * 涵盖《勇者斗恶龙》（安宁教会与小镇旅舍）、《无职转生》（真实篷车旅途与公事公办关卡）、《哥布林杀手》（务实冷兵器整备与外科手术式杀敌）、《转生史莱姆》（多种族共荣与工坊欢宴）、《地错》（战术支援与破防Break）。
 4. **骑士誓言、圣殿与王国权谋语料**：[corpus_jrpg_knights_and_church.md](file:///home/nanhu2/comfyui/世界书/.agents/skills/viridia-writer/references/corpus_jrpg_knights_and_church.md)
-   * 锚定王道骑士精神、圣殿大要塞校场、克制的政治机锋、以及雷恩面对背叛与十四年宿命的救赎感。
+   * 锚定王道骑士精神、圣殿校场、克制的政治机锋、以及雷恩面对背叛与十四年宿命的救赎感。
 5. **冷兵器碰撞与战技配合语料**：[corpus_jrpg_combat_and_tactics.md](file:///home/nanhu2/comfyui/世界书/.agents/skills/viridia-writer/references/corpus_jrpg_combat_and_tactics.md)
    * 锚定八叶一刀流战技、亚尔席昂巨剑重斩、菲的游击牵引与破防拆解，还原清脆金属碰撞与利落分镜。
 6. **VII班角色原声与战术语料**：[corpus_trails_jrpg.md](file:///home/nanhu2/comfyui/世界书/.agents/skills/viridia-writer/references/corpus_trails_jrpg.md)
@@ -40,7 +40,7 @@ description: 第二部（维里迪亚王国篇）宏篇主线演进、章节创�
 
 ### 1. 双主线主角的命运动能独立性
 * **主线A·艾德里安（归来与正名）**：以北方商会商人身份为伪装，探查家族城堡焦土废墟，揭露三十一年前教廷“暗影实验与山贼伪造令”的政治黑幕，在王都真理广场发动法律大审判，收复祖地。
-* **主线B·雷恩（面对与救赎）**：以背誓流放者身份重返祖国，直面十四年前屠杀平民与被剥夺誓言的真相，在圣殿大要塞校场当着全军旗队的面清算大团长阿达尔伯特，重构真正的晨光之誓，成为自由剑士。
+* **主线B·雷恩（面对与救赎）**：以背誓流放者身份重返祖国，直面十四年前屠杀平民与被剥夺誓言的真相，在圣殿校场当着全军旗队的面清算大团长阿达尔伯特，重构真正的晨光之誓，成为自由剑士。
 * **黎恩与帝国先遣队**：战术底牌与跨界联络人，负责两界物资与情报中继，**绝不喧宾夺主抢夺原住民的命运决断权**。
 
 ### 2. 绝对零导力反差与生活史真实感

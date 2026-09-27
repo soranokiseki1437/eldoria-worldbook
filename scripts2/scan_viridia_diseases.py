@@ -60,6 +60,10 @@ PART1_CONTAMINATION_WORDS = [
 # 4. 恶性翻译腔与括号英文堆叠正则（如：方庭合院式高级驿舍（Courtyard Coaching Inn））
 TRANSLATIONESE_PATTERN = re.compile(r'[\u4e00-\u9fa5]{6,}（[A-Za-z\s]+）')
 
+# 5. 设定档案（docs2/）元叙事与破坏第四面墙禁词（设定库必须作为独立完整故事书写，严禁出现第X部或括号轨迹世界）
+META_PART_PATTERN = re.compile(r'第[一二三四五六七八九十0-9]+部')
+META_OTHER_PATTERN = re.compile(r'(上一部|下一部|第一季|第二季|第三季|留给第三部|第三部伏笔|轨迹世界|轨迹系列)')
+
 def is_blacklist_definition_line(line):
     """判断某一行是否属于黑名单、规则定义、替换表或版本日志"""
     stripped = line.strip()
@@ -133,7 +137,16 @@ def audit_file(filepath):
                     continue
                 findings.append(('【第一部字段/内容污染】', f"行 {line_idx}: 发现 '{pw}' -> {line.strip()[:60]}"))
 
-    # 4. 章节文件专属检查（针对 docs2/story/ 下的非索引 TXT）
+        # 4. 检查 docs2/ 设定档案中的元叙事/第X部违规（档案必须作为独立完整故事书写）
+        if 'docs2' in rel_path.replace('\\', '/') and filepath.endswith('.TXT'):
+            m_part = META_PART_PATTERN.search(line)
+            if m_part:
+                findings.append(('【设定档案元叙事违规】', f"行 {line_idx}: 档案设定必须作为独立故事书写，严禁特意提及分部 '{m_part.group(0)}' -> {line.strip()[:60]}"))
+            m_other = META_OTHER_PATTERN.search(line)
+            if m_other:
+                findings.append(('【设定档案元叙事违规】', f"行 {line_idx}: 档案设定严禁出现元叙事词汇 '{m_other.group(0)}' -> {line.strip()[:60]}"))
+
+    # 5. 章节文件专属检查（针对 docs2/story/ 下的非索引 TXT）
     if 'story' in filepath.lower() and filepath.endswith('.TXT') and not is_index_file:
         if '主要人物:' not in text and '主要人物：' not in text:
             findings.append(('【缺少主要人物字段】', "第二部章节必须显式声明 '主要人物: [角色1, 角色2]'"))

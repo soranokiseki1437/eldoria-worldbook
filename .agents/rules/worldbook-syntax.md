@@ -61,7 +61,10 @@
 
 ---
 
-## 四、 章节增删与方案维护联动铁律（Mandatory Sync Rule）
+## 四、 章节增删与方案维护联动铁律（Mandatory Sync Rule — 仅限第一部 docs/）
+
+> **【物理隔离硬红线】**：本章节及 `scripts/check_consistency.py` **仅严格适用于第一部（Eldoria 营地篇，923 章）**！
+> 第二部（维里迪亚王国篇 `docs2/`）拥有完全物理隔离的独立工具链（`scripts2/`），在进行第二部任何创作、规划与设定维护时，**绝对禁止混跑第一部检查脚本**，一律使用 `scripts2/check_viridia_consistency.py` 与 `scripts2/scan_viridia_diseases.py`。
 
 1. **增减章节必须双向同步索引与弧总览**：
    - 但凡增加或减少章节，必须立即同步更新：
