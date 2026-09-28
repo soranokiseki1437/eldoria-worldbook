@@ -115,13 +115,13 @@ stateDiagram-v2
    * 玩家进行自主交流、私会、探索等偏离剧本行为；
    * 条件：常规章节中，AI 判定玩家意图偏离；
    * 动作：`is_free_explore = true`，**`step` 严格冻结保持上一轮数值**，绝不推进。
-4. **两轮余韵冷却闭环（Afterglow & Cooldown Cycle）**：
-   * **第 1 轮（触顶沉淀）**：当 `step == max_step` 时，AI 展开最后一条物象收束，输出 `in_afterglow = true`。系统进入余韵沉淀，**当前章节号严格保持不变**；
-   * **第 2 轮（物理切章）**：上一轮已处于 `in_afterglow == true`，玩家再次回复“继续”或“下一章”，**TavernHelper 触发硬切章**：
+4. **大纲触顶即时物理切章（Instant Chapter Cut）**：
+   * 当正文推进至本章最后一条大纲情境（`step == max_step`）时，AI 消息渲染完毕后，状态机立即判定大纲触顶完结；
+   * **TavernHelper 立即触发硬切章**：
      * `chapter = chapter + 1`；
      * `step = 0, max_step = 0`（新章节物理开启，大纲进度绝对归零，彻底杜绝跨章继承脏数据）；
-     * `in_afterglow = false`；
-     * `is_free_explore = false`。
+     * `is_free_explore = false`；
+     * `in_afterglow = false`（废弃余韵冷却等待，下一轮玩家回复直接展开新章大纲）。
 5. **物理宏反哺链路（Macro Prompt Feedback）**：
    * 切章后变量 `chapter` 更新为新值；
    * 下一轮酒馆组装提示词时，状态栏中的 `第{{getvar::chapter}}章` 自动展开为实际文本（如 `第60章`）；
@@ -270,9 +270,10 @@ ID: UI01
 
 ```javascript
 // ====================================================================
-// Eldoria 状态机引擎 v1.3.0 (静默纯净版+步进绝对归零+防重触发+母条目引信驱动)
+// Eldoria 状态机引擎 v1.4.1 (即时切章版+步进绝对归零+多端TopCenter弹窗加固)
 // 特性：双自由探索分治、沙盒死锁拦截、容错JSON清洗、Swipe安全定位、
-//       切章步进绝对归零、防重复触发节流、4大脚本按钮（状态查询/加载变量/进入下一章/初始化变量）
+//       大纲满即时物理切章（step >= max_step 立即 chapter+1 且归零）、
+//       多端兼容TopCenter浮窗（杜绝手机端输入栏/工具栏遮挡）、4大脚本按钮
 // ====================================================================
 
 /**
@@ -352,6 +353,29 @@ async function updateEldoriaVars(newVars) {
     }
 }
 
+/**
+ * 跨端弹窗通知（强制顶部居中 toast-top-center，避免手机底栏与软键盘遮挡）
+ */
+function notifyEldoria(type, message, title = 'Eldoria 状态机') {
+    try {
+        if (typeof toastr !== 'undefined' && typeof toastr[type] === 'function') {
+            toastr[type](message, title, {
+                timeOut: 6000,
+                escapeHtml: false,
+                positionClass: 'toast-top-center'
+            });
+            return;
+        }
+    } catch (e) {
+        console.warn('[Eldoria-Notify] toastr 调用异常:', e);
+    }
+    // 手机端原生兜底
+    try {
+        const plainMsg = message.replace(/<br\s*\/?>/gi, '\n');
+        alert(`【${title}】\n${plainMsg}`);
+    } catch (_) {}
+}
+
 
 // --------------------------------------------------------------------
 // 1. 按钮点击事件监听 (配合 TavernHelper getButtonEvent 使用)
@@ -366,17 +390,15 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
             const s = vars.step || 0;
             const ms = vars.max_step || 0;
             const fe = vars.is_free_explore ? '🍃 自由探索/私会' : '⚔️ 主线大纲';
-            const ag = vars.in_afterglow ? '⏳ 余韵沉淀中' : '进行中';
             const sb = vars.is_sandbox_chapter ? '🗺️ 固有沙盒漫游' : '常规章节';
 
-            toastr.info(
+            notifyEldoria(
+                'info',
                 `【当前章节】：第 ${c} 章<br/>` +
                 `【大纲进度】：第 ${s} / ${ms} 条<br/>` +
                 `【运行模式】：${fe}<br/>` +
-                `【冷却状态】：${ag}<br/>` +
                 `【章节属性】：${sb}`,
-                'Eldoria 实时状态卡',
-                { timeOut: 6000, escapeHtml: false }
+                'Eldoria 实时状态卡'
             );
         } catch (err) {
             console.error('[Eldoria-Button] 状态查询失败:', err);
@@ -390,7 +412,7 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
                 ? SillyTavern.getContext() 
                 : (typeof getContext === 'function' ? getContext() : null);
             if (!context || !context.chat || context.chat.length === 0) {
-                toastr.warning('当前无聊天记录，无法加载变量', 'Eldoria 状态机');
+                notifyEldoria('warning', '当前无聊天记录，无法加载变量', 'Eldoria 状态机');
                 return;
             }
 
@@ -413,38 +435,47 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
             }
 
             if (!foundData) {
-                toastr.warning('未在近期消息中找到有效的 mvu 状态块！', 'Eldoria 状态机');
+                notifyEldoria('warning', '未在近期消息中找到有效的 mvu 状态块！', 'Eldoria 状态机');
                 return;
             }
 
-            const parsedChapter = parseInt(foundData.chapter, 10);
-            const parsedStep = parseInt(foundData.step, 10);
-            const parsedMax = parseInt(foundData.max_step, 10);
+            let parsedChapter = parseInt(foundData.chapter, 10);
+            let parsedStep = parseInt(foundData.step, 10);
+            let parsedMax = parseInt(foundData.max_step, 10);
+            parsedChapter = isNaN(parsedChapter) ? 1 : parsedChapter;
+            parsedStep = isNaN(parsedStep) ? 0 : parsedStep;
+            parsedMax = isNaN(parsedMax) ? 0 : parsedMax;
+
+            // 若加载到的楼层已经大纲完结，则直接体现为流转至下一章
+            if (!foundData.is_sandbox_chapter && !foundData.is_free_explore && parsedMax > 0 && parsedStep >= parsedMax) {
+                parsedChapter += 1;
+                parsedStep = 0;
+                parsedMax = 0;
+            }
 
             const newVars = {
-                chapter: isNaN(parsedChapter) ? 1 : parsedChapter,
-                step: isNaN(parsedStep) ? 0 : parsedStep,
-                max_step: isNaN(parsedMax) ? 0 : parsedMax,
+                chapter: parsedChapter,
+                step: parsedStep,
+                max_step: parsedMax,
                 is_sandbox_chapter: !!foundData.is_sandbox_chapter,
                 is_free_explore: !!foundData.is_free_explore,
-                in_afterglow: !!foundData.in_afterglow
+                in_afterglow: false
             };
 
             await updateEldoriaVars(newVars);
 
-            toastr.success(
+            notifyEldoria(
+                'success',
                 `成功从第 ${foundMsgIdx + 1} 楼恢复变量！<br/>` +
                 `【当前章节】：第 ${newVars.chapter} 章<br/>` +
                 `【大纲进度】：第 ${newVars.step} / ${newVars.max_step} 条<br/>` +
-                `【运行模式】：${newVars.is_free_explore ? '🍃 自由探索' : '⚔️ 主线大纲'}<br/>` +
-                `【冷却状态】：${newVars.in_afterglow ? '⏳ 余韵沉淀中' : '进行中'}`,
-                'Eldoria 状态机',
-                { timeOut: 6000, escapeHtml: false }
+                `【运行模式】：${newVars.is_free_explore ? '🍃 自由探索' : '⚔️ 主线大纲'}`,
+                'Eldoria 状态机'
             );
             console.log(`[Eldoria-Button] >>> 成功从第 ${foundMsgIdx + 1} 楼加载变量:`, newVars);
         } catch (err) {
             console.error('[Eldoria-Button] 加载变量失败:', err);
-            toastr.error('加载变量失败: ' + (err.message || err), 'Eldoria 状态机');
+            notifyEldoria('error', '加载变量失败: ' + (err.message || err), 'Eldoria 状态机');
         }
     });
 
@@ -464,15 +495,15 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
                 in_afterglow: false
             });
 
-            toastr.success(`已成功流转至第 ${nextChapter} 章！世界书已切换。`, 'Eldoria 状态机');
+            notifyEldoria('success', `已成功流转至第 ${nextChapter} 章！世界书已切换。`, 'Eldoria 状态机');
             console.log(`[Eldoria-Button] >>> 手动切章成功: 第 ${nextChapter} 章`);
         } catch (err) {
             console.error('[Eldoria-Button] 手动切章失败:', err);
-            toastr.error('切章失败: ' + (err.message || err), 'Eldoria 状态机');
+            notifyEldoria('error', '切章失败: ' + (err.message || err), 'Eldoria 状态机');
         }
     });
 
-    // 🔘 按钮四：【初始化变量】（一键弹窗设定章节，初始化6大核心变量）
+    // 🔘 按钮四：【初始化变量】（一键弹窗设定章节，初始化核心变量）
     eventOn(getButtonEvent('初始化变量'), async () => {
         try {
             const vars = getEldoriaVars();
@@ -482,7 +513,7 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
 
             const chapterNum = parseInt(inputChap.trim(), 10);
             if (isNaN(chapterNum) || chapterNum <= 0) {
-                toastr.error('输入的章节编号必须是大于0的纯数字！', 'Eldoria 状态机');
+                notifyEldoria('error', '输入的章节编号必须是大于0的纯数字！', 'Eldoria 状态机');
                 return;
             }
 
@@ -495,11 +526,11 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
                 in_afterglow: false
             });
 
-            toastr.success(`变量池已成功初始化至第 ${chapterNum} 章！<br/>各状态已归零重置。`, 'Eldoria 状态机', { escapeHtml: false });
+            notifyEldoria('success', `变量池已成功初始化至第 ${chapterNum} 章！<br/>各状态已归零重置。`, 'Eldoria 状态机');
             console.log(`[Eldoria-Button] 变量池初始化完成: 第 ${chapterNum} 章`);
         } catch (err) {
             console.error('[Eldoria-Button] 初始化变量失败:', err);
-            toastr.error('初始化变量出现异常: ' + (err.message || err), 'Eldoria 状态机');
+            notifyEldoria('error', '初始化变量出现异常: ' + (err.message || err), 'Eldoria 状态机');
         }
     });
 }
@@ -549,7 +580,6 @@ async function onEldoriaMessageRendered(messageId) {
         // 3. 读取并归一化酒馆现存状态
         const vars = getEldoriaVars();
         let currentChapter = parseInt(vars.chapter || aiData.chapter || 1, 10);
-        let wasInAfterglow = (vars.in_afterglow === true || vars.in_afterglow === 'true' || vars.in_afterglow === 1);
         let wasSandbox = (vars.is_sandbox_chapter === true || vars.is_sandbox_chapter === 'true' || vars.is_sandbox_chapter === 1);
 
         // 4. 【判定 A：固有沙盒章节处理与解脱跳出通道】
@@ -565,7 +595,7 @@ async function onEldoriaMessageRendered(messageId) {
                     in_afterglow: false
                 });
                 
-                toastr.success(`离开自由探索区域，正式进入第 ${currentChapter} 章！`, 'Eldoria 状态机');
+                notifyEldoria('success', `离开自由探索区域，正式进入第 ${currentChapter} 章！`, 'Eldoria 状态机');
                 console.log(`[Eldoria-MVU] >>> 沙盒漫游结束，物理晋升至第 ${currentChapter} 章`);
                 return;
             }
@@ -582,9 +612,18 @@ async function onEldoriaMessageRendered(messageId) {
             return;
         }
 
-        // 5. 【判定 B：常规章节余韵冷却后物理切章闭环】
-        if (wasInAfterglow && !aiData.is_free_explore) {
-            const prevChapter = currentChapter;
+        // 5. 【判定 B：常规章节大纲推满，立即物理切章】
+        const parsedStep = parseInt(aiData.step, 10);
+        const parsedMax = parseInt(aiData.max_step, 10);
+
+        // 当 step 达到或超过 max_step（且 max_step 有效大于0），或显式带有完结意向，且不是自由探索分支时，立即切章
+        const isChapterCompleted = !aiData.is_free_explore && (
+            (!isNaN(parsedMax) && parsedMax > 0 && !isNaN(parsedStep) && parsedStep >= parsedMax) ||
+            aiData.in_afterglow === true
+        );
+
+        if (isChapterCompleted) {
+            const finishedChapter = currentChapter;
             currentChapter += 1;
             
             // 铁律：新章节物理开启时，大纲进度必须绝对归零(0/0)！严禁跨章继承旧章节的 step
@@ -593,29 +632,26 @@ async function onEldoriaMessageRendered(messageId) {
                 step: 0,
                 max_step: 0,
                 is_sandbox_chapter: false,
-                in_afterglow: false,
-                is_free_explore: false
+                is_free_explore: false,
+                in_afterglow: false
             });
             
-            toastr.success(`本章圆满完结！已自动流转至第 ${currentChapter} 章`, 'Eldoria 状态机');
-            console.log(`[Eldoria-MVU] >>> 章节物理晋级: 第 ${currentChapter} 章 | 大纲进度绝对归零: 0/0`);
+            notifyEldoria('success', `第 ${finishedChapter} 章圆满完结（进度 ${parsedStep}/${parsedMax}）！已自动流转至第 ${currentChapter} 章`, 'Eldoria 状态机');
+            console.log(`[Eldoria-MVU] >>> 第 ${finishedChapter} 章大纲触顶(${parsedStep}/${parsedMax})，立即物理晋级: 第 ${currentChapter} 章 | 大纲进度绝对归零: 0/0`);
             return;
         }
 
         // 6. 【判定 C：常规大纲单步推进或章节内分支偏离】
-        const parsedStep = parseInt(aiData.step, 10);
-        const parsedMax = parseInt(aiData.max_step, 10);
-
         await updateEldoriaVars({
             chapter: currentChapter,
             step: isNaN(parsedStep) ? 0 : parsedStep,
             max_step: isNaN(parsedMax) ? 0 : parsedMax,
             is_sandbox_chapter: false,
             is_free_explore: !!aiData.is_free_explore,
-            in_afterglow: !!aiData.in_afterglow
+            in_afterglow: false
         });
 
-        console.log(`[Eldoria-MVU] 状态同步: 第${currentChapter}章 | 进度:${aiData.step}/${aiData.max_step} | 探索:${aiData.is_free_explore} | 冷却:${aiData.in_afterglow}`);
+        console.log(`[Eldoria-MVU] 状态同步: 第${currentChapter}章 | 进度:${parsedStep}/${parsedMax} | 探索:${!!aiData.is_free_explore}`);
 
     } catch (err) {
         console.error('[Eldoria-MVU] 运行出错:', err);

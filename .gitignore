@@ -22,8 +22,10 @@ memory/
 # Generated files
 docs/05_事件系统.md
 
-# Backup directory
+# Backup directory and files
 backup/
+*.bak*
+
 
 # Archived history (kept on disk, out of git)
 _archive/
