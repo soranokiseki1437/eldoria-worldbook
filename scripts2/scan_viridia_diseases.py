@@ -41,10 +41,10 @@ WUXIA_FORBIDDEN_WORDS = [
 ]
 
 # 2. 中式传统度量衡正则（允许“里格/公顷/公里/厘米/分贝”等，但严禁传统中国市制单位）
-# 匹配：一尺、数尺、三寸、数十斤、数里、五里、千斤等
+# 匹配：一尺、数尺、三寸、数十斤、数里、五里、千斤、数万石、数斗等
 CHINESE_UNIT_PATTERN = re.compile(
     r'(?<![公公分厘纳毫百千])(?<![a-zA-Z0-9])'
-    r'([一二三四五六七八九十百千万数几两半]+(斤|两|尺|寸|丈|里))'
+    r'([一二三四五六七八九十百千万数几两半]+(斤|两|尺|寸|丈|里|斗)|[一二三四五六七八九十百千万数几两半]+石(?!头|块|壁|缝|阶|门|桥|柱|洞|窟|殿|板|匠|泉|栏|雕|像|山|屋|亭|椅|凳|盒|碑|碗|壶|锅|盆|锁|槽|栏|道|路|崖|砾|质|材|构|体|晶))'
     r'(?![米克分厘寸升格])'
 )
 
@@ -63,6 +63,13 @@ TRANSLATIONESE_PATTERN = re.compile(r'[\u4e00-\u9fa5]{6,}（[A-Za-z\s]+）')
 # 5. 设定档案（docs2/）元叙事与破坏第四面墙禁词（设定库必须作为独立完整故事书写，严禁出现第X部或括号轨迹世界）
 META_PART_PATTERN = re.compile(r'第[一二三四五六七八九十0-9]+部')
 META_OTHER_PATTERN = re.compile(r'(上一部|下一部|第一季|第二季|第三季|留给第三部|第三部伏笔|轨迹世界|轨迹系列)')
+
+# 6. 教廷与圣殿概念混淆/混搭禁词库（防止神权教廷与武装修会概念滑丝）
+CHURCH_TEMPLAR_CONFUSION_WORDS = [
+    '圣殿修道院', '教廷骑士', '教会骑士', '教廷审判骑士', '教会审判骑士',
+    '圣殿大教堂', '教廷要塞', '教廷大要塞', '圣殿主教', '圣殿神官',
+    '圣殿司铎', '圣殿秘库', '圣殿工坊'
+]
 
 def is_blacklist_definition_line(line):
     """判断某一行是否属于黑名单、规则定义、替换表或版本日志"""
@@ -145,6 +152,13 @@ def audit_file(filepath):
             m_other = META_OTHER_PATTERN.search(line)
             if m_other:
                 findings.append(('【设定档案元叙事违规】', f"行 {line_idx}: 档案设定严禁出现元叙事词汇 '{m_other.group(0)}' -> {line.strip()[:60]}"))
+
+        # 5. 检查教廷与圣殿概念混搭违规（严禁神权与修会概念混用）
+        for cw in CHURCH_TEMPLAR_CONFUSION_WORDS:
+            if cw in line:
+                if any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范', '置换', '替换', '防呆']):
+                    continue
+                findings.append(('【教廷/圣殿概念混淆】', f"行 {line_idx}: 发现混淆词 '{cw}' -> {line.strip()[:60]}"))
 
     # 5. 章节文件专属检查（针对 docs2/story/ 下的非索引 TXT）
     if 'story' in filepath.lower() and filepath.endswith('.TXT') and not is_index_file:
