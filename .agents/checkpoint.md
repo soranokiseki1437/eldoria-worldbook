@@ -1,9 +1,9 @@
 # Eldoria 项目断点与任务检查点 (Session Checkpoint)
 
-> **更新时间**：2026-09-20 13:05:00  
-> **版本基准**：V10.31.0 · 923 章节体系（共 1065 条条目）  
-> **当前进度**：**【全库标号情境慢推体系】+【《背德与越界心理》实装】+【自由探索章节大纲情境进度与沙盒元数据适配闭环】**  
-> **最新状态**：**已完成118个自由探索章节元数据清洗与非标号还原，更新追踪指令与状态栏规则，全流程重建产出 V10.31.0（1065条目）全绿就绪**
+> **更新时间**：2026-09-29 13:25:00  
+> **版本基准**：V10.31.0 · 923 章节体系（共 1066 条条目）  
+> **当前进度**：**【剧本参考文献解构元技能 scenario-reference-vault 深度升级】+【LLM 主导深度灵感考古引擎实装】+【参考剧本全集自包含内嵌】+【第二部莫尔茨企划与 docs2 实体卡同步就绪】**  
+> **最新状态**：**已彻底重构通用参考文献解构技能，确立 LLM 深度阅读主力地位；内嵌两部游戏近 100 万字参考剧本；配套 search_vault.py 升级支持全库大纲索引；第二部莫尔茨企划方案与对应 docs2 实体卡同步对齐**
 
 ---
 
@@ -67,21 +67,6 @@
 
 ---
 
-## 四、 专项重构统一标准与写作治理铁律
-
-1. **去生硬古风、增呼吸感与鲜活对白**：
-   - 彻底删除作者视角的机制解说（如“跨线阶段特有的背德感”等）；
-   - 彻底拔除古风文言套话与成语串烧（如“素白丝帕”、“手托香腮”、“上下飞掠”、“尽数激射”、“天鹅颈”、“樱唇”等）；
-   - 篇幅充足时强化身体真实的触感、体温、汗水、生理微反应；
-   - 补齐鲜活鲜明的人物特色台词与耳语（菲娜大姐姐恶作剧娇嗔、凯尔慌乱结巴求确认、乔治憨厚老实、黎恩沉稳霸道）。
-2. **前序基础红线坚守**：
-   - 核心决不提几月几日；
-   - 严禁神性佛性称谓（菲娜是活生生的少女，禁止神使、圣洁等）；
-   - 最后一项情境纯物理环境定格（光影/呼吸/环境音）；
-   - 标题绝对不含“章”字。
-
----
-
 ## 四、 TavernHelper 变量状态机 v1.3.0 与故事章节递归解封实装（Commit 0eb5e7ea）
 
 1. **故事章节递归解封与前置引信母条目（Order: 10 专职点火）**：
@@ -98,11 +83,39 @@
 
 ---
 
-## 五、 核心方案文档索引
-- 📄 [方案/第一部/Eldoria变量卡改造与TavernHelper状态机实施方案.md](file:///home/nanhu2/comfyui/世界书/方案/第一部/Eldoria变量卡改造与TavernHelper状态机实施方案.md)（状态机与变量卡实施权威规范 · v1.2.0）
-- 📄 [output/酒馆助手脚本-Eldoria_StateMachine_v1.2.json](file:///home/nanhu2/comfyui/世界书/output/酒馆助手脚本-Eldoria_StateMachine_v1.2.json)（前端状态机脚本导出产物 · v1.3.0）
-- 📄 [output/regex-eldoria_mvu_stripper.json](file:///home/nanhu2/comfyui/世界书/output/regex-eldoria_mvu_stripper.json)（Regex MVU 无痕气泡隐藏规则导出）
-- 📄 [docs/chapter/_背德与越界心理.TXT](file:///home/nanhu2/comfyui/世界书/docs/chapter/_背德与越界心理.TXT)（独立机制条目源码）
-- 📄 [方案/背德与越界心理机制方案.md](file:///home/nanhu2/comfyui/世界书/方案/背德与越界心理机制方案.md)（第二步专项机制方案 · 最新定稿）
+## 五、 剧本参考文献深度解构元技能 scenario-reference-vault 升级（战果固化）
+
+为彻底解决大纲构思中“一上来就穿刺本番”、“对白苍白无张力”、“情节千篇一律”等通病，完成了通用元技能 **`scenario-reference-vault`** 的深度重构与基础设施落地：
+
+1. **四层透视模型升级 (The 4-Layer Lens)**：
+   - **现象层 (Surface)**：坚决抛弃人名、具体姿势与特定背景；
+   - **力学层 (Dynamics)**：提取外力约束阻断、破冰借口合法化、心智自欺与时空信息差；
+   - **要素层 (Elements)**：重点挖掘道具杠杆化、受迫体态与重心失衡、多感官温差与声音细节；
+   - **质感层 (Texture)**：长短句呼吸节拍与知行撕裂咬合。
+2. **破除“穿刺本番定势”：张力蓄压七阶梯模型**：
+   - 确立“80%张力沉浸在破防前”铁律，严禁流水线直接穿刺；
+   - 七级阶梯：`[公事包装破界] ➔ [防御物局部解构] ➔ [服从性微测试] ➔ [介质非穿刺试探] ➔ [绝望缓兵自欺] ➔ [临界悬置推拉] ➔ [终局心智崩解]`。
+3. **对白张力四大动力学架构**：
+   - 提炼优秀剧本的 4 类攻防话术机制：**伪善正规化（程序包装）、责任倒扣（抓生理破绽）、双轨隐喻（明正暗邪）、窒息式打断（破折号截断与低气音反问）**。
+4. **确立 LLM 深度阅读绝对主力地位（坚决摒弃死板关键词盲盒）**：
+   - 明确指出依赖机械关键词搜索是偷懒行为；
+   - 确立 **LLM 深度剧情考古四步法**：`[TOC宏观导航] ➔ [调用 view_file 沉浸式连续精读50~100行] ➔ [深层心理学逆向解构] ➔ [跨界化学杂交生成3套本土异构方案]`。
+5. **配套工具与参考库自包含**：
+   - [`scenario-reference-vault/scripts/search_vault.py`](file:///home/nanhu2/comfyui/世界书/.agents/skills/scenario-reference-vault/scripts/search_vault.py)：升级支持全库大纲索引（`--toc`）与行号定位；
+   - [`scenario-reference-vault/references/`](file:///home/nanhu2/comfyui/世界书/.agents/skills/scenario-reference-vault/references)：全量收纳《SAO气息遮断2》（5篇）与《末日女友堕落》（5篇）共 10 份约 100 万字的高光剧本全集；
+   - `.gitignore` 规则配置：防御 10GB 外部二进制大压缩包污染版本库。
+6. **第二部企划与设定卡同步对齐**：
+   - 企划方案：[`方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md`](file:///home/nanhu2/comfyui/世界书/方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md)
+   - 实体卡对齐：`docs2/character/Seraphina.TXT`、`docs2/character/黎恩.TXT`、`docs2/character/_人物总览.TXT`、`docs2/npc/莫尔茨.TXT`、`docs2/location/黑野猪酒馆.TXT`。
+
+---
+
+## 六、 核心方案与工具索引
+- 📄 [.agents/skills/scenario-reference-vault/SKILL.md](file:///home/nanhu2/comfyui/世界书/.agents/skills/scenario-reference-vault/SKILL.md)（参考文献深度阅读与力学解构元技能权威规范）
+- 📄 [.agents/skills/scenario-reference-vault/scripts/search_vault.py](file:///home/nanhu2/comfyui/世界书/.agents/skills/scenario-reference-vault/scripts/search_vault.py)（剧本大纲透视与检索工具）
+- 📄 [方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md](file:///home/nanhu2/comfyui/世界书/方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md)（莫尔茨篇情境企划方案）
+- 📄 [docs/chapter/_背德与越界心理.TXT](file:///home/nanhu2/comfyui/世界书/docs/chapter/_背德与越界心理.TXT)（第一部机制条目源码）
+- 📄 [方案/背德与越界心理机制方案.md](file:///home/nanhu2/comfyui/世界书/方案/背德与越界心理机制方案.md)（机制方案最新定稿）
 - 📄 [CLAUDE.md](file:///home/nanhu2/comfyui/世界书/CLAUDE.md)（项目规范基准）
+
 

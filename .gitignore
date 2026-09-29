@@ -33,6 +33,10 @@ _archive/
 # Reference files
 reference/
 三线版本封存20260626/
+参考游戏文本/
+*.zip
+*.rar
+*.7z
 
 # Scratch temporary dumps
 scratch/*.json
