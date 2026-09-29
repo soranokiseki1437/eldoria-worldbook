@@ -139,7 +139,7 @@ def audit_file(filepath):
         # 3. 检查第一部字段/内容污染（角色卡保留自身生理设定，但在其他卡片、章节、方案中严格禁止）
         for pw in PART1_CONTAMINATION_WORDS:
             if pw in line:
-                if is_character_card and pw in ['蜜穴', '娇喘']:
+                if (is_character_card or 'NSFW' in rel_path) and pw in ['蜜穴', '娇喘']:
                     continue
                 if any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范']):
                     continue
