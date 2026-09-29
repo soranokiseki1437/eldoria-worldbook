@@ -289,4 +289,17 @@ python3 .agents/skills/scenario-reference-vault/scripts/search_vault.py -s "角�
 4. **绝对禁令四：严禁上帝视角与机制解说**
    - 提取出来的力学公式是写作者的“幕后脚手架”，角色本身对“信息差”、“自欺阶梯”一无所知。正文中角色的每一个念头，必须纯粹来自于当前情境下的慌乱、羞愤、本能悸动与仓皇掩饰。
 
+---
+
+## 九、 日系 RPG 与轻小说感官质感语料法典 (Sensory & Intimacy Texture)
+
+为彻底解决大模型在涉及亲密、隐秘与侵犯描写时“自动滑向中式春宫网文”的底层语料偏见，本技能特设专属日系感官语料法典：
+* **核心资产档案**：[corpus_jrpg_sensory_and_intimacy.md](file:///home/nanhu2/comfyui/世界书/.agents/skills/scenario-reference-vault/references/corpus_jrpg_sensory_and_intimacy.md)
+* **核心功能**：
+  1. 锁定日系 ACG / JRPG 轻小说的微生理反应、微动势、知行撕裂与声音工程；
+  2. 提供“中式春宫/武侠修真 ➔ 正统日式西幻/轻小说”的死刑词置换对照表；
+  3. 严格贯彻**“没有发生的事情不说原则”**，彻底拔除“非本番”等分类学元标签。
+  4. 任何涉及肢体接触与情欲推进的方案或章节撰写，强制以该法典为感官基准！
+
+
 
