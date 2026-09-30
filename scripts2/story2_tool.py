@@ -29,17 +29,13 @@ CHAPTER_TEMPLATE = """ID: {chap_id}
 阶段: {stage}
 路线: {route}
 主要人物: [{characters}]
+总情境数: {total_sits}
 情境:
   - 1. {sit_1}
   - 2. {sit_2}
   - 3. {sit_3}
   - 4. {sit_4}
 核心: {core}
-章节任务: {task}
-章节终止条件:
-  - 1. {term_1}
-  - 2. {term_2}
-  - 3. {term_3}
 """
 
 def cmd_new(args):
@@ -58,15 +54,12 @@ def cmd_new(args):
         stage=args.stage,
         route=args.route,
         characters=args.characters,
+        total_sits=4,
         sit_1=args.sit1 or "...",
         sit_2=args.sit2 or "...",
         sit_3=args.sit3 or "...",
-        sit_4=args.sit4 or "...",
+        sit_4=args.sit4 or "（余韵物象收束：环境音/微光/场景暂停，承载情感落点）",
         core=args.core or "...",
-        task=args.task or "...",
-        term_1=args.term1 or "（纯物象化终止条件1）",
-        term_2=args.term2 or "（纯物象化终止条件2）",
-        term_3=args.term3 or "（纯物象化终止条件3）",
     )
 
     with open(filepath, 'w', encoding='utf-8') as f:
@@ -118,15 +111,11 @@ def main():
     p_new.add_argument("--stage", default="第一幕·阶段一：引入与故土远征启程", help="阶段名称")
     p_new.add_argument("--route", default="艾德里安线", choices=config.VALID_ROUTES, help="主线/支线路线")
     p_new.add_argument("--characters", required=True, help="主要人物，逗号分隔，例如 '艾德里安, 黎恩, 菲'")
-    p_new.add_argument("--core", default="", help="章节核心驱动")
-    p_new.add_argument("--task", default="", help="章节具体任务")
-    p_new.add_argument("--sit1", default="", help="情境第1步")
-    p_new.add_argument("--sit2", default="", help="情境第2步")
-    p_new.add_argument("--sit3", default="", help="情境第3步")
-    p_new.add_argument("--sit4", default="", help="情境第4步")
-    p_new.add_argument("--term1", default="", help="终止条件1")
-    p_new.add_argument("--term2", default="", help="终止条件2")
-    p_new.add_argument("--term3", default="", help="终止条件3")
+    p_new.add_argument("--core", default="", help="章节核心意图与戏剧灵魂")
+    p_new.add_argument("--sit1", default="", help="情境第1步（起因与环境氛围）")
+    p_new.add_argument("--sit2", default="", help="情境第2步（互动推进与微动作）")
+    p_new.add_argument("--sit3", default="", help="情境第3步（核心张力交锋）")
+    p_new.add_argument("--sit4", default="", help="情境第4步（余韵物象收束）")
     p_new.add_argument("--force", action="store_true", help="强制覆盖已存在文件")
 
     # validate 子命令
