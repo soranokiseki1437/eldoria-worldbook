@@ -1,4 +1,4 @@
-// 自动生成于: 2026-10-03T16:57:11.276650
+// 自动生成于: 2026-10-04T22:16:59.529857
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -2708,6 +2708,14 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
+    "id": "339.5",
+    "title": "自由探索——矮人石径的晨间",
+    "route": "shared",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
+  },
+  {
     "id": "339",
     "title": "清晨的回应——反向女骑与三人沉溺",
     "route": "shared",
@@ -3372,6 +3380,14 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
+    "id": "422.5",
+    "title": "自由探索——后山暖坡的午后",
+    "route": "shared",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
+  },
+  {
     "id": "422",
     "title": "训练场·八叶剑道特训——七型剑技与暮色复盘",
     "route": "shared",
@@ -3644,6 +3660,14 @@ const EVENTS = [
     "type": "main"
   },
   {
+    "id": "456.5",
+    "title": "自由探索——中央长廊的晨曦",
+    "route": "shared",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
+  },
+  {
     "id": "456",
     "title": "打开的门——从几个人到任何人",
     "route": "shared",
@@ -3800,6 +3824,14 @@ const EVENTS = [
     "title": "地下日记·牛头人的契约——另一道蹄音（下）",
     "route": "shared",
     "chapter": "享受和掌控",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "476.5",
+    "title": "自由探索——矿道旧轨的傍晚",
+    "route": "shared",
+    "chapter": "序章：苏醒与相遇",
     "summary": "",
     "type": "main"
   },
@@ -4188,6 +4220,14 @@ const EVENTS = [
     "type": "main"
   },
   {
+    "id": "524.5",
+    "title": "自由探索——营地工坊的午后",
+    "route": "shared",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
+  },
+  {
     "id": "524",
     "title": "盾与剑的合练——两个人的战阵",
     "route": "shared",
@@ -4346,6 +4386,14 @@ const EVENTS = [
     "chapter": "享受和掌控",
     "summary": "",
     "type": "nsfw"
+  },
+  {
+    "id": "544.5",
+    "title": "自由探索——符文石阶的黄昏",
+    "route": "shared",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
   },
   {
     "id": "544",
@@ -4522,6 +4570,14 @@ const EVENTS = [
     "chapter": "享受和掌控",
     "summary": "",
     "type": "nsfw"
+  },
+  {
+    "id": "566.5",
+    "title": "自由探索——节庆前夕的暮色",
+    "route": "shared",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
   },
   {
     "id": "566",
@@ -4778,6 +4834,14 @@ const EVENTS = [
     "chapter": "享受和掌控",
     "summary": "",
     "type": "nsfw"
+  },
+  {
+    "id": "598.5",
+    "title": "自由探索——谷仓外廊的午后",
+    "route": "shared",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
   },
   {
     "id": "598",
@@ -5416,6 +5480,14 @@ const EVENTS = [
     "title": "银流河上游的水质勘察——黎恩与菲",
     "route": "shared",
     "chapter": "放纵",
+    "summary": "",
+    "type": "main"
+  },
+  {
+    "id": "678.5",
+    "title": "自由探索——演武坪边的清晨",
+    "route": "shared",
+    "chapter": "序章：苏醒与相遇",
     "summary": "",
     "type": "main"
   },
@@ -6124,6 +6196,14 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
+    "id": "766.5",
+    "title": "自由探索——篝火石圈的傍晚",
+    "route": "shared",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
+  },
+  {
     "id": "766",
     "title": "荒原马车的颠簸——帆布帘角下的放纵骑乘（下）",
     "route": "shared",
@@ -6232,6 +6312,14 @@ const EVENTS = [
     "title": "两个人的沉默——雷恩背后",
     "route": "shared",
     "chapter": "放纵",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
+    "id": "780.5",
+    "title": "迟来的告白——剑士的烦恼",
+    "route": "shared",
+    "chapter": "序章：苏醒与相遇",
     "summary": "",
     "type": "nsfw"
   },
@@ -6618,14 +6706,6 @@ const EVENTS = [
     "chapter": "后日谈",
     "summary": "",
     "type": "main"
-  },
-  {
-    "id": "828",
-    "title": "篝火燃尽时——口交隐奸",
-    "route": "epilogue",
-    "chapter": "后日谈",
-    "summary": "",
-    "type": "nsfw"
   },
   {
     "id": "829",
@@ -7116,6 +7196,14 @@ const EVENTS = [
     "type": "nsfw"
   },
   {
+    "id": "890.5",
+    "title": "不算什么——干的是屁眼又不是小穴",
+    "route": "epilogue",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
     "id": "890",
     "title": "自由探索——厨房热气里的傍晚",
     "route": "epilogue",
@@ -7212,6 +7300,14 @@ const EVENTS = [
     "type": "main"
   },
   {
+    "id": "902.5",
+    "title": "自由探索——和平小径的午后",
+    "route": "epilogue",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
+  },
+  {
     "id": "902",
     "title": "出发——裂隙开着（下）",
     "route": "epilogue",
@@ -7220,12 +7316,28 @@ const EVENTS = [
     "type": "main"
   },
   {
+    "id": "903.5",
+    "title": "篝火燃尽时——口交隐奸",
+    "route": "epilogue",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "nsfw"
+  },
+  {
     "id": "903",
-    "title": "不算什么——干的是屁眼又不是小穴",
+    "title": "维里迪亚的习俗——第二位伴侣",
     "route": "epilogue",
     "chapter": "后日谈",
     "summary": "",
-    "type": "nsfw"
+    "type": "main"
+  },
+  {
+    "id": "904.5",
+    "title": "坦白——两把佩剑的约定",
+    "route": "epilogue",
+    "chapter": "序章：苏醒与相遇",
+    "summary": "",
+    "type": "main"
   },
   {
     "id": "904",
@@ -7394,7 +7506,7 @@ const CHAPTERS = [
     "num": 0,
     "name": "序章：苏醒与相遇",
     "phase": "intro",
-    "count": 70
+    "count": 85
   },
   {
     "num": 1,
@@ -7442,7 +7554,7 @@ const CHAPTERS = [
     "num": 8,
     "name": "后日谈",
     "phase": "finale",
-    "count": 103
+    "count": 102
   },
 ];
 
