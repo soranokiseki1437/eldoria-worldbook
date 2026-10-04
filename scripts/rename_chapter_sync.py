@@ -121,31 +121,12 @@ def sync_rename(cid_str, new_title, dry_run=False):
         with open(ARC_FILE, 'r', encoding='utf-8') as f:
             arc_txt = f.read()
         
-        # 4a. 阶段首尾章: "| 0：序章 | 1 ... | 70 深夜的噩梦——门那边的她 | 70 |"
-        # 4b. 弧引用: "**70** 深夜的噩梦——门那边的她"
-        norm_cid = str(int(cid_str)) if cid_str.isdigit() else cid_str
-        
-        # 替换弧总览中的特定引用
-        # 1) 首尾章表格: "| 0：序章 | ... | 70 {old_title} |"
-        p_table = rf'(\|\s*{norm_cid}\s+){re.escape(old_title)}(\s*\|)'
-        arc_txt, count_t = re.subn(p_table, rf'\g<1>{new_title}\g<2>', arc_txt)
-        
-        # 2) 弧详情条目: "**70** {old_title}"
-        p_arc = rf'(\*\*{norm_cid}\*\*\s*){re.escape(old_title)}'
-        arc_txt, count_a = re.subn(p_arc, rf'\g<1>{new_title}', arc_txt)
-
-        # 3) 拆分表: "Ch70（上）{old_title}"
-        p_split = rf'(Ch{norm_cid}（[上中下]）\s*){re.escape(old_title)}'
-        arc_txt, count_s = re.subn(p_split, rf'\g<1>{new_title}', arc_txt)
-
-        # 4) 拆分表右侧链条: "→ {old_title}"
-        p_chain = rf'(→\s*){re.escape(old_title)}'
-        arc_txt, count_c = re.subn(p_chain, rf'\g<1>{new_title}', arc_txt)
-
-        with open(ARC_FILE, 'w', encoding='utf-8') as f:
-            f.write(arc_txt)
-        if count_t + count_a + count_s + count_c > 0:
-            print(f"    ✓ 已同步更新 _连续叙事弧线章节总览.md ({count_t + count_a + count_s + count_c} 处)")
+        count_matches = arc_txt.count(old_title)
+        if count_matches > 0:
+            arc_txt = arc_txt.replace(old_title, new_title)
+            with open(ARC_FILE, 'w', encoding='utf-8') as f:
+                f.write(arc_txt)
+            print(f"    ✓ 已同步更新 _连续叙事弧线章节总览.md ({count_matches} 处)")
 
     return True
 

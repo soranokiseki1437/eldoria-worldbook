@@ -33,8 +33,8 @@ BACKUP_DIR  = os.path.join(PROJECT_DIR, "backup")
 sys.path.insert(0, SCRIPT_DIR)
 from build_eldoria import JSON_PATH  # 动态取当前版本输出文件
 
-# 备份文件名格式: Eldoria_YYYYMMDD_HHMMSS.json
-BACKUP_PATTERN = re.compile(r'^Eldoria_(\d{8})_(\d{6})\.json$')
+# 备份文件名格式: Eldoria_YYYYMMDD_HHMMSS.json 或 Eldoria_V10.31.0_YYYYMMDD_HHMMSS.json 或 old_Eldoria_...
+BACKUP_PATTERN = re.compile(r'^(?:old_)?Eldoria_(?:V[\d.]+_)?(\d{8})_(\d{6})\.json$')
 
 
 # ─── 工具函数 ───────────────────────────────────────────

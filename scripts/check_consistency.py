@@ -55,6 +55,7 @@ def scan_fs():
                 continue
             m_id = re.search(r'^ID:\s*([\d.]+)', txt, re.M)
             m_name = re.search(r'^名称:\s*(.+)', txt, re.M)
+            m_nsfw = re.search(r'^NSFW:\s*(.+)', txt, re.M)
             if not m_id or not m_name:
                 continue
             cid = m_id.group(1).rstrip('.')
@@ -62,6 +63,7 @@ def scan_fs():
                 'title': m_name.group(1).strip(),
                 'stage': os.path.basename(root),
                 'fname': f,
+                'nsfw': m_nsfw.group(1).strip() if m_nsfw else '',
             }
     return fs
 
@@ -78,15 +80,13 @@ def main():
     float_keys = [k for k in fs if '.' in k]
     ids = sorted(int(k) for k in int_keys)
     gaps = [i for i in range(1, ids[-1] + 1) if str(i) not in fs]
-    real_gaps = [g for g in gaps if g != 828]  # 828 已平移至 903.5，属于方案已知迁移
     dups = len(fs) - len(set(fs.keys()))
-    if real_gaps:
-        fail(f"编号缺口 {len(real_gaps)} 个: {real_gaps[:20]}")
+    if gaps:
+        fail(f"编号缺口 {len(gaps)} 个: {gaps[:20]}")
     elif dups:
         fail(f"编号重复 {dups} 个")
     else:
-        note = f"（828平移至903.5，全库含 {len(float_keys)} 个小数插章）" if 828 in gaps else ""
-        ok(f"编号 1-{ids[-1]} 连续无异常缺口 {note}".strip())
+        ok(f"编号 1-{ids[-1]} 连续无缺口")
 
     print("\n[2] 文件名与 ID/名称 一致")
     bad_fname = []
@@ -138,24 +138,47 @@ def main():
     sex_bad = 0
     sex_total = 0
     cur_tag = None
+    cat_counts = defaultdict(int)
+    cat_expected = {}
+    indexed_cids = set()
     for line in open(SEX_INDEX, encoding='utf-8'):
         line = line.strip()
         if not line:
             continue
         if line.startswith('##'):
-            cur_tag = line.split()[1].split('(')[0] if len(line.split()) > 1 else '?'
+            m_cat = re.match(r'^##\s*(\S+?)(?:\s*\((\d+)章?\))?$', line)
+            if m_cat:
+                cur_tag = m_cat.group(1)
+                if m_cat.group(2):
+                    cat_expected[cur_tag] = int(m_cat.group(2))
             continue
         m = re.match(r'^([\d.]+):\s*(.+)', line)
         if not m:
             continue
         num, title = m.group(1), m.group(2).strip()
         sex_total += 1
+        indexed_cids.add(num)
+        cat_counts[cur_tag] += 1
         if num not in fs or fs[num]['title'] != title:
             sex_bad += 1
             if sex_bad <= 10:
                 fail(f"Ch{num}: 索引={title!r} vs fs={fs.get(num, {}).get('title', '?')!r}")
+
+    # 检查分类头部统计与实际条目数一致性
+    for cat, exp in cat_expected.items():
+        actual = cat_counts[cat]
+        if actual != exp:
+            sex_bad += 1
+            fail(f"分类【{cat}】头部计数 {exp} != 实际条目数 {actual}")
+
+    # 检查全库所有 NSFW=是 章节均已被收录
+    missing_nsfw = [cid for cid, v in fs.items() if v.get('nsfw') == '是' and cid not in indexed_cids]
+    if missing_nsfw:
+        sex_bad += 1
+        fail(f"全库存在 {len(missing_nsfw)} 个 NSFW=是 章节未收录进 sex 索引: {missing_nsfw[:10]}")
+
     if sex_bad == 0:
-        ok(f"sex索引 {sex_total} 条全部匹配")
+        ok(f"sex索引 {sex_total} 条全部匹配（全库 {len(indexed_cids)} 个 NSFW 章节 100% 覆盖）")
 
     print("\n[6] 弧总览 引用匹配")
     arc_bad = 0
@@ -195,7 +218,7 @@ def main():
         # 6d. 阶段章数合计
         stage_sum = sum(int(m.group(5)) for line in lines
                         if (m := re.match(r'^\| \d：\S+ \| (\d+) (\S+) \| (\d+) (\S+) \| (\d+) \|$', line)))
-        base_target = 923  # 弧总览锁定基准章节数
+        base_target = 937  # 弧总览锁定基准章节数
         if stage_sum != base_target and stage_sum != n:
             arc_bad += 1
             fail(f"阶段章数合计 {stage_sum} != 基准章数 {base_target}")
