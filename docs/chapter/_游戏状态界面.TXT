@@ -16,10 +16,11 @@ ID: UI01
   - ```json:mvu
   - {
   -   "chapter": {{getvar::chapter}},
-  -   "step": <本轮刚展开完毕的情境数字编号，沙盒章节填0>,
-  -   "max_step": <本章总情境数纯数字，沙盒章节填0>,
+  -   "step": <本轮刚展开完毕的情境数字编号，固有自由探索章节填0>,
+  -   "max_step": <本章总情境数纯数字，固有自由探索章节填0>,
   -   "is_sandbox_chapter": <若为固有自由探索章节填true，否则false>,
-  -   "is_free_explore": <常规章节中若偏离主线填true，否则false>,
+  -   "is_free_explore": <true则为章内脱离大纲主线的自由探索状态，false则开启剧情引导往主线推进靠拢>,
+  -   "is_fina_alone": <菲娜当前是否处于独处状态，与黎恩物理分离、单独面对NPC或独自行动填true，否则false>,
   -   "in_afterglow": <常规章节若全部情境完成进入冷却填true，否则false>,
   -   "request_next_chapter": <若处于沙盒章节且玩家要求离开/进入下一章时填true，否则false>
   - }
@@ -72,6 +73,7 @@ ID: UI01
   -   "max_step": 3,
   -   "is_sandbox_chapter": false,
   -   "is_free_explore": false,
+  -   "is_fina_alone": false,
   -   "in_afterglow": false,
   -   "request_next_chapter": false
   - }

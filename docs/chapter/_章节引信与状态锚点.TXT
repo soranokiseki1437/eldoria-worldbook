@@ -10,4 +10,5 @@ ID: CH00
 当前主线剧情锁定章节：第{{getvar::chapter}}章
 当前大纲情境步进阶段：第{{getvar::step}}条
 当前自由探索模式状态：{{getvar::is_free_explore}}
+当前菲娜独处：{{getvar::is_fina_alone}}
 </chapter_anchor>

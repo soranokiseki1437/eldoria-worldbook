@@ -1,4 +1,4 @@
-// 自动生成于: 2026-10-05T00:38:59.710987
+// 自动生成于: 2026-10-05T11:27:47.415145
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 

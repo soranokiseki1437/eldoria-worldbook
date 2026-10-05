@@ -37,6 +37,7 @@ function safeParseMVU(rawJsonStr) {
             max_step: extractInt('max_step'),
             is_sandbox_chapter: extractBool('is_sandbox_chapter'),
             is_free_explore: extractBool('is_free_explore'),
+            is_fina_alone: extractBool('is_fina_alone'),
             in_afterglow: extractBool('in_afterglow'),
             request_next_chapter: extractBool('request_next_chapter')
         };
@@ -234,6 +235,9 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
 
             const currentVars = getEldoriaVars();
             const lockedFreeExplore = (currentVars.is_free_explore === true || currentVars.is_free_explore === 'true');
+            const isFinaAlone = (foundData.is_fina_alone !== undefined)
+                ? (foundData.is_fina_alone === true || foundData.is_fina_alone === 'true')
+                : (currentVars.is_fina_alone === true || currentVars.is_fina_alone === 'true');
 
             const newVars = {
                 chapter: parsedChapter,
@@ -241,6 +245,7 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
                 max_step: parsedMax,
                 is_sandbox_chapter: !!foundData.is_sandbox_chapter,
                 is_free_explore: lockedFreeExplore,
+                is_fina_alone: isFinaAlone,
                 in_afterglow: false
             };
 
@@ -275,6 +280,7 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
                 max_step: 0,
                 is_sandbox_chapter: false,
                 is_free_explore: false,
+                is_fina_alone: false,
                 in_afterglow: false
             });
 
@@ -307,6 +313,7 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
                 max_step: 0,
                 is_sandbox_chapter: false,
                 is_free_explore: false,
+                is_fina_alone: false,
                 in_afterglow: false
             });
 
@@ -435,6 +442,10 @@ async function onEldoriaMessageRendered(messageId) {
         const isManuallyLocked = (vars.is_free_explore === true || vars.is_free_explore === 'true');
         const effectiveFreeExplore = isManuallyLocked ? true : !!aiData.is_free_explore;
 
+        const effectiveFinaAlone = (aiData.is_fina_alone !== undefined) 
+            ? (aiData.is_fina_alone === true || aiData.is_fina_alone === 'true') 
+            : (vars.is_fina_alone === true || vars.is_fina_alone === 'true');
+
         // 判定 A：固有沙盒章节处理与解脱跳出通道
         if (aiData.is_sandbox_chapter || wasSandbox) {
             if (aiData.request_next_chapter === true || (!aiData.is_sandbox_chapter && wasSandbox)) {
@@ -445,6 +456,7 @@ async function onEldoriaMessageRendered(messageId) {
                     max_step: 0,
                     is_sandbox_chapter: false,
                     is_free_explore: false,
+                    is_fina_alone: false,
                     in_afterglow: false
                 });
                 updateExploreButtonUI(false);
@@ -459,6 +471,7 @@ async function onEldoriaMessageRendered(messageId) {
                 max_step: 0,
                 is_sandbox_chapter: true,
                 is_free_explore: false,
+                is_fina_alone: effectiveFinaAlone,
                 in_afterglow: false
             });
             console.log(`[Eldoria-MVU] 当前处于固有沙盒章节（第${currentChapter}章），保持漫游。`);
@@ -484,6 +497,7 @@ async function onEldoriaMessageRendered(messageId) {
                 max_step: 0,
                 is_sandbox_chapter: false,
                 is_free_explore: false,
+                is_fina_alone: false,
                 in_afterglow: false
             });
             
@@ -503,6 +517,7 @@ async function onEldoriaMessageRendered(messageId) {
             max_step: isNaN(parsedMax) ? 0 : parsedMax,
             is_sandbox_chapter: false,
             is_free_explore: effectiveFreeExplore,
+            is_fina_alone: effectiveFinaAlone,
             in_afterglow: false
         });
 
