@@ -1,6 +1,7 @@
 # AGENTS.md — 世界书常驻全局指令与动态调度中枢
 
 > **项目定位**：Eldoria 世界书（第一部大本营篇 / 第二部维里迪亚王国篇 / 角色专属NSFW扩展篇 / 全局标号情境慢推体系）  
+> **题材属性**：本作属于绿帽向/NTS背德情趣作品。  
 > **底层规则基准**：[`writing-guards.md`](file:///d:/Siegfried/世界书/.agents/rules/writing-guards.md) · [`lexicon.md`](file:///d:/Siegfried/世界书/.agents/rules/lexicon.md) · [`worldbook-syntax.md`](file:///d:/Siegfried/世界书/.agents/rules/worldbook-syntax.md)
 
 ---
@@ -72,13 +73,4 @@
 
 ### 5. 触发条件：涉及其他角色（乔治、劳拉、亚莉莎、卢卡斯、朱利安等）
 * 自动提取对应人物档案的专属性格特征与身心羁绊，严格依照各自的人物档案独立成型。
-
----
-
-## 三、 双机协作与 Git 对齐准则
-
-因项目在双机交替推进，任务开工前须检查远端状态（`git fetch && git status`）：
-- **本地最新**：直接正常开工；
-- **本地落后**：向用户汇报落后情况并询问是否追平，**严禁擅自自动拉取**；
-- **完工交付**：阶段性成果交付后，主动提醒提交并推送（`git push`）。
 
