@@ -1,4 +1,4 @@
-// 自动生成于: 2026-10-05T11:27:47.415145
+// 自动生成于: 2026-10-06T23:25:25.515237
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -221,7 +221,7 @@ const EVENTS = [
   },
   {
     "id": "28",
-    "title": "VII班的\"正式介绍\"——菲娜作为黎恩的恋人",
+    "title": "VII班的“正式介绍”——菲娜作为黎恩的恋人",
     "route": "prologue",
     "chapter": "序章：苏醒与相遇",
     "summary": "",
@@ -989,7 +989,7 @@ const EVENTS = [
   },
   {
     "id": "124",
-    "title": "玲的\"实验\"——小恶魔的触碰",
+    "title": "玲的“实验”——小恶魔的触碰",
     "route": "shared",
     "chapter": "挑逗和接受",
     "summary": "",
@@ -1093,7 +1093,7 @@ const EVENTS = [
   },
   {
     "id": "137",
-    "title": "亚尔缇娜的\"报告\"——没有收件人",
+    "title": "亚尔缇娜的“报告”——没有收件人",
     "route": "shared",
     "chapter": "挑逗和接受",
     "summary": "",
@@ -1125,7 +1125,7 @@ const EVENTS = [
   },
   {
     "id": "141",
-    "title": "温泉的\"不知道你在\"——劳拉与雷恩",
+    "title": "温泉的“不知道你在”——劳拉与雷恩",
     "route": "shared",
     "chapter": "挑逗和接受",
     "summary": "",
@@ -6541,7 +6541,7 @@ const EVENTS = [
   },
   {
     "id": "818",
-    "title": "玲与\"天使\"——过去的对峙",
+    "title": "玲与“天使”——过去的对峙",
     "route": "shared",
     "chapter": "终局",
     "summary": "",
@@ -6557,7 +6557,7 @@ const EVENTS = [
   },
   {
     "id": "820",
-    "title": "凯尔的笔记本——给\"之后\"",
+    "title": "凯尔的笔记本——给“之后”",
     "route": "shared",
     "chapter": "终局",
     "summary": "",
