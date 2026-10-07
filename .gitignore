@@ -41,3 +41,7 @@ reference/
 # Scratch temporary dumps
 scratch/*.json
 scratch/*.txt
+
+# Migration & Out-of-git bundles
+迁移/
+*.tar.gz
