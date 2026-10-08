@@ -43,8 +43,10 @@ WUXIA_FORBIDDEN_WORDS = [
     '紫燕', '飞燕', '如燕', '轻如燕', '游龙', '惊鸿',
     # 东方器物、瓷器与修真容器
     '白瓷', '青瓷', '瓷盒', '瓷瓶', '瓷罐', '玉瓶', '玉盒', '玉佩', '锦囊', '药丸', '灵丹', '丹药',
-    # 东方市井与话本谦称
-    '草民', '老朽', '小女子', '奴家'
+    # 东方市井与话本谦称及军旅古风
+    '草民', '老朽', '小女子', '奴家', '同袍', '袍泽',
+    # 国术武侠动作与发力黑话
+    '坐马', '下盘', '马步', '沉腰', '沉腰坐马', '沉腰立马'
 ]
 
 # 2. 中式传统度量衡正则（允许“里格/公顷/公里/厘米/分贝”等，但严禁传统中国市制单位）
@@ -78,6 +80,16 @@ CHURCH_TEMPLAR_CONFUSION_WORDS = [
     '圣殿司铎', '圣殿秘库', '圣殿工坊'
 ]
 
+# 7. 世俗军队与骑士降阶黑名单词库（严禁将受封圣殿骑士降阶为世俗散兵老兵）
+SECULAR_MILITARY_FORBIDDEN_WORDS = [
+    '老兵', '退伍老兵', '大头兵', '军官', '守将', '武将', '退伍军人'
+]
+
+# 8. 否定式元叙述与自卫性辩解正则（严禁在正文中通过否定别家流派来进行描写，严禁出现“没有摆出...武侠/流氓/客栈/戾气/无赖相”等）
+DEFENSIVE_META_PATTERN = re.compile(
+    r'(没有|并未|绝非|不是|毫无).{0,10}(武侠|仙侠|修真|轻功|市井流氓|横肉暴徒|客栈|戾气|无赖相|江湖)'
+)
+
 def is_blacklist_definition_line(line):
     """判断某一行是否属于黑名单、规则定义、替换表或版本日志"""
     stripped = line.strip()
@@ -101,7 +113,7 @@ def audit_file(filepath):
     findings = []
 
     is_character_card = 'docs2/character' in rel_path.replace('\\', '/')
-    is_guide_or_plan = '方案/第二部' in rel_path.replace('\\', '/')
+    is_guide_or_plan = '方案/第二部' in rel_path.replace('\\', '/') or 'SKILL' in fname or 'skills' in rel_path
     is_index_file = fname.startswith('_')
 
     in_blacklist_table = False
@@ -166,6 +178,21 @@ def audit_file(filepath):
                 if any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范', '置换', '替换', '防呆']):
                     continue
                 findings.append(('【教廷/圣殿概念混淆】', f"行 {line_idx}: 发现混淆词 '{cw}' -> {line.strip()[:60]}"))
+
+        # 6. 检查世俗军队与降阶称谓违规（方案与正文章节中严禁将誓约骑士写为老兵/大头兵/世俗军队）
+        if is_guide_or_plan or ('story' in rel_path.lower() and filepath.endswith('.TXT')):
+            for smw in SECULAR_MILITARY_FORBIDDEN_WORDS:
+                if smw in line:
+                    if any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范', '置换', '替换', '防呆', '杜绝']):
+                        continue
+                    findings.append(('【世俗军队/降阶称谓违规】', f"行 {line_idx}: 方案与章节严禁使用世俗军队降阶词 '{smw}' -> {line.strip()[:60]}"))
+
+        # 7. 检查否定式元叙述与防守性辩解（严禁正文出现“没有...武侠/流氓/客栈/戾气”等）
+        m_def = DEFENSIVE_META_PATTERN.search(line)
+        if m_def:
+            if any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范', '置换', '替换', '防呆', '杜绝', '自卫性']):
+                continue
+            findings.append(('【否定式元叙述/防守性辩解】', f"行 {line_idx}: 发现防守性否定元叙述 '{m_def.group(0)}' -> {line.strip()[:60]}"))
 
     # 5. 章节文件专属检查（针对 docs2/story/ 下的非索引 TXT）
     if 'story' in filepath.lower() and filepath.endswith('.TXT') and not is_index_file:

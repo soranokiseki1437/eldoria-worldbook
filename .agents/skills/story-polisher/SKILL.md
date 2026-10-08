@@ -5,7 +5,8 @@ description: 章节润色与精修专用技能。当用户要求润色章节、�
 
 # 章节润色与精修技能指南 (Story Polisher)
 
-> 本技能定义了世界书章节 TXT 精修、润色与分章批注落地时的最高执行标准。  
+> 🚨 **适用范围与物理隔离声明**：本技能专用于**第一部（大本营篇 `docs/story/`）**章节精修与润色。若处理第二部（维里迪亚王国篇 `docs2/story/` 或方案详规），请使用第二部专属技能 [`story2-polisher`](file:///d:/Siegfried/世界书/.agents/skills/story2-polisher/SKILL.md)。  
+> 本技能定义了世界书第一部章节 TXT 精修、润色与分章批注落地时的最高执行标准。  
 > **底层规则与词表**：语言质感、人物指代与禁止句式严格遵循 [`writing-guards.md`](file:///d:/Siegfried/世界书/.agents/rules/writing-guards.md)，所有器物、身体与词汇映射严格遵循 [`lexicon.md`](file:///d:/Siegfried/世界书/.agents/rules/lexicon.md)。
 
 ---
