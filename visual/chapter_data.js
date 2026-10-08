@@ -1,4 +1,4 @@
-// 自动生成于: 2026-10-06T23:25:25.515237
+// 自动生成于: 2026-10-08T13:54:12.814792
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -909,7 +909,7 @@ const EVENTS = [
   },
   {
     "id": "114",
-    "title": "夜色中的契约——黎恩与Seraphina的私密仪式",
+    "title": "夜色中的契约——黎恩与菲娜的私密仪式",
     "route": "shared",
     "chapter": "试探和暧昧",
     "summary": "",
@@ -1181,7 +1181,7 @@ const EVENTS = [
   },
   {
     "id": "148",
-    "title": "圣光之泉——口交受け",
+    "title": "圣光之泉——口交承欢",
     "route": "shared",
     "chapter": "挑逗和接受",
     "summary": "",
