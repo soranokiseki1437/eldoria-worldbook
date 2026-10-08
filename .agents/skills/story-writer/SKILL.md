@@ -5,7 +5,7 @@ description: 章节新建、扩写与情境生成技能。当需要新增章节�
 
 # 章节创作与扩写技能指南 (Story Writer)
 
-> 🚨 **适用范围与物理隔离声明**：本技能专用于**第一部（大本营篇 `docs/story/`）**章节新建与扩写。若编写第二部（维里迪亚王国篇 `docs2/story/` 或方案详规），请使用第二部专属技能 [`story2-writer`](file:///d:/Siegfried/世界书/.agents/skills/story2-writer/SKILL.md) 与 [`viridia-writer`](file:///d:/Siegfried/世界书/.agents/skills/viridia-writer/SKILL.md)。  
+> 🚨 **适用范围与物理隔离声明**：本技能专用于**第一部（大本营篇 `docs/story/`）**章节新建与扩写。若编写第二部（维里迪亚王国篇 `docs2/` 或方案详规），请使用第二部专属技能 [`viridia-writer`](file:///d:/Siegfried/世界书/.agents/skills/viridia-writer/SKILL.md)。  
 > 本技能定义了在世界书第一部中新增章节 TXT、设计情境大纲展开及补全元数据字段的标准操作指南。  
 > **底层规则与词表**：语言质感、人物指代与禁止句式严格遵循 [`writing-guards.md`](file:///d:/Siegfried/世界书/.agents/rules/writing-guards.md)，所有器物、身体与词汇映射严格遵循 [`lexicon.md`](file:///d:/Siegfried/世界书/.agents/rules/lexicon.md)。
 

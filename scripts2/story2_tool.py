@@ -26,7 +26,7 @@ except ImportError:
 
 CHAPTER_TEMPLATE = """ID: {chap_id}
 名称: {title}
-阶段: {stage}
+NSFW: {nsfw}
 路线: {route}
 主要人物: [{characters}]
 总情境数: {total_sits}
@@ -51,7 +51,7 @@ def cmd_new(args):
     content = CHAPTER_TEMPLATE.format(
         chap_id=args.id,
         title=args.title,
-        stage=args.stage,
+        nsfw="是" if getattr(args, 'nsfw', False) else "否",
         route=args.route,
         characters=args.characters,
         total_sits=4,
