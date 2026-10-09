@@ -5,9 +5,9 @@ description: 章节润色与精修专用技能。当用户要求润色章节、�
 
 # 章节润色与精修技能指南 (Story Polisher)
 
-> 🚨 **适用范围与物理隔离声明**：本技能专用于**第一部（大本营篇 `docs/story/`）**章节精修与润色。若处理第二部（维里迪亚王国篇 `docs2/` 或方案详规），请使用第二部专属技能 [`viridia-writer`](file:///d:/Siegfried/世界书/.agents/skills/viridia-writer/SKILL.md)。  
+> 🚨 **适用范围与物理隔离声明**：本技能专用于**第一部（大本营篇 `docs/story/`）**章节精修与润色。若处理第二部（维里迪亚王国篇 `docs2/` 或方案详规），请使用第二部专属技能 [`viridia-writer`](../viridia-writer/SKILL.md)。  
 > 本技能定义了世界书第一部章节 TXT 精修、润色与分章批注落地时的最高执行标准。  
-> **底层规则与词表**：语言质感、人物指代与禁止句式严格遵循 [`writing-guards.md`](file:///d:/Siegfried/世界书/.agents/rules/writing-guards.md)，所有器物、身体与词汇映射严格遵循 [`lexicon.md`](file:///d:/Siegfried/世界书/.agents/rules/lexicon.md)。
+> **底层规则与词表**：语言质感、人物指代与禁止句式严格遵循 [`writing-guards.md`](../../rules/writing-guards.md)，所有器物、身体与词汇映射严格遵循 [`lexicon.md`](../../rules/lexicon.md)。
 
 ---
 
@@ -74,7 +74,7 @@ Step 5: 保存 TXT 并运行语法校验脚本验证结构完整性
 - [ ] **核心 (Core) 戏骨扎实**：交代戏剧张力与标志性台词（1~2句），无元叙事解说与日历日期。
 
 ### 2. 语言与词表对照
-- [ ] **词表映射达标**：对照 [`lexicon.md`](file:///d:/Siegfried/世界书/.agents/rules/lexicon.md)，排查替换所有古风器物、修真玄幻与明清艳情词汇；
+- [ ] **词表映射达标**：对照 [`lexicon.md`](../../rules/lexicon.md)，排查替换所有古风器物、修真玄幻与明清艳情词汇；
 - [ ] **消除 pivot 否定句式**：排查“不是……是……”、“没有……只是……”，全部转换为正面肯定陈述；
 - [ ] **无神性与元叙事词汇**：无神使大人、圣洁精灵；无“跨线阶段特有的背德感”、“作为伏笔”等出戏解说；
 - [ ] **标点与语流**：疑问句不用句号，无连续三句 ≤12 字的极短句堆砌，引语无“答/应”。

@@ -2,7 +2,7 @@
 
 > **项目定位**：Eldoria 世界书（第一部大本营篇 / 第二部维里迪亚王国篇 / 角色专属NSFW扩展篇 / 全局标号情境慢推体系）  
 > **题材属性**：本作属于绿帽向/NTS背德情趣作品。  
-> **底层规则基准**：[`writing-guards.md`](file:///d:/Siegfried/世界书/.agents/rules/writing-guards.md) · [`lexicon.md`](file:///d:/Siegfried/世界书/.agents/rules/lexicon.md) · [`worldbook-syntax.md`](file:///d:/Siegfried/世界书/.agents/rules/worldbook-syntax.md)
+> **底层规则基准**：[`writing-guards.md`](.agents/rules/writing-guards.md) · [`lexicon.md`](.agents/rules/lexicon.md) · [`worldbook-syntax.md`](.agents/rules/worldbook-syntax.md)
 
 ---
 
@@ -24,7 +24,7 @@
 
 ### 1. 正统 JRPG 轨迹轻小说文风定锚
 * **文风基准**：以日式轻小说、日式RPG西幻生活流风格，采用现代电影分镜、物理感官切片与克制自然的口语化对白，穿插日式轻小说风格的可爱有趣的吐槽与内心OS；
-* **词汇规范**：全库严格执行 [`lexicon.md`](file:///d:/Siegfried/世界书/.agents/rules/lexicon.md)，杜绝中式古代市井话本套路、四字成语连缀、明清修真采补黑话与官府奴仆腔调；
+* **词汇规范**：全库严格执行 [`lexicon.md`](.agents/rules/lexicon.md)，杜绝中式古代市井话本套路、四字成语连缀、明清修真采补黑话与官府奴仆腔调；
 * **体制规范**：圣殿大要塞全境无军队与现代官僚，属于封建骑士团体制（严禁“军队、军纪、军官、武将、守将、官僚、退伍军人”等世俗军队与现代行政表述），统一采用骑士团、要塞守备、先锋骑兵队、巡防、要塞典狱长。
 
 ### 2. 绝对人物指代与人称法典
@@ -67,16 +67,16 @@
 * **核心动因**：两人在下城体验生活以满足背德情趣，偶遇莫尔茨顺水推舟当情趣玩具；进要塞纯为寻求更刺激冒险。杜绝中式“为搜集情报委曲求全/牺牲自己”的苦情套路；事后黎恩必定用清水细布擦拭安抚并深情回收。
 
 ### 2. 触发条件：涉及【艾玛（Emma）篇章】
-* **自动激活技能**：[`emma-polisher`](file:///d:/Siegfried/世界书/.agents/skills/emma-polisher/SKILL.md)
+* **自动激活技能**：[`emma-polisher`](.agents/skills/emma-polisher/SKILL.md)
 * **核心规范**：包容大姐姐声线、古代魔女之眷学者底蕴、与矮人法林跨越千年的正配学术对话与温厚羁绊，严禁修真文言。
 
 ### 3. 触发条件：涉及【菲（Fie）篇章】
-* **自动激活技能**：[`fie-polisher`](file:///d:/Siegfried/世界书/.agents/skills/fie-polisher/SKILL.md)
+* **自动激活技能**：[`fie-polisher`](.agents/skills/fie-polisher/SKILL.md)
 * **核心规范**：西风妖精猫系寡言猎兵、直球坦然、少女纯情与隐秘兴奋交织的短促轻语，对黎恩有雏鸟般的依恋。
 
 ### 4. 触发条件：涉及【第二部·维里迪亚王国宏篇主线与章节】
-* **自动激活技能**：[`viridia-writer`](file:///d:/Siegfried/世界书/.agents/skills/viridia-writer/SKILL.md)（宏篇总控、风土把控、详规大纲与正文章节创作）
-* **主线总控与进度对账中枢**：[`第二部主线进度与全流程推进指南.md`](file:///d:/Siegfried/世界书/方案/第二部/第二部主线进度与全流程推进指南.md)
+* **自动激活技能**：[`viridia-writer`](.agents/skills/viridia-writer/SKILL.md)（宏篇总控、风土把控、详规大纲与正文章节创作）
+* **主线总控与进度对账中枢**：[`第二部主线进度与全流程推进指南.md`](方案/第二部/第二部主线进度与全流程推进指南.md)
 * **一键无缝接盘与自动推进契约**：
   - 当用户输入包含 `方案\第二部\第二部主线进度与全流程推进指南.md`（或请求接续推进主线）时：
     1. 必须立即阅读该指南，精准锁定仪表盘中的“当前断点”；

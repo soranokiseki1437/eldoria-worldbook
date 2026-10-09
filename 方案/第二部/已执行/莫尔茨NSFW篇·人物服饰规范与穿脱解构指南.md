@@ -1,7 +1,7 @@
 # 莫尔茨NSFW篇·人物服饰规范与穿脱解构指南
 
 > **定位**：第二部莫尔茨NSFW全篇（方案一至方案四十六）人物服装造型、四阶段演变、穿脱物理层次及专属情趣伏线统一基准法典。  
-> **底层遵循**：[AGENTS.md](file:///home/nanhu2/comfyui/世界书/AGENTS.md) · [writing-guards.md](file:///home/nanhu2/comfyui/世界书/.agents/rules/writing-guards.md) · [worldbook-syntax.md](file:///home/nanhu2/comfyui/世界书/.agents/rules/worldbook-syntax.md)  
+> **底层遵循**：[AGENTS.md](../../../AGENTS.md) · [writing-guards.md](../../../.agents/rules/writing-guards.md) · [worldbook-syntax.md](../../../.agents/rules/worldbook-syntax.md)  
 > **核心文风**：纯正日式西幻 JRPG 轻小说质感（《轨迹系列》《八方旅人》《无职转生》欧陆封建史生活流），严禁中式古代市井话本、现代二次元秋叶原女仆装与世俗军队表述。
 
 ---

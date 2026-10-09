@@ -1,10 +1,10 @@
 # 莫尔茨NSFW情境企划方案·全案文风与语病问题排查报告
 
-> **排查范围**：[`方案/第二部/莫尔茨NSFW/`](file:///home/nanhu2/comfyui/世界书/方案/第二部/莫尔茨NSFW/) 目录下全部 7 个方案文档。  
+> **排查范围**：[`方案/第二部/莫尔茨NSFW/`](../莫尔茨NSFW/) 目录下全部 7 个方案文档。  
 > **审查基准**：
-> - [AGENTS.md](file:///home/nanhu2/comfyui/世界书/AGENTS.md)（常驻全局文风与声线调度铁律）
-> - [writing-guards.md](file:///home/nanhu2/comfyui/世界书/.agents/rules/writing-guards.md)（去AI化红线与日轻西幻生活流规范）
-> - [莫尔茨篇_身份称谓规范与潜伏防务流转准则.md](file:///home/nanhu2/comfyui/世界书/方案/第二部/已执行/莫尔茨篇_身份称谓规范与潜伏防务流转准则.md)
+> - [AGENTS.md](../../../AGENTS.md)（常驻全局文风与声线调度铁律）
+> - [writing-guards.md](../../../.agents/rules/writing-guards.md)（去AI化红线与日轻西幻生活流规范）
+> - [莫尔茨篇_身份称谓规范与潜伏防务流转准则.md](莫尔茨篇_身份称谓规范与潜伏防务流转准则.md)
 
 ---
 
@@ -129,7 +129,7 @@
 
 ### 6. 机械修饰语（AI 假高级套话，共 10 处）
 * **病灶表现**：
-  反复出现 `一丝`、`丝毫` 等机械修饰语（违反 [writing-guards.md](file:///home/nanhu2/comfyui/世界书/.agents/rules/writing-guards.md) 第 151 条死刑红线词库）：
+  反复出现 `一丝`、`丝毫` 等机械修饰语（违反 [writing-guards.md](../../../.agents/rules/writing-guards.md) 第 151 条死刑红线词库）：
   - 02_ 方案二十四（Line 160）：`“没有丝毫退缩”`
   - 02_ 方案三十（Line 295）：`“带着一丝探询与宠溺”`
   - 02_ 方案三十（Line 297）：`“没有丝毫慌乱”`

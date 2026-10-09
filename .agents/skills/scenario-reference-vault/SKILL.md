@@ -261,7 +261,7 @@ $$\text{情境动力学公式} = [\text{外在约束项：物理卡阻/第三方
 
 ## 七、 参考文本检索与调阅协议 (Retrieval Protocol)
 
-当需要查阅或检索本地参考剧本时，可调用轻量辅助脚本 [`search_vault.py`](file:///home/nanhu2/comfyui/世界书/.agents/skills/scenario-reference-vault/scripts/search_vault.py)，辅助 LLM 快速锁定剧本篇章与事件位置：
+当需要查阅或检索本地参考剧本时，可调用轻量辅助脚本 [`search_vault.py`](scripts/search_vault.py)，辅助 LLM 快速锁定剧本篇章与事件位置：
 
 ```bash
 # 1. 宏观审阅：打印参考库所有章节大纲与事件目录树（指导 LLM 选定精读篇章）
@@ -328,7 +328,7 @@ python3 .agents/skills/scenario-reference-vault/scripts/search_vault.py -s "角�
 ## 九、 日系 RPG 与轻小说感官质感语料法典 (Sensory & Intimacy Texture)
 
 为彻底解决大模型在涉及亲密、隐秘与侵犯描写时“自动滑向中式春宫网文”的底层语料偏见，本技能特设专属日系感官语料法典：
-* **核心资产档案**：[corpus_jrpg_sensory_and_intimacy.md](file:///home/nanhu2/comfyui/世界书/.agents/skills/scenario-reference-vault/references/corpus_jrpg_sensory_and_intimacy.md)
+* **核心资产档案**：[corpus_jrpg_sensory_and_intimacy.md](references/corpus_jrpg_sensory_and_intimacy.md)
 * **核心功能**：
   1. 锁定日系 ACG / JRPG 轻小说的微生理反应、微动势、知行撕裂与声音工程；
   2. 提供“中式春宫/武侠修真 ➔ 正统日式西幻/轻小说”的死刑词置换对照表；
