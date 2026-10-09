@@ -1,4 +1,4 @@
-// 自动生成于: 2026-10-08T22:22:57.050395
+// 自动生成于: 2026-10-09T14:22:41.773164
 // 数据源: docs/story/*.TXT
 // 生成器: scripts/generate_chapter_browser.py
 
@@ -2785,7 +2785,7 @@ const EVENTS = [
     "route": "shared",
     "chapter": "跨线",
     "summary": "",
-    "type": "main"
+    "type": "nsfw"
   },
   {
     "id": "349",
@@ -2793,7 +2793,7 @@ const EVENTS = [
     "route": "shared",
     "chapter": "跨线",
     "summary": "",
-    "type": "main"
+    "type": "nsfw"
   },
   {
     "id": "350",
