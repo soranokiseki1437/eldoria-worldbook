@@ -92,6 +92,11 @@ DEFENSIVE_META_PATTERN = re.compile(
     r'(没有|并未|绝非|不是|毫无).{0,10}(武侠|仙侠|修真|轻功|市井流氓|横肉暴徒|客栈|戾气|无赖相|江湖)'
 )
 
+# 9. 现实地球地理打破沉浸感黑名单词库（第二部本土为晨光大陆Luminas，异界为塞姆利亚大陆Zemuria，严禁现实地球地理名词）
+REAL_EARTH_GEO_WORDS = [
+    '欧陆', '欧洲'
+]
+
 def is_blacklist_definition_line(line):
     """判断某一行是否属于黑名单、规则定义、替换表或版本日志"""
     stripped = line.strip()
@@ -195,6 +200,13 @@ def audit_file(filepath):
             if any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范', '置换', '替换', '防呆', '杜绝', '自卫性']):
                 continue
             findings.append(('【否定式元叙述/防守性辩解】', f"行 {line_idx}: 发现防守性否定元叙述 '{m_def.group(0)}' -> {line.strip()[:60]}"))
+
+        # 8. 检查现实地球地理违规（严禁在第二部中出现欧陆/欧洲，必须使用架空“晨光大陆”或日式西幻）
+        for geo in REAL_EARTH_GEO_WORDS:
+            if geo in line:
+                if any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范', '置换', '替换', '防呆', '杜绝', '打破沉浸感']):
+                    continue
+                findings.append(('【现实地球地理违规】', f"行 {line_idx}: 发现现实地球地理词 '{geo}'（请置换为'晨光大陆'或'日式西幻'） -> {line.strip()[:60]}"))
 
     # 5. 章节文件专属检查（针对 docs2/story/ 下的非索引 TXT）
     if 'story' in filepath.lower() and filepath.endswith('.TXT') and not is_index_file:

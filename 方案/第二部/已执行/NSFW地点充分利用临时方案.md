@@ -5,7 +5,7 @@
 > - 卢卡斯「晨光大教堂两部曲」（告解亭镂空木雕隔栅盲摸手交 + 二层管风琴乐池圣咏和弦轰鸣深喉）已正式落定并编入卢卡斯专属方案：[`方案/第二部/卢卡斯NSFW/04_晨光大教堂信仰破戒两部曲篇（卢卡斯×菲娜）.md`](../卢卡斯NSFW/04_晨光大教堂信仰破戒两部曲篇（卢卡斯×菲娜）.md)；并在全案总纲 [`00_卢卡斯NSFW情境企划全案总纲.md`](../卢卡斯NSFW/00_卢卡斯NSFW情境企划全案总纲.md) 与 [`方案/第二部/README.md`](../README.md) 中完成注册。  
 > **企划定位**：第二部维里迪亚王国篇·地理场景深度利用与全新情境拓展备忘案  
 > **核心目标**：全面盘点并激活 `docs2/location/` 官方档案库中目前处于“零开发”或“严重低估”的高价值舞台，彻底打破“酒馆大堂/地牢刑房”的审美疲劳；  
-> **方法论遵循**：严格贯彻 [`scenario-reference-vault`](../../../.agents/skills/scenario-reference-vault/SKILL.md) 参考文献力学解构模型（剥离表面皮相，采掘空间阻隔、白噪音掩护、物理卡阻、声线伪装与多感官介质等底层力学），结合 [`viridia-writer`](../../../.agents/skills/viridia-writer/SKILL.md) 与 [`corpus_jrpg_sensory_and_intimacy.md`](../../../.agents/skills/scenario-reference-vault/references/corpus_jrpg_sensory_and_intimacy.md)，严禁低俗网文与修真武侠黑话，百分之百还原欧陆封建与轨迹 JRPG 西幻风骨。
+> **方法论遵循**：严格贯彻 [`scenario-reference-vault`](../../../.agents/skills/scenario-reference-vault/SKILL.md) 参考文献力学解构模型（剥离表面皮相，采掘空间阻隔、白噪音掩护、物理卡阻、声线伪装与多感官介质等底层力学），结合 [`viridia-writer`](../../../.agents/skills/viridia-writer/SKILL.md) 与 [`corpus_jrpg_sensory_and_intimacy.md`](../../../.agents/skills/scenario-reference-vault/references/corpus_jrpg_sensory_and_intimacy.md)，严禁低俗网文与修真武侠黑话，百分之百还原晨光大陆中世纪与轨迹 JRPG 西幻风骨。
 
 ---
 

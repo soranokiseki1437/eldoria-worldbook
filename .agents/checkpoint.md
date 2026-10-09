@@ -105,7 +105,7 @@
    - [`scenario-reference-vault/references/`](skills/scenario-reference-vault/references)：全量收纳《SAO气息遮断2》（5篇）与《末日女友堕落》（5篇）共 10 份约 100 万字的高光剧本全集；
    - `.gitignore` 规则配置：防御 10GB 外部二进制大压缩包污染版本库。
 6. **第二部企划与设定卡同步对齐**：
-   - 企划方案：[`方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md`](../方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md)
+   - 企划方案：[`方案/第二部/莫尔茨NSFW全案分卷导航与索引.md`](../方案/第二部/莫尔茨NSFW全案分卷导航与索引.md)
    - 实体卡对齐：`docs2/character/Seraphina.TXT`、`docs2/character/黎恩.TXT`、`docs2/character/_人物总览.TXT`、`docs2/npc/莫尔茨.TXT`、`docs2/location/黑野猪酒馆.TXT`。
 
 ---
@@ -113,7 +113,7 @@
 ## 六、 核心方案与工具索引
 - 📄 [.agents/skills/scenario-reference-vault/SKILL.md](skills/scenario-reference-vault/SKILL.md)（参考文献深度阅读与力学解构元技能权威规范）
 - 📄 [.agents/skills/scenario-reference-vault/scripts/search_vault.py](skills/scenario-reference-vault/scripts/search_vault.py)（剧本大纲透视与检索工具）
-- 📄 [方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md](../方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md)（莫尔茨篇情境企划方案）
+- 📄 [方案/第二部/莫尔茨NSFW全案分卷导航与索引.md](../方案/第二部/莫尔茨NSFW全案分卷导航与索引.md)（莫尔茨篇情境企划方案）
 - 📄 [docs/chapter/_背德与越界心理.TXT](../docs/chapter/_背德与越界心理.TXT)（第一部机制条目源码）
 - 📄 [方案/背德与越界心理机制方案.md](../方案/背德与越界心理机制方案.md)（机制方案最新定稿）
 - 📄 [CLAUDE.md](../CLAUDE.md)（项目规范基准）
