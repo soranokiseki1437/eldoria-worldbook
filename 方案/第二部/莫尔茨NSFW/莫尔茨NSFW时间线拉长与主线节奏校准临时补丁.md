@@ -2,15 +2,15 @@
 
 > **归档位置**：`方案/第二部/莫尔茨NSFW/莫尔茨NSFW时间线拉长与主线节奏校准临时补丁.md`  
 > **关联母案**：
-> - [00_莫尔茨NSFW情境企划全案总纲.md](file:///home/nanhu2/comfyui/世界书/方案/第二部/莫尔茨NSFW/00_莫尔茨NSFW情境企划全案总纲.md)
-> - [01_黑野猪酒馆市井情趣篇（方案一至方案十六）.md](file:///home/nanhu2/comfyui/世界书/方案/第二部/莫尔茨NSFW/01_黑野猪酒馆市井情趣篇（方案一至方案十六）.md)
-> - [02_圣殿要塞深入与要职近身篇（方案十七至方案三十七）.md](file:///home/nanhu2/comfyui/世界书/方案/第二部/莫尔茨NSFW/02_圣殿要塞深入与要职近身篇（方案十七至方案三十七）.md)
-> - [03_圣殿地牢深入与核心情趣篇（方案三十八至方案四十五）.md](file:///home/nanhu2/comfyui/世界书/方案/第二部/莫尔茨NSFW/03_圣殿地牢深入与核心情趣篇（方案三十八至方案四十五）.md)
-> - [04_王都暗渠突围与终极收束篇（方案四十六至方案四十七）.md](file:///home/nanhu2/comfyui/世界书/方案/第二部/莫尔茨NSFW/04_王都暗渠突围与终极收束篇（方案四十六至方案四十七）.md)
-> - [莫尔茨NSFW剧情融入主线架构方案.md](file:///home/nanhu2/comfyui/世界书/方案/第二部/莫尔茨NSFW/莫尔茨NSFW剧情融入主线架构方案.md)
-> - [06_宏篇十幕扩充与全新第三幕王都繁华市井详规方案.md](file:///home/nanhu2/comfyui/世界书/方案/第二部/主线与世界扩充方案/06_宏篇十幕扩充与全新第三幕王都繁华市井详规方案.md)
-> - [01_宏篇主线演进与阶段规划方案.md](file:///home/nanhu2/comfyui/世界书/方案/第二部/主线与世界扩充方案/01_宏篇主线演进与阶段规划方案.md)
-> - 参考实体档案：[`docs2/npc/莫尔茨.TXT`](file:///home/nanhu2/comfyui/世界书/docs2/npc/莫尔茨.TXT) · [`docs2/npc/科林.TXT`](file:///home/nanhu2/comfyui/世界书/docs2/npc/科林.TXT) · [`docs2/npc/卢卡斯.TXT`](file:///home/nanhu2/comfyui/世界书/docs2/npc/卢卡斯.TXT) · [`docs2/location/黑野猪酒馆.TXT`](file:///home/nanhu2/comfyui/世界书/docs2/location/黑野猪酒馆.TXT) · [`docs2/location/圣殿要塞.TXT`](file:///home/nanhu2/comfyui/世界书/docs2/location/圣殿要塞.TXT) · [`docs2/location/圣殿地牢.TXT`](file:///home/nanhu2/comfyui/世界书/docs2/location/圣殿地牢.TXT)
+> - [00_莫尔茨NSFW情境企划全案总纲.md](00_莫尔茨NSFW情境企划全案总纲.md)
+> - [01_黑野猪酒馆市井情趣篇（方案一至方案十六）.md](01_黑野猪酒馆市井情趣篇（方案一至方案十六）.md)
+> - [02_圣殿要塞深入与要职近身篇（方案十七至方案三十七）.md](02_圣殿要塞深入与要职近身篇（方案十七至方案三十七）.md)
+> - [03_圣殿地牢深入与核心情趣篇（方案三十八至方案四十五）.md](03_圣殿地牢深入与核心情趣篇（方案三十八至方案四十五）.md)
+> - [04_王都暗渠突围与终极收束篇（方案四十六至方案四十七）.md](04_王都暗渠突围与终极收束篇（方案四十六至方案四十七）.md)
+> - [莫尔茨NSFW剧情融入主线架构方案.md](莫尔茨NSFW剧情融入主线架构方案.md)
+> - [06_宏篇十幕扩充与全新第三幕王都繁华市井详规方案.md](../主线与世界扩充方案/06_宏篇十幕扩充与全新第三幕王都繁华市井详规方案.md)
+> - [01_宏篇主线演进与阶段规划方案.md](../主线与世界扩充方案/01_宏篇主线演进与阶段规划方案.md)
+> - 参考实体档案：[`docs2/npc/莫尔茨.TXT`](../../../docs2/npc/莫尔茨.TXT) · [`docs2/npc/科林.TXT`](../../../docs2/npc/科林.TXT) · [`docs2/npc/卢卡斯.TXT`](../../../docs2/npc/卢卡斯.TXT) · [`docs2/location/黑野猪酒馆.TXT`](../../../docs2/location/黑野猪酒馆.TXT) · [`docs2/location/圣殿要塞.TXT`](../../../docs2/location/圣殿要塞.TXT) · [`docs2/location/圣殿地牢.TXT`](../../../docs2/location/圣殿地牢.TXT)
 
 ---
 

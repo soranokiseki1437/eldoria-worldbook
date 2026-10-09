@@ -23,7 +23,7 @@
 ## 二、当前最新权威替代中枢（SSOT）
 
 进行第二部创作、规划与审阅时，请一律转向以下最新体系：
-* **主线总控中枢与推进断点**：[`方案/第二部/第二部主线进度与全流程推进指南.md`](file:///d:/Siegfried/世界书/方案/第二部/第二部主线进度与全流程推进指南.md)
-* **十幕体系母案集群**：[`方案/第二部/主线与世界扩充方案/`](file:///d:/Siegfried/世界书/方案/第二部/主线与世界扩充方案/)（00~06 方案与各幕分阶段详规）
-* **文风基准与雷达质检**：[`AGENTS.md`](file:///d:/Siegfried/世界书/AGENTS.md)、[`.agents/rules/writing-guards.md`](file:///d:/Siegfried/世界书/.agents/rules/writing-guards.md)、[`.agents/rules/lexicon.md`](file:///d:/Siegfried/世界书/.agents/rules/lexicon.md) 及 [`scripts2/scan_viridia_diseases.py`](file:///d:/Siegfried/世界书/scripts2/scan_viridia_diseases.py)
-* **专属写作技能**：[`.agents/skills/viridia-writer/SKILL.md`](file:///d:/Siegfried/世界书/.agents/skills/viridia-writer/SKILL.md)
+* **主线总控中枢与推进断点**：[`方案/第二部/第二部主线进度与全流程推进指南.md`](../../第二部主线进度与全流程推进指南.md)
+* **十幕体系母案集群**：[`方案/第二部/主线与世界扩充方案/`](../../主线与世界扩充方案/)（00~06 方案与各幕分阶段详规）
+* **文风基准与雷达质检**：[`AGENTS.md`](../../../../AGENTS.md)、[`.agents/rules/writing-guards.md`](../../../../.agents/rules/writing-guards.md)、[`.agents/rules/lexicon.md`](../../../../.agents/rules/lexicon.md) 及 [`scripts2/scan_viridia_diseases.py`](../../../../scripts2/scan_viridia_diseases.py)
+* **专属写作技能**：[`.agents/skills/viridia-writer/SKILL.md`](../../../../.agents/skills/viridia-writer/SKILL.md)

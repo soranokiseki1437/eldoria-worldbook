@@ -1,7 +1,7 @@
 # 维里迪亚王国 JRPG 西幻风土与正向实体指南 (Viridia Entities)
 
 > **定位与原则**：本手册为世界书第二部（维里迪亚王国篇）专属的**正向风土物产、建筑地理与战术实体速查库**。  
-> **单一真实源（SSOT）**：通用古风与修真禁词已全量收口至全局字典 [`lexicon.md`](file:///d:/Siegfried/世界书/.agents/rules/lexicon.md)，本手册严禁重复铺陈违规词，**100% 聚焦于纯正日式 RPG 西幻（JRPG Western Fantasy）生活流正向实体**。
+> **单一真实源（SSOT）**：通用古风与修真禁词已全量收口至全局字典 [`lexicon.md`](../../../rules/lexicon.md)，本手册严禁重复铺陈违规词，**100% 聚焦于纯正日式 RPG 西幻（JRPG Western Fantasy）生活流正向实体**。
 
 ---
 

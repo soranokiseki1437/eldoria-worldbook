@@ -72,5 +72,5 @@ python scripts/backup_restore.py list
 ## 二、 异常排错与踩坑手册
 
 遇到构建告警、一致性失败或编号漂移时，查阅：
-- [troubleshooting.md](file:///home/nanhu2/comfyui/%E4%B8%96%E7%95%8C%E4%B9%A6/.agents/skills/worldbook-ops/references/troubleshooting.md)（含自由探索同名判定、重编号脱节修复、盲区排查）
+- [troubleshooting.md](references/troubleshooting.md)（含自由探索同名判定、重编号脱节修复、盲区排查）
 - 历史深度记录直接检索：`grep -rn "<关键字>" .learnings/LEARNINGS.md`

@@ -46,9 +46,9 @@
    - **事后坦白与侍奉汇报融合**：菲娜事后迫不及待在娇羞、兴奋中，一边温柔手交/口交侍奉挑逗黎恩，一边毫不隐瞒细细汇报被触碰、进入与射精细节，调侃黎恩吃醋神态；
    - **现场窥赏**：反差刺激引爆二人欲火，菲娜快感成倍爆发极尽娇媚。
 2. **工程载体与注册配置**：
-   - 独立机制条目：[`docs/chapter/_背德与越界心理.TXT`](file:///home/nanhu2/comfyui/世界书/docs/chapter/_背德与越界心理.TXT)（ID: `CH09`，`注入深度: 1`，`始终触发: 是`）；
-   - 构建脚本注册：[`scripts/build_eldoria.py`](file:///home/nanhu2/comfyui/世界书/scripts/build_eldoria.py) 中 `SYSTEM_INSTRUCTIONS` 挂载 `'背德与越界心理': {'order': 200}`（`pos=4`, `depth=1`）；
-   - 方案方案库：[`方案/背德与越界心理机制方案.md`](file:///home/nanhu2/comfyui/世界书/方案/背德与越界心理机制方案.md) 保持逐字完全对齐；
+   - 独立机制条目：[`docs/chapter/_背德与越界心理.TXT`](../docs/chapter/_背德与越界心理.TXT)（ID: `CH09`，`注入深度: 1`，`始终触发: 是`）；
+   - 构建脚本注册：[`scripts/build_eldoria.py`](../scripts/build_eldoria.py) 中 `SYSTEM_INSTRUCTIONS` 挂载 `'背德与越界心理': {'order': 200}`（`pos=4`, `depth=1`）；
+   - 方案方案库：[`方案/背德与越界心理机制方案.md`](../方案/背德与越界心理机制方案.md) 保持逐字完全对齐；
    - **状态**：条目编写与精修已全部就绪，用户选择暂不触发全库构建，后续随时可一键编译。
 
 ---
@@ -71,14 +71,14 @@
 
 1. **故事章节递归解封与前置引信母条目（Order: 10 专职点火）**：
    - 全库 923 章配置为 `excludeRecursion=False`，彻底解开“不可递归”硬锁，允许被母条目唤醒；
-   - 恢复并固化第一母条目 [`docs/chapter/_章节引信与状态锚点.TXT`](file:///home/nanhu2/comfyui/世界书/docs/chapter/_章节引信与状态锚点.TXT)（ID: `CH00`, `Order: 1000`, `Pos: 4`, `Depth: 0`），其正文包含 `第{{getvar::chapter}}章`，作为全库**唯一**允许向外发射递归唤醒的专职引信（`preventRecursion=False`）；
+   - 恢复并固化第一母条目 [`docs/chapter/_章节引信与状态锚点.TXT`](../docs/chapter/_章节引信与状态锚点.TXT)（ID: `CH00`, `Order: 1000`, `Pos: 4`, `Depth: 0`），其正文包含 `第{{getvar::chapter}}章`，作为全库**唯一**允许向外发射递归唤醒的专职引信（`preventRecursion=False`）；
    - **全库总览与常驻条目物理静音**：所有总览条目（人物总览、次要人物总览、怪物生物总览、地点总览、魔法体系、阶段系统等）及各类指令条目，统一开启“不可进一步递归”（`preventRecursion=True`），彻底根除总览中登场章节编号引发的递归群爆；
 2. **TavernHelper 状态机升级至 v1.3.0 静默纯净版**：
    - **切章步进绝对归零**：余韵冷却切章流转时，坚决将 `step` 与 `max_step` 初始化归零（`0/0`），根除跨章继承上一章步数变成 `6/0` 的脏数据 Bug；
    - **防重触发节流守卫**：增加基于消息指纹（`msgIdx + swipe_id + mes.length`）的防重机制，彻底杜绝酒馆单楼层多事件导致的瞬时余韵+切章连跳；
    - **彻底剔除系统消息流**：移除所有 `/sys` 与 `sendSystemMessage` 逻辑，聊天流 100% 纯净无系统气泡。
 3. **全流程构建与一致性校验**：
-   - 全库 1066 条条目全量重新构建输出为 [`output/Eldoria_V10.31.0.json`](file:///home/nanhu2/comfyui/世界书/output/Eldoria_V10.31.0.json)；
+   - 全库 1066 条条目全量重新构建输出为 [`output/Eldoria_V10.31.0.json`](../output/Eldoria_V10.31.0.json)；
    - 全库 7 大项一致性校验 100% 满分通过。
 
 ---
@@ -101,21 +101,21 @@
    - 明确指出依赖机械关键词搜索是偷懒行为；
    - 确立 **LLM 深度剧情考古四步法**：`[TOC宏观导航] ➔ [调用 view_file 沉浸式连续精读50~100行] ➔ [深层心理学逆向解构] ➔ [跨界化学杂交生成3套本土异构方案]`。
 5. **配套工具与参考库自包含**：
-   - [`scenario-reference-vault/scripts/search_vault.py`](file:///home/nanhu2/comfyui/世界书/.agents/skills/scenario-reference-vault/scripts/search_vault.py)：升级支持全库大纲索引（`--toc`）与行号定位；
-   - [`scenario-reference-vault/references/`](file:///home/nanhu2/comfyui/世界书/.agents/skills/scenario-reference-vault/references)：全量收纳《SAO气息遮断2》（5篇）与《末日女友堕落》（5篇）共 10 份约 100 万字的高光剧本全集；
+   - [`scenario-reference-vault/scripts/search_vault.py`](skills/scenario-reference-vault/scripts/search_vault.py)：升级支持全库大纲索引（`--toc`）与行号定位；
+   - [`scenario-reference-vault/references/`](skills/scenario-reference-vault/references)：全量收纳《SAO气息遮断2》（5篇）与《末日女友堕落》（5篇）共 10 份约 100 万字的高光剧本全集；
    - `.gitignore` 规则配置：防御 10GB 外部二进制大压缩包污染版本库。
 6. **第二部企划与设定卡同步对齐**：
-   - 企划方案：[`方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md`](file:///home/nanhu2/comfyui/世界书/方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md)
+   - 企划方案：[`方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md`](../方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md)
    - 实体卡对齐：`docs2/character/Seraphina.TXT`、`docs2/character/黎恩.TXT`、`docs2/character/_人物总览.TXT`、`docs2/npc/莫尔茨.TXT`、`docs2/location/黑野猪酒馆.TXT`。
 
 ---
 
 ## 六、 核心方案与工具索引
-- 📄 [.agents/skills/scenario-reference-vault/SKILL.md](file:///home/nanhu2/comfyui/世界书/.agents/skills/scenario-reference-vault/SKILL.md)（参考文献深度阅读与力学解构元技能权威规范）
-- 📄 [.agents/skills/scenario-reference-vault/scripts/search_vault.py](file:///home/nanhu2/comfyui/世界书/.agents/skills/scenario-reference-vault/scripts/search_vault.py)（剧本大纲透视与检索工具）
-- 📄 [方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md](file:///home/nanhu2/comfyui/世界书/方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md)（莫尔茨篇情境企划方案）
-- 📄 [docs/chapter/_背德与越界心理.TXT](file:///home/nanhu2/comfyui/世界书/docs/chapter/_背德与越界心理.TXT)（第一部机制条目源码）
-- 📄 [方案/背德与越界心理机制方案.md](file:///home/nanhu2/comfyui/世界书/方案/背德与越界心理机制方案.md)（机制方案最新定稿）
-- 📄 [CLAUDE.md](file:///home/nanhu2/comfyui/世界书/CLAUDE.md)（项目规范基准）
+- 📄 [.agents/skills/scenario-reference-vault/SKILL.md](skills/scenario-reference-vault/SKILL.md)（参考文献深度阅读与力学解构元技能权威规范）
+- 📄 [.agents/skills/scenario-reference-vault/scripts/search_vault.py](skills/scenario-reference-vault/scripts/search_vault.py)（剧本大纲透视与检索工具）
+- 📄 [方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md](../方案/第二部/第二部圣殿地牢NSFW情境企划方案_莫尔茨篇.md)（莫尔茨篇情境企划方案）
+- 📄 [docs/chapter/_背德与越界心理.TXT](../docs/chapter/_背德与越界心理.TXT)（第一部机制条目源码）
+- 📄 [方案/背德与越界心理机制方案.md](../方案/背德与越界心理机制方案.md)（机制方案最新定稿）
+- 📄 [CLAUDE.md](../CLAUDE.md)（项目规范基准）
 
 

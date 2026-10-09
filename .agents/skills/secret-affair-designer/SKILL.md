@@ -139,7 +139,7 @@ description: 隐秘/隐奸/背德事件设计、编排与情境写作通用元�
    - **发生什么就写什么**：严禁在章节标题、大纲条目、正文描写或战略收益中插入“非本番/未插入/非战斗/非敌对”等分类式元标签！
    - 镜头只记录当下真实发生之行动与情感：发生温存擦拭就写`温存擦拭`，发生深情长吻就写`深情安抚`，发生默写图纸就写`绘制暗道图纸`。严禁任何创作者视角的分类学元术语破坏沉浸感。
 8. **日系 RPG / ACG 感官质感与性器官直接描写规范（强制挂钩 scenario-reference-vault）**：
-   - 所有隐秘、背德、侵犯与情感情欲描写，一律强制执行 [corpus_jrpg_sensory_and_intimacy.md](file:///home/nanhu2/comfyui/世界书/.agents/skills/scenario-reference-vault/references/corpus_jrpg_sensory_and_intimacy.md) 的置换法典与微声音工程；
+   - 所有隐秘、背德、侵犯与情感情欲描写，一律强制执行 [corpus_jrpg_sensory_and_intimacy.md](../scenario-reference-vault/references/corpus_jrpg_sensory_and_intimacy.md) 的置换法典与微声音工程；
    - **性器官直接具象描写铁律（拒绝虚伪掩饰与过度委婉）**：
      - 在亲密接触、肉体交融与情欲对决中，**必须直接、具象、自然地描写性器官**（如“肉棒”、“鸡巴”、“龟头”、“花径”、“肉唇”、“小穴”等）；
      - 坚决杜绝“分身/性器/阳物/要害（代指）”等过度回避、生硬别扭的虚伪代称，亦严禁“玉茎/龙根/肉刃”等修真仙侠套话；
