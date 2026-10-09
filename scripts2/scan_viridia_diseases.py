@@ -7,9 +7,9 @@ scripts2/scan_viridia_diseases.py — 第二部（维里迪亚王国篇）专属
 专门防御：
 1. [古风/仙侠/修真黑名单]：碎银、官道、演兵场、路引、四合院、中军大帐、千斤闸、剑意、身法、划拳、品茶、烽火等。
 2. [中式传统度量衡]：斤、两、尺、寸、丈、里（如“三寸”、“半尺”、“数十里”、“重达千斤”）。
-3. [第一部隐秘/隐奸/NSFW残留污染]：战术隐蔽（用户明确要求拔除）、爱意值、隐秘事件、背德事件等。
+3. [跨体系残留字段]：非白名单字段、未定义系统参数。
 4. [翻译腔长定语堆叠与括号英文]：如“高石围墙方庭合院式高级驿舍（Courtyard Coaching Inn）”。
-5. [章节元数据字段规范]：主要人物字段必须存在，战术隐蔽严格禁止。
+5. [章节元数据字段规范]：主要人物字段必须存在，必须严格符合 9 字段白名单。
 """
 
 import os
@@ -48,23 +48,57 @@ WUXIA_FORBIDDEN_WORDS = [
     # 国术武侠动作与发力黑话
     '坐马', '下盘', '马步', '沉腰', '沉腰坐马', '沉腰立马',
     # 东方/近现代非中世纪兵器
-    '马刀', '战刀'
+    '马刀', '战刀',
+    # 武侠动作与招式黑话（严禁直接套用武侠打斗）
+    '飞掠', '凌空飞掠', '错步', '面门', '死穴', '命门', '战端', '微风劲', '气劲',
+    '剑芒', '刀芒', '杀招', '出招', '招式', '过招', '杀气腾腾', '暴起发难',
+    # 玄幻仙侠玄学描写
+    '虚覆', '通体莹白', '交融流转', '流转不息', '流转', '通透温润', '神魂', '本源之力',
+    # 古风文言虚词、副词与动词
+    '顷刻', '半晌', '未几', '旋即', '蓦地', '骤然', '些许', '良久', '沉吟', '尽数', '全数',
+    '徐徐', '悠悠', '赫然', '步入', '踏足', '敛息', '阖眸', '轻启', '微蹙', '凭栏',
+    # 古风颜色与声效套话
+    '赤红', '墨色', '素白', '黛色', '青丝', '吱呀', '打了个转'
 ]
 
-# 2. 中式传统度量衡正则（允许“里格/公顷/公里/厘米/分贝”等，但严禁传统中国市制单位）
-# 匹配：一尺、数尺、三寸、数十斤、数里、五里、千斤、数万石、数斗等
+# 1.1 评书话本与说书人套话黑名单（彻底拔除中式说书腔调）
+STORYTELLING_FORBIDDEN_WORDS = [
+    '话音未落', '果不其然', '只见', '说时迟那时快', '殊不知', '岂料',
+    '暗道一声', '心下大骇', '按捺不住', '不由得', '且说', '按下不表',
+    '这厢', '那厢', '暴喝一声', '心生一计'
+]
+
+# 1.2 古风言情与假文雅修辞黑名单（彻底杜绝古偶文风）
+ROMANCE_ANCIENT_CLICHES = [
+    '微嗔', '薄怒', '莞尔', '掩面', '颔首', '轻颔', '蹙起', '美目', '秋波', '蛾眉', '娇躯',
+    '眼眸', '双眸', '美眸', '寒眸', '凤眸', '微凉', '柔荑', '玉手', '纤手', '檀口', '樱唇', '皓齿', '贝齿'
+]
+
+# 1.3 现代公文报告与作战通报套话（消灭会议纪要与总结通报）
+BUREAUCRATIC_FORBIDDEN_WORDS = [
+    '清剿完毕', '战斗收束', '梳理顺畅', '收束完毕', '开展', '落实',
+    '达成共识', '正式敲定', '平静说出', '明确敲定', '逐项核对', '逐项核验', '言明', '坦言自己'
+]
+
+# 1.4 连续四字短语连缀正则（中式四字律动检测，连缀3个及以上4字结构硬拦截）
+CADENCE_4_CHAR_PATTERN = re.compile(
+    r'(?:^|[，,、])([一-龥]{4})[，,、]([一-龥]{4})[，,、]([一-龥]{4})(?:[，,、。！？\s]|$)'
+)
+
+# 2. 中式传统度量衡与文言计时正则（允许“里格/公顷/公里/厘米/分贝”等，但严禁传统中国市制单位与古风“载”）
+# 匹配：一尺、数尺、三寸、数十斤、数里、五里、千斤、数万石、数斗、两百载、数载等
 CHINESE_UNIT_PATTERN = re.compile(
     r'(?<![公公分厘纳毫百千])(?<![a-zA-Z0-9])'
-    r'([一二三四五六七八九十百千万数几两半]+(斤|两|尺|寸|丈|里|斗)|[一二三四五六七八九十百千万数几两半]+石(?!头|块|壁|缝|阶|门|桥|柱|洞|窟|殿|板|匠|泉|栏|雕|像|山|屋|亭|椅|凳|盒|碑|碗|壶|锅|盆|锁|槽|栏|道|路|崖|砾|质|材|构|体|晶))'
+    r'([一二三四五六七八九十百千万数几两半0-9]+(斤|两|尺|寸|丈|里|斗|载)|[一二三四五六七八九十百千万数几两半]+石(?!头|块|壁|缝|阶|门|桥|柱|洞|窟|殿|板|匠|泉|栏|雕|像|山|屋|亭|椅|凳|盒|碑|碗|壶|锅|盆|锁|槽|栏|道|路|崖|砾|质|材|构|体|晶))'
     r'(?![米克分厘寸升格])'
 )
 
-# 3. 第一部 NSFW / 隐秘系统污染词
+# 3. 跨体系污染词与非白名单词汇
 PART1_CONTAMINATION_WORDS = [
-    '战术隐蔽',   # 用户明确要求第二部不要
-    '爱意值',     # 第一部专属
-    '隐秘事件',   # 第一部专属
-    '背德事件',   # 第一部专属
+    '战术隐蔽',
+    '爱意值',
+    '隐秘事件',
+    '背德事件',
     '落红', '淫靡', '淫水', '浪叫', '肉刃', '牝穴', '娇喘'
 ]
 
@@ -119,9 +153,9 @@ def audit_file(filepath):
     rel_path = os.path.relpath(filepath, config.PROJECT_DIR)
     findings = []
 
-    is_character_card = 'docs2/character' in rel_path.replace('\\', '/')
-    is_guide_or_plan = '方案/第二部' in rel_path.replace('\\', '/') or 'SKILL' in fname or 'skills' in rel_path
     is_index_file = fname.startswith('_')
+    is_character_card = 'docs2/character' in rel_path.replace('\\', '/')
+    is_guide_or_plan = '方案/第二部' in rel_path.replace('\\', '/') or 'SKILL' in fname or 'skills' in rel_path or (is_index_file and fname.endswith('.md'))
 
     in_blacklist_table = False
 
@@ -131,7 +165,7 @@ def audit_file(filepath):
 
         # 检测表格状态
         if stripped.startswith('|'):
-            if '严禁' in stripped or '替换' in stripped or '红线' in stripped or '黑名单' in stripped:
+            if '严禁' in stripped or '禁用' in stripped or '替换' in stripped or '红线' in stripped or '黑名单' in stripped or '误区' in stripped:
                 in_blacklist_table = True
                 continue
             if in_blacklist_table:
@@ -141,7 +175,7 @@ def audit_file(filepath):
             in_blacklist_table = False
 
         if is_guide_or_plan:
-            if any(stripped.startswith(p) for p in ['×', '* ×', '- ×', '× ', '【严禁', '严禁', '拔除', '清除']):
+            if any(stripped.startswith(p) for p in ['×', '* ×', '- ×', '× ', '【严禁', '严禁', '拔除', '清除', '丢弃', '抛弃']):
                 continue
             if '词汇对照与置换规范表' in stripped or '红线词库' in stripped:
                 continue
@@ -149,7 +183,7 @@ def audit_file(filepath):
         # 1. 检查武侠/古风禁词
         for word in WUXIA_FORBIDDEN_WORDS:
             if word in line:
-                if any(k in line for k in ['拔除', '清除', '严禁', '黑名单', '红线', '置换', '替换', '绝对禁止', '杜绝']):
+                if any(k in line for k in ['拔除', '清除', '严禁', '黑名单', '红线', '置换', '替换', '绝对禁止', '杜绝', '丢弃', '抛弃']):
                     continue
                 findings.append(('【古风/武侠禁词】', f"行 {line_idx}: 发现 '{word}' -> {line.strip()[:60]}"))
 
@@ -208,12 +242,57 @@ def audit_file(filepath):
                     continue
                 findings.append(('【现实地球地理违规】', f"行 {line_idx}: 发现现实地球地理词 '{geo}'（请置换为'晨光大陆'或'日式西幻'） -> {line.strip()[:60]}"))
 
+        # 9. 检查评书话本与说书人套话
+        for stw in STORYTELLING_FORBIDDEN_WORDS:
+            if stw in line:
+                if any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范', '置换', '替换', '防呆', '杜绝']):
+                    continue
+                findings.append(('【评书话本套话】', f"行 {line_idx}: 发现评书说书人套话 '{stw}' -> {line.strip()[:60]}"))
+
+        # 10. 检查古风言情与假文雅修辞
+        for rac in ROMANCE_ANCIENT_CLICHES:
+            if rac in line:
+                if any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范', '置换', '替换', '防呆', '杜绝']):
+                    continue
+                findings.append(('【古偶假文雅套话】', f"行 {line_idx}: 发现古言假文雅修辞 '{rac}' -> {line.strip()[:60]}"))
+
+        # 11. 检查现代公文与作战通报套话
+        for bfw in BUREAUCRATIC_FORBIDDEN_WORDS:
+            if bfw in line:
+                if any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范', '置换', '替换', '防呆', '杜绝']):
+                    continue
+                findings.append(('【公文通报腔违规】', f"行 {line_idx}: 发现现代公文/作战通报词 '{bfw}' -> {line.strip()[:60]}"))
+
+        # 12. 检查连续四字短语连缀病灶（中式四字律动检测，仅在章节情境与详规演进中检测）
+        if 'story' in rel_path.lower() or '分阶段详规' in rel_path:
+            # 过滤掉标题、角色列表行
+            if not any(stripped.startswith(p) for p in ['ID:', '名称:', '主要人物:', '阶段:', '路线:', '核心:', '规划规模:']):
+                m_cadence = CADENCE_4_CHAR_PATTERN.search(line)
+                if m_cadence:
+                    findings.append(('【四字连缀话本病灶】', f"行 {line_idx}: 检测到连续四字短语连缀 '{m_cadence.group(0).strip('，,、')}'，句式严重话本化！请使用长短舒展的轻小说现代句式。"))
+
+        # 13. 角色装备与人设常识防御断言
+        if 'story' in rel_path.lower() and filepath.endswith('.TXT'):
+            # 菲武器常识校验（双枪剑，非纯刀剑）
+            if ('菲' in line or '克劳塞尔' in line) and not '菲娜' in line:
+                for blade_word in ['收刀', '刀刃', '刀鞘', '长刀', '短刀', '太刀']:
+                    if blade_word in line and '黎恩' not in line:
+                        findings.append(('【角色武器常识违规】', f"行 {line_idx}: 菲专属武器为双枪剑（Gunblade），装配枪套与钢丝，严禁使用“{blade_word}”等纯刀剑描述！ -> {line.strip()[:60]}"))
+            # 雷恩装备常识校验
+            if '雷恩' in line:
+                for renn_err in ['晨光之盾', '制式圣剑']:
+                    if renn_err in line:
+                        findings.append(('【角色设定常识违规】', f"行 {line_idx}: 雷恩十四年前已被夺剑废黜，使用朴素生铁重盾与旧长剑，严禁使用“{renn_err}”！ -> {line.strip()[:60]}"))
+            # 菲娜辈分常识校验
+            if '菲娜' in line or 'Seraphina' in line:
+                if '两百年前的守护者' in line:
+                    findings.append(('【角色人设辈分冲突】', f"行 {line_idx}: 菲娜本人即为320岁亲历两百年腐化之唯一守护者，严禁将其作为后辈描写！ -> {line.strip()[:60]}"))
+
+
     # 5. 章节文件专属检查（针对 docs2/story/ 下的非索引 TXT）
     if 'story' in filepath.lower() and filepath.endswith('.TXT') and not is_index_file:
         if '主要人物:' not in text and '主要人物：' not in text:
-            findings.append(('【缺少主要人物字段】', "第二部章节必须显式声明 '主要人物: [角色1, 角色2]'"))
-        if '战术隐蔽' in text:
-            findings.append(('【违规字段】', "第二部章节严禁包含 '战术隐蔽' 字段"))
+            findings.append(('【缺少主要人物字段】', "第二部章节必须显式声明 '主要人物: 角色1, 角色2'"))
 
     return rel_path, findings
 

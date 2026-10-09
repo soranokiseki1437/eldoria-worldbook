@@ -1,0 +1,14 @@
+ID: CH_D2_00
+名称: 章节引信与状态锚点
+触发关键词:
+始终触发: 是
+注入深度: 0
+顺序: 1000
+防止进一步递归: 否
+内容:
+<chapter_anchor>
+当前主线剧情锁定章节：第{{getvar::chapter}}章
+当前大纲情境步进阶段：第{{getvar::step}}条
+当前自由探索模式状态：{{getvar::is_free_explore}}
+当前菲娜独处：{{getvar::is_fina_alone}}
+</chapter_anchor>

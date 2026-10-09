@@ -5,9 +5,8 @@ scripts2/check_viridia_consistency.py — 第二部（维里迪亚王国篇）�
 
 与第一部（scripts/check_consistency.py）物理隔离。
 专门检查：
-1. docs2/ 设定卡片完整性（ID唯一性、名称、触发词、深度、零古风污染）。
-2. docs2/story/ 章节规范（必须具备主要人物字段，绝对禁止战术隐蔽与第一部NSFW字段）。
-3. 阶段与路线有效性验证（匹配 story2_config.py 规范）。
+1. docs2/ 实体卡片完整性（ID唯一性、名称、必填结构、零古风污染）。
+2. docs2/story/ 章节规范（严格遵循 9 字段白名单与主要人物声明）。
 """
 
 import os
@@ -113,14 +112,7 @@ def check_story_chapters():
             if re.search(pattern, content, re.M):
                 errors.append(f"{fname}: 存在违规字段 '{fbd}'（第二部禁止）")
 
-        # 3. 路线有效性检查
-        route_m = re.search(r'^路线[:：]\s*(.+)', content, re.M)
-        if route_m:
-            route_val = route_m.group(1).strip()
-            if route_val not in config.VALID_ROUTES:
-                errors.append(f"{fname}: 路线 '{route_val}' 不属于第二部标准路线列表")
-
-        # 4. 主要人物字段非空检查
+        # 3. 主要人物字段非空检查
         chars_m = re.search(r'^主要人物[:：]\s*(.+)', content, re.M)
         if chars_m:
             chars_val = chars_m.group(1).strip()

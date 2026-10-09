@@ -14,7 +14,7 @@
 | `story2_config.py` | 第二部系统共享元数据（路径、字段 Schema、幕次阶段、叙事路线） | `scripts/story_config.py` |
 | `scan_viridia_diseases.py` | 第二部文风雷达：古风禁词、中式度量衡、NSFW 字段污染、翻译腔堆叠 | `scripts/scan_narrative_diseases.py` |
 | `check_viridia_consistency.py` | 第二部实体卡片（地点、NPC、生物）与章节 Schema 全面一致性检测 | `scripts/check_consistency.py` |
-| `story2_tool.py` | 第二部章节脚手架与管理工具（自动插入 `主要人物`，杜绝 `战术隐蔽`） | `scripts/story_tool.py` |
+| `story2_tool.py` | 第二部章节脚手架与管理工具（生成标准 9 字段结构与一致性校验） | `scripts/story_tool.py` |
 
 ---
 
@@ -35,36 +35,43 @@ python3 scripts2/scan_viridia_diseases.py --file docs2/location/白鹿大驿馆.
 python3 scripts2/check_viridia_consistency.py
 ```
 
-### 3. 创建第二部规范章节脚手架
+### 3. 校验章节合规性（文风雷达 + 9 字段 Schema）
 ```bash
-# 生成符合 JRPG 规范的标准章节（包含主要人物，无战术隐蔽，无NSFW字段）
-python3 scripts2/story2_tool.py new \
-  --id "引-1" \
-  --title "残区的反扑——东侧的沼地" \
-  --stage "第一幕·阶段一：引入与故土远征启程" \
-  --route "双线交汇" \
-  --characters "雷恩, 菲, 菲娜, 黎恩" \
-  --core "腐化退去不等于腐化消失，残区在无人处反扑..." \
-  --task "东部巡逻线遭残区影牙兽残余袭击..."
+# 校验单个章节文件（validate 与 lint 别名均可）
+python scripts2/story2_tool.py lint --file "docs2/story/第一幕/001：泥沼残兽——青石初芽.TXT"
+
+# 全量校验 docs2/story/ 下所有章节
+python scripts2/story2_tool.py validate
+```
+
+### 4. 创建第二部规范章节脚手架
+```bash
+# 生成符合 JRPG 规范的标准章节（9 字段白名单）
+python scripts2/story2_tool.py new \
+  --id "001" \
+  --title "泥沼残兽——青石初芽" \
+  --act "第一幕" \
+  --characters "雷恩, 菲, 黎恩, 菲娜, 艾玛" \
+  --core "战后余波清剿与心木生命复苏。以冷兵器战术肃清残存魔兽，随后在石台举行心木播种，黎恩与菲娜共同唤醒沉睡两百年的新芽。"
 ```
 
 ---
 
-## 第二部章节 Schema 铁律
+## 第二部章节 Schema 铁律（9 字段白名单）
 
 ```text
-ID: {编号}
+ID: {编号，三位数字}
 名称: {前半段}——{后半段}
-阶段: {第一幕至第五幕对应阶段}
-路线: {艾德里安线 / 雷恩线 / 双线交汇 / 帝国侧支线 / 营地联动支线}
-主要人物: [{角色1}, {角色2}, ...]
+NSFW: {是 或 否}
+性行为等级: {0-10 —— 仅NSFW章节填写，非NSFW留空}
+黎恩知情: {描述 —— 不适用则留空}
+主要人物: {角色1}, {角色2}, ...
 总情境数: {N}
 情境:
   - 1. ...
   - 2. ...
   - 3. ...
   - {N}. {第N条情境：余韵物象收束（呼吸/环境音/微光/场景暂停），作为全章闭合节点}
-核心: ...
+核心: {1~2句话，禁止破折号，禁止AI元评价，禁止剧透后续章节}
 ```
 
-* **严格禁止字段**：`章节任务` 与 `章节终止条件`（全库彻底废弃禁写，由末尾物象情境自然收束）、`战术隐蔽`（根据用户指示彻底移除）、`爱意值`、`隐秘事件`、`背德事件`、`NSFW`。
