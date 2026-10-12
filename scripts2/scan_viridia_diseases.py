@@ -162,8 +162,14 @@ REAL_EARTH_GEO_WORDS = [
 
 # 10. 要塞泛用与要塞军权违规词库（【要塞】全书唯一专属特指【圣殿大要塞】具体据点，严禁将要塞泛化为政体或造词'要塞军权'）
 FORTRESS_MISUSE_WORDS = [
-    '要塞军权', '大要塞军权', '要塞军', '要塞方', '要塞势力', '军事要塞', '地方要塞'
+    '要塞军权', '大要塞军权', '要塞军', '要塞方', '要塞势力', '军事要塞', '地方要塞',
+    '要塞骑士团', '要塞大团长', '要塞驻军'
 ]
+
+# 10.1 要塞作为施动主语正则（【要塞】是纯物理据点，严禁作为行动主体/施动主语，必须使用“圣殿骑士团/誓约骑士/铁誓骑队”）
+FORTRESS_ACTIVE_SUBJECT_PATTERN = re.compile(
+    r'(?:圣殿)?要塞(?:更会|会|将|企图|意图|决定|出动|派遣|大举|下达|调动|发兵|派兵|围剿|进犯|查扣|抓捕)'
+)
 
 # 11. 中式古风关卡与关隘专属禁词库（全书严禁中式“关隘/关口”，必须使用正向实体【维里迪亚大门】、边防大门、边防哨卡或边境哨所）
 GATE_PASS_FORBIDDEN_WORDS = [
@@ -331,12 +337,17 @@ def audit_file(filepath):
                 if '两百年前的守护者' in line:
                     findings.append(('【角色人设辈分冲突】', f"行 {line_idx}: 菲娜本人即为320岁亲历两百年腐化之唯一守护者，严禁将其作为后辈描写！ -> {line.strip()[:60]}"))
 
-        # 14. 检查要塞泛用与要塞军权造词违规
+        # 14. 检查要塞泛用、非法造词与施动主语违规
         for fmw in FORTRESS_MISUSE_WORDS:
             if fmw in line:
                 if any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范', '置换', '替换', '防呆', '杜绝']):
                     continue
-                findings.append(('【要塞泛用/要塞军权违规】', f"行 {line_idx}: 发现 '{fmw}'（【要塞】全书唯一专属特指【圣殿大要塞】具体据点，严禁造词'要塞军权'，请置换为'圣殿骑士团霸权/割据/特权'） -> {line.strip()[:60]}"))
+                findings.append(('【要塞泛用/非法造词违规】', f"行 {line_idx}: 发现 '{fmw}'（【要塞】全书唯一专属特指【圣殿大要塞】具体据点，严禁泛化造词，请置换为'圣殿骑士团/圣殿大团长'等） -> {line.strip()[:60]}"))
+
+        m_fortress_subj = FORTRESS_ACTIVE_SUBJECT_PATTERN.search(line)
+        if m_fortress_subj:
+            if not any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范', '置换', '替换', '防呆', '杜绝']):
+                findings.append(('【要塞拟人化/施动主语违规】', f"行 {line_idx}: 发现将地理据点作为施动主体 '{m_fortress_subj.group(0)}'！【要塞】是纯物理据点，无法发起行动，施动主体必须使用【圣殿骑士团】、【铁誓骑队】或【誓约骑士】！ -> {line.strip()[:60]}"))
 
         # 15. 检查中式古风关卡与关隘专属违规
         for gpw in GATE_PASS_FORBIDDEN_WORDS:
