@@ -193,30 +193,52 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
             const context = (typeof SillyTavern !== 'undefined' && SillyTavern.getContext) 
                 ? SillyTavern.getContext() 
                 : (typeof getContext === 'function' ? getContext() : null);
-            if (!context || !context.chat || context.chat.length === 0) {
-                notifyEldoria('warning', '当前无聊天记录，无法加载变量', 'Eldoria 状态机');
-                return;
-            }
-
             let foundData = null;
             let foundMsgIdx = -1;
-            for (let i = context.chat.length - 1; i >= 0; i--) {
-                const msg = context.chat[i];
-                if (!msg || msg.is_user || !msg.mes) continue;
-                const mvuMatch = msg.mes.match(/```\s*(?:json)?(?::)?mvu\s*([\s\S]*?)\s*```/i) ||
-                                 msg.mes.match(/(?:json)?(?::)?mvu\s*(\{[\s\S]*?\})/i);
-                if (mvuMatch) {
-                    const parsed = safeParseMVU(mvuMatch[1]);
-                    if (parsed && parsed.chapter !== undefined) {
-                        foundData = parsed;
-                        foundMsgIdx = i;
-                        break;
+            if (context && context.chat && context.chat.length > 0) {
+                for (let i = context.chat.length - 1; i >= 0; i--) {
+                    const msg = context.chat[i];
+                    if (!msg || msg.is_user || !msg.mes) continue;
+                    const mvuMatch = msg.mes.match(/```\s*(?:json)?(?::)?mvu\s*([\s\S]*?)\s*```/i) ||
+                                     msg.mes.match(/(?:json)?(?::)?mvu\s*(\{[\s\S]*?\})/i);
+                    if (mvuMatch) {
+                        const parsed = safeParseMVU(mvuMatch[1]);
+                        if (parsed && parsed.chapter !== undefined) {
+                            foundData = parsed;
+                            foundMsgIdx = i;
+                            break;
+                        }
                     }
                 }
             }
 
+            // 兜底分支：若消息中未找到 mvu 块，自动降级唤起章节初始化弹窗
             if (!foundData) {
-                notifyEldoria('warning', '未在近期消息中找到有效的 mvu 状态块！', 'Eldoria 状态机');
+                const vars = getEldoriaVars();
+                const defaultChap = vars.chapter || 1;
+                const inputChap = prompt('【Eldoria 变量初始化】\n未能从近期消息中扫描到 mvu 状态块。\n请输入您当前正游玩的章节物理编号（纯数字）：', defaultChap);
+                if (inputChap === null) return;
+
+                const chapterNum = parseInt(inputChap.trim(), 10);
+                if (isNaN(chapterNum) || chapterNum <= 0) {
+                    notifyEldoria('error', '输入的章节编号必须是大于0的纯数字！', 'Eldoria 状态机');
+                    return;
+                }
+
+                const fallbackVars = {
+                    chapter: chapterNum,
+                    step: 0,
+                    max_step: 0,
+                    is_sandbox_chapter: false,
+                    is_free_explore: false,
+                    is_fina_alone: false,
+                    in_afterglow: false
+                };
+
+                await updateEldoriaVars(fallbackVars);
+                updateExploreButtonUI(false);
+                notifyEldoria('success', `未能检测到历史状态，已手动初始化至第 ${chapterNum} 章！<br/>各状态已归零重置。`, 'Eldoria 状态机');
+                console.log(`[Eldoria-Button] 消息扫描未命中，手动降级初始化完成: 第 ${chapterNum} 章`);
                 return;
             }
 
@@ -290,39 +312,6 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
         } catch (err) {
             console.error('[Eldoria-Button] 手动切章失败:', err);
             notifyEldoria('error', '切章失败: ' + (err.message || err), 'Eldoria 状态机');
-        }
-    });
-
-    // 🔘 按钮五：【初始化变量】（一键弹窗设定章节，初始化核心变量）
-    eventOn(getButtonEvent('初始化变量'), async () => {
-        try {
-            const vars = getEldoriaVars();
-            const current = vars.chapter || 59;
-            const inputChap = prompt('【Eldoria 变量初始化】\n请输入您当前正游玩的章节物理编号（纯数字）：', current);
-            if (inputChap === null) return;
-
-            const chapterNum = parseInt(inputChap.trim(), 10);
-            if (isNaN(chapterNum) || chapterNum <= 0) {
-                notifyEldoria('error', '输入的章节编号必须是大于0的纯数字！', 'Eldoria 状态机');
-                return;
-            }
-
-            await updateEldoriaVars({
-                chapter: chapterNum,
-                step: 0,
-                max_step: 0,
-                is_sandbox_chapter: false,
-                is_free_explore: false,
-                is_fina_alone: false,
-                in_afterglow: false
-            });
-
-            updateExploreButtonUI(false);
-            notifyEldoria('success', `变量池已成功初始化至第 ${chapterNum} 章！<br/>各状态已归零重置。`, 'Eldoria 状态机');
-            console.log(`[Eldoria-Button] 变量池初始化完成: 第 ${chapterNum} 章`);
-        } catch (err) {
-            console.error('[Eldoria-Button] 初始化变量失败:', err);
-            notifyEldoria('error', '初始化变量出现异常: ' + (err.message || err), 'Eldoria 状态机');
         }
     });
 }
