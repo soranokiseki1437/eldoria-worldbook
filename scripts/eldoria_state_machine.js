@@ -20,6 +20,13 @@ function safeParseMVU(rawJsonStr) {
             .replace(/:\s*False\b/g, ': false')      // Python False 修复
             .replace(/:\s*None\b/g, ': null')        // Python None 修复
             .replace(/'([^']+)'/g, '"$1"');          // 单引号转双引号
+
+        // 智能截取首个 { 与末尾 } 之间的有效 JSON 文本（容忍外层多余包裹字符）
+        const firstBrace = clean.indexOf('{');
+        const lastBrace = clean.lastIndexOf('}');
+        if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+            clean = clean.substring(firstBrace, lastBrace + 1);
+        }
         return JSON.parse(clean);
     } catch (e) {
         console.warn('[Eldoria-MVU] 严格JSON解析失败，启动正则提取兜底:', e);
@@ -28,8 +35,10 @@ function safeParseMVU(rawJsonStr) {
             return m ? parseInt(m[1], 10) : undefined;
         };
         const extractBool = (key) => {
-            const m = rawJsonStr.match(new RegExp(`"${key}"\\s*:\\s*(true|false)`, 'i'));
-            return m ? (m[1].toLowerCase() === 'true') : undefined;
+            const m = rawJsonStr.match(new RegExp(`"${key}"\\s*:\\s*(true|false|1|0)`, 'i'));
+            if (!m) return undefined;
+            const v = m[1].toLowerCase();
+            return (v === 'true' || v === '1');
         };
         const fallback = {
             chapter: extractInt('chapter'),
@@ -50,34 +59,122 @@ function safeParseMVU(rawJsonStr) {
 // 0. 酒馆助手变量读写适配层 (全版本兼容：getVariables / insertOrAssignVariables)
 // --------------------------------------------------------------------
 function getEldoriaVars() {
+    const optChat = { type: 'chat' };
     try {
-        if (typeof getVariables === 'function') return getVariables() || {};
+        if (typeof TavernHelper !== 'undefined' && typeof TavernHelper.getVariables === 'function') {
+            const vars = TavernHelper.getVariables(optChat);
+            if (vars && typeof vars === 'object' && Object.keys(vars).length > 0) return vars;
+        }
+        if (typeof getVariables === 'function') {
+            const vars = getVariables(optChat);
+            if (vars && typeof vars === 'object' && Object.keys(vars).length > 0) return vars;
+        }
+    } catch (e) {
+        console.warn('[Eldoria] getVariables(chat) 异常:', e);
+    }
+    try {
+        const context = (typeof SillyTavern !== 'undefined' && SillyTavern.getContext) 
+            ? SillyTavern.getContext() 
+            : (typeof getContext === 'function' ? getContext() : null);
+        if (context && context.chatMetadata && context.chatMetadata.variables) {
+            return context.chatMetadata.variables;
+        }
+    } catch (e) {
+        console.warn('[Eldoria] context.chatMetadata 读取异常:', e);
+    }
+    try {
         if (typeof TavernHelper !== 'undefined' && typeof TavernHelper.getVariables === 'function') {
             return TavernHelper.getVariables() || {};
         }
-    } catch (e) {
-        console.warn('[Eldoria] getVariables 失败:', e);
-    }
+        if (typeof getVariables === 'function') {
+            return getVariables() || {};
+        }
+    } catch (_) {}
     return {};
+}
+
+function formatFreeExploreStatus(val) {
+    const isTrue = (val === true || val === 'true' || val === 1 || val === '1');
+    return isTrue ? '开启 (is_free_explore == true)' : '关闭 (is_free_explore == false)';
+}
+
+function formatFinaAloneStatus(val) {
+    const isTrue = (val === true || val === 'true' || val === 1 || val === '1');
+    return isTrue ? '独处中 (is_fina_alone == true)' : '非独处 (is_fina_alone == false)';
 }
 
 async function updateEldoriaVars(newVars) {
     try {
-        if (typeof insertOrAssignVariables === 'function') {
-            return await insertOrAssignVariables(newVars);
+        const current = getEldoriaVars();
+        if (newVars.is_free_explore !== undefined) {
+            newVars.free_explore_status = formatFreeExploreStatus(newVars.is_free_explore);
+        } else if (current.is_free_explore !== undefined && !newVars.free_explore_status) {
+            newVars.free_explore_status = formatFreeExploreStatus(current.is_free_explore);
         }
+
+        if (newVars.is_fina_alone !== undefined) {
+            newVars.fina_alone_status = formatFinaAloneStatus(newVars.is_fina_alone);
+        } else if (current.is_fina_alone !== undefined && !newVars.fina_alone_status) {
+            newVars.fina_alone_status = formatFinaAloneStatus(current.is_fina_alone);
+        }
+
+        const optChat = { type: 'chat' };
+        let updated = false;
+
+        // 1. TavernHelper 优先写入 chat 会话作用域
         if (typeof TavernHelper !== 'undefined' && typeof TavernHelper.insertOrAssignVariables === 'function') {
-            return await TavernHelper.insertOrAssignVariables(newVars);
+            try {
+                await TavernHelper.insertOrAssignVariables(newVars, optChat);
+                updated = true;
+            } catch (e) {
+                console.warn('[Eldoria] TavernHelper.insertOrAssignVariables(chat) 失败:', e);
+            }
+        } else if (typeof insertOrAssignVariables === 'function') {
+            try {
+                await insertOrAssignVariables(newVars, optChat);
+                updated = true;
+            } catch (e) {
+                console.warn('[Eldoria] insertOrAssignVariables(chat) 失败:', e);
+            }
         }
-        if (typeof replaceVariables === 'function') {
-            const current = getEldoriaVars();
-            return await replaceVariables({ ...current, ...newVars });
+
+        if (!updated && typeof replaceVariables === 'function') {
+            try {
+                await replaceVariables({ ...current, ...newVars }, optChat);
+                updated = true;
+            } catch (e) {
+                console.warn('[Eldoria] replaceVariables(chat) 失败:', e);
+            }
         }
-        if (typeof TavernHelper !== 'undefined' && typeof TavernHelper.replaceVariables === 'function') {
-            const current = getEldoriaVars();
-            return await TavernHelper.replaceVariables({ ...current, ...newVars });
+
+        // 2. 双写兜底：同步写入 SillyTavern 原生 context.chatMetadata 并持久化
+        try {
+            const context = (typeof SillyTavern !== 'undefined' && SillyTavern.getContext) 
+                ? SillyTavern.getContext() 
+                : (typeof getContext === 'function' ? getContext() : null);
+            if (context && context.chatMetadata) {
+                context.chatMetadata.variables = { ...(context.chatMetadata.variables || {}), ...newVars };
+                if (typeof context.saveMetadata === 'function') {
+                    await context.saveMetadata();
+                }
+                updated = true;
+            }
+        } catch (e) {
+            console.warn('[Eldoria] 直接写入 chatMetadata 异常:', e);
         }
-        console.error('[Eldoria] 未找到变量写入接口');
+
+        // 3. 同时更新脚本私有沙盒（确保多途径访问数据一致）
+        try {
+            if (typeof TavernHelper !== 'undefined' && typeof TavernHelper.insertOrAssignVariables === 'function') {
+                await TavernHelper.insertOrAssignVariables(newVars);
+            } else if (typeof insertOrAssignVariables === 'function') {
+                await insertOrAssignVariables(newVars);
+            }
+        } catch (_) {}
+
+        if (!updated) {
+            console.error('[Eldoria] 未能成功写入任何变量存储域');
+        }
     } catch (e) {
         console.error('[Eldoria] 写入变量失败:', e);
         throw e;
@@ -147,7 +244,7 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
     eventOn(getButtonEvent('自由探索'), async () => {
         try {
             const vars = getEldoriaVars();
-            const currentState = (vars.is_free_explore === true || vars.is_free_explore === 'true');
+            const currentState = (vars.is_free_explore === true || vars.is_free_explore === 'true' || vars.is_free_explore === 1 || vars.is_free_explore === '1');
             const nextState = !currentState;
 
             await updateEldoriaVars({ is_free_explore: nextState });
@@ -171,7 +268,7 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
             const c = vars.chapter || 1;
             const s = vars.step || 0;
             const ms = vars.max_step || 0;
-            const fe = (vars.is_free_explore === true || vars.is_free_explore === 'true') ? '🍃 自由探索 (已锁定)' : '⚔️ 主线大纲推进';
+            const fe = (vars.is_free_explore === true || vars.is_free_explore === 'true' || vars.is_free_explore === 1 || vars.is_free_explore === '1') ? '🍃 自由探索 (已锁定)' : '⚔️ 主线大纲推进';
             const sb = vars.is_sandbox_chapter ? '🗺️ 固有沙盒漫游' : '常规章节';
 
             notifyEldoria(
@@ -200,6 +297,7 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
                     const msg = context.chat[i];
                     if (!msg || msg.is_user || !msg.mes) continue;
                     const mvuMatch = msg.mes.match(/```\s*(?:json)?(?::)?mvu\s*([\s\S]*?)\s*```/i) ||
+                                     msg.mes.match(/<mvu>([\s\S]*?)<\/mvu>/i) ||
                                      msg.mes.match(/(?:json)?(?::)?mvu\s*(\{[\s\S]*?\})/i);
                     if (mvuMatch) {
                         const parsed = safeParseMVU(mvuMatch[1]);
@@ -256,10 +354,10 @@ if (typeof getButtonEvent === 'function' && typeof eventOn === 'function') {
             }
 
             const currentVars = getEldoriaVars();
-            const lockedFreeExplore = (currentVars.is_free_explore === true || currentVars.is_free_explore === 'true');
+            const lockedFreeExplore = (currentVars.is_free_explore === true || currentVars.is_free_explore === 'true' || currentVars.is_free_explore === 1 || currentVars.is_free_explore === '1');
             const isFinaAlone = (foundData.is_fina_alone !== undefined)
-                ? (foundData.is_fina_alone === true || foundData.is_fina_alone === 'true')
-                : (currentVars.is_fina_alone === true || currentVars.is_fina_alone === 'true');
+                ? (foundData.is_fina_alone === true || foundData.is_fina_alone === 'true' || foundData.is_fina_alone === 1 || foundData.is_fina_alone === '1')
+                : (currentVars.is_fina_alone === true || currentVars.is_fina_alone === 'true' || currentVars.is_fina_alone === 1 || currentVars.is_fina_alone === '1');
 
             const newVars = {
                 chapter: parsedChapter,
@@ -337,7 +435,15 @@ function markCurrentChatAsReady() {
         }
         isChatReady = true;
         const vars = getEldoriaVars();
-        updateExploreButtonUI(vars.is_free_explore === true || vars.is_free_explore === 'true');
+        const isFe = (vars.is_free_explore === true || vars.is_free_explore === 'true' || vars.is_free_explore === 1 || vars.is_free_explore === '1');
+        const isFa = (vars.is_fina_alone === true || vars.is_fina_alone === 'true' || vars.is_fina_alone === 1 || vars.is_fina_alone === '1');
+        updateExploreButtonUI(isFe);
+        if (!vars.free_explore_status || !vars.fina_alone_status) {
+            updateEldoriaVars({
+                is_free_explore: isFe,
+                is_fina_alone: isFa
+            });
+        }
     } catch (e) {
         console.warn('[Eldoria-Lifecycle] markCurrentChatAsReady 异常:', e);
     }
@@ -410,6 +516,7 @@ async function onEldoriaMessageRendered(messageId) {
         // 提取 AI 生成的 json:mvu 块
         const mvuMatch = lastMsg.mes && (
             lastMsg.mes.match(/```\s*(?:json)?(?::)?mvu\s*([\s\S]*?)\s*```/i) ||
+            lastMsg.mes.match(/<mvu>([\s\S]*?)<\/mvu>/i) ||
             lastMsg.mes.match(/(?:json)?(?::)?mvu\s*(\{[\s\S]*?\})/i)
         );
         if (!mvuMatch) return;
@@ -424,16 +531,23 @@ async function onEldoriaMessageRendered(messageId) {
 
         // 读取现存变量
         const vars = getEldoriaVars();
-        let currentChapter = parseInt(vars.chapter || aiData.chapter || 1, 10);
+        const aiChapter = parseInt(aiData.chapter, 10);
+        const savedChapter = parseInt(vars.chapter, 10);
+
+        // 智能章节对齐：优先有效数字，若本地无有效章节或与 AI 汇报跨度不一致（如首度对齐、跳章、或本地为默认模板值），以 AI 章节为准
+        let currentChapter = !isNaN(aiChapter) && aiChapter > 0 
+            ? ((isNaN(savedChapter) || savedChapter <= 0 || Math.abs(aiChapter - savedChapter) > 1) ? aiChapter : savedChapter)
+            : (isNaN(savedChapter) ? 1 : savedChapter);
         let wasSandbox = (vars.is_sandbox_chapter === true || vars.is_sandbox_chapter === 'true' || vars.is_sandbox_chapter === 1);
 
         // 按钮锁优先防冲刷逻辑
-        const isManuallyLocked = (vars.is_free_explore === true || vars.is_free_explore === 'true');
-        const effectiveFreeExplore = isManuallyLocked ? true : !!aiData.is_free_explore;
+        const isManuallyLocked = (vars.is_free_explore === true || vars.is_free_explore === 'true' || vars.is_free_explore === 1 || vars.is_free_explore === '1');
+        const aiFreeExplore = (aiData.is_free_explore === true || aiData.is_free_explore === 'true' || aiData.is_free_explore === 1 || aiData.is_free_explore === '1');
+        const effectiveFreeExplore = isManuallyLocked ? true : aiFreeExplore;
 
         const effectiveFinaAlone = (aiData.is_fina_alone !== undefined) 
-            ? (aiData.is_fina_alone === true || aiData.is_fina_alone === 'true') 
-            : (vars.is_fina_alone === true || vars.is_fina_alone === 'true');
+            ? (aiData.is_fina_alone === true || aiData.is_fina_alone === 'true' || aiData.is_fina_alone === 1 || aiData.is_fina_alone === '1') 
+            : (vars.is_fina_alone === true || vars.is_fina_alone === 'true' || vars.is_fina_alone === 1 || vars.is_fina_alone === '1');
 
         // 判定 A：固有沙盒章节处理与解脱跳出通道
         if (aiData.is_sandbox_chapter || wasSandbox) {
