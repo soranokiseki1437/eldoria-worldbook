@@ -335,9 +335,9 @@ def _make_ref_entry(data, order_start, uid=None, position=1, depth=None, header_
     if header_prefix:
         content = f"# {header_prefix}：{name}\n\n{content}"
 
-    # Parse keywords: comma-separated → list
+    # Parse keywords: comma-separated → list (支持中英文逗号)
     if keywords_str.strip():
-        keys = [k.strip() for k in keywords_str.split(',') if k.strip()]
+        keys = [k.strip() for k in re.split(r'[,，]', keywords_str) if k.strip()]
     else:
         keys = []
 
