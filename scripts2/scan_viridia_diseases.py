@@ -26,6 +26,11 @@ try:
 except ImportError:
     from scripts2 import story2_config as config
 
+try:
+    from scan_classical_inversions import check_line_inversions
+except ImportError:
+    from scripts2.scan_classical_inversions import check_line_inversions
+
 # ═══════════════════════════════════════════════════════════
 # 黑名单词库定义
 # ═══════════════════════════════════════════════════════════
@@ -198,8 +203,8 @@ CHURCH_TEMPLAR_CONFUSION_WORDS = [
 # 7. 世俗军队与骑士降阶黑名单词库（严禁将受封圣殿骑士降阶为世俗散兵老兵/长官）
 SECULAR_MILITARY_FORBIDDEN_WORDS = [
     '老兵', '退伍老兵', '大头兵', '军官', '长官', '老长官', '长官大人', '守将', '武将', '退伍军人',
-    '军纪', '军令', '军备', '守军', '青年将领', '全军', '兵卒', '军卒', '边境军卒',
-    '拔营', '开拔', '拔营起寨', '大军开拔', '大军拔营',
+    '军纪', '军令', '军备', '守军', '驻军', '军情', '军需', '军饷', '军法', '军规', '治军', '青年将领', '全军', '兵卒', '军卒', '边境军卒',
+    '随军司铎', '拔营', '开拔', '拔营起寨', '大军开拔', '大军拔营',
     '士兵', '步兵', '大头兵'
 ]
 
@@ -517,6 +522,11 @@ def audit_file(filepath):
             m_tag = re.search(r'(?:^|[-*#\s：:])(?:精灵少女|紫发少女|黑发青年|金发少女|银发青年|前骑士|天才少女|女剑士)[^，。、\n]*[，。]', line)
             if m_tag and not any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范', '置换', '替换', '防呆', '杜绝', '外貌', '身躯']):
                 findings.append(('【旁白身份标签作主语】', f"行 {line_idx}: 旁白必须直呼其名，严禁使用身份标签作主语 '{m_tag.group(0).strip()}'！ -> {line.strip()[:60]}"))
+
+        # 17. 检查文言介词倒装句式（如“裹以”、“覆以”、“饰以”、“佐以”等动词+以，以及“之以”句式）
+        inversion_issues = check_line_inversions(line, line_idx)
+        if inversion_issues:
+            findings.extend(inversion_issues)
 
 
     # 5. 章节文件专属检查（针对 docs2/story/ 下的非索引 TXT）
