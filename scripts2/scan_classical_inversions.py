@@ -80,6 +80,29 @@ def check_line_inversions(line, line_idx=1):
             f"行 {line_idx}: 发现话本文言倒装 '{phrase}'（建议改用现代白话直陈句） -> {line.strip()[:60]}"
         ))
 
+    # 3. 检测中式单字文言行路/移动动词“动词+至”（如行至、移步至、趋步至、走至、步至、踱至）
+    VERB_ZHI_PATTERN = re.compile(r'(?<![一-龥])(行至|移步至|趋步至|踱步至|走至|步至|踱至)([一-龥]{1,10})')
+    for m in VERB_ZHI_PATTERN.finditer(line):
+        verb_zhi = m.group(1)
+        target = m.group(2)
+        issues.append((
+            '【文言行路动作违规】',
+            f"行 {line_idx}: 发现中式话本文言动词 '{verb_zhi}{target}'（JRPG现代日轻建议改为 '走到/快步来到/驶到……'） -> {line.strip()[:60]}"
+        ))
+
+    # 4. 检测中式文言介词倒装“动词+于+宾语”（如端坐于、正襟危坐于、垂于、贯注于、跪伏于、立于、伏于、卧于、倚于）
+    VERB_YU_PATTERN = re.compile(r'(?<![一-龥])(端坐|正襟危坐|垂|贯注|跪伏|立|伏|卧|倚)于([一-龥]{1,10})')
+    WHITELIST_YU = {'位于', '处于', '对立于', '独立于', '自立于', '立于不败之地', '忠于', '勇于', '敢于', '善于', '急于', '乐于', '忙于', '致力于', '终于', '关于', '对于', '至于', '由于', '鉴于', '基于', '等于', '类似于', '属于', '见于'}
+    for m in VERB_YU_PATTERN.finditer(line):
+        v_yu = m.group(1) + '于'
+        target = m.group(2)
+        if v_yu in WHITELIST_YU or m.group(0) in WHITELIST_YU:
+            continue
+        issues.append((
+            '【文言介词倒装违规】',
+            f"行 {line_idx}: 发现文言介词倒装 '{m.group(0)}'（JRPG现代日轻建议改为 '在……[动词]'，如'站在门边/握剑垂在身侧/坐在……'） -> {line.strip()[:60]}"
+        ))
+
     return issues
 
 def audit_file_inversions(filepath):

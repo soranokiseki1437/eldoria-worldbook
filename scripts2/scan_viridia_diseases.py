@@ -52,7 +52,7 @@ WUXIA_FORBIDDEN_WORDS = [
     '四肢百骸', '气海', '精关', '丹田', '气机', '气力', '灵气', '飞剑', '遁光', '储物袋',
     '本座', '名门闺秀', '闺秀', '药膳', '调息', '古篆', '敕印', '门楣', '门槛', '女当家', '大当家',
     # 空间构件与日常器物
-    '长案', '案头', '书案', '案台', '桐油', '茶盏', '一盏茶', '盖碗', '通条',
+    '长案', '案头', '书案', '案台', '桐油', '茶盏', '一盏茶', '盖碗', '通条', '圆几', '茶几', '小几', '条几', '凭几', '几案', '木几',
     # 禽鸟/武侠轻功意象与古风比喻
     '紫燕', '飞燕', '如燕', '轻如燕', '游龙', '游龙身法', '惊鸿',
     # 东方器物、瓷器与修真容器
@@ -82,7 +82,7 @@ WUXIA_FORBIDDEN_WORDS = [
     # 古风文言虚词、副词与动词
     '顷刻', '瞬息', '半晌', '未几', '旋即', '蓦地', '骤然', '些许', '良久', '过了良久', '沉吟', '沉吟良久', '尽数', '全数',
     '徐徐', '悠悠', '赫然', '步入', '踏足', '敛息', '阖眸', '残影', '轻启', '虚抚', '微蹙', '凭栏',
-    '轻步上前', '轻步走去', '指节微白', '指节发白',
+    '轻步上前', '轻步走去', '指节微白', '指节发白', '行至', '移步', '趋步', '踱步至', '正襟危坐',
     # 古风颜色与声效套话
     '赤红', '墨色', '素白', '黛色', '青丝', '云鬓', '吱呀', '打了个转',
     # 假雅伪古风复合偏正与江湖公文词（日轻绝无）
@@ -155,7 +155,12 @@ COURT_ANCIENT_CLICHES = [
     '启奏', '圣裁', '圣躬', '皇恩', '叩首', '成何体统', '休得无礼', '休要多言',
     '纳命来', '手底下见真章', '国祚延绵', '移驾', '代掌国政', '神智偶有迷乱',
     '舍身相护', '救命大恩', '大恩永世不忘', '未曾料想', '不知死活',
-    '后会有期', '不吝赐教', '赐教', '实不相瞒'
+    '后会有期', '不吝赐教', '赐教', '实不相瞒',
+    # 古风小生腔调、中式公案苦情腔、江湖话本与泛化“老XX”偏正词
+    '逼仄', '幽深', '残命', '纵是', '爬也要', '玉石俱焚', '草芥', '视血肉为草芥',
+    '申冤', '伸冤', '含冤', '沉冤昭雪', '天理何在', '作恶多端', '苍天有眼',
+    '老谋深算', '老骨头', '老团长', '老仆', '老狐狸', '老将', '老泪', '老泪纵横', '老泪长叹', '老骨头糊涂', '老脸',
+    '老匹夫', '老朽', '老汉', '老者', '老道'
 ]
 
 # 1.4.1 古风小生/江湖游侠自称“在下”正则（精确排除在下城区/在下水道/在下层/正在下雨等方位空间与天气词）
@@ -213,6 +218,11 @@ META_JARGON_FORBIDDEN_WORDS = [
     '主角团', '主角们', '主角方', '反派方', '反派们'
 ]
 
+# 7.2 角色对白与正文剧作破壁元叙事正则（严禁在对白台词中出现“第X幕/阶段/章/部”等剧作与大纲元编号）
+CHINESE_DIALOGUE_PATTERN = re.compile(r'[“「]([^”」]+)[”」]')
+ASCII_DIALOGUE_PATTERN = re.compile(r'(?:[：:说应问答喝道笑骂吼喊呼怒叹冷笑]\s*)"([^"]+)"')
+META_BREAKING_TERMS_PATTERN = re.compile(r'(第[一二三四五六七八九十百0-9]+[幕阶段]|第[一二三四五六七八九十百0-9]+章(?!第?[一二三四五六七八九十0-9]+[款条则卷编])|上一幕|下一幕|前一幕|后一幕|上个阶段|下个阶段|本幕|本阶段|剧本|编剧|伏笔)')
+
 # 8. 否定式元叙述与自卫性辩解正则（严禁在正文中通过否定别家流派来进行描写，严禁出现“没有摆出...武侠/流氓/客栈/戾气/无赖相”等）
 DEFENSIVE_META_PATTERN = re.compile(
     r'(没有|并未|绝非|不是|毫无).{0,10}(武侠|仙侠|修真|轻功|市井流氓|横肉暴徒|客栈|戾气|无赖相|江湖)'
@@ -239,6 +249,16 @@ FORTRESS_ACTIVE_SUBJECT_PATTERN = re.compile(
 GATE_PASS_FORBIDDEN_WORDS = [
     '关隘', '关口', '维里迪亚关隘', '入关', '出关'
 ]
+
+# 12. 中式古典家具专属禁词正则（严禁各类明清几案坐具，西幻统一使用长木桌/小圆桌/边桌/靠背椅/木凳）
+CHINESE_FURNITURE_PATTERN = re.compile(
+    r'([圆茶木石竹玉方矮条琉]几|小[圆木茶]几|矮茶几|几案|案台|长案|案头|书案|屏风|绣墩|罗汉床|凭几(?![个十百千万株条本双只门瓶把张片辆口群峰面道位枚粒根朵块件步载天分里尺寸丈包盒袋碗杯人名位]))'
+)
+
+# 13. 中医中药性味与温养滋补修辞正则（严禁将西幻料理草药写成中医药膳煲汤）
+TCM_HERBAL_PATTERN = re.compile(
+    r'(温润(?:接骨木|草药|药根|药性|浓汤|高汤|药膳|热汽|药香|之效|茶水)|药膳|滋补|生津|温补|调息|培元|固本|气血两虚|行气活血)'
+)
 
 def is_blacklist_definition_line(line):
     """判断某一行是否属于黑名单、规则定义、替换表或版本日志"""
@@ -268,10 +288,18 @@ def audit_file(filepath):
 
     in_blacklist_table = False
     in_interface_section = False
+    in_code_block = False
 
     # 按行检查，精准定位并过滤黑名单定义行
     for line_idx, line in enumerate(lines, 1):
         stripped = line.strip()
+
+        # 检测代码块状态
+        if stripped.startswith('```'):
+            in_code_block = not in_code_block
+            continue
+        if in_code_block:
+            continue
 
         # 检测表格状态
         if stripped.startswith('|'):
@@ -322,6 +350,33 @@ def audit_file(filepath):
                     continue
                 findings.append(('【古风/武侠禁词】', f"行 {line_idx}: 发现 '{word}' -> {line.strip()[:60]}"))
 
+        # 1.1 检查非西幻中式器皿“瓷”字禁令（带瓷皆错：骨瓷/细瓷/粗瓷/瓷盘/瓷杯/瓷碟/陶瓷等全量硬拦截，西幻一律使用银制/陶制/玻璃/木制）
+        if '瓷' in line:
+            if not any(k in line for k in ['拔除', '清除', '严禁', '黑名单', '红线', '置换', '替换', '绝对禁止', '杜绝', '丢弃', '抛弃', '禁止', '规避', '绝缘']):
+                findings.append(('【非西幻器皿/瓷字违规】', f"行 {line_idx}: 严禁出现带'瓷'字器皿 -> {line.strip()[:60]}"))
+
+        # 1.2 检查中式古代坐卧具“榻”字禁令（带榻皆错：床榻/同榻/木榻/卧榻/病榻/软榻等全量硬拦截，西幻一律使用床/大床/木床/长椅）
+        if '榻' in line:
+            if not any(k in line for k in ['拔除', '清除', '严禁', '黑名单', '红线', '置换', '替换', '绝对禁止', '杜绝', '丢弃', '抛弃', '禁止', '规避', '绝缘']):
+                findings.append(('【中式家具/榻字违规】', f"行 {line_idx}: 严禁出现带'榻'字中式坐卧具 -> {line.strip()[:60]}"))
+
+        # 1.3 检查中式古典家具“几/案/屏风/绣墩”禁令
+        m_furn = CHINESE_FURNITURE_PATTERN.search(line)
+        if m_furn:
+            if not any(k in line for k in ['拔除', '清除', '严禁', '黑名单', '红线', '置换', '替换', '绝对禁止', '杜绝', '丢弃', '抛弃', '禁止', '规避', '绝缘']):
+                findings.append(('【中式家具/几案违规】', f"行 {line_idx}: 严禁出现中式古典家具 '{m_furn.group(0)}'（西幻一律使用长木桌/小圆桌/边桌/靠背椅/木凳） -> {line.strip()[:60]}"))
+
+        # 1.4 检查中医中药性味/修真温养修辞禁令
+        m_tcm = TCM_HERBAL_PATTERN.search(line)
+        if m_tcm:
+            if not any(k in line for k in ['拔除', '清除', '严禁', '黑名单', '红线', '置换', '替换', '绝对禁止', '杜绝', '丢弃', '抛弃', '禁止', '规避', '绝缘']):
+                findings.append(('【中医药膳/性味修辞违规】', f"行 {line_idx}: 严禁使用中医药膳/温补玄虚修辞 '{m_tcm.group(0)}'（西幻日轻草药直接客观描写） -> {line.strip()[:60]}"))
+
+        # 1.5 检查文言倒装句式与动词介词结构（调用 check_line_inversions）
+        inversion_issues = check_line_inversions(line, line_idx)
+        for itype, idesc in inversion_issues:
+            findings.append((itype, idesc))
+
         # 2. 检查传统中式度量衡
         for m in CHINESE_UNIT_PATTERN.finditer(line):
             unit_str = m.group(1)
@@ -369,6 +424,21 @@ def audit_file(filepath):
                 if any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范', '置换', '替换', '防呆', '杜绝']):
                     continue
                 findings.append(('【元叙事出戏违规】', f"行 {line_idx}: 严禁使用网文剧作元叙事代称 '{mjw}'！方案与正文一律置换为'众人'、'大家'、'全员'、'队伍'或'黎恩一行' -> {line.strip()[:60]}"))
+
+        # 6.2 检查角色台词/对白破壁元叙事（严禁在角色对白“...”或「...」中出现“第X幕/阶段/章”等剧作元编号）
+        dialogues = [m.group(1) for m in CHINESE_DIALOGUE_PATTERN.finditer(line)]
+        dialogues.extend([m.group(1) for m in ASCII_DIALOGUE_PATTERN.finditer(line)])
+        for quote_text in dialogues:
+            m_term = META_BREAKING_TERMS_PATTERN.search(quote_text)
+            if m_term:
+                if not any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范', '置换', '替换', '防呆', '杜绝', '违规']):
+                    findings.append(('【角色台词破壁元叙事违规】', f"行 {line_idx}: 严禁角色在对白台词中口吐剧作工程元编号 '{m_term.group(0)}'！台词必须转换为'先前/两个月前/前些天'等沉浸式时空指示词 -> {line.strip()[:60]}"))
+
+        # 针对具体小说正文（story/中的TXT章节），全篇一律不得出现幕次/阶段编号等元叙事
+        if 'story' in rel_path.lower() and filepath.endswith('.TXT'):
+            m_story_meta = META_BREAKING_TERMS_PATTERN.search(line)
+            if m_story_meta:
+                findings.append(('【小说正文破壁元叙事违规】', f"行 {line_idx}: 小说正文中严禁出现剧作元叙事词汇 '{m_story_meta.group(0)}' -> {line.strip()[:60]}"))
 
         # 7. 检查否定式元叙述与防守性辩解（严禁正文出现“没有...武侠/流氓/客栈/戾气”等）
         m_def = DEFENSIVE_META_PATTERN.search(line)
@@ -431,6 +501,13 @@ def audit_file(filepath):
                 m_cadence = CADENCE_4_CHAR_PATTERN.search(line)
                 if m_cadence:
                     findings.append(('【四字连缀话本病灶】', f"行 {line_idx}: 检测到连续四字短语连缀 '{m_cadence.group(0).strip('，,、')}'，句式严重话本化！请使用长短舒展的轻小说现代句式。"))
+
+        # 12.1 检查分阶段详规正文是否残留提纲骨架标记（统一标准为100%连续小说级全景长叙述散文）
+        if '分阶段详规' in rel_path and not os.path.basename(rel_path).startswith('00_'):
+            if any(line.strip().startswith(p) for p in ['* **剧情路线**', '* **主要人物**', '* **核心意图**', '* **时序情境推进**']):
+                findings.append(('【详规提纲骨架残留违规】', f"行 {line_idx}: 分阶段详规正文必须 100% 展开为小说级连续全景长叙述散文，严禁残留提纲标签 '{line.strip()[:30]}'！"))
+            elif re.match(r'^\s*-\s*[0-9]+\.\s*\*\*', line):
+                findings.append(('【详规列表条目残留违规】', f"行 {line_idx}: 分阶段详规正文必须 100% 展开为小说级连续全景长叙述散文，严禁使用列表条目切片 '{line.strip()[:30]}'！"))
 
         # 13. 角色装备与人设常识防御断言（覆盖 docs2/story 章节与方案分阶段详规，按分句细粒度检测避免群像误判）
         if ('story' in rel_path.lower() and filepath.endswith('.TXT')) or '分阶段详规' in rel_path:
