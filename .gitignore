@@ -45,3 +45,4 @@ scratch/*.txt
 # Migration & Out-of-git bundles
 迁移/
 *.tar.gz
+scripts2/.audit_cache.json

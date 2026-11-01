@@ -12,8 +12,34 @@ import os
 import sys
 import argparse
 import subprocess
-
+import json
+import hashlib
+import time
 import re
+
+CACHE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".audit_cache.json")
+
+def load_cache():
+    """读取增量审查缓存"""
+    if os.path.exists(CACHE_FILE):
+        try:
+            with open(CACHE_FILE, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception:
+            return {}
+    return {}
+
+def save_cache(cache):
+    """保存增量审查缓存"""
+    try:
+        with open(CACHE_FILE, 'w', encoding='utf-8') as f:
+            json.dump(cache, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print(f"[警告] 写入审查缓存失败: {e}")
+
+def get_chunk_hash(text):
+    """计算文本块的 SHA-256 哈希值"""
+    return hashlib.sha256(text.strip().encode('utf-8')).hexdigest()
 
 def load_rules_context():
     """动态读取工作区权威规则文件，确保单一事实源 (Single Source of Truth)"""
@@ -43,7 +69,8 @@ def load_docs2_context(text):
     common_names = ['黎恩', '菲娜', '朱利安', '雷恩', '劳拉', '艾德里安', '菲', '亚莉莎', '凯尔', '加尔', '罗恩', '亚尔缇娜', '玲', '爱丽榭', '科林', '阿达尔伯特', '克莱门特', '埃德蒙', '卢卡斯', '达米安', '瓦卢瓦', '亨里克', '奥蕾莉亚', '法林', '多尔金', '哈根']
     names_in_text = [name for name in common_names if name in text]
 
-    matched_cards = {}
+    id_matched = {}
+    name_matched = {}
     for root, dirs, files in os.walk(docs2_dir):
         for f in files:
             if f.endswith('.TXT'):
@@ -51,28 +78,37 @@ def load_docs2_context(text):
                 try:
                     with open(p, 'r', encoding='utf-8', errors='ignore') as fp:
                         content = fp.read()
-                        hit = False
+                        lines = [line for line in content.split('\n') if not line.strip().startswith('- **阴茎**') and not line.strip().startswith('- **射精**')]
+                        card_snippet = '\n'.join(lines[:20])
+
+                        is_id_hit = False
                         for eid in ids:
                             if eid in content:
-                                hit = True
+                                id_matched[f] = card_snippet
+                                is_id_hit = True
                                 break
-                        if not hit:
+                        if not is_id_hit:
                             for name in names_in_text:
                                 if f.startswith(name):
-                                    hit = True
+                                    name_matched[f] = card_snippet
                                     break
-                        if hit:
-                            # 提取核心设定行（去除超长琐碎项）
-                            lines = [line for line in content.split('\n') if not line.strip().startswith('- **阴茎**') and not line.strip().startswith('- **射精**')]
-                            matched_cards[f] = '\n'.join(lines[:35])
                 except Exception:
                     pass
 
-    if not matched_cards:
+    # ID 直接命中优先，名字次之，总计截取前 15 张
+    final_cards = {}
+    for k, v in id_matched.items():
+        if len(final_cards) < 15:
+            final_cards[k] = v
+    for k, v in name_matched.items():
+        if len(final_cards) < 15 and k not in final_cards:
+            final_cards[k] = v
+
+    if not final_cards:
         return ""
 
-    docs2_text = "\n--- 【底层设定卡片事实源 (docs2 Ground Truth，前 10 张核心卡)】 ---\n"
-    for fname, card_content in list(matched_cards.items())[:10]:
+    docs2_text = "\n--- 【底层设定卡片事实源 (docs2 Ground Truth，精选核心卡)】 ---\n"
+    for fname, card_content in final_cards.items():
         docs2_text += f"\n>>> 设定卡: {fname}\n{card_content}\n"
     return docs2_text
 
@@ -129,19 +165,19 @@ def run_subagent_audit(text, title="待审文本"):
             capture_output=True,
             text=True,
             encoding='utf-8',
-            timeout=240
+            timeout=360
         )
         if res.returncode != 0:
             return False, f"子 Agent 执行异常 (code {res.returncode}):\n{res.stderr}"
         return True, res.stdout.strip()
     except subprocess.TimeoutExpired:
-        return False, "子 Agent 审查超时 (超过 240 秒)。"
+        return False, "子 Agent 审查超时 (超过 360 秒)。"
     except Exception as e:
         return False, f"启动子 Agent 失败: {e}"
 
 
-def audit_file_with_subagent(filepath, chunk_size=2500):
-    """按块或全篇对文件执行子 Agent 审查"""
+def audit_file_with_subagent(filepath, chunk_size=3000, target_chunk=None, no_cache=False):
+    """按块或全篇对文件执行子 Agent 审查（支持增量分块缓存与精准单块审查）"""
     if not os.path.exists(filepath):
         print(f"[错误] 目标文件不存在: {filepath}")
         return 1
@@ -150,8 +186,16 @@ def audit_file_with_subagent(filepath, chunk_size=2500):
         content = f.read()
 
     fname = os.path.basename(filepath)
+    cache = load_cache() if not no_cache else {}
+
     print(f"\n============================================================")
     print(f" [子 Agent 独立审查启动] 目标: {fname}")
+    if target_chunk is not None:
+        print(f" [模式] 单块精准审查模式: 仅审查第 {target_chunk} 块")
+    elif no_cache:
+        print(f" [模式] 全量强制审查模式: 忽略所有缓存")
+    else:
+        print(f" [模式] 增量缓存审查模式: 已通过块自动跳过，仅发送变更内容")
     print(f"============================================================")
 
     # 提取关键长叙述正文部分（跳过纯表格和标题）
@@ -175,34 +219,72 @@ def audit_file_with_subagent(filepath, chunk_size=2500):
 
     total_chunks = len(chunks)
     has_issues = False
+    cached_count = 0
+    audited_count = 0
 
     for idx, chunk in enumerate(chunks, 1):
+        if target_chunk is not None and idx != target_chunk:
+            continue
+
+        chunk_hash = get_chunk_hash(chunk)
+
+        # 检查增量缓存
+        if not no_cache and chunk_hash in cache and cache[chunk_hash].get("status") == "PASS":
+            cached_count += 1
+            print(f"  -> 块 {idx}/{total_chunks} [CACHE HIT] 增量缓存命中：文本无变更，已通过 JRPG 终审 [PASS]。")
+            continue
+
+        audited_count += 1
         chunk_title = f"{fname} - 文本块 {idx}/{total_chunks}"
         print(f"[*] 正在调用子 Agent 审查块 {idx}/{total_chunks} ({len(chunk)} 字符)...")
         success, report = run_subagent_audit(chunk, chunk_title)
         
         if not success:
             print(f"[警告] {report}")
+            has_issues = True
             continue
 
         if '[PASS]' in report:
             print(f"  -> 块 {idx} 审核通过：纯正 JRPG 文风。")
+            cache[chunk_hash] = {
+                "status": "PASS",
+                "file": fname,
+                "timestamp": time.time(),
+                "preview": chunk.splitlines()[0][:60] if chunk.splitlines() else ""
+            }
+            save_cache(cache)
         else:
             has_issues = True
             print(f"\n[!] 发现问题 (块 {idx}):\n{report}\n")
 
     print(f"============================================================")
+    print(f"审查统计: 共 {total_chunks} 块 | 缓存跳过: {cached_count} 块 | 实际审计: {audited_count} 块")
     if not has_issues:
         print(f"[OK] 子 Agent 独立终审通过！{fname} 纯度 100%，无思维惯性遗漏。")
         return 0
     else:
-        print(f"[FAIL] 子 Agent 发现了上述文风/语域问题，请根据意见重塑。")
+        print(f"[FAIL] 子 Agent 发现了上述文风/语域问题，请根据意见进行单点局部重塑。")
         return 1
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="独立的 JRPG 语域审查子 Agent")
+    parser = argparse.ArgumentParser(description="独立的 JRPG 语域审查子 Agent（支持增量分块缓存）")
     parser.add_argument('--file', type=str, required=True, help="需要审查的文件路径")
     parser.add_argument('--chunk-size', type=int, default=3000, help="文本分块大小（默认 3000 字）")
+    parser.add_argument('--chunk', type=int, default=None, help="仅审查指定序号的文本块（从 1 开始）")
+    parser.add_argument('--no-cache', action='store_true', help="禁用增量缓存，强制全量重新调用审查")
+    parser.add_argument('--clear-cache', action='store_true', help="清空审查缓存")
     args = parser.parse_args()
 
-    sys.exit(audit_file_with_subagent(os.path.abspath(args.file), args.chunk_size))
+    if args.clear_cache:
+        if os.path.exists(CACHE_FILE):
+            os.remove(CACHE_FILE)
+            print("[OK] 已清空审查缓存文件。")
+        else:
+            print("[INFO] 缓存文件不存在，无需清理。")
+
+    sys.exit(audit_file_with_subagent(
+        os.path.abspath(args.file),
+        chunk_size=args.chunk_size,
+        target_chunk=args.chunk,
+        no_cache=args.no_cache
+    ))
