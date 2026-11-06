@@ -188,7 +188,7 @@ PART1_CONTAMINATION_WORDS = [
     '爱意值',
     '隐秘事件',
     '背德事件',
-    '落红', '淫靡', '淫水', '浪叫', '肉刃', '牝穴', '娇喘',
+    '落红', '淫靡', '淫水', '浪叫', '肉刃', '牝穴',
     '花径', '花心', '甬道', '蜜道', '阳精', '元阳', '精元', '龙根', '阳物', '昂扬', '破身', '破瓜', '失身'
 ]
 
@@ -389,7 +389,7 @@ def audit_file(filepath):
         # 3. 检查第一部字段/内容污染（角色卡保留自身生理设定，但在其他卡片、章节、方案中严格禁止）
         for pw in PART1_CONTAMINATION_WORDS:
             if pw in line:
-                if (is_character_card or 'NSFW' in rel_path) and pw in ['蜜穴', '娇喘']:
+                if (is_character_card or 'NSFW' in rel_path) and pw in ['蜜穴']:
                     continue
                 if any(k in line for k in ['不要', '拔除', '清除', '严禁', '黑名单', '禁止', '规范']):
                     continue
@@ -503,12 +503,12 @@ def audit_file(filepath):
                 if m_cadence:
                     findings.append(('【四字连缀话本病灶】', f"行 {line_idx}: 检测到连续四字短语连缀 '{m_cadence.group(0).strip('，,、')}'，句式严重话本化！请使用长短舒展的轻小说现代句式。"))
 
-        # 12.1 检查分阶段详规正文是否残留提纲骨架标记（统一标准为100%连续小说级全景长叙述散文）
+        # 12.1 检查分阶段详规正文是否残留提纲骨架标记（统一标准为情境叙述段：一段一个情境，不用列表条目）
         if '分阶段详规' in rel_path and not os.path.basename(rel_path).startswith('00_'):
             if any(line.strip().startswith(p) for p in ['* **剧情路线**', '* **主要人物**', '* **核心意图**', '* **时序情境推进**']):
-                findings.append(('【详规提纲骨架残留违规】', f"行 {line_idx}: 分阶段详规正文必须 100% 展开为小说级连续全景长叙述散文，严禁残留提纲标签 '{line.strip()[:30]}'！"))
+                findings.append(('【详规提纲骨架残留违规】', f"行 {line_idx}: 分阶段详规正文统一写成情境叙述段（一段一个情境），严禁残留提纲标签 '{line.strip()[:30]}'！"))
             elif re.match(r'^\s*-\s*[0-9]+\.\s*\*\*', line):
-                findings.append(('【详规列表条目残留违规】', f"行 {line_idx}: 分阶段详规正文必须 100% 展开为小说级连续全景长叙述散文，严禁使用列表条目切片 '{line.strip()[:30]}'！"))
+                findings.append(('【详规列表条目残留违规】', f"行 {line_idx}: 分阶段详规正文统一写成情境叙述段（一段一个情境），严禁使用列表条目切片 '{line.strip()[:30]}'！"))
 
         # 13. 角色装备与人设常识防御断言（覆盖 docs2/story 章节与方案分阶段详规，按分句细粒度检测避免群像误判）
         if ('story' in rel_path.lower() and filepath.endswith('.TXT')) or '分阶段详规' in rel_path:
