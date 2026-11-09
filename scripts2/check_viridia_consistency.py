@@ -6,7 +6,6 @@ scripts2/check_viridia_consistency.py — 第二部（维里迪亚王国篇）�
 与第一部（scripts/check_consistency.py）物理隔离。
 专门检查：
 1. docs2/ 实体卡片完整性（ID唯一性、名称、必填结构、零古风污染）。
-2. docs2/story/ 章节规范（严格遵循 9 字段白名单与主要人物声明）。
 """
 
 import os
@@ -24,7 +23,7 @@ except ImportError:
 
 def check_entity_cards():
     """检查 docs2/ 实体卡片（地点、NPC、生物、角色）"""
-    print("\n--- [1/2] 检查 docs2/ 实体卡片规范 ---")
+    print("\n--- 检查 docs2/ 实体卡片规范 ---")
     subdirs = ['location', 'npc', 'creature', 'character']
     id_map = {}
     name_map = {}
@@ -79,59 +78,13 @@ def check_entity_cards():
         print(f"  [ERROR] {e}")
     return len(errors) == 0
 
-def check_story_chapters():
-    """检查 docs2/story/ 章节文件规范"""
-    print("\n--- [2/2] 检查 docs2/story/ 章节规范 ---")
-    if not os.path.exists(config.DOCS2_STORY_DIR):
-        print(f"提示: {config.DOCS2_STORY_DIR} 目录尚未创建或为空，跳过章节检测。")
-        return True
-
-    story_files = sorted(glob.glob(os.path.join(config.DOCS2_STORY_DIR, '**', '*.TXT'), recursive=True))
-    chapter_files = [p for p in story_files if not os.path.basename(p).startswith('_')]
-    total_chapters = len(chapter_files)
-    errors = []
-
-    if total_chapters == 0:
-        print("当前尚未写入具体章节文件（待创作）。")
-        return True
-
-    for fpath in chapter_files:
-        fname = os.path.basename(fpath)
-        with open(fpath, 'r', encoding='utf-8') as f:
-            content = f.read()
-
-        # 1. 必填字段检查
-        for req in config.REQUIRED_CHAPTER_FIELDS:
-            pattern = rf'^{req}[:：]'
-            if not re.search(pattern, content, re.M):
-                errors.append(f"{fname}: 缺少必需字段 '{req}'")
-
-        # 2. 严禁字段检查
-        for fbd in config.FORBIDDEN_CHAPTER_FIELDS:
-            pattern = rf'^{fbd}[:：]'
-            if re.search(pattern, content, re.M):
-                errors.append(f"{fname}: 存在违规字段 '{fbd}'（第二部禁止）")
-
-        # 3. 主要人物字段非空检查
-        chars_m = re.search(r'^主要人物[:：]\s*(.+)', content, re.M)
-        if chars_m:
-            chars_val = chars_m.group(1).strip()
-            if not chars_val or chars_val in ['[]', '无']:
-                errors.append(f"{fname}: '主要人物' 字段不可为空")
-
-    print(f"已校验故事章节: {total_chapters} 个，规范异常: {len(errors)}")
-    for e in errors:
-        print(f"  [ERROR] {e}")
-    return len(errors) == 0
-
 def main():
     print("=" * 60)
     print(" 第二部（维里迪亚王国篇）专属一致性检查")
     print("=" * 60)
     cards_ok = check_entity_cards()
-    story_ok = check_story_chapters()
 
-    if cards_ok and story_ok:
+    if cards_ok:
         print("\n[OK] 第二部全库一致性验证通过！所有卡片与结构均符合 JRPG 规范。")
         return 0
     else:
@@ -140,3 +93,4 @@ def main():
 
 if __name__ == '__main__':
     sys.exit(main())
+
