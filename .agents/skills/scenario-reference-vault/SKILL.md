@@ -298,8 +298,10 @@ python3 .agents/skills/scenario-reference-vault/scripts/search_vault.py -s "角�
 | **低俗幻想** | `08_酒店三人行·第1幕` (V0.19) | 豪华酒店多人行、现场指令支配、多人双重贯入、前后夹击与感官超载 | `hotel`, `threesome`, `double`, `penetration`, `sandwich`, `used` |
 | **低俗幻想** | `08_酒店三人行·第2幕` (V0.20 `rest_day1`) | **休息日清晨深情温存、外来者离开后的绝对主权宣示、事后身体清洗与身心闭环** | `rest_day`, `morning`, `reclaim`, `closure`, `mine`, `wipe`, `sweetie` |
 | **低俗幻想** | `09_漫展角色扮演与更衣室` (V0.21~V0.22) | 角色扮演反差、狭窄更衣室隔间、布料勒痕拉链微声、隔板另一侧脚步逼近 | `cosplay`, `dressing_room`, `zipper`, `narrow`, `cubicle`, `costume` |
-| **忠诚的妻子** | `03_第一章露营温泉` | **晨曦露营水汽、天然温泉冷热温差、邻家年下少年羞涩冲动、小马拉大车初探** | `camping`, `hot_spring`, `water`, `mist`, `shyness`, `younger_boy` |
-| **忠诚的妻子** | `04_特殊回想湖畔漫长幽会` | **漫长心理推拉与自我催眠**（“只是帮忙擦药取暖”）、水珠滑落皮肤触觉、极限自欺 | `lake`, `tryst`, `self_deception`, `rationalize`, `warmth`, `slow_burn` |
+| **忠诚的妻子** | `09_第07章_疲劳推拿与秘密协议` | **以消除疲劳为名客房推拿、青涩少男生理失控、首次深喉口交吞咽、薄荷漱口水自白** | `massage`, `oil`, `oral`, `swallow`, `mint`, `mouthwash`, `secret_deal` |
+| **忠诚的妻子** | `23_第21章_褪下围裙与主卧大床` | **小马拉大车终极突破、米白围裙滑落真空、家庭圣域主卧大床当面欢爱、丈夫角落旁观** | `apron`, `master_bedroom`, `couch`, `vacuum`, `witness`, `power_shift` |
+| **忠诚的妻子** | `33_第31章_深山露营突袭、湖中推拿与深夜支配` | **晨曦露营水汽、天然温泉冷热温差、精神能量说辞强令裸浴、湖中推拿调理与深夜绝对支配** | `camping`, `hot_spring`, `mist`, `energy_ritual`, `naked_bath`, `domination` |
+| **忠诚的妻子** | `34_第32章_空帐漫长等待、归途龙二与沙发自欺闭环` | **空帐漫长等待性猜疑折磨、龙二大拇指小指哲学规训、客厅沙发骑乘达成终极自欺闭环** | `empty_tent`, `agony`, `thumb_pinky`, `ryuji`, `living_room`, `closure` |
 | **我的寝取执念** | `03_前篇家教补课` (第一至四章) | **以补课为名义的空间挤压、书桌下与沙发肢体接触、邻家少年与熟妇、大鸡巴尺寸冲击** | `tutoring`, `desk`, `couch`, `size`, `huge_cock`, `contrast`, `worship` |
 | **我的寝取执念** | `04_中篇夜班留宿` (第五至七章) | 暴雨夜班留宿、同一屋檐下私密洗漱、受潮贴身衣物、熟悉床榻上的越界与屈服 | `overnight`, `rainstorm`, `bathroom`, `clothes`, `bed`, `crossing_line` |
 | **我的寝取执念** | `05_后篇终极沉沦` (第八至十章) | 肉体深度沉沦、习惯巨根深度填满支配、身心被雄性荷尔蒙重构、终极背德坦白自白 | `surrender`, `deep_fill`, `domination`, `obsession`, `confession` |
