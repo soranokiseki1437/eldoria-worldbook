@@ -1,6 +1,6 @@
 ---
 name: viridia-writer
-description: 撰写、扩充、调整或复核第二部（维里迪亚王国篇）内容时使用：幕级大纲、分阶段详规、NSFW 分支企划。提供第二部的文档格式、世界设定事实、参考语料索引和质检工具。
+description: 用于第二部（维里迪亚王国篇）大纲与分阶段详规创作。提供幕级大纲构建、分阶段详规 Schema、世界设定对账与质检工具。
 ---
 
 # 第二部（维里迪亚王国篇）大纲写作
@@ -9,7 +9,7 @@ description: 撰写、扩充、调整或复核第二部（维里迪亚王国篇�
 > **基准风格**：**纯正日式 RPG 架空剑与魔法轻小说大纲（JRPG Western Fantasy & Light Novel Outline）**——以《英雄传说 轨迹系列》的细腻羁绊、生活流与战技美学为基底，融合《最终幻想》《勇者斗恶龙》《八方旅人》《无职转生》《狼与香辛料》《葬送的芙莉莲》。
 
 - 通用文风、人称、称谓、词汇：按 [AGENTS.md](../../../AGENTS.md)、[writing-guards.md](../../rules/writing-guards.md)、[lexicon.md](../../rules/lexicon.md) 执行。
-- 情境的白话写法（报备腔、话本腔、张弛、NSFW 节拍切片）：按 [vernacular-fantasy-planner](../vernacular-fantasy-planner/SKILL.md) 执行。
+- 大纲修改润色与白话规范（去报备腔、去话本腔、张弛节律、微反应）：按 [vernacular-fantasy-planner](../vernacular-fantasy-planner/SKILL.md) 执行。
 - 时空锚点与剧情点标注规范：按 [分幕剧情点时间地点规范与时空锚点标注标准工作流.md](../../../方案/第二部/主线与世界扩充方案/分幕剧情点时间地点规范与时空锚点标注标准工作流.md) 执行。
 - 本文件只写第二部独有的内容。第二部禁止使用第一部的 story-writer，也禁止引入第一部字段（战术隐蔽、爱意值、隐秘事件、背德事件等）。
 
