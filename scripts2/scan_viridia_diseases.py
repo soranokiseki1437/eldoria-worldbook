@@ -69,7 +69,7 @@ WUXIA_FORBIDDEN_WORDS = [
     '采邑', '免税采邑', '采邑私兵', '采邑贵族', '矿山采邑',
     # 国术武侠动作与发力黑话
     '坐马', '下盘', '扎稳下盘', '马步', '沉腰', '沉腰坐马', '沉腰立马', '直取要害',
-    '覆鳞如钩', '如钩', '反关节擒拿', '柔劲', '如灵蛇', '灵蛇出洞', '身形如游蛇', '游蛇', '汉白玉', '汉白玉台阶', '寒光乍现',
+    '覆鳞如钩', '如钩', '反关节擒拿', '柔劲', '如灵蛇', '灵蛇出洞', '身形如游蛇', '游蛇', '汉白玉', '汉白玉台阶', '寒光乍现', '低重心',
     # 东方/近现代非中世纪兵器与古风兵刃服饰
     '马刀', '战刀', '开山重斧', '横戟', '长戟', '钢戟', '战戟', '铁戟', '双戟', '方天画戟', '长戈',
     '战袍', '外袍', '锦袍', '青衫', '白衫', '宽袍大袖', '前襟', '衣襟',
@@ -294,6 +294,7 @@ def audit_file(filepath):
     in_blacklist_table = False
     in_interface_section = False
     in_code_block = False
+    in_before_example = False
 
     # 按行检查，精准定位并过滤黑名单定义行
     for line_idx, line in enumerate(lines, 1):
@@ -323,6 +324,13 @@ def audit_file(filepath):
             in_interface_section = False
 
         if is_guide_or_plan:
+            if stripped.startswith('**修改前**') or stripped.startswith('修改前'):
+                in_before_example = True
+                continue
+            if stripped.startswith('**修改后**') or stripped.startswith('修改后'):
+                in_before_example = False
+            if in_before_example:
+                continue
             if any(stripped.startswith(p) for p in ['×', '* ×', '- ×', '× ', '【严禁', '严禁', '拔除', '清除', '丢弃', '抛弃']):
                 continue
             if '词汇对照与置换规范表' in stripped or '红线词库' in stripped:
@@ -352,6 +360,8 @@ def audit_file(filepath):
                 if word == '小的' and any(adj in line for adj in ['大小', '掌心大', '巴掌大', '最小', '狭小', '微小', '细小', '矮小', '幼小', '小巧', '小小', '老小', '那么小', '这么小', '年纪小', '年龄小', '从小到大']):
                     continue
                 if word == '古道' and ('第十幕' in line or '10_第十幕' in line):
+                    continue
+                if word == '低重心' and '压低重心' in line:
                     continue
                 findings.append(('【古风/武侠禁词】', f"行 {line_idx}: 发现 '{word}' -> {line.strip()[:60]}"))
 
